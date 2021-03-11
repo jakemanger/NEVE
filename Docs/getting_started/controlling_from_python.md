@@ -27,7 +27,7 @@ pip install virtualenv
 ```
 virtualenv venv -p python3
 ```
-10. You can now start up your virtual environment any time you want to run an AnimVR project and control it from python. To start your newly created virtual environment, use the following command:
+10. You can now start up your virtual environment any time you want to run a NEVE project and control it from python. To start your newly created virtual environment, use the following command:
 ```
 source venv/bin/activate
 ```
@@ -43,7 +43,7 @@ pip install mlagents==0.21.0
 ```
 
 ### Simple control
-13. Now that everything is setup, i.e. our unity environment is open and our python virtual environment is activated, we can start to control the environment from python. Below, we are using the example `FindBurrow` project created in our [Creating a AnimVR unity project]() example. If you are using a different project, you will be required to change any text with `FindBurrow` to that of your project name.
+13. Now that everything is setup, i.e. our unity environment is open and our python virtual environment is activated, we can start to control the environment from python. Below, we are using the example `FindBurrow` project created in our [Unity setup](unity_setup.md) example. If you are using a different project, you will be required to change any text with `FindBurrow` to that of your project name.
 14. To achieve simple control, create a python file named `test_env.py` and add the following code:
 
 ```
@@ -142,7 +142,7 @@ python test_env.py
 
 
 ### Training a reinforcement learning agent
-You can also use a reinforcement learning agent to control agents in the unity editor. This is the original purpose of the unity editor's mlagents project, which we have used to create controls and manipulate parameters of experiments in AnimVR. There are two main options for training: 1) use unity's pre-built mlagents-learn and 2) use a custom gym environment. See the [mlagents documentation](https://github.com/Unity-Technologies/ml-agents/tree/release_9_docs/docs) for more information. Below, we will demonstrate how to use such a agent with the mlagents-learn package.
+You can also use a reinforcement learning agent to control agents in the unity editor. This is the original purpose of the unity editor's mlagents project, which we have used to create controls and manipulate parameters of experiments in NEVE. There are two main options for training: 1) use unity's pre-built mlagents-learn and 2) use a custom gym environment. See the [mlagents documentation](https://github.com/Unity-Technologies/ml-agents/tree/release_9_docs/docs) for more information. Below, we will demonstrate how to use such a agent with the mlagents-learn package.
 
 To simply swap out the animals input for a pre-made reinforcement learning agent, create a file in a `config/` folder called `findburrow_config.yaml` and paste in the following code:
 
