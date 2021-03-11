@@ -1,0 +1,23 @@
+# NEVE toolkit
+![](readme_gif.gif)
+# About
+
+Neuroecology virtual environments (NEVE) is a toolkit to allow researchers to build environments for use in behavioural and physiological experimentation. NEVE leverages the highly developed [Unity](https://unity.com/) engine to simulate environments and display stimuli. It uniquely provides the ability to simulate environments in a close-loop fashion, providing visual feed-back for experimental animals in movement and behaviour.
+
+NEVE uses the [Unity Python API](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md) and [Unity Machine Learning Agents Toolkit](https://github.com/Unity-Technologies/ml-agents) to record data, modify experimental conditions and introduce animals or reinforcement learning agents into simulations. A number of pre-built objects and environments are provided to allow researchers to quickly build, test and deploy experiments on conventional computer monitors using custom animal inputs (e.g. movement recorded on a trackball).
+
+Our examples have been applied to animals, specifically fiddler crabs and deep-sea hyperiid amphipods, however, the use of these tools are not species specific. We have created novel close-loop experiments previously time-intensive or infeasible with conventional approaches, such as those with physical objects or simple computer simulations tools (e.g. Pscychtoolbox). We have also recreated simpler traditional physiological experiments that are routinely conducted on multiple species of animals, including humans. Our tools and examples are highly applicable to most species with visual systems and are designed to be easily modifiable if required.
+
+## But why?
+- Ecologists and neuroscientists routinely utilise experiments to learn about animals behaviour and  
+Traditionally, creating experiments in this manner to learn about animal sensory systems and environments is difficult and time-intensive.
+
+# Installation and setup
+[Setting up unity](Docs/installation_and_setup/unity_setup.md)
+
+[Setting up python](Docs/installation_and_setup/python_setup.md)
+
+# Getting started
+[]
+
+# 

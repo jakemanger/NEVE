@@ -1,0 +1,13 @@
+cloudpickle==1.6.0
+future==0.18.2
+grpcio==1.33.2
+gym==0.17.3
+gym-unity==0.21.0
+mlagents-envs==0.21.0
+numpy==1.18.5
+Pillow==8.0.1
+protobuf==3.13.0
+pyglet==1.5.0
+PyYAML==5.3.1
+scipy==1.5.3
+six==1.15.0
