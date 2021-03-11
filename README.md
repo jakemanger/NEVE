@@ -8,16 +8,7 @@ NEVE uses the [Unity Python API](https://github.com/Unity-Technologies/ml-agents
 
 Our examples have been applied to animals, specifically fiddler crabs and deep-sea hyperiid amphipods, however, the use of these tools are not species specific. We have created novel close-loop experiments previously time-intensive or infeasible with conventional approaches, such as those with physical objects or simple computer simulations tools (e.g. Pscychtoolbox). We have also recreated simpler traditional physiological experiments that are routinely conducted on multiple species of animals, including humans. Our tools and examples are highly applicable to most species with visual systems and are designed to be easily modifiable if required.
 
-## But why?
-- Ecologists and neuroscientists routinely utilise experiments to learn about animals behaviour and  
-Traditionally, creating experiments in this manner to learn about animal sensory systems and environments is difficult and time-intensive.
-
-# Installation and setup
-[Setting up unity](Docs/installation_and_setup/unity_setup.md)
-
-[Setting up python](Docs/installation_and_setup/python_setup.md)
-
 # Getting started
-[]
+[Setting up unity](Docs/getting_started/unity_setup.md)
 
-# 
+[Controlling from python](Docs/getting_started/controlling_from_python.md)
