@@ -5,17 +5,22 @@ using System.Linq;
 
 public class SphereEditor : MonoBehaviour
 {
-    List<Vector3> gizmosCirclePos = new List<Vector3>();
     public MeshFilter meshFilter;
 
     // limits for cropping
-    public float xMin = -180f;
-    public float xMax = 180f;
-    public float yMin = -180f;
-    public float yMax = 180f;
+    [Range(-90, 90)]
+    public float xMin = -90f;
+    [Range(-90, 90)]
+    public float xMax = 90f;
+    [Range(-180, 180)]
+    public float yMin = -90f;
+    [Range(-180, 180)]
+    public float yMax = 90f;
 
     // we add a buffer as the position can vary very slightly
     float cropBuffer = 0.005f;
+
+    List<Vector3> gizmosCirclePos = new List<Vector3>();
 
     void OnValidate() {
         FindVerticesToCrop();
@@ -38,7 +43,7 @@ public class SphereEditor : MonoBehaviour
         // loop through each vertex and get polar coordinates
         for (int i = 0; i < vertices.Length; i++)
         {
-            Vector2 polCoords = CartesianToPolar(vertices[i]);
+            Vector2 polCoords = CartesianToPolar(transform.TransformPoint(vertices[i]));
             // check if within x and y limits and keep a record for each vertex
             bool withinLimits = (
                 polCoords.x <= xMax + cropBuffer &&
@@ -68,6 +73,7 @@ public class SphereEditor : MonoBehaviour
         mesh.triangles = newTriangles.ToArray();
     }
 
+    // for viewing when cropping in the editor
     void FindVerticesToCrop() {
         meshFilter = GetComponent<MeshFilter>();
         Mesh mesh = meshFilter.sharedMesh;
@@ -76,7 +82,7 @@ public class SphereEditor : MonoBehaviour
         // loop through each vertex and get polar coordinates
         for (int i = 0; i < vertices.Length; i++)
         {
-            Vector2 polCoords = CartesianToPolar(vertices[i]);
+            Vector2 polCoords = CartesianToPolar(transform.TransformPoint(vertices[i]));
             // check if within x and y limits and keep a record for each vertex
             bool withinLimits = (
                 polCoords.x <= xMax + cropBuffer &&
