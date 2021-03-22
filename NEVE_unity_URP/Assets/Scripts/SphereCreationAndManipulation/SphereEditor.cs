@@ -38,9 +38,9 @@ public class SphereEditor : MonoBehaviour
 
     public void CropMesh() {
         MakeCut(Cut.yMax);
-        // MakeCut(Cut.yMin);
-        // MakeCut(Cut.xMin);
-        // MakeCut(Cut.xMax);
+        MakeCut(Cut.yMin);
+        MakeCut(Cut.xMin);
+        MakeCut(Cut.xMax);
     }
 
     void MakeCut(Cut cut) {
