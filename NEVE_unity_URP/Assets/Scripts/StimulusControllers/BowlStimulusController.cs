@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereGenerator)), RequireComponent(typeof(SphereEditor))]
+// [RequireComponent(typeof(SphereGenerator)), RequireComponent(typeof(SphereEditor))]
 public class BowlStimulusController : MonoBehaviour
 {
     public Vector3 rotation = Vector3.zero;
@@ -26,10 +26,9 @@ public class BowlStimulusController : MonoBehaviour
         sphereGenerator = GetComponent<SphereGenerator>();
         sphereEditor = GetComponent<SphereEditor>();
         meshRenderer = GetComponent<MeshRenderer>();
-        CreateBowl();
     }
 
-    void CreateBowl() {
+    public void CreateBowl() {
         sphereGenerator.Resolution = sphereResolution;
         sphereGenerator.Radius = radius;
         material.color = materialColor;
