@@ -17,15 +17,14 @@ public enum SphereType {tetrasphere, cubesphere, octasphere, dodecasphere, icosp
 [RequireComponent(typeof(MeshFilter))]
 [DisallowMultipleComponent]
 public class SphereGenerator : MonoBehaviour {
+    public SphereType SphereType = SphereType.icosphere;
+    public float Radius = 1000f;
+    public int Resolution = 4;
+    public bool Smooth = true;
+    public bool RemapVertices = false;
+    public Material material;
 
-    [HideInInspector] public SphereType SphereType = SphereType.icosphere;
-    [HideInInspector] public float Radius = 0.5f;
-    [HideInInspector] public int Resolution = 4;
-    [HideInInspector] public bool Smooth = true;
-    [HideInInspector] public bool RemapVertices = false;
-
-
-    bool _generating = false;
+    public bool _generating = false;
     MeshData _sphereMesh = null;
     MeshFilter _filter = null;
     MeshRenderer _renderer = null;
@@ -35,6 +34,8 @@ public class SphereGenerator : MonoBehaviour {
     /// </summary>
     public void GenerateMesh() {
         if (_generating) { return; }
+
+        print("generating!");
 
         // check that # vertices doesn't exceed unity limits with 16 bits
         print("TODO workout the predicted # vertices to avoid reaching unity limits of 65000");
@@ -53,28 +54,12 @@ public class SphereGenerator : MonoBehaviour {
         _sphereMesh = null;
         _generating = true;
 
-        if (Application.isPlaying) {
-            System.Threading.ThreadPool.QueueUserWorkItem(GenerateSphereMeshThread);
-        }
-        else {
-            GenerateSphereMeshThread(null);
-            UpdateMesh();
-        }
-    }
-
-    void Reset() {
-        Awake();
-    }
-
-    void Awake() {
-        _sphereMesh = null;
-        _generating = false;
-
-        GenerateMesh();
+        GenerateSphereMeshThread(null);
     }
 
     void Update() {
         if (_generating && _sphereMesh != null) {
+            // for some reason you have to do UpdateMesh stuff in update for it to work
             UpdateMesh();
         }
     }
@@ -116,9 +101,7 @@ public class SphereGenerator : MonoBehaviour {
     }
 
     void UpdateMesh() {
-        if (!_filter.sharedMesh) {
-            _filter.sharedMesh = new Mesh();
-        }
+        _filter.sharedMesh = new Mesh();
 
         _filter.sharedMesh.Clear();
         _filter.sharedMesh.name = SphereType.ToString();
@@ -128,9 +111,7 @@ public class SphereGenerator : MonoBehaviour {
         _filter.sharedMesh.normals = _sphereMesh.Normals;
         _filter.sharedMesh.tangents = _sphereMesh.Tangents;
 
-        if(_renderer.sharedMaterial == null) {
-            _renderer.sharedMaterial = new Material(Shader.Find("Diffuse"));
-        }
+        _renderer.sharedMaterial = material;
 
         _generating = false;
     }

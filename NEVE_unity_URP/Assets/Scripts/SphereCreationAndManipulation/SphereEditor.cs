@@ -25,10 +25,11 @@ public class SphereEditor : MonoBehaviour
     // we add a buffer as the position can vary very slightly
     float cropBuffer = 0.005f;
 
+
     List<Vector3> gizmosCirclePos = new List<Vector3>();
 
     void OnValidate() {
-        FindVerticesToCrop();
+        // FindVerticesToCrop();
     }
 
     public void FlipMesh() {
@@ -149,15 +150,10 @@ public class SphereEditor : MonoBehaviour
         } else {
             edgeValue = Mathf.Max(coordsToKeep.ToArray());
         }
-        print(Mathf.Abs(extreme - edgeValue));
         if (Mathf.Abs(extreme - edgeValue) < cropBuffer) {
             noCrop = true;
         }
-        print("no crop" + noCrop);
         if (!noCrop) {
-            print("cropping");
-            print("edgeValue" + edgeValue);
-            print("extreme" + extreme);
             for (int i = 0; i < coords.Length; i++)
             {
                 edge[i] = (coords[i] < edgeValue + cropBuffer) && (coords[i] > edgeValue - cropBuffer);

@@ -8,6 +8,8 @@ using UnityEditor;
 [CustomEditor(typeof(SphereEditor))]
 public class SphereEditor_Editor : Editor {
 
+    SphereEditor sphere;
+
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         if (GUILayout.Button("Flip mesh")) {
@@ -16,5 +18,9 @@ public class SphereEditor_Editor : Editor {
         if (GUILayout.Button("Crop mesh")) {
             ((SphereEditor)target).CropMesh();
         }
+    }
+    
+    private void OnEnable() {
+        sphere = (SphereEditor)target;
     }
 }

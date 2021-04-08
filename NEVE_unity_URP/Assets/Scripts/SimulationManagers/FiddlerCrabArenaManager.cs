@@ -15,10 +15,12 @@ public class FiddlerCrabArenaManager : MonoBehaviour
 
     [Header("Components")]
     public Transform crabEye;
+    public MeshRenderer horizonGroundRenderer;
     
     void Start()
     {
         // set background stimuli parameters
+        horizonGroundRenderer.material.color = belowHorizonColour;
 
 
         // set crab eye position and rotation
