@@ -4,40 +4,59 @@ using UnityEngine;
 
 public class SphericalStimulusGenerator : MonoBehaviour
 {
-    public GameObject stimulus;
-    public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
-    public Vector3 stimulusCartesianPosition;
-    public float offsetFromCenter = 10f;
+    // configurable parameters
     public float stimulusSize = 1f;
-
-    public bool controlFromMouse = false;
-    public float mouseMoveSpeed = 2f;
-    
-    public float unitPerSecond = 1;
-    public float startOffset = 10f;
-    public float endOffset = -10f;
+    public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
+    public float startOffset = 100f;
+    public float endOffset = 1f;
     public float duration = 5f;
+    public float delayToApproach = 5f;
+
+    public bool manualControl = false;
+    public float mouseMoveSpeed = 2f;
+
+    float offsetFromCenter;
     bool move = false;
     float timeElapsed = 0f;
+    Vector3 stimulusCartesianPosition;
+    float delayTimeElapsed = 0f;
+
+    public GameObject stimulus;
+
+
+    void Start() {
+        offsetFromCenter = startOffset;
+        delayTimeElapsed = 0f;
+    }
 
     void Update()
     {
-        if (controlFromMouse) {
+        if (manualControl) {
             stimulusPolarPosition.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed;
             stimulusPolarPosition.y += Input.GetAxis("Mouse X") * mouseMoveSpeed;
             stimulusSize += Input.mouseScrollDelta.y * mouseMoveSpeed;
             stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                print("Start/stop movement");
+                move = !move;
+                offsetFromCenter = startOffset;
+                timeElapsed = 0f;
+            }
+        } else {
+            // wait delay period and then start approach
+            delayTimeElapsed += Time.deltaTime;
+            if (!move && delayTimeElapsed >= delayToApproach) {
+                print("Start movement");
+                move = true;
+                offsetFromCenter = startOffset;
+                timeElapsed = 0f;
+            }
         }
+
         stimulusCartesianPosition = PolarToCartesian(stimulusPolarPosition);
         stimulus.transform.position = stimulusCartesianPosition;        
         stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            print("Start/stop movement");
-            move = !move;
-            offsetFromCenter = startOffset;
-            timeElapsed = 0f;
-        }
 
         if (move) {
             print("Stimulus is moving");

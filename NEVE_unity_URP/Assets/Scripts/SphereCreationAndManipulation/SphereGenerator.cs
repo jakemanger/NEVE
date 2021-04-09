@@ -29,6 +29,7 @@ public class SphereGenerator : MonoBehaviour {
     MeshFilter _filter = null;
     MeshRenderer _renderer = null;
 
+
     /// <summary>
     /// Starts the generation of a new mesh, erasing any previous mesh.
     /// </summary>

@@ -183,12 +183,7 @@ public class SphereEditor : MonoBehaviour
                     // keep the x axis coordinates and reset the y and distToCenter
                     polarVertices[i].y = stretchAngle;
                 }
-                print("stretching");
-                print(stretchAngle);
-
                 currentVertices[i] = PolarToCartesian(polarVertices[i], distToCenter);
-                print("new vertices");
-                print(currentVertices[i]);
             }
         }
 

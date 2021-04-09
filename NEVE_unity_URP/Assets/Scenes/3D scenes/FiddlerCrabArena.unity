@@ -248,6 +248,17 @@ Transform:
   m_Father: {fileID: 2478377101605148287}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &63563038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4517113867267024435, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
+  m_PrefabInstance: {fileID: 715944594}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb7804a84f444109c8f2255bf49aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &103964674 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3313422023444540460, guid: c1b1898b412f0463aa76eed6ac8eb596, type: 3}
@@ -352,6 +363,11 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!4 &309665762 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4517113868298251158, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
+  m_PrefabInstance: {fileID: 715944594}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &398854536
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517113867267024435, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
       propertyPath: startOffset
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4517113867267024435, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
       propertyPath: offsetFromCenter
@@ -544,11 +560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517113868298251158, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4517113868298251158, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 39.6
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a54a45e93aeb46438beeae89d4195bf, type: 3}
@@ -745,6 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1851185963}
   - component: {fileID: 1851185962}
+  - component: {fileID: 1851185964}
   m_Layer: 0
   m_Name: SimulationManager
   m_TagString: Untagged
@@ -770,8 +787,19 @@ MonoBehaviour:
   crabEyeHeight: 4
   distanceToMonitors: 28
   monitorDimensions: {x: 51.5, y: 32}
+  stimulusSize: 1
+  stimulusPolarPosition: {x: 0, y: 0}
+  startOffset: 100
+  endOffset: 1
+  loomingStimulusMoveSpeed: 5
+  delayToApproach: 5
+  manualControl: 0
+  mouseMoveSpeed: 2
+  recordExperimentData: 1
   horizonGround: {fileID: 103964674}
   camMon: {fileID: 2478377101605148285}
+  stimGenerator: {fileID: 63563038}
+  frameWriter: {fileID: 1851185964}
 --- !u!4 &1851185963
 Transform:
   m_ObjectHideFlags: 0
@@ -786,6 +814,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1851185964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851185961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b51ab549d1f44968da5f704ac5afb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordEachFrame: 1
+  recordingFrequency: 1
+  stimTrans: {fileID: 309665762}
+  outputFilePath: test.csv
 --- !u!1 &2478377101605148284
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2478377101605148287}
   - component: {fileID: 2478377101605148285}
+  - component: {fileID: 2478377101605148286}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -821,6 +866,19 @@ MonoBehaviour:
   leftCam: {fileID: 283125888}
   upCam: {fileID: 0}
   downCam: {fileID: 0}
+--- !u!114 &2478377101605148286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2478377101605148284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34208bb90faf4a8e84a04bf17741f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nDisplaysWanted: 4
 --- !u!4 &2478377101605148287
 Transform:
   m_ObjectHideFlags: 0
