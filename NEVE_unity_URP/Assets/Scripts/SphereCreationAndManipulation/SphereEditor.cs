@@ -187,8 +187,6 @@ public class SphereEditor : MonoBehaviour
             }
         }
 
-        print("Stretching edge vertices");
-
         return currentVertices;
     }
 

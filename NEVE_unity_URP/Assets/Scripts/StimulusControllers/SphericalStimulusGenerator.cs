@@ -11,6 +11,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public float endOffset = 1f;
     public float duration = 5f;
     public float delayToApproach = 5f;
+    public Color stimulusColour = Color.white;
 
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
@@ -20,13 +21,16 @@ public class SphericalStimulusGenerator : MonoBehaviour
     float timeElapsed = 0f;
     Vector3 stimulusCartesianPosition;
     float delayTimeElapsed = 0f;
+    Color lastStimulusColour = Color.white;
 
     public GameObject stimulus;
+    Renderer stimulusRenderer;
 
 
     void Start() {
         offsetFromCenter = startOffset;
         delayTimeElapsed = 0f;
+        stimulusRenderer = stimulus.GetComponent<Renderer>();
     }
 
     void Update()
@@ -38,7 +42,6 @@ public class SphericalStimulusGenerator : MonoBehaviour
             stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
 
             if (Input.GetKeyDown(KeyCode.Space)) {
-                print("Start/stop movement");
                 move = !move;
                 offsetFromCenter = startOffset;
                 timeElapsed = 0f;
@@ -47,7 +50,6 @@ public class SphericalStimulusGenerator : MonoBehaviour
             // wait delay period and then start approach
             delayTimeElapsed += Time.deltaTime;
             if (!move && delayTimeElapsed >= delayToApproach) {
-                print("Start movement");
                 move = true;
                 offsetFromCenter = startOffset;
                 timeElapsed = 0f;
@@ -58,8 +60,12 @@ public class SphericalStimulusGenerator : MonoBehaviour
         stimulus.transform.position = stimulusCartesianPosition;        
         stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
 
+        if (lastStimulusColour != stimulusColour) {
+            stimulusRenderer.material.color = stimulusColour;
+            lastStimulusColour = stimulusColour;
+        }
+
         if (move) {
-            print("Stimulus is moving");
             offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
         }

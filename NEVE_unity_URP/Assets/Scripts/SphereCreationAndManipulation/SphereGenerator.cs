@@ -36,14 +36,9 @@ public class SphereGenerator : MonoBehaviour {
     public void GenerateMesh() {
         if (_generating) { return; }
 
-        print("generating!");
-
         // check that # vertices doesn't exceed unity limits with 16 bits
-        print("TODO workout the predicted # vertices to avoid reaching unity limits of 65000");
-        print(GetBaseSolid(SphereType).Vertices.Count); 
         int resolution = 1 << (Resolution - 1);
         int verticesLength = (resolution + 1) * (resolution + 1) * 4 - (resolution * 2 - 1) * 3;
-        print(verticesLength);
 
         if(_filter == null) {
             _filter = GetComponent<MeshFilter>();
@@ -56,6 +51,7 @@ public class SphereGenerator : MonoBehaviour {
         _generating = true;
 
         GenerateSphereMeshThread(null);
+        UpdateMesh();
     }
 
     void Update() {
@@ -73,7 +69,7 @@ public class SphereGenerator : MonoBehaviour {
             IPlatonicSolid baseSolid = GetBaseSolid(SphereType);
             _sphereMesh = SphereBuilder.Build(baseSolid, Radius, Resolution, Smooth, RemapVertices);
         }
-        Debug.Log(SphereType.ToString() + " generated: " + _sphereMesh.Triangles.Length + " tris and " + _sphereMesh.Vertices.Length + " verts.");
+        // Debug.Log(SphereType.ToString() + " generated: " + _sphereMesh.Triangles.Length + " tris and " + _sphereMesh.Vertices.Length + " verts.");
     }
 
     IPlatonicSolid GetBaseSolid(SphereType type) {

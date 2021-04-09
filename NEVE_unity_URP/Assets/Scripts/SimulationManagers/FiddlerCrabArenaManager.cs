@@ -26,6 +26,8 @@ public class FiddlerCrabArenaManager : MonoBehaviour
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
 
+    public Color stimlusColour = Color.white;
+
     [Header("Saving parameters")]
     public bool recordExperimentData = true;
 
@@ -55,6 +57,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
     }
 
     void SetupStimuli() {
+        stimGenerator.stimulusColour = stimlusColour;
         stimGenerator.stimulusSize = stimulusSize;
         stimGenerator.stimulusPolarPosition = stimulusPolarPosition;
         stimGenerator.startOffset = startOffset;
