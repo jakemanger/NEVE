@@ -17,7 +17,8 @@ public class FiddlerCrabArenaManager : MonoBehaviour
 
     [Header("Stimulus parameters")]
     public float stimulusSize = 1f;
-    public Vector2 stimulusPolarPosition = new Vector2 (0f, 0f);
+    public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
+    public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
     public float startOffset = 100f;
     public float endOffset = 1f;
     public float loomingStimulusMoveSpeed = 1f; // units (cm) per second

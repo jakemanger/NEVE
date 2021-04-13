@@ -1,4 +1,4 @@
-﻿// Original source: https://github.com/alexisgea/sphere_generator and post: https://www.alexisgiard.com/icosahedron-sphere-remastered/
+// Original source: https://github.com/alexisgea/sphere_generator and post: https://www.alexisgiard.com/icosahedron-sphere-remastered/
 // editted to add functionality for cropping sphere and flipping tri faces to inside out
 
 using System.Collections;

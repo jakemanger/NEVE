@@ -7,12 +7,12 @@ public class SphericalStimulusGenerator : MonoBehaviour
     // configurable parameters
     public float stimulusSize = 1f;
     public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
+    public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
     public float startOffset = 100f;
     public float endOffset = 1f;
     public float duration = 5f;
     public float delayToApproach = 5f;
     public Color stimulusColour = Color.white;
-
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
 
@@ -56,8 +56,11 @@ public class SphericalStimulusGenerator : MonoBehaviour
             }
         }
 
+        // convert new polar position to cartesian
         stimulusCartesianPosition = PolarToCartesian(stimulusPolarPosition);
-        stimulus.transform.position = stimulusCartesianPosition;        
+        // add offset to cartesian position in case you want a near miss stimuli
+        stimulus.transform.position = targetLocationOffset + stimulusCartesianPosition;
+
         stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
 
         if (lastStimulusColour != stimulusColour) {
@@ -65,6 +68,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
             lastStimulusColour = stimulusColour;
         }
 
+        // logic to change offset from target location of looming stimulus
         if (move) {
             offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
