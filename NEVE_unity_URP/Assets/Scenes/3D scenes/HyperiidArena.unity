@@ -1130,8 +1130,6 @@ GameObject:
   - component: {fileID: 1851185963}
   - component: {fileID: 1851185962}
   - component: {fileID: 1851185964}
-  - component: {fileID: 1851185966}
-  - component: {fileID: 1851185965}
   m_Layer: 0
   m_Name: SimulationManager
   m_TagString: Untagged
@@ -1167,7 +1165,6 @@ MonoBehaviour:
   manualControl: 0
   mouseMoveSpeed: 2
   stimlusColour: {r: 0.29411766, g: 0.29411766, b: 0.29411766, a: 1}
-  stimulusDuration: 5
   recordFrameData: 1
   recordEachFrame: 1
   recordingFrequency: 1
@@ -1175,7 +1172,6 @@ MonoBehaviour:
   camMon: {fileID: 2478377101605148285}
   stimGenerator: {fileID: 63563038}
   frameWriter: {fileID: 1851185964}
-  stimAgent: {fileID: 1851185965}
 --- !u!4 &1851185963
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,48 +1202,6 @@ MonoBehaviour:
   recordingFrequency: 1
   stimTrans: {fileID: 309665762}
   outputFilePath: test.csv
---- !u!114 &1851185965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851185961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7369346f6704347f993d3ac07c3741df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  stimulusDuration: 5
-  manager: {fileID: 1851185962}
---- !u!114 &1851185966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851185961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 1
-    VectorActionSize: 01000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: My Behavior
-  TeamId: 0
-  m_UseChildSensors: 1
 --- !u!1 &2478377101605148284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,10 +1276,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3313422021709946010, guid: c1b1898b412f0463aa76eed6ac8eb596, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 19e9b704582364cc29bae562b0995f6f, type: 2}
     - target: {fileID: 3313422021709946011, guid: c1b1898b412f0463aa76eed6ac8eb596, type: 3}
       propertyPath: m_RootOrder
       value: 2

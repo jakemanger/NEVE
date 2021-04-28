@@ -42,7 +42,15 @@ source venv/bin/activate
 pip install mlagents==0.21.0 
 ```
 
-### Simple control
+### Simple control of parameters in a experiment/simulation
+In some cases, you will want to set parameters at the start of the simulation using python and then let unity run everything without input from python so it can run as fast as possible. You may then want to repeat this process a certain amount of times (e.g. for each condition of an experiment). This is possible using the [Unity ML-Agents Python Low Level API](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-API.md#modifying-the-environment-from-python). The process to do this is described below.
+
+To do so, you will need to 
+
+
+ I recommend that you read through the [Unity ML-Agents Python Low Level API](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-API.md#modifying-the-environment-from-python) if you would like to add extra functionality to NEVE.
+
+### Simple control of an agent
 13. Now that everything is setup, i.e. our unity environment is open and our python virtual environment is activated, we can start to control the environment from python. Below, we are using the example `FindBurrow` project created in our [Unity setup](unity_setup.md) example. If you are using a different project, you will be required to change any text with `FindBurrow` to that of your project name.
 14. To achieve simple control, create a python file named `test_env.py` and add the following code:
 

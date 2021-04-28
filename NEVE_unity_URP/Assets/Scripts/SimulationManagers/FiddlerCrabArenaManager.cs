@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.MLAgents;
 
 public class FiddlerCrabArenaManager : MonoBehaviour
 {
@@ -29,25 +30,55 @@ public class FiddlerCrabArenaManager : MonoBehaviour
 
     public Color stimlusColour = Color.white;
 
+    // the time in seconds that the stimulus will run for until it waits for
+    // further input from python
+    public float stimulusDuration = 10f;
+
     [Header("Saving parameters")]
-    public bool recordExperimentData = true;
+    public bool recordFrameData = true;
+    public bool recordEachFrame = true;
+    public float recordingFrequency = 1f; // in seconds if recordEachFrame is false
 
     [Header("Components")]
     public BowlStimulusController horizonGround;
     public CameraMonitorController camMon;
     public SphericalStimulusGenerator stimGenerator;
     public FrameWriter frameWriter;
+    public StimulusAgent stimAgent; // for controlling when a stimulus has finished and a new one should be loaded
 
     // use OnEnable as it is executed before stimGenerators Start() function
     // and can restart the stimulus if you disable and enable this gameObject
-    void OnEnable() {
-       SetupStimuli();
+    // void OnEnable() {
+    //     Setup();
+    // }
+
+    public void Setup() {
+        stimAgent.stimulusDuration = stimulusDuration;
+        GetPropertiesFromPython();
+        SetupStimuli();
+        print("Reset");
+
+        // Below horizon stimuli (should be dark contrast to sky)
+        SetupBelowHorizonStimuli();
+
+        // Setup cameras and above horizon stimuli
+        camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, aboveHorizonColour);
+        
+        // Setup frameWriter to write data related to the experiment each frame
+        frameWriter.gameObject.SetActive(recordFrameData);
+        frameWriter.recordEachFrame = recordFrameData;
+        frameWriter.recordingFrequency = recordingFrequency;
     }
-    
-    void Start() {
-       SetupBelowHorizonStimuli();
-       // Setup cameras and above horizon stimuli
-       camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, aboveHorizonColour);
+
+    void GetPropertiesFromPython() {
+        // load properties from python
+        var floatChannel = Academy.Instance.EnvironmentParameters;
+        // set properties from python
+        float r = floatChannel.GetWithDefault("aboveHorizonColorR", 0.5f);
+        float g = floatChannel.GetWithDefault("aboveHorizonColorG", 0.5f);
+        float b = floatChannel.GetWithDefault("aboveHorizonColorB", 0.5f);
+        float a = floatChannel.GetWithDefault("aboveHorizonColorA", 1f);
+        aboveHorizonColour = new Color(r, g, b, a);
     }
 
     void SetupBelowHorizonStimuli() {
@@ -64,11 +95,13 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         stimGenerator.startOffset = startOffset;
         stimGenerator.endOffset = endOffset;
         stimGenerator.delayToApproach = delayToApproach;
+        stimGenerator.targetLocationOffset = targetLocationOffset;
 
         float duration = Mathf.Abs(startOffset - endOffset) / loomingStimulusMoveSpeed;
         stimGenerator.duration = duration; 
 
         stimGenerator.manualControl = manualControl;
         stimGenerator.mouseMoveSpeed = mouseMoveSpeed;
+        stimGenerator.Setup();
     }
 }

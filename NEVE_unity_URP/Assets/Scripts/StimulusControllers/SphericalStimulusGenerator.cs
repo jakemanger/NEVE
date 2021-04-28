@@ -28,9 +28,14 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
 
     void Start() {
+        stimulusRenderer = stimulus.GetComponent<Renderer>();
+    }
+
+    public void Setup() {
         offsetFromCenter = startOffset;
         delayTimeElapsed = 0f;
-        stimulusRenderer = stimulus.GetComponent<Renderer>();
+        move = false;
+        print("Stimulus Reset");
     }
 
     void Update()
