@@ -5,12 +5,14 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine.SceneManagement;
 
-public class StimulusAgent : Agent {
+// used to control when an episode/experiment starts or is finished
+public class EpisodeControllerAgent : Agent {
 
-    public float stimulusDuration = 10f;
+    public float stimulusDuration = 50f; // duration in seconds
     float timeSinceStimulusStart = 0f;
 
-    public FiddlerCrabArenaManager manager;
+    public FiddlerCrabArenaManager fcmanager;
+    public HyperiidManualControlArenaManager hmcmanager;
     
     // an extra variable to make sure we start counting
     // time from the start of the episode, not the end of the
@@ -20,7 +22,12 @@ public class StimulusAgent : Agent {
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
         timeSinceStimulusStart = 0f;
-        manager.Setup();
+        if (fcmanager != null) {
+            fcmanager.Reset();
+        }
+        if (hmcmanager != null) {
+            hmcmanager.Reset();
+        }
         print("OnEpisodeBegin");
         ranFirstFrame = false;
     }
@@ -28,25 +35,14 @@ public class StimulusAgent : Agent {
     void Update() {
         if (ranFirstFrame) {
             timeSinceStimulusStart += Time.deltaTime;
-            if (timeSinceStimulusStart >= stimulusDuration) {
-                print("endepisode");
+            if (timeSinceStimulusStart >= stimulusDuration || Input.GetKey(KeyCode.Escape)) {
                 EndEpisode();
-                RequestDecision(); // gives control back to python until env.step() or env.reset() is called
                 ranFirstFrame = false;
+                RequestDecision(); // gives control back to python until env.step() or env.reset() is called
             }
         }
         ranFirstFrame = true;
-        print(timeSinceStimulusStart);
     }
-
-    public override void CollectObservations(VectorSensor sensor) {
-        sensor.AddObservation(1);
-    }
-
-    public override void OnActionReceived(float[] vectorAction) {
-        SetReward(1f);
-    }
-
 
     // public override void CollectObservations(VectorSensor sensor) {
     // }

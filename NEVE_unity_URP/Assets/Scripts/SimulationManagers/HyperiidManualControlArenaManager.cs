@@ -3,44 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 
-public class FiddlerCrabArenaManager : MonoBehaviour
+public class HyperiidManualControlArenaManager : MonoBehaviour
 {
     [Header("Background parameters")]
-    public Color aboveHorizonColour = Color.white;
-    public Color belowHorizonColour = Color.grey;
-    [Range(-90, 90)]
-    public float horizonHeight = 0f; // relative to crab eye height
+    public Color backgroundColour = new Color(0f, 0f, 0f, 1f);
 
     [Header("Camera view parameters")]
-    public float crabEyeHeight = 4f; // cm vertically relative to bottom of front facing monitors
-    public float distanceToMonitors = 28; // cm
-    public Vector2 monitorDimensions = new Vector2(51.5f, 32f);
+    public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
+    public float distanceToMonitors = 7; // cm
+    public Vector2 monitorDimensions = new Vector2(12.176f, 6.87f);
 
     [Header("Stimulus parameters")]
     public float stimulusSize = 1f;
     public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
     public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
-    public float startOffset = 100f;
-    public float endOffset = 1f;
-    public float loomingStimulusMoveSpeed = 1f; // units (cm) per second
+    public float startOffset = 10f;
+    public float endOffset = 10f;
+    public float stimulusMoveSpeed = 1f; // units (cm) per second
     public float delayToApproach = 5f;
 
-    public bool manualControl = false;
+    public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
 
     public Color stimulusColour = Color.white;
 
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
-    public float stimulusDuration = 10f;
+    public float stimulusDuration = 60f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
     public bool recordEachFrame = true;
     public float recordingFrequency = 1f; // in seconds if recordEachFrame is false
+    public float frameDataIdCode = 9999; // a code to identify the frame data recording
 
     [Header("Components")]
-    public BowlStimulusController horizonGround;
     public CameraMonitorController camMon;
     public SphericalStimulusGenerator stimGenerator;
     public FrameWriter frameWriter;
@@ -58,37 +55,26 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         SetupStimuli();
         print("Reset");
 
-        // Below horizon stimuli (should be dark contrast to sky)
-        SetupBelowHorizonStimuli();
-
-        // Setup cameras and above horizon stimuli
-        camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, aboveHorizonColour);
-        
-        // Setup frameWriter to write data related to the experiment each frame
-        frameWriter.gameObject.SetActive(recordFrameData);
+        // Setup cameras and frame writer
+        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, backgroundColour);
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
+        frameWriter.experimentId = frameDataIdCode.ToString();
     }
 
     void GetPropertiesFromPython() {
         // load properties from python
         var floatChannel = Academy.Instance.EnvironmentParameters;
         // set properties from python
-        float r = floatChannel.GetWithDefault("aboveHorizonColourR", 0.5f);
-        float g = floatChannel.GetWithDefault("aboveHorizonColourG", 0.5f);
-        float b = floatChannel.GetWithDefault("aboveHorizonColourB", 0.5f);
-        float a = floatChannel.GetWithDefault("aboveHorizonColourA", 1f);
-        aboveHorizonColour = new Color(r, g, b, a);
-        r = floatChannel.GetWithDefault("belowHorizonColourR", 0.7f);
-        g = floatChannel.GetWithDefault("belowHorizonColourG", 0.7f);
-        b = floatChannel.GetWithDefault("belowHorizonColourB", 0.7f);
-        a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
-        belowHorizonColour = new Color(r, g, b, a);
-        horizonHeight = floatChannel.GetWithDefault("horizonHeight", 0f);
-        crabEyeHeight = floatChannel.GetWithDefault("crabEyeHeight", 4f);
-        distanceToMonitors = floatChannel.GetWithDefault("distanceToMonitors", 28f);
-        float monitorDimensionsX = floatChannel.GetWithDefault("monitorDimensionsX", 51.5f);
-        float monitorDimensionsY = floatChannel.GetWithDefault("monitorDimensionsY", 32f);
+        float r = floatChannel.GetWithDefault("backgroundColourR", 0f);
+        float g = floatChannel.GetWithDefault("backgroundColourG", 0f);
+        float b = floatChannel.GetWithDefault("backgroundColourB", 0f);
+        float a = floatChannel.GetWithDefault("backgroundColourA", 1f);
+        backgroundColour = new Color(r, g, b, a);
+        eyeHeight = floatChannel.GetWithDefault("eyeHeight", 2f);
+        distanceToMonitors = floatChannel.GetWithDefault("distanceToMonitors", 7f);
+        float monitorDimensionsX = floatChannel.GetWithDefault("monitorDimensionsX", 12.176f);
+        float monitorDimensionsY = floatChannel.GetWithDefault("monitorDimensionsY", 6.87f);
         monitorDimensions = new Vector2(monitorDimensionsX, monitorDimensionsY);
         stimulusSize = floatChannel.GetWithDefault("stimulusSize", 1f);
         float stimulusPolarPositionX = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
@@ -98,28 +84,22 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         float targetLocationOffsetY = floatChannel.GetWithDefault("targetLocationOffsetY", 0f);
         float targetLocationOffsetZ = floatChannel.GetWithDefault("targetLocationOffsetZ", 0f);
         targetLocationOffset = new Vector3(targetLocationOffsetX, targetLocationOffsetY, targetLocationOffsetZ);
-        startOffset = floatChannel.GetWithDefault("startOffset", 100f);
+        startOffset = floatChannel.GetWithDefault("startOffset", 50f);
         endOffset = floatChannel.GetWithDefault("endOffset", 1f);
-        loomingStimulusMoveSpeed = floatChannel.GetWithDefault("loomingStimulusMoveSpeed", 1f);
+        stimulusMoveSpeed = floatChannel.GetWithDefault("stimulusMoveSpeed", 1f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
-        manualControl = floatChannel.GetWithDefault("manualControl", 0f) != 0;
+        manualControl = floatChannel.GetWithDefault("manualControl", 1f) != 0;
         mouseMoveSpeed = floatChannel.GetWithDefault("mouseMoveSpeed", 2f);
-        r = floatChannel.GetWithDefault("stimulusColourR", 1f);
-        g = floatChannel.GetWithDefault("stimulusColourG", 1f);
-        b = floatChannel.GetWithDefault("stimulusColourB", 1f);
+        r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);
+        g = floatChannel.GetWithDefault("stimulusColourG", 0.1f);
+        b = floatChannel.GetWithDefault("stimulusColourB", 0.1f);
         a = floatChannel.GetWithDefault("stimulusColourA", 1f);
         stimulusColour = new Color(r, g, b, a);
-        stimulusDuration = floatChannel.GetWithDefault("stimulusDuration", 30f);
+        stimulusDuration = floatChannel.GetWithDefault("stimulusDuration", 60f);
         recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
         recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
-    }
-
-    void SetupBelowHorizonStimuli() {
-        // spawn ground horizon
-        horizonGround.materialColor = belowHorizonColour;
-        horizonGround.croppedAngle = horizonHeight;
-        horizonGround.CreateBowl();
+        frameDataIdCode = floatChannel.GetWithDefault("frameDataIdCode", 9999f);
     }
 
     void SetupStimuli() {
@@ -131,7 +111,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         stimGenerator.delayToApproach = delayToApproach;
         stimGenerator.targetLocationOffset = targetLocationOffset;
 
-        float duration = Mathf.Abs(startOffset - endOffset) / loomingStimulusMoveSpeed;
+        float duration = Mathf.Abs(startOffset - endOffset) / stimulusMoveSpeed;
         stimGenerator.duration = duration; 
 
         stimGenerator.manualControl = manualControl;

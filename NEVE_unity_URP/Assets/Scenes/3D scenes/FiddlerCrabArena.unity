@@ -1166,7 +1166,7 @@ MonoBehaviour:
   delayToApproach: 5
   manualControl: 0
   mouseMoveSpeed: 2
-  stimlusColour: {r: 0.29411766, g: 0.29411766, b: 0.29411766, a: 1}
+  stimulusColour: {r: 1, g: 1, b: 1, a: 1}
   stimulusDuration: 5
   recordFrameData: 1
   recordEachFrame: 1
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   camMon: {fileID: 2478377101605148285}
   stimGenerator: {fileID: 63563038}
   frameWriter: {fileID: 1851185964}
-  stimAgent: {fileID: 1851185965}
+  episodeController: {fileID: 1851185965}
 --- !u!4 &1851185963
 Transform:
   m_ObjectHideFlags: 0
