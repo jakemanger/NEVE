@@ -9,7 +9,7 @@ public class CursorLocker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Tab)) {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
             if (isLocked) {
                 Cursor.lockState = CursorLockMode.None;
             } else {

@@ -21,6 +21,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
     public float endOffset = 10f;
     public float stimulusMoveSpeed = 1f; // units (cm) per second
     public float delayToApproach = 5f;
+    public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
 
     public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
@@ -60,6 +61,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
+        frameWriter.Reset();
     }
 
     void GetPropertiesFromPython() {
@@ -78,7 +80,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         monitorDimensions = new Vector2(monitorDimensionsX, monitorDimensionsY);
         stimulusSize = floatChannel.GetWithDefault("stimulusSize", 1f);
         float stimulusPolarPositionX = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
-        float stimulusPolarPositionY = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
+        float stimulusPolarPositionY = floatChannel.GetWithDefault("stimulusPolarPositionY", 0f);
         stimulusPolarPosition = new Vector2(stimulusPolarPositionX, stimulusPolarPositionY);
         float targetLocationOffsetX = floatChannel.GetWithDefault("targetLocationOffsetX", 0f);
         float targetLocationOffsetY = floatChannel.GetWithDefault("targetLocationOffsetY", 0f);
@@ -88,6 +90,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         endOffset = floatChannel.GetWithDefault("endOffset", 1f);
         stimulusMoveSpeed = floatChannel.GetWithDefault("stimulusMoveSpeed", 1f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
+        flickerDuration = floatChannel.GetWithDefault("flickerDuration", 0.1f);
         manualControl = floatChannel.GetWithDefault("manualControl", 1f) != 0;
         mouseMoveSpeed = floatChannel.GetWithDefault("mouseMoveSpeed", 2f);
         r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);
@@ -110,6 +113,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         stimGenerator.endOffset = endOffset;
         stimGenerator.delayToApproach = delayToApproach;
         stimGenerator.targetLocationOffset = targetLocationOffset;
+        stimGenerator.flickerDuration = flickerDuration;
 
         float duration = Mathf.Abs(startOffset - endOffset) / stimulusMoveSpeed;
         stimGenerator.duration = duration; 

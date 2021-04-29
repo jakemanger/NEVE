@@ -92,7 +92,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         monitorDimensions = new Vector2(monitorDimensionsX, monitorDimensionsY);
         stimulusSize = floatChannel.GetWithDefault("stimulusSize", 1f);
         float stimulusPolarPositionX = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
-        float stimulusPolarPositionY = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
+        float stimulusPolarPositionY = floatChannel.GetWithDefault("stimulusPolarPositionY", 0f);
         stimulusPolarPosition = new Vector2(stimulusPolarPositionX, stimulusPolarPositionY);
         float targetLocationOffsetX = floatChannel.GetWithDefault("targetLocationOffsetX", 0f);
         float targetLocationOffsetY = floatChannel.GetWithDefault("targetLocationOffsetY", 0f);

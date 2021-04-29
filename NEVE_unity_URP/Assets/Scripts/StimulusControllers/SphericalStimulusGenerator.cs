@@ -16,6 +16,10 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
 
+    public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    bool flicker = false;
+    float timeSinceFlickerStart = 0f;
+
     float offsetFromCenter;
     bool move = false;
     float timeElapsed = 0f;
@@ -58,6 +62,19 @@ public class SphericalStimulusGenerator : MonoBehaviour
                 move = true;
                 offsetFromCenter = startOffset;
                 timeElapsed = 0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            flicker = true;
+            timeSinceFlickerStart = 0f;
+        }
+        if (flicker) {
+            stimulusRenderer.enabled = false;
+            timeSinceFlickerStart += Time.deltaTime;
+            if (timeSinceFlickerStart >= flickerDuration) {
+                stimulusRenderer.enabled = true;
+                flicker = false;
             }
         }
 

@@ -13,11 +13,6 @@ public class EpisodeControllerAgent : Agent {
 
     public FiddlerCrabArenaManager fcmanager;
     public HyperiidManualControlArenaManager hmcmanager;
-    
-    // an extra variable to make sure we start counting
-    // time from the start of the episode, not the end of the
-    // last episode (which will be default behaviour with Time.deltaTime)
-    bool ranFirstFrame = false; 
 
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
@@ -29,19 +24,17 @@ public class EpisodeControllerAgent : Agent {
             hmcmanager.Reset();
         }
         print("OnEpisodeBegin");
-        ranFirstFrame = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update() {
-        if (ranFirstFrame) {
-            timeSinceStimulusStart += Time.deltaTime;
-            if (timeSinceStimulusStart >= stimulusDuration || Input.GetKey(KeyCode.Escape)) {
-                EndEpisode();
-                ranFirstFrame = false;
-                RequestDecision(); // gives control back to python until env.step() or env.reset() is called
-            }
+        timeSinceStimulusStart += Time.deltaTime;
+        if (timeSinceStimulusStart >= stimulusDuration || Input.GetKeyDown(KeyCode.Escape)) {
+            print("asked to end episode");
+            RequestDecision(); // gives control back to python until env.step() or env.reset() is called
+            EndEpisode();
+            Cursor.lockState = CursorLockMode.None;
         }
-        ranFirstFrame = true;
     }
 
     // public override void CollectObservations(VectorSensor sensor) {

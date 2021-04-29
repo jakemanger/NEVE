@@ -20,22 +20,35 @@ public class FrameWriter : MonoBehaviour
     public string outputFilePath;
     StreamWriter _sw;
 
-    void OnEnable() {
-        if (outputFilePath == null || outputFilePath == "")
-           Debug.LogError("FrameWriter outputFilePath was not specified.");
+    bool startNewFile = false;
+    bool startedNewFile = false;
 
-        outputFilePath = experimentId + "_" + System.DateTime.UtcNow.ToString("HHmmssddMMMMyyyy") + ".csv";
-
-        _sw = System.IO.File.AppendText(outputFilePath);
-        if (!recordEachFrame)
-            InvokeRepeating("WriteData", 0, 1/recordingFrequency);
+    public void Reset() {
+        startedNewFile = false;
+        startNewFile = true;
+        print("FRAMEWRITER RESET");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (recordEachFrame) 
+        if (startedNewFile && recordEachFrame) 
             WriteData();
+
+        if (startNewFile) {
+            outputFilePath = experimentId + "_" + System.DateTime.UtcNow.ToString("HHmmssddMMMMyyyy") + ".csv";
+
+            if (outputFilePath == null || outputFilePath == "") {
+                Debug.LogError("FrameWriter outputFilePath was not specified.");
+            }
+
+            _sw = System.IO.File.AppendText(outputFilePath);
+            if (!recordEachFrame) {
+                InvokeRepeating("WriteData", 0, 1/recordingFrequency);
+            }
+            startNewFile = false;
+            startedNewFile = true;
+        }
     }
 
     public void WriteData()
@@ -43,11 +56,14 @@ public class FrameWriter : MonoBehaviour
         // write the time data and
         // x, y and z coordinates of the stimulus
         _sw.WriteLine(
-            "t {0}, x {1}, y {2}, z {3}, stimulusOn {4}",
+            "t {0}, x {1}, y {2}, z {3}, scale_x {4}, scale_y {5}, scale_z {6}, stimulusOn {7}",
             Time.time,
             stimTrans.position.x,
             stimTrans.position.y,
             stimTrans.position.z,
+            stimTrans.localScale.x,
+            stimTrans.localScale.y,
+            stimTrans.localScale.z,
             stimRenderer.enabled
         );
     }

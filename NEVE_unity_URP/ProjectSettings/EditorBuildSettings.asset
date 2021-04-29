@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3D scenes/FiddlerCrabArena.unity
-    guid: f2203f1d678d84252861b413271e53fc
+    path: Assets/Scenes/3D scenes/HyperiidManualControlArena.unity
+    guid: 15b7393bbf3b3479cadb8194bfb27017
   m_configObjects: {}
