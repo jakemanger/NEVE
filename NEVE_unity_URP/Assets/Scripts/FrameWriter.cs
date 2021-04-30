@@ -26,7 +26,6 @@ public class FrameWriter : MonoBehaviour
     public void Reset() {
         startedNewFile = false;
         startNewFile = true;
-        print("FRAMEWRITER RESET");
     }
 
     // Update is called once per frame

@@ -23,14 +23,12 @@ public class EpisodeControllerAgent : Agent {
         if (hmcmanager != null) {
             hmcmanager.Reset();
         }
-        print("OnEpisodeBegin");
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update() {
         timeSinceStimulusStart += Time.deltaTime;
         if (timeSinceStimulusStart >= stimulusDuration || Input.GetKeyDown(KeyCode.Escape)) {
-            print("asked to end episode");
             RequestDecision(); // gives control back to python until env.step() or env.reset() is called
             EndEpisode();
             Cursor.lockState = CursorLockMode.None;

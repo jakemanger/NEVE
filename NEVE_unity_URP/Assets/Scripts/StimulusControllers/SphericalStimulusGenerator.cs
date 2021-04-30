@@ -39,7 +39,6 @@ public class SphericalStimulusGenerator : MonoBehaviour
         offsetFromCenter = startOffset;
         delayTimeElapsed = 0f;
         move = false;
-        print("Stimulus Reset");
     }
 
     void Update()

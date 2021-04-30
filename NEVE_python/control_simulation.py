@@ -6,8 +6,8 @@ from hyperiid_manual_control_paras import paras
 
 # type in the full path to the executable file
 # or set to None if testing in the unity editor
-file_name = "/Users/jakemanger/phd_projects/NEVE/NEVE_unity_URP/Builds/HyperiidManualControlArena.app"
-# file_name = None
+# file_name = "/Users/jakemanger/phd_projects/NEVE/NEVE_unity_URP/Builds/HyperiidManualControlArena.app"
+file_name = None
 
 # Create the side channels
 env_parameters = EnvironmentParametersChannel()

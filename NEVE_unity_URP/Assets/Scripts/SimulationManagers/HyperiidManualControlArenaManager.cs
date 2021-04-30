@@ -44,6 +44,10 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
     public float recordingFrequency = 1f; // in seconds if recordEachFrame is false
     public float frameDataIdCode = 9999; // a code to identify the frame data recording
 
+    [Header("SyncSquare parameters")]
+    public Color syncSquareColor = Color.red;
+    public SyncSquare syncSquare;
+
     [Header("Components")]
     public CameraMonitorController camMon;
     public SphericalStimulusGenerator stimGenerator;
@@ -75,6 +79,9 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
         frameWriter.Reset();
+        syncSquare.flickerDuration = flickerDuration;
+        syncSquare.flickerColor = syncSquareColor;
+        syncSquare.Reset();
     }
 
     void GetPropertiesFromPython() {
@@ -104,6 +111,11 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         stimulusMoveSpeed = floatChannel.GetWithDefault("stimulusMoveSpeed", 1f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
         flickerDuration = floatChannel.GetWithDefault("flickerDuration", 0.1f);
+        r = floatChannel.GetWithDefault("syncSquareColorR", 1f);
+        g = floatChannel.GetWithDefault("syncSquareColorG", 0f);
+        b = floatChannel.GetWithDefault("syncSquareColorB", 0f);
+        a = floatChannel.GetWithDefault("syncSquareColorA", 1f);
+        syncSquareColor = new Color(r, g, b, a);
         manualControl = floatChannel.GetWithDefault("manualControl", 1f) != 0;
         mouseMoveSpeed = floatChannel.GetWithDefault("mouseMoveSpeed", 2f);
         r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);

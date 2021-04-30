@@ -2,6 +2,7 @@
 # HyperiidManualControlArena.exe
 # All parameter values should be a list (denoted by []) and should have the SAME
 # length (i.e. one should not have 1, while others have 2).
+# e.g. [1, 2] has the parameter value 1 for the first experiment/experimental condition and 2 for the second.
 # Each list value corresponds to the values of a different experiment or experimental condition.
 # These should be differentiated by the frameDataIdCode, so you can link up the saved data that unity spits out
 # at the end of your experiment.
@@ -14,7 +15,7 @@
 # F - flicker the stimulus and the sync square to sync unity with the camera
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 # IF manualControl==1,
-# Move the mouse - to move the stimulus in polar coordinates around the center of the aquariums
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
 # Scroll the mouse wheel - Make the stimulus larger or smaller
 # Space - start/reset looming of the stimulus
 
@@ -23,9 +24,13 @@ paras = {
     'recordFrameData': [1, 1], # 0 = false, 1 = true. record frame and stimulus related data?
     'recordEachFrame': [1, 1], # 0 = false, 1 = true. record data each frame. If false, then uses the recording frequency
     'recordingFrequency': [1, 1], # only used if recordFrameData=1 and recordEachFrame=0. time in seconds to record stimulus data
-    'manualControl': [1, 1],  # 0 = false, 1 = true. Give manual control to the user? if so, follow control guide at the top of this script
-    'mouseMoveSpeed': [2, 2],  # move speed of mouse if manual_control=true
+    'manualControl': [1, 1],  # 0 = false, 1 = true. Give manual control to the user? if so, follow control the guide at the top of this script
+    'mouseMoveSpeed': [2, 2],  # move speed of mouse if manual_control=1
     'flickerDuration': [0.1, 0.1],  # duration of flicker of sync square and stimulus when pressing f and at start of experiment
+    'syncSquareColorR': [1, 1],
+    'syncSquareColorG': [0, 0],
+    'syncSquareColorB': [0, 0],
+    'syncSquareColorA': [1, 1],
 
     'backgroundColourR': [0, 0.1],  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
     'backgroundColourG': [0, 0.1],
