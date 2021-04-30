@@ -5,6 +5,8 @@ using Unity.MLAgents;
 
 public class HyperiidManualControlArenaManager : MonoBehaviour
 {
+    public bool recieveParametersFromPython = true;
+
     [Header("Background parameters")]
     public Color backgroundColour = new Color(0f, 0f, 0f, 1f);
 
@@ -12,6 +14,10 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
     public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
     public float distanceToMonitors = 7; // cm
     public Vector2 monitorDimensions = new Vector2(12.176f, 6.87f);
+    public int frontDisplayNum = 0;
+    public int rightDisplayNum = 1;
+    public int backDisplayNum = 2;
+    public int leftDisplayNum = 3;
 
     [Header("Stimulus parameters")]
     public float stimulusSize = 1f;
@@ -51,12 +57,19 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
     // }
 
     public void Reset() {
+        if (recieveParametersFromPython) {
+            GetPropertiesFromPython();
+        }
+
         episodeController.stimulusDuration = stimulusDuration;
-        GetPropertiesFromPython();
+
         SetupStimuli();
-        print("Reset");
 
         // Setup cameras and frame writer
+        camMon.frontDisplayNum = frontDisplayNum;
+        camMon.rightDisplayNum = rightDisplayNum;
+        camMon.backDisplayNum = backDisplayNum;
+        camMon.leftDisplayNum = leftDisplayNum;
         camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, backgroundColour);
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
@@ -103,6 +116,10 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
         recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
         frameDataIdCode = floatChannel.GetWithDefault("frameDataIdCode", 9999f);
+        frontDisplayNum = (int)floatChannel.GetWithDefault("frontDisplayNum", 0f);
+        rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
+        backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);
+        leftDisplayNum = (int)floatChannel.GetWithDefault("leftDisplayNum", 3f);
     }
 
     void SetupStimuli() {

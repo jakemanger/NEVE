@@ -986,17 +986,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ac9427f5b3841b794ab75eaf668071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recieveParametersFromPython: 1
   backgroundColour: {r: 0, g: 0, b: 0, a: 1}
   eyeHeight: 4.303
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
+  frontDisplayNum: 0
+  rightDisplayNum: 1
+  backDisplayNum: 2
+  leftDisplayNum: 3
   stimulusSize: 1
   stimulusPolarPosition: {x: 0, y: -10}
-  targetLocationOffset: {x: 0, y: 0, z: 0}
+  targetLocationOffset: {x: 20, y: 0, z: 0}
   startOffset: 10
   endOffset: 10
-  stimulusMoveSpeed: 1
-  delayToApproach: 5
+  stimulusMoveSpeed: 5
+  delayToApproach: 2
+  flickerDuration: 0.1
   manualControl: 1
   mouseMoveSpeed: 2
   stimulusColour: {r: 1, g: 1, b: 1, a: 1}
@@ -1126,6 +1132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc93e4e22734e4efab826ff68188c15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frontDisplayNum: 0
+  rightDisplayNum: 1
+  backDisplayNum: 2
+  leftDisplayNum: 3
   frontCam: {fileID: 45993216}
   rightCam: {fileID: 1791422181}
   backCam: {fileID: 564051378}
