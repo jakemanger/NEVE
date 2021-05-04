@@ -13,6 +13,7 @@ public class EpisodeControllerAgent : Agent {
 
     public FiddlerCrabArenaManager fcmanager;
     public HyperiidManualControlArenaManager hmcmanager;
+    public OptomotorManager optmanager;
 
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
@@ -22,6 +23,9 @@ public class EpisodeControllerAgent : Agent {
         }
         if (hmcmanager != null) {
             hmcmanager.Reset();
+        }
+        if (optmanager != null) {
+            optmanager.Reset();
         }
         Cursor.lockState = CursorLockMode.Locked;
     }

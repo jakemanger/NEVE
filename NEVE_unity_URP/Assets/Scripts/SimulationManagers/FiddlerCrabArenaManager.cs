@@ -62,7 +62,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         SetupBelowHorizonStimuli();
 
         // Setup cameras and above horizon stimuli
-        camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, aboveHorizonColour);
+        camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, true, aboveHorizonColour);
         
         // Setup frameWriter to write data related to the experiment each frame
         frameWriter.gameObject.SetActive(recordFrameData);

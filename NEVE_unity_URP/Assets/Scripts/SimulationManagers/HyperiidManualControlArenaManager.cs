@@ -74,7 +74,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
-        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, backgroundColour);
+        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, true, backgroundColour);
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();

@@ -54,6 +54,10 @@ public class SphericalStimulusGenerator : MonoBehaviour
                 offsetFromCenter = startOffset;
                 timeElapsed = 0f;
             }
+
+            if (Input.GetKeyDown(KeyCode.Alpha0)) {
+                stimulusPolarPosition = new Vector2(0f, 0f);
+            }
         } else {
             // wait delay period and then start approach
             delayTimeElapsed += Time.deltaTime;
