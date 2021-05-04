@@ -17,7 +17,7 @@
 # IF manualControl==1,
 # Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
 # Scroll the mouse wheel - Make the stimulus larger or smaller
-# Space - start/reset looming of the stimulus
+# Space - start movement/reset looming of the stimulus
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 paras = {
@@ -60,5 +60,5 @@ paras = {
     'stimulusColourG': [1, 0.3],
     'stimulusColourB': [0.1, 0.3],
     'stimulusColourA': [1, 1],
-    'stimulusDuration': [99999, 99999],  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
+    'experimentDuration': [99999, 99999],  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
 }

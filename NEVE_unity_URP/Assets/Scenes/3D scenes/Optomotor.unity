@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.49999994, g: 0.49999994, b: 0.49999994, a: 1}
+  m_IndirectSpecularColor: {r: 0.049987793, g: 0.049987793, b: 0.049987793, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1378,6 +1378,8 @@ MonoBehaviour:
   recordEachFrame: 1
   recordingFrequency: 1
   stimTrans: {fileID: 0}
+  stimTrans1: {fileID: 0}
+  stimTrans2: {fileID: 0}
   stimRenderer: {fileID: 0}
   syncSquareImg: {fileID: 5309253759804002103}
   experimentId: test_
@@ -1398,10 +1400,11 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  stimulusDuration: 5
+  experimentDuration: 99999
   fcmanager: {fileID: 0}
   hmcmanager: {fileID: 0}
   optmanager: {fileID: 5309253760061736718}
+  hdsmanager: {fileID: 0}
 --- !u!114 &5309253760061736714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,7 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a470aa9ddb0a41188bd88e2981bf43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
+  recieveParametersFromPython: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -1484,7 +1487,9 @@ MonoBehaviour:
   angle: 0
   speed: 2
   square: 1
-  stimulusDuration: 60
+  minimumVal: 0
+  maximumVal: 0.1
+  experimentDuration: 60
   recordFrameData: 1
   recordEachFrame: 1
   recordingFrequency: 1
@@ -1503,7 +1508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5309253760061736717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.013620095, y: -0.021150418, z: -0.016501024}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

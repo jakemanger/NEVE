@@ -8,12 +8,13 @@ using UnityEngine.SceneManagement;
 // used to control when an episode/experiment starts or is finished
 public class EpisodeControllerAgent : Agent {
 
-    public float stimulusDuration = 50f; // duration in seconds
+    public float experimentDuration = 99999f; // duration in seconds
     float timeSinceStimulusStart = 0f;
 
     public FiddlerCrabArenaManager fcmanager;
     public HyperiidManualControlArenaManager hmcmanager;
     public OptomotorManager optmanager;
+    public HyperiidDualStimulusArenaManager hdsmanager;
 
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
@@ -27,12 +28,15 @@ public class EpisodeControllerAgent : Agent {
         if (optmanager != null) {
             optmanager.Reset();
         }
+        if (hdsmanager != null) {
+            hdsmanager.Reset();
+        }
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update() {
         timeSinceStimulusStart += Time.deltaTime;
-        if (timeSinceStimulusStart >= stimulusDuration || Input.GetKeyDown(KeyCode.Escape)) {
+        if (timeSinceStimulusStart >= experimentDuration || Input.GetKeyDown(KeyCode.Escape)) {
             RequestDecision(); // gives control back to python until env.step() or env.reset() is called
             EndEpisode();
             Cursor.lockState = CursorLockMode.None;

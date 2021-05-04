@@ -32,7 +32,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
 
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
-    public float stimulusDuration = 10f;
+    public float experimentDuration = 10f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -53,7 +53,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
     // }
 
     public void Reset() {
-        episodeController.stimulusDuration = stimulusDuration;
+        episodeController.experimentDuration = experimentDuration;
         GetPropertiesFromPython();
         SetupStimuli();
         print("Reset");
@@ -62,7 +62,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         SetupBelowHorizonStimuli();
 
         // Setup cameras and above horizon stimuli
-        camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, true, aboveHorizonColour);
+        camMon.SetupCams(distanceToMonitors, -crabEyeHeight, monitorDimensions, true, new Color[] {aboveHorizonColour, aboveHorizonColour, aboveHorizonColour, aboveHorizonColour});
         
         // Setup frameWriter to write data related to the experiment each frame
         frameWriter.gameObject.SetActive(recordFrameData);
@@ -109,7 +109,7 @@ public class FiddlerCrabArenaManager : MonoBehaviour
         b = floatChannel.GetWithDefault("stimulusColourB", 1f);
         a = floatChannel.GetWithDefault("stimulusColourA", 1f);
         stimulusColour = new Color(r, g, b, a);
-        stimulusDuration = floatChannel.GetWithDefault("stimulusDuration", 30f);
+        experimentDuration = floatChannel.GetWithDefault("experimentDuration", 30f);
         recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
         recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
@@ -125,7 +125,8 @@ public class FiddlerCrabArenaManager : MonoBehaviour
     void SetupStimuli() {
         stimGenerator.stimulusColour = stimulusColour;
         stimGenerator.stimulusSize = stimulusSize;
-        stimGenerator.stimulusPolarPosition = stimulusPolarPosition;
+        stimGenerator.startPolarPosition = stimulusPolarPosition;
+        stimGenerator.endPolarPosition = stimulusPolarPosition;
         stimGenerator.startOffset = startOffset;
         stimGenerator.endOffset = endOffset;
         stimGenerator.delayToApproach = delayToApproach;

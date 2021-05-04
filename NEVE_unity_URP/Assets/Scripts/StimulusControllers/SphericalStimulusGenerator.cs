@@ -6,7 +6,9 @@ public class SphericalStimulusGenerator : MonoBehaviour
 {
     // configurable parameters
     public float stimulusSize = 1f;
-    public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
+    Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
+    public Vector2 startPolarPosition = new Vector2(0f, 0f);
+    public Vector2 endPolarPosition = new Vector2(0f, 0f);
     public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
     public float startOffset = 100f;
     public float endOffset = 1f;
@@ -19,6 +21,9 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
     bool flicker = false;
     float timeSinceFlickerStart = 0f;
+    bool currentlyReturning = false;
+    public float numReps = 1;
+    float numRepsDone = 0f;
 
     float offsetFromCenter;
     bool move = false;
@@ -37,6 +42,9 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
     public void Reset() {
         offsetFromCenter = startOffset;
+        stimulusPolarPosition = startPolarPosition;
+        currentlyReturning = false;
+        numRepsDone = 0;
         delayTimeElapsed = 0f;
         move = false;
     }
@@ -65,6 +73,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
                 move = true;
                 offsetFromCenter = startOffset;
                 timeElapsed = 0f;
+                numRepsDone = 0;
             }
         }
 
@@ -93,11 +102,23 @@ public class SphericalStimulusGenerator : MonoBehaviour
             lastStimulusColour = stimulusColour;
         }
 
-        // logic to change offset from target location of looming stimulus
+        // logic to change offset and polar position of stimulus
         if (move) {
-            offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
+            if (!currentlyReturning) {
+                offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
+                stimulusPolarPosition = Vector2.Lerp(startPolarPosition, endPolarPosition, timeElapsed / duration);
+            } else {
+                offsetFromCenter = Mathf.Lerp(endOffset, startOffset, timeElapsed / duration);
+                stimulusPolarPosition = Vector2.Lerp(endPolarPosition, startPolarPosition, timeElapsed / duration);
+            }
             timeElapsed += Time.deltaTime;
-        }
+
+            if ((numRepsDone) < numReps - 0.5f && timeElapsed / duration >= 1f) {
+                currentlyReturning = !currentlyReturning;
+                timeElapsed = 0f;
+                numRepsDone += 0.5f;
+            }
+        } 
     }
 
     Vector2 CartesianToPolar(Vector3 point) {

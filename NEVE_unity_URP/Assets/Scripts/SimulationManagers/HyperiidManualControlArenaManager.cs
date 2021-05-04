@@ -36,7 +36,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
 
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
-    public float stimulusDuration = 60f;
+    public float experimentDuration = 60f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -65,7 +65,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
             GetPropertiesFromPython();
         }
 
-        episodeController.stimulusDuration = stimulusDuration;
+        episodeController.experimentDuration = experimentDuration;
 
         SetupStimuli();
 
@@ -74,7 +74,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
-        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, true, backgroundColour);
+        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, true, new Color[] {backgroundColour, backgroundColour, backgroundColour, backgroundColour});
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
@@ -123,7 +123,7 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
         b = floatChannel.GetWithDefault("stimulusColourB", 0.1f);
         a = floatChannel.GetWithDefault("stimulusColourA", 1f);
         stimulusColour = new Color(r, g, b, a);
-        stimulusDuration = floatChannel.GetWithDefault("stimulusDuration", 60f);
+        experimentDuration = floatChannel.GetWithDefault("experimentDuration", 60f);
         recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
         recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
@@ -137,7 +137,8 @@ public class HyperiidManualControlArenaManager : MonoBehaviour
     void SetupStimuli() {
         stimGenerator.stimulusColour = stimulusColour;
         stimGenerator.stimulusSize = stimulusSize;
-        stimGenerator.stimulusPolarPosition = stimulusPolarPosition;
+        stimGenerator.startPolarPosition = stimulusPolarPosition;
+        stimGenerator.endPolarPosition = stimulusPolarPosition;
         stimGenerator.startOffset = startOffset;
         stimGenerator.endOffset = endOffset;
         stimGenerator.delayToApproach = delayToApproach;

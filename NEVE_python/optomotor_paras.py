@@ -16,7 +16,7 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 paras = {
-    'frameDataIdCode': [900001, 900002],  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
+    'frameDataIdCode': [100001, 100002],  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
     'recordFrameData': [1, 1],  # 0 = false, 1 = true. record frame and stimulus related data?
     'recordEachFrame': [1, 1],  # 0 = false, 1 = true. record data each frame. If false, then uses the recording frequency
     'recordingFrequency': [1, 1],  # only used if recordFrameData=1 and recordEachFrame=0. time in seconds to record stimulus data
@@ -38,7 +38,7 @@ paras = {
     'backDisplayNum': [2, 2],
     'leftDisplayNum': [3, 3],
 
-    'density': [50, 100],  # number of vertical black or white bars around horizon (360 degrees)
+    'density': [50, 200],  # number of vertical black or white bars around horizon (360 degrees)
     'offset': [0, 0],  # offset from angle 0 at start
     'angle': [0, 0],  # changes the angle of the bars. DOESNT change the north and south poles (that still needs to be implemented)
     'speed': [5, 10],  # speed of rotation (negative speeds cause opposite direction of rotation)

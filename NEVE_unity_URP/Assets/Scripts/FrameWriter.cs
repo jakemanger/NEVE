@@ -15,6 +15,10 @@ public class FrameWriter : MonoBehaviour
     public float recordingFrequency = 1f; // in seconds
 
     public Transform stimTrans;
+
+    public Transform stimTrans1;
+    public Transform stimTrans2;
+
     public Renderer stimRenderer;
     public Image syncSquareImg;
 
@@ -68,6 +72,25 @@ public class FrameWriter : MonoBehaviour
                 stimTrans.localScale.z,
                 stimRenderer.enabled
             );
+        } else if (stimTrans1 != null) {
+            _sw.WriteLine(
+                "t {0}, x1 {1}, y1 {2}, z1 {3}, scale_x1 {4}, scale_y1 {5}, scale_z1 {6}, x2 {7}, y2 {8}, z2 {9}, scale_x2 {10}, scale_y2 {11}, scale_z2 {12}, stimulusOn {13}",
+                Time.time,
+                stimTrans1.position.x,
+                stimTrans1.position.y,
+                stimTrans1.position.z,
+                stimTrans1.localScale.x,
+                stimTrans1.localScale.y,
+                stimTrans1.localScale.z,
+                stimTrans2.position.x,
+                stimTrans2.position.y,
+                stimTrans2.position.z,
+                stimTrans2.localScale.x,
+                stimTrans2.localScale.y,
+                stimTrans2.localScale.z,
+                syncSquareImg.enabled
+            );
+
         } else {
             _sw.WriteLine(
                 "t {0}, stimulusOn {1}",

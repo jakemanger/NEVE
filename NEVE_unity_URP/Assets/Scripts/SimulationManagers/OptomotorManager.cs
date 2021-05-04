@@ -22,10 +22,12 @@ public class OptomotorManager : MonoBehaviour
     public float angle = 0f;
     public float speed = 2f;
     public int square = 0;
+    public float minimumVal = 0f;
+    public float maximumVal = 0.5f;
 
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
-    public float stimulusDuration = 60f;
+    public float experimentDuration = 60f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -54,7 +56,7 @@ public class OptomotorManager : MonoBehaviour
             GetPropertiesFromPython();
         }
 
-        episodeController.stimulusDuration = stimulusDuration;
+        episodeController.experimentDuration = experimentDuration;
 
         SetupStimuli();
 
@@ -63,7 +65,7 @@ public class OptomotorManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
-        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, false, Color.clear);
+        camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, false, new Color[] {Color.clear, Color.clear, Color.clear, Color.clear});
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
@@ -93,7 +95,9 @@ public class OptomotorManager : MonoBehaviour
         angle = floatChannel.GetWithDefault("angle", 0f);
         speed = floatChannel.GetWithDefault("speed", 2f);
         square = (int)floatChannel.GetWithDefault("square", 5f);
-        stimulusDuration = floatChannel.GetWithDefault("stimulusDuration", 60f);
+        minimumVal = floatChannel.GetWithDefault("minimumVal", 0f);
+        maximumVal = floatChannel.GetWithDefault("maximumVal", 0.5f);
+        experimentDuration = floatChannel.GetWithDefault("experimentDuration", 60f);
         recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
         recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
@@ -111,6 +115,8 @@ public class OptomotorManager : MonoBehaviour
         mat.SetFloat("_Angle", angle);
         mat.SetFloat("_Speed", speed);
         mat.SetInt("_Square", square);
+        mat.SetFloat("_Minimum", minimumVal);
+        mat.SetFloat("_Maximum", maximumVal);
         RenderSettings.skybox = mat;
     }
 }
