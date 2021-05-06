@@ -11,8 +11,8 @@ public class EpisodeControllerAgent : Agent {
     public float experimentDuration = 99999f; // duration in seconds
     float timeSinceStimulusStart = 0f;
 
-    public FiddlerCrabArenaManager fcmanager;
-    public HyperiidManualControlArenaManager hmcmanager;
+    public FiddlerCrabLoomingStimulusArenaManager fcmanager;
+    public HyperiidLoomingStimulusArenaManager hmcmanager;
     public OptomotorManager optmanager;
     public HyperiidDualStimulusArenaManager hdsmanager;
 
@@ -31,7 +31,7 @@ public class EpisodeControllerAgent : Agent {
         if (hdsmanager != null) {
             hdsmanager.Reset();
         }
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update() {
@@ -39,7 +39,7 @@ public class EpisodeControllerAgent : Agent {
         if (timeSinceStimulusStart >= experimentDuration || Input.GetKeyDown(KeyCode.Escape)) {
             RequestDecision(); // gives control back to python until env.step() or env.reset() is called
             EndEpisode();
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

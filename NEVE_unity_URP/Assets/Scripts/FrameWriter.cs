@@ -41,16 +41,32 @@ public class FrameWriter : MonoBehaviour
             WriteData();
 
         if (startNewFile) {
-            outputFilePath = experimentId + "_" + System.DateTime.UtcNow.ToString("HHmmssddMMMMyyyy") + ".csv";
-
+            outputFilePath = System.DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + experimentId + ".csv";
             if (outputFilePath == null || outputFilePath == "") {
                 Debug.LogError("FrameWriter outputFilePath was not specified.");
             }
 
             _sw = System.IO.File.AppendText(outputFilePath);
+            // write first line (the headers)
             if (!recordEachFrame) {
                 InvokeRepeating("WriteData", 0, 1/recordingFrequency);
             }
+
+            if (stimTrans != null) {
+                _sw.WriteLine(
+                    "t, x , y, z , scale_x, scale_y, scale_z, stimulusOn"
+                );
+            } else if (stimTrans1 != null) {
+                _sw.WriteLine(
+                    "t, x1, y1, z1, scale_x1, scale_y1, scale_z1, x2, y2, z2, scale_x2, scale_y2, scale_z2, stimulusOn"
+                );
+
+            } else {
+                _sw.WriteLine(
+                    "t, stimulusOn"
+                );
+            }
+
             startNewFile = false;
             startedNewFile = true;
         }
@@ -62,7 +78,7 @@ public class FrameWriter : MonoBehaviour
         // x, y and z coordinates of the stimulus
         if (stimTrans != null) {
             _sw.WriteLine(
-                "t {0}, x {1}, y {2}, z {3}, scale_x {4}, scale_y {5}, scale_z {6}, stimulusOn {7}",
+                "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}",
                 Time.time,
                 stimTrans.position.x,
                 stimTrans.position.y,
@@ -74,7 +90,7 @@ public class FrameWriter : MonoBehaviour
             );
         } else if (stimTrans1 != null) {
             _sw.WriteLine(
-                "t {0}, x1 {1}, y1 {2}, z1 {3}, scale_x1 {4}, scale_y1 {5}, scale_z1 {6}, x2 {7}, y2 {8}, z2 {9}, scale_x2 {10}, scale_y2 {11}, scale_z2 {12}, stimulusOn {13}",
+                "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}",
                 Time.time,
                 stimTrans1.position.x,
                 stimTrans1.position.y,
@@ -90,10 +106,9 @@ public class FrameWriter : MonoBehaviour
                 stimTrans2.localScale.z,
                 syncSquareImg.enabled
             );
-
         } else {
             _sw.WriteLine(
-                "t {0}, stimulusOn {1}",
+                "{0}, {1}",
                 Time.time,
                 syncSquareImg.enabled
             );

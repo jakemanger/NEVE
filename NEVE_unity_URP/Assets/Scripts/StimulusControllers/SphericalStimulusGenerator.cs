@@ -19,11 +19,14 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public float mouseMoveSpeed = 2f;
 
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    public bool canFlicker = false;
     bool flicker = false;
     float timeSinceFlickerStart = 0f;
     bool currentlyReturning = false;
     public float numReps = 1;
     float numRepsDone = 0f;
+    bool wantToMove = false;
+    bool justFinishedMoving = false;
 
     float offsetFromCenter;
     bool move = false;
@@ -46,38 +49,72 @@ public class SphericalStimulusGenerator : MonoBehaviour
         currentlyReturning = false;
         numRepsDone = 0;
         delayTimeElapsed = 0f;
+        wantToMove = false;
         move = false;
+        justFinishedMoving = false;
     }
 
     void Update()
     {
         if (manualControl) {
-            stimulusPolarPosition.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed;
-            stimulusPolarPosition.y += Input.GetAxis("Mouse X") * mouseMoveSpeed;
+            if (!move && !wantToMove && !justFinishedMoving) {
+                stimulusPolarPosition.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed;
+                stimulusPolarPosition.y += Input.GetAxis("Mouse X") * mouseMoveSpeed;
+            }
             stimulusSize += Input.mouseScrollDelta.y * mouseMoveSpeed;
             stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                move = !move;
-                offsetFromCenter = startOffset;
-                timeElapsed = 0f;
-            }
 
             if (Input.GetKeyDown(KeyCode.Alpha0)) {
                 stimulusPolarPosition = new Vector2(0f, 0f);
             }
-        } else {
-            // wait delay period and then start approach
+        } 
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (move || justFinishedMoving) {
+                // if currently moving
+                move = false;
+                wantToMove = false;
+            } else {
+                wantToMove = true;
+            }
+            offsetFromCenter = startOffset;
+            timeElapsed = 0f;
+            numRepsDone = 0;
+            delayTimeElapsed = 0f;
+            currentlyReturning = false;
+            justFinishedMoving = false;
+
+            if (manualControl) {
+                if (startPolarPosition == endPolarPosition) {
+                    // looming stimulus
+                    startPolarPosition = stimulusPolarPosition;
+                    endPolarPosition = stimulusPolarPosition;
+                } else {
+                    // translating stimulus
+                    startPolarPosition = stimulusPolarPosition;
+                }
+            } else {
+                stimulusPolarPosition = startPolarPosition;
+            }
+        }
+
+        // wait delay period and then start approach
+        if (wantToMove) {
+            print("wanting to move");
             delayTimeElapsed += Time.deltaTime;
             if (!move && delayTimeElapsed >= delayToApproach) {
                 move = true;
+                wantToMove = false;
+                delayTimeElapsed = 0f;
                 offsetFromCenter = startOffset;
+                currentlyReturning = false;
                 timeElapsed = 0f;
                 numRepsDone = 0;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F)) {
+        if (canFlicker && Input.GetKeyDown(KeyCode.F)) {
             flicker = true;
             timeSinceFlickerStart = 0f;
         }
@@ -113,11 +150,20 @@ public class SphericalStimulusGenerator : MonoBehaviour
             }
             timeElapsed += Time.deltaTime;
 
-            if ((numRepsDone) < numReps - 0.5f && timeElapsed / duration >= 1f) {
-                currentlyReturning = !currentlyReturning;
-                timeElapsed = 0f;
-                numRepsDone += 0.5f;
-            }
+            if (timeElapsed / duration >= 1f) {
+                if ((numRepsDone) < numReps - 0.5f) {
+                    currentlyReturning = !currentlyReturning;
+                    timeElapsed = 0f;
+                    numRepsDone += 0.5f;
+                } else {
+                    delayTimeElapsed = 0f;
+                    timeElapsed = 0f;
+                    numRepsDone = 0f;
+                    move = false;
+                    wantToMove = false;
+                    justFinishedMoving = true;
+                }
+            } 
         } 
     }
 

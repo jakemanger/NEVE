@@ -62,6 +62,8 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
     public Color syncSquareColor = Color.red;
     public SyncSquare syncSquare;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    public int syncSquareDisplayNum = 0;
+    public bool displayStimulusCode = false;
 
     [Header("Components")]
     public CameraMonitorController camMon;
@@ -95,8 +97,11 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
         frameWriter.Reset();
+        syncSquare.transform.parent.GetComponent<Canvas>().targetDisplay = syncSquareDisplayNum;
         syncSquare.flickerDuration = flickerDuration;
         syncSquare.flickerColor = syncSquareColor;
+        syncSquare.displayStimulusCode = displayStimulusCode;
+        syncSquare.stimulusCode = frameDataIdCode;
         syncSquare.Reset();
     }
 
@@ -117,7 +122,8 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         float b = floatChannel.GetWithDefault("syncSquareColorB", 0f);
         float a = floatChannel.GetWithDefault("syncSquareColorA", 1f);
         syncSquareColor = new Color(r, g, b, a);
-
+        syncSquareDisplayNum = (int)floatChannel.GetWithDefault("syncSquareDisplayNum", 0f);
+        displayStimulusCode = floatChannel.GetWithDefault("displayStimulusCode", 1f) != 0;
 
         eyeHeight = floatChannel.GetWithDefault("eyeHeight", 2f);
         distanceToMonitors = floatChannel.GetWithDefault("distanceToMonitors", 7f);

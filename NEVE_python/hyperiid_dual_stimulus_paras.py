@@ -13,15 +13,17 @@
 # Controls for the experiment
 # escape - stall Unity, end the experiment and give control to python.
 # F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset the position of the stimulus
 # IF manualControl==1,
 # Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
 # Scroll the mouse wheel - Make the stimulus larger or smaller
-# Space - start movement/reset the position of the stimulus
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 paras = {
-    'frameDataIdCode': [900001, 900002],  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
+    # saving, control and syncing
+    'frameDataIdCode': [800001, 800002],  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
     'experimentDuration': [99999, 99999],  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
     'recordFrameData': [1, 1],  # 0 = false, 1 = true. record frame and stimulus related data?
     'recordEachFrame': [1, 1],  # 0 = false, 1 = true. record data each frame. If false, then uses the recording frequency
@@ -33,16 +35,21 @@ paras = {
     'syncSquareColorG': [0, 0],
     'syncSquareColorB': [0, 0],
     'syncSquareColorA': [1, 1],
+    'syncSquareDisplayNum': [1, 1],  # 0 = first connected display, 1 = second, and so on
+    'displayStimulusCode': [0, 0],  # display the stimulus code at all times on the sync square? (in white) 0 = false, 1 = true
 
+    # perspective
     'eyeHeight': [2, 2],  # height of the animals eyes relative to the bottom PIXEL of the front/side monitors - used for calculating perspective (cm). This is always in the center of the monitors.
     'distanceToMonitors': [7, 7],  # distance from center of eye to all monitors (cm)
     'monitorDimensionsX': [12.176, 12.176],  # x dimensions of monitors (cm)
     'monitorDimensionsY': [6.87, 6.87],  # y dimensions of monitors (cm)
-    'frontDisplayNum': [0, 0],  # 0 = first connected display, 1 = second, and so on
-    'rightDisplayNum': [1, 1],
-    'backDisplayNum': [2, 2],
-    'leftDisplayNum': [3, 3],
+    # WARNING unity considers display numbers from left to right
+    'frontDisplayNum': [1, 1],  # 0 = first connected display, 1 = second, and so on
+    'rightDisplayNum': [2, 2],  # front refers to front camera, right refers to right and so on
+    'backDisplayNum': [3, 3],
+    'leftDisplayNum': [4, 4],
 
+    # stimuli
     'frontBackgroundColourR': [0, 0.1],  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
     'frontBackgroundColourG': [0, 0.1],
     'frontBackgroundColourB': [0, 0.1],
@@ -59,40 +66,44 @@ paras = {
     'leftBackgroundColourG': [0, 0.1],
     'leftBackgroundColourB': [0, 0.1],
     'leftBackgroundColourA': [1, 1],
-
-    'stimulusSize1': [1, 1],  # size of stimulus in cm (edge to edge of sphere)
+    # sphere 1
+    'stimulusSize1': [2, 1],  # size of stimulus in cm (edge to edge of sphere)
     'stimulusDuration1': [1, 1],  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
-    'startPolarPositionX1': [0, 0],  # stimulus starting x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
-    'startPolarPositionY1': [0, 0],  # stimulus starting y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
-    'endPolarPositionX1': [0, 0],  # stimulus ending x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
-    'endPolarPositionY1': [0, 0],  # stimulus ending y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
+    # WARNING polar positions are in rotation axes (so the opposite of what you would intuitively think) x = up down, y = left right
+    'startPolarPositionX1': [0, 0],  # stimulus starting x ROTATION in polar coordinates in degrees (-90 to 90) relative to animal eye position
+    'startPolarPositionY1': [-30, -20],  # stimulus starting y ROTATION in polar coordinates in degrees (-180 to 180) relative to animal eye position
+    'endPolarPositionX1': [0, 0],  # stimulus ending x ROTATION in polar coordinates in degrees (-90 to 90) relative to animal eye position
+    'endPolarPositionY1': [30, 20],  # stimulus ending y ROTATION in polar coordinates in degrees (-180 to 180) relative to animal eye position
     'targetLocationOffsetX1': [0, 0],  # x offset for the target of a looming stimulus (cm) relative to animal eye position
     'targetLocationOffsetY1': [0, 0],  # y offset for the target of a looming stimulus (cm) relative to animal eye position
     'targetLocationOffsetZ1': [0, 0],  # z offset for the target of a looming stimulus (cm) relative to animal eye position
     'startOffset1': [50, 50],  # start distance of object from eye of animal (cm)
-    'endOffset1': [1, 1],  # end distance of object from eye of animal after looming (cm)
-    'numReps1': [1, 1],  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
+    'endOffset1': [50, 50],  # end distance of object from eye of animal after looming (cm)
+    'numReps1': [1, 2],  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
     'delayToApproach1': [5, 5],  # delay in seconds before stimulus starts moving (if manual_control=false)
     'stimulusColourR1': [0.1, 0.3],  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
-    'stimulusColourG1': [1, 0.3],
+    'stimulusColourG1': [0.1, 0.3],
     'stimulusColourB1': [0.1, 0.3],
     'stimulusColourA1': [1, 1],
-
-    'stimulusSize2': [1, 1],  # size of stimulus in cm (edge to edge of sphere)
+    # sphere 2
+    'stimulusSize2': [1, 2],  # size of stimulus in cm (edge to edge of sphere)
     'stimulusDuration2': [1, 1],  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
+    # WARNING polar positions are in rotation axes (so the opposite of what you would intuitively think)  x = up down, y = left right
     'startPolarPositionX2': [0, 0],  # stimulus starting x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
-    'startPolarPositionY2': [0, 0],  # stimulus starting y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
+    'startPolarPositionY2': [150, 160],  # stimulus starting y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
     'endPolarPositionX2': [0, 0],  # stimulus ending x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
-    'endPolarPositionY2': [0, 0],  # stimulus ending y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
+    'endPolarPositionY2': [210, 200],  # stimulus ending y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
     'targetLocationOffsetX2': [0, 0],  # x offset for the target of a looming stimulus (cm) relative to animal eye position
     'targetLocationOffsetY2': [0, 0],  # y offset for the target of a looming stimulus (cm) relative to animal eye position
     'targetLocationOffsetZ2': [0, 0],  # z offset for the target of a looming stimulus (cm) relative to animal eye position
     'startOffset2': [50, 50],  # start distance of object from eye of animal (cm)
-    'endOffset2': [1, 1],  # end distance of object from eye of animal after looming (cm)
-    'numReps2': [1, 1],  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
+    'endOffset2': [50, 50],  # end distance of object from eye of animal after looming (cm)
+    'numReps2': [1, 2],  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
     'delayToApproach2': [5, 5],  # delay in seconds before stimulus starts moving (if manual_control=false)
-    'stimulusColourR2': [0.1, 0.3],  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
-    'stimulusColourG2': [1, 0.3],
-    'stimulusColourB2': [0.1, 0.3],
+    'stimulusColourR2': [0.2, 0.3],  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
+    'stimulusColourG2': [0.2, 0.3],
+    'stimulusColourB2': [0.2, 0.3],
     'stimulusColourA2': [1, 1],
 }
+
+execution_order = [0, 1]  # 0 = first, 1 = second

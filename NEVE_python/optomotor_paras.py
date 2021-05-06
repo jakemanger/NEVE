@@ -13,10 +13,13 @@
 # Controls for the experiment
 # escape - stall Unity, end the experiment and give control to python.
 # F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 paras = {
+    # saving, control and syncing
     'frameDataIdCode': [100001, 100002],  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
+    'experimentDuration': [99999, 99999],  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
     'recordFrameData': [1, 1],  # 0 = false, 1 = true. record frame and stimulus related data?
     'recordEachFrame': [1, 1],  # 0 = false, 1 = true. record data each frame. If false, then uses the recording frequency
     'recordingFrequency': [1, 1],  # only used if recordFrameData=1 and recordEachFrame=0. time in seconds to record stimulus data
@@ -26,21 +29,29 @@ paras = {
     'syncSquareColorR': [1, 1],
     'syncSquareColorG': [0, 0],
     'syncSquareColorB': [0, 0],
-    'syncSquareColorA': [1, 1],
+    'syncSquareColorA': [1, 1], # alpha
+    'syncSquareDisplayNum': [1, 1],  # 0 = first connected display, 1 = second, and so on
+    'displayStimulusCode': [0, 0],  # display the stimulus code at all times on the sync square? (in white) 0 = false, 1 = true
 
+    # perspective
     'eyeHeight': [2, 2],  # height of the animals eyes relative to the bottom PIXEL of the front/side monitors - used for calculating perspective (cm). This is always in the center of the monitors.
     'distanceToMonitors': [7, 7],  # distance from center of eye to all monitors (cm)
     'monitorDimensionsX': [12.176, 12.176],  # x dimensions of monitors (cm)
     'monitorDimensionsY': [6.87, 6.87],  # y dimensions of monitors (cm)
-    'stimulusDuration': [99999, 99999],  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
-    'frontDisplayNum': [0, 0],  # 0 = first connected display, 1 = second, and so on
-    'rightDisplayNum': [1, 1],
-    'backDisplayNum': [2, 2],
-    'leftDisplayNum': [3, 3],
+    # WARNING unity considers display numbers from left to right
+    'frontDisplayNum': [1, 1],  # 0 = first connected display, 1 = second, and so on
+    'rightDisplayNum': [2, 2],  # front refers to front camera, right refers to right and so on
+    'backDisplayNum': [3, 3],
+    'leftDisplayNum': [4, 4],
 
-    'density': [50, 200],  # number of vertical black or white bars around horizon (360 degrees)
+    # stimuli
+    'density': [400, 200],  # number of vertical black or white bars around horizon (360 degrees)
     'offset': [0, 0],  # offset from angle 0 at start
     'angle': [0, 0],  # changes the angle of the bars. DOESNT change the north and south poles (that still needs to be implemented)
-    'speed': [5, 10],  # speed of rotation (negative speeds cause opposite direction of rotation)
-    'square': [0, 0]  # whether to make a square wave instead of a sine wave
+    'speed': [5, 10],  # speed (degrees per second) of rotation (negative speeds cause opposite direction of rotation)
+    'square': [0, 0],  # whether to make a square wave instead of a sine wave
+    'minimumVal': [0, 0], # minimum intensity value (varies from 0 to 1)
+    'maximumVal': [0.1, 0.5] # maximum intensity value (varies from 0 to 1)
 }
+
+execution_order = [0, 1]  # 0 = first, 1 = second
