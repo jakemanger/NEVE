@@ -45,7 +45,7 @@ paras = {
     'monitorDimensionsY': [6.87, 6.87],  # y dimensions of monitors (cm)
     # WARNING unity considers display numbers from left to right
     'frontDisplayNum': [1, 1],  # 0 = first connected display, 1 = second, and so on
-    'rightDisplayNum': [2, 2],  # front refers to front camera, right refers to right and so on
+    'rightDisplayNum': [0, 0],  # front refers to front camera, right refers to right and so on
     'backDisplayNum': [3, 3],
     'leftDisplayNum': [4, 4],
 
@@ -68,7 +68,7 @@ paras = {
     'leftBackgroundColourA': [1, 1],
     # sphere 1
     'stimulusSize1': [2, 1],  # size of stimulus in cm (edge to edge of sphere)
-    'stimulusDuration1': [1, 1],  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
+    'stimulusDuration1': [5, 5],  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
     # WARNING polar positions are in rotation axes (so the opposite of what you would intuitively think) x = up down, y = left right
     'startPolarPositionX1': [0, 0],  # stimulus starting x ROTATION in polar coordinates in degrees (-90 to 90) relative to animal eye position
     'startPolarPositionY1': [-30, -20],  # stimulus starting y ROTATION in polar coordinates in degrees (-180 to 180) relative to animal eye position
@@ -87,7 +87,7 @@ paras = {
     'stimulusColourA1': [1, 1],
     # sphere 2
     'stimulusSize2': [1, 2],  # size of stimulus in cm (edge to edge of sphere)
-    'stimulusDuration2': [1, 1],  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
+    'stimulusDuration2': [5, 5],  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
     # WARNING polar positions are in rotation axes (so the opposite of what you would intuitively think)  x = up down, y = left right
     'startPolarPositionX2': [0, 0],  # stimulus starting x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
     'startPolarPositionY2': [150, 160],  # stimulus starting y position in polar coordinates in degrees (-180 to 180) relative to animal eye position

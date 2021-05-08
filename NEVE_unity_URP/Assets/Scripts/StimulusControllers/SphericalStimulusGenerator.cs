@@ -45,28 +45,36 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
     public void Reset() {
         offsetFromCenter = startOffset;
-        stimulusPolarPosition = startPolarPosition;
         currentlyReturning = false;
         numRepsDone = 0;
         delayTimeElapsed = 0f;
         wantToMove = false;
         move = false;
         justFinishedMoving = false;
+
+        Vector3 pos = stimulus.transform.localPosition;
+        stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+        transform.rotation = Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f));
     }
 
     void Update()
     {
         if (manualControl) {
             if (!move && !wantToMove && !justFinishedMoving) {
-                stimulusPolarPosition.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed;
-                stimulusPolarPosition.y += Input.GetAxis("Mouse X") * mouseMoveSpeed;
+                Vector3 rot = transform.eulerAngles;
+                transform.rotation = Quaternion.Euler(new Vector3(
+                        rot.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed,
+                        rot.y += Input.GetAxis("Mouse X") * mouseMoveSpeed,
+                        0f
+                    )
+                );
             }
             stimulusSize += Input.mouseScrollDelta.y * mouseMoveSpeed;
             stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
 
 
             if (Input.GetKeyDown(KeyCode.Alpha0)) {
-                stimulusPolarPosition = new Vector2(0f, 0f);
+                transform.rotation = Quaternion.identity;
             }
         } 
 
@@ -88,15 +96,15 @@ public class SphericalStimulusGenerator : MonoBehaviour
             if (manualControl) {
                 if (startPolarPosition == endPolarPosition) {
                     // looming stimulus
-                    startPolarPosition = stimulusPolarPosition;
-                    endPolarPosition = stimulusPolarPosition;
+                    Vector3 angles = transform.eulerAngles;
+                    startPolarPosition = new Vector2(angles.x, angles.y);
+                    endPolarPosition = new Vector2(angles.x, angles.y);
                 } else {
                     // translating stimulus
-                    startPolarPosition = stimulusPolarPosition;
+                    Vector3 angles = transform.eulerAngles;
+                    startPolarPosition = new Vector2(angles.x, angles.y);
                 }
-            } else {
-                stimulusPolarPosition = startPolarPosition;
-            }
+            } 
         }
 
         // wait delay period and then start approach
@@ -127,12 +135,6 @@ public class SphericalStimulusGenerator : MonoBehaviour
             }
         }
 
-        // convert new polar position to cartesian
-        stimulusCartesianPosition = PolarToCartesian(stimulusPolarPosition);
-        // add offset to cartesian position in case you want a near miss stimuli
-        stimulus.transform.position = targetLocationOffset + stimulusCartesianPosition;
-
-        stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
 
         if (lastStimulusColour != stimulusColour) {
             stimulusRenderer.material.color = stimulusColour;
@@ -142,13 +144,18 @@ public class SphericalStimulusGenerator : MonoBehaviour
         // logic to change offset and polar position of stimulus
         if (move) {
             if (!currentlyReturning) {
-                offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
-                stimulusPolarPosition = Vector2.Lerp(startPolarPosition, endPolarPosition, timeElapsed / duration);
+                Vector3 pos = stimulus.transform.localPosition;
+                stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+                transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
+                                                                Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
+                                                                timeElapsed / duration);
             } else {
-                offsetFromCenter = Mathf.Lerp(endOffset, startOffset, timeElapsed / duration);
-                stimulusPolarPosition = Vector2.Lerp(endPolarPosition, startPolarPosition, timeElapsed / duration);
+                Vector3 pos = stimulus.transform.localPosition;
+                stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+                transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
+                                                                Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
+                                                                timeElapsed / duration);
             }
-            timeElapsed += Time.deltaTime;
 
             if (timeElapsed / duration >= 1f) {
                 if ((numRepsDone) < numReps - 0.5f) {
@@ -164,7 +171,13 @@ public class SphericalStimulusGenerator : MonoBehaviour
                     justFinishedMoving = true;
                 }
             } 
+
+            timeElapsed += Time.deltaTime;
         } 
+
+        stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
+        // add offset to cartesian position in case you want a near miss stimuli
+        transform.position = targetLocationOffset;
     }
 
     Vector2 CartesianToPolar(Vector3 point) {

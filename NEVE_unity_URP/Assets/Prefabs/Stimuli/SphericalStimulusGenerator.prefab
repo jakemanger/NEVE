@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 7929488127660487860}
   - component: {fileID: 7929488127660487867}
   - component: {fileID: 7929488127660487866}
-  - component: {fileID: 7929488127660487861}
-  - component: {fileID: 5817296472190295844}
   m_Layer: 0
-  m_Name: Stimulus
+  m_Name: Stimulus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7929488127660487863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 75}
+  m_LocalPosition: {x: 0, y: 0, z: 75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7929488128777664790}
@@ -83,38 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7929488127660487861
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7929488127660487863}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5817296472190295844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7929488127660487863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a5c9d161b2af542a3b491cbabd658c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SphereType: 4
-  Radius: 0.5
-  Resolution: 5
-  Smooth: 1
-  RemapVertices: 0
-  material: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
-  _generating: 0
 --- !u!1 &7929488128777664784
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +92,7 @@ GameObject:
   - component: {fileID: 7929488128777664790}
   - component: {fileID: 7929488128777664785}
   m_Layer: 0
-  m_Name: SphericalStimulusGenerator 1
+  m_Name: SphericalStimulusGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,5 +137,6 @@ MonoBehaviour:
   manualControl: 0
   mouseMoveSpeed: 2
   flickerDuration: 0.1
+  canFlicker: 0
   numReps: 1
   stimulus: {fileID: 7929488127660487863}

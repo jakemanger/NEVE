@@ -375,7 +375,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7929488127660487860, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929488127660487860, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_LocalPosition.z
@@ -441,7 +441,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7929488127660487861, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+    - {fileID: 5817296472190295844, guid: d319d80fdec324757bfc471df46f6090, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d319d80fdec324757bfc471df46f6090, type: 3}
 --- !u!114 &1798829677 stripped
 MonoBehaviour:
@@ -1348,8 +1350,8 @@ MonoBehaviour:
   numReps2: 2
   stimulusColour1: {r: 1, g: 1, b: 1, a: 1}
   stimulusColour2: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  stimulusDuration1: 5
-  stimulusDuration2: 5
+  stimulusDuration1: 2
+  stimulusDuration2: 2
   manualControl: 0
   mouseMoveSpeed: 2
   experimentDuration: 99999
@@ -1631,14 +1633,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7929488127660487860, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7929488127660487863, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_Name
-      value: Stimulus1
-      objectReference: {fileID: 0}
     - target: {fileID: 7929488127660487867, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1647,10 +1641,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SphericalStimulusGenerator 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7929488128777664785, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: stimulus
-      value: 
-      objectReference: {fileID: 5817296471764331953}
     - target: {fileID: 7929488128777664790, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1697,11 +1687,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d319d80fdec324757bfc471df46f6090, type: 3}
---- !u!1 &5817296471764331953 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7929488127660487863, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-  m_PrefabInstance: {fileID: 5817296471764331952}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5817296471764331954 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7929488128777664785, guid: d319d80fdec324757bfc471df46f6090, type: 3}
