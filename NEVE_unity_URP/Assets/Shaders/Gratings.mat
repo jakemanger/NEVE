@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Gratings
-  m_Shader: {fileID: -6465566751694194690, guid: 0664293e8400d405e8adea9b97f02d38, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 937390a3119b44c8f92eb897df09d9ee, type: 3}
   m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -119,7 +119,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 2
+    - _Speed: 0
     - _Square: 1
     - _SrcBlend: 1
     - _SunDisk: 2

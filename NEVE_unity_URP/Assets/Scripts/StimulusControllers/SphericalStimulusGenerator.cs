@@ -38,12 +38,16 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public GameObject stimulus;
     Renderer stimulusRenderer;
 
+    public int stimulusType = 0; // 0 = icosphere, 1 = unity cube
+    public GameObject[] stimuli; // 0 = icosphere, 1 = unity cube
 
-    void Start() {
-        stimulusRenderer = stimulus.GetComponent<Renderer>();
-    }
+    Outline outline;
+    public float outlineWidth = 2f;
+    public bool drawOutline = false;
+    public Color outlineColor = Color.black;
 
     public void Reset() {
+        // reset variables
         offsetFromCenter = startOffset;
         currentlyReturning = false;
         numRepsDone = 0;
@@ -51,6 +55,22 @@ public class SphericalStimulusGenerator : MonoBehaviour
         wantToMove = false;
         move = false;
         justFinishedMoving = false;
+
+        // disable all stimuli 
+        for (int i = 0; i < stimuli.Length; i++)
+        {
+            stimuli[i].SetActive(false);
+        }
+        // select stimulus type
+        stimulus = stimuli[stimulusType];
+        outline = stimulus.GetComponent<Outline>();
+        outline.enabled = drawOutline;
+        outline.outlineWidth = outlineWidth;
+        outline.OutlineColor = outlineColor;
+        stimulus.SetActive(true); // enable selected stimuli
+
+        stimulusRenderer = stimulus.GetComponent<Renderer>();
+        stimulusRenderer.material.color = stimulusColour;
 
         Vector3 pos = stimulus.transform.localPosition;
         stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
@@ -136,22 +156,18 @@ public class SphericalStimulusGenerator : MonoBehaviour
         }
 
 
-        if (lastStimulusColour != stimulusColour) {
-            stimulusRenderer.material.color = stimulusColour;
-            lastStimulusColour = stimulusColour;
-        }
 
         // logic to change offset and polar position of stimulus
         if (move) {
             if (!currentlyReturning) {
-                Vector3 pos = stimulus.transform.localPosition;
-                stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+                print("Moving out");
+                offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
                 transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
                                                                 Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
                                                                 timeElapsed / duration);
             } else {
-                Vector3 pos = stimulus.transform.localPosition;
-                stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+                print("Coming back in");
+                offsetFromCenter = Mathf.Lerp(endOffset, startOffset, timeElapsed / duration);
                 transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
                                                                 Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
                                                                 timeElapsed / duration);
@@ -162,7 +178,9 @@ public class SphericalStimulusGenerator : MonoBehaviour
                     currentlyReturning = !currentlyReturning;
                     timeElapsed = 0f;
                     numRepsDone += 0.5f;
+                    print("Completed a rep");
                 } else {
+                    print("finished");
                     delayTimeElapsed = 0f;
                     timeElapsed = 0f;
                     numRepsDone = 0f;
@@ -174,6 +192,8 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
             timeElapsed += Time.deltaTime;
         } 
+        Vector3 pos = stimulus.transform.localPosition;
+        stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
 
         stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
         // add offset to cartesian position in case you want a near miss stimuli

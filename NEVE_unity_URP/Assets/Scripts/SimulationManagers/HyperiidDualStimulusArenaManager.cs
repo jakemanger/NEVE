@@ -43,6 +43,14 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
     public Color stimulusColour2 = Color.white;
     public float stimulusDuration1 = 5f;
     public float stimulusDuration2 = 5f;
+    public int stimulusType1 = 0;
+    public bool drawOutline1 = false;
+    public float outlineWidth1 = 5f;
+    public Color outlineColor1 = Color.black;
+    public int stimulusType2 = 0;
+    public bool drawOutline2 = false;
+    public float outlineWidth2 = 5f;
+    public Color outlineColor2 = Color.black;
 
     public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
@@ -178,6 +186,14 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         b = floatChannel.GetWithDefault("stimulusColourB1", 0.1f);
         a = floatChannel.GetWithDefault("stimulusColourA1", 1f);
         stimulusColour1 = new Color(r, g, b, a);
+        stimulusType1 = (int)floatChannel.GetWithDefault("stimulusType1", 0); // 0 = icosphere, 1 = unity cube
+        drawOutline1 = floatChannel.GetWithDefault("drawOutline1", 0) != 0;
+        outlineWidth1 = floatChannel.GetWithDefault("outlineWidth1", 5f);
+        r = floatChannel.GetWithDefault("outlineColourR1", 0f);
+        g = floatChannel.GetWithDefault("outlineColourG1", 0f);
+        b = floatChannel.GetWithDefault("outlineColourB1", 0f);
+        a = floatChannel.GetWithDefault("outlineColourA1", 1f);
+        outlineColor1 = new Color(r, g, b, a);
 
         stimulusSize2 = floatChannel.GetWithDefault("stimulusSize2", 1f);
         stimulusDuration2 = floatChannel.GetWithDefault("stimulusDuration2", 5f);
@@ -200,6 +216,14 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         b = floatChannel.GetWithDefault("stimulusColourB2", 0.1f);
         a = floatChannel.GetWithDefault("stimulusColourA2", 1f);
         stimulusColour2 = new Color(r, g, b, a);
+        stimulusType2 = (int)floatChannel.GetWithDefault("stimulusType1", 0); // 0 = icosphere, 1 = unity cube
+        drawOutline2 = floatChannel.GetWithDefault("drawOutline1", 0) != 0;
+        outlineWidth2 = floatChannel.GetWithDefault("outlineWidth1", 5f);
+        r = floatChannel.GetWithDefault("outlineColourR1", 0f);
+        g = floatChannel.GetWithDefault("outlineColourG1", 0f);
+        b = floatChannel.GetWithDefault("outlineColourB1", 0f);
+        a = floatChannel.GetWithDefault("outlineColourA1", 1f);
+        outlineColor2 = new Color(r, g, b, a);
     }
 
     void SetupStimuli() {
@@ -215,6 +239,10 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         stimGenerator1.endPolarPosition = endPolarPosition1;
         stimGenerator1.numReps = numReps1;
         stimGenerator1.duration = stimulusDuration1; 
+        stimGenerator1.stimulusType = stimulusType1;
+        stimGenerator1.drawOutline = drawOutline1;
+        stimGenerator1.outlineWidth = outlineWidth1;
+        stimGenerator1.outlineColor = outlineColor1;
 
         stimGenerator1.manualControl = manualControl;
         stimGenerator1.mouseMoveSpeed = mouseMoveSpeed;
@@ -232,6 +260,10 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         stimGenerator2.endPolarPosition = endPolarPosition2;
         stimGenerator2.numReps = numReps2;
         stimGenerator2.duration = stimulusDuration2; 
+        stimGenerator2.stimulusType = stimulusType2;
+        stimGenerator2.drawOutline = drawOutline2;
+        stimGenerator2.outlineWidth = outlineWidth2;
+        stimGenerator2.outlineColor = outlineColor2;
 
         stimGenerator2.manualControl = manualControl;
         stimGenerator2.mouseMoveSpeed = mouseMoveSpeed;

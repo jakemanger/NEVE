@@ -35,6 +35,11 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
 
     public Color stimulusColour = Color.white;
 
+    public int stimulusType = 0; // 0 = icosphere, 1 = unity cube
+    public bool drawOutline = false;
+    public float outlineWidth = 5f;
+    public Color outlineColor = Color.black;
+
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 60f;
@@ -109,13 +114,21 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         targetLocationOffset = new Vector3(targetLocationOffsetX, targetLocationOffsetY, targetLocationOffsetZ);
         startOffset = floatChannel.GetWithDefault("startOffset", 50f);
         endOffset = floatChannel.GetWithDefault("endOffset", 1f);
+        stimulusType = (int)floatChannel.GetWithDefault("stimulusType", 0); // 0 = icosphere, 1 = unity cube
+        drawOutline = floatChannel.GetWithDefault("drawOutline", 0) != 0;
+        outlineWidth = floatChannel.GetWithDefault("outlineWidth", 5f);
+        float r = floatChannel.GetWithDefault("outlineColourR", 0f);
+        float g = floatChannel.GetWithDefault("outlineColourG", 0f);
+        float b = floatChannel.GetWithDefault("outlineColourB", 0f);
+        float a = floatChannel.GetWithDefault("outlineColourA", 1f);
+        outlineColor = new Color(r, g, b, a);
         stimulusMoveSpeed = floatChannel.GetWithDefault("stimulusMoveSpeed", 1f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
         flickerDuration = floatChannel.GetWithDefault("flickerDuration", 0.1f);
-        float r = floatChannel.GetWithDefault("syncSquareColorR", 1f);
-        float g = floatChannel.GetWithDefault("syncSquareColorG", 0f);
-        float b = floatChannel.GetWithDefault("syncSquareColorB", 0f);
-        float a = floatChannel.GetWithDefault("syncSquareColorA", 1f);
+        r = floatChannel.GetWithDefault("syncSquareColorR", 1f);
+        g = floatChannel.GetWithDefault("syncSquareColorG", 0f);
+        b = floatChannel.GetWithDefault("syncSquareColorB", 0f);
+        a = floatChannel.GetWithDefault("syncSquareColorA", 1f);
         syncSquareColor = new Color(r, g, b, a);
         syncSquareDisplayNum = (int)floatChannel.GetWithDefault("syncSquareDisplayNum", 0f);
         displayStimulusCode = floatChannel.GetWithDefault("displayStimulusCode", 1f) != 0;
@@ -167,6 +180,11 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         stimGenerator.targetLocationOffset = targetLocationOffset;
         stimGenerator.flickerDuration = flickerDuration;
         stimGenerator.numReps = 0.5f;
+        stimGenerator.stimulusType = stimulusType;
+        stimGenerator.drawOutline = drawOutline;
+        stimGenerator.outlineWidth = outlineWidth;
+        stimGenerator.outlineColor = outlineColor;
+
 
         float duration = Mathf.Abs(startOffset - endOffset) / stimulusMoveSpeed;
         stimGenerator.duration = duration; 

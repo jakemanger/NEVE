@@ -28,6 +28,10 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
     public float stimulusMoveSpeed = 1f; // units (cm) per second
     public float delayToApproach = 5f;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    public int stimulusType = 0;
+    public bool drawOutline = false;
+    public float outlineWidth = 5f;
+    public Color outlineColor = Color.black;
 
     public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
@@ -113,6 +117,14 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
         targetLocationOffset = new Vector3(targetLocationOffsetX, targetLocationOffsetY, targetLocationOffsetZ);
         startOffset = floatChannel.GetWithDefault("startOffset", 50f);
         endOffset = floatChannel.GetWithDefault("endOffset", 1f);
+        stimulusType = (int)floatChannel.GetWithDefault("stimulusType", 0); // 0 = icosphere, 1 = unity cube
+        drawOutline = floatChannel.GetWithDefault("drawOutline", 0) != 0;
+        outlineWidth = floatChannel.GetWithDefault("outlineWidth", 5f);
+        r = floatChannel.GetWithDefault("outlineColourR", 0f);
+        g = floatChannel.GetWithDefault("outlineColourG", 0f);
+        b = floatChannel.GetWithDefault("outlineColourB", 0f);
+        a = floatChannel.GetWithDefault("outlineColourA", 1f);
+        outlineColor = new Color(r, g, b, a);
         stimulusMoveSpeed = floatChannel.GetWithDefault("stimulusMoveSpeed", 1f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
         flickerDuration = floatChannel.GetWithDefault("flickerDuration", 0.1f);
@@ -152,6 +164,10 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
         stimGenerator.targetLocationOffset = targetLocationOffset;
         stimGenerator.flickerDuration = flickerDuration;
         stimGenerator.numReps = 0.5f;
+        stimGenerator.stimulusType = stimulusType;
+        stimGenerator.drawOutline = drawOutline;
+        stimGenerator.outlineWidth = outlineWidth;
+        stimGenerator.outlineColor = outlineColor;
 
         float duration = Mathf.Abs(startOffset - endOffset) / stimulusMoveSpeed;
         stimGenerator.duration = duration; 
