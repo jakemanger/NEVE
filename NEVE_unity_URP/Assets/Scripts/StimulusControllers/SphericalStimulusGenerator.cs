@@ -9,6 +9,8 @@ public class SphericalStimulusGenerator : MonoBehaviour
     Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
     public Vector2 startPolarPosition = new Vector2(0f, 0f);
     public Vector2 endPolarPosition = new Vector2(0f, 0f);
+    public Vector3 startScale = new Vector3(1f, 1f, 1f);
+    public Vector3 endScale = new Vector3(1f, 1f, 1f);
     public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
     public float startOffset = 100f;
     public float endOffset = 1f;
@@ -17,6 +19,11 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public Color stimulusColour = Color.white;
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
+    // for gratings
+    public float gratingNum = 100f;
+    public int gratingIsSquare = 0;
+    public float gratingMaxIntensity = 0.1f;
+    public float gratingMinIntensity = 0f;
 
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
     public bool canFlicker = false;
@@ -35,6 +42,12 @@ public class SphericalStimulusGenerator : MonoBehaviour
     float delayTimeElapsed = 0f;
     Color lastStimulusColour = Color.white;
 
+    public Material fixedAngularSizeMaterial;
+    public bool fixedAngularSize = false;
+    public bool fixXAxis = true; // otherwise fix the Y axis
+    public float minAngularAngle = -30f;
+    public float maxAngularAngle = 30f;
+
     public GameObject stimulus;
     Renderer stimulusRenderer;
 
@@ -45,6 +58,8 @@ public class SphericalStimulusGenerator : MonoBehaviour
     public float outlineWidth = 2f;
     public bool drawOutline = false;
     public Color outlineColor = Color.black;
+    
+    public MeshRenderer gratingSphereMesh;
 
     public void Reset() {
         // reset variables
@@ -70,11 +85,21 @@ public class SphericalStimulusGenerator : MonoBehaviour
         stimulus.SetActive(true); // enable selected stimuli
 
         stimulusRenderer = stimulus.GetComponent<Renderer>();
-        stimulusRenderer.material.color = stimulusColour;
+        if (!fixedAngularSize) {
+            stimulusRenderer.material.color = stimulusColour;
+        } else {
+            SetupFixedAngularSizeMaterial();
+        }
 
         Vector3 pos = stimulus.transform.localPosition;
         stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
         transform.rotation = Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f));
+
+        stimulus.transform.localScale = startScale;
+
+        if (stimulusType == 2) {
+            SetupGratings();
+        }
     }
 
     void Update()
@@ -92,9 +117,13 @@ public class SphericalStimulusGenerator : MonoBehaviour
             stimulusSize += Input.mouseScrollDelta.y * mouseMoveSpeed;
             stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
 
+            if (startScale == endScale) {
+                stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
+            }
 
             if (Input.GetKeyDown(KeyCode.Alpha0)) {
                 transform.rotation = Quaternion.identity;
+                stimulus.transform.localScale = startScale;
             }
         } 
 
@@ -129,7 +158,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
         // wait delay period and then start approach
         if (wantToMove) {
-            print("wanting to move");
+            // print("wanting to move");
             delayTimeElapsed += Time.deltaTime;
             if (!move && delayTimeElapsed >= delayToApproach) {
                 move = true;
@@ -160,17 +189,27 @@ public class SphericalStimulusGenerator : MonoBehaviour
         // logic to change offset and polar position of stimulus
         if (move) {
             if (!currentlyReturning) {
-                print("Moving out");
+                // print("Moving out");
                 offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
+                // move rotation
                 transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
                                                                 Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
                                                                 timeElapsed / duration);
+                if (startScale != endScale) {
+                    // scale axes
+                    stimulus.transform.localScale = Vector3.Lerp(startScale, endScale, timeElapsed / duration);
+                }
             } else {
-                print("Coming back in");
+                // print("Coming back in");
                 offsetFromCenter = Mathf.Lerp(endOffset, startOffset, timeElapsed / duration);
+                // move rotation
                 transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
                                                                 Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
                                                                 timeElapsed / duration);
+                if (startScale != endScale) {
+                    // scale axes
+                    stimulus.transform.localScale = Vector3.Lerp(endScale, startScale, timeElapsed / duration);
+                }
             }
 
             if (timeElapsed / duration >= 1f) {
@@ -178,9 +217,9 @@ public class SphericalStimulusGenerator : MonoBehaviour
                     currentlyReturning = !currentlyReturning;
                     timeElapsed = 0f;
                     numRepsDone += 0.5f;
-                    print("Completed a rep");
+                    // print("Completed a rep");
                 } else {
-                    print("finished");
+                    // print("finished");
                     delayTimeElapsed = 0f;
                     timeElapsed = 0f;
                     numRepsDone = 0f;
@@ -195,7 +234,6 @@ public class SphericalStimulusGenerator : MonoBehaviour
         Vector3 pos = stimulus.transform.localPosition;
         stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
 
-        stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
         // add offset to cartesian position in case you want a near miss stimuli
         transform.position = targetLocationOffset;
     }
@@ -222,5 +260,23 @@ public class SphericalStimulusGenerator : MonoBehaviour
         Vector3 point = rotation * origin;
 
         return point;
+    }
+
+    void SetupGratings() {
+        Material mat = gratingSphereMesh.material;
+        mat.SetFloat("_Density", gratingNum);
+        mat.SetInt("_Square", gratingIsSquare);
+        mat.SetFloat("_Minimum", gratingMinIntensity);
+        mat.SetFloat("_Maximum", gratingMaxIntensity);
+        gratingSphereMesh.material = mat;
+    }
+
+    void SetupFixedAngularSizeMaterial () {
+        Material mat = fixedAngularSizeMaterial;
+        mat.SetColor("_Color", stimulusColour);
+        mat.SetInt("_FixX", fixXAxis ? 1 : 0);
+        mat.SetFloat("_MinAngle", minAngularAngle);
+        mat.SetFloat("_MaxAngle", maxAngularAngle);
+        stimulusRenderer.material = mat;
     }
 }

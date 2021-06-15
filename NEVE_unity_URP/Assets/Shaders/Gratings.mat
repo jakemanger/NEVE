@@ -99,7 +99,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Density: 10
+    - _Density: 500
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -108,7 +108,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Maximum: 0.1
+    - _Maximum: 0.062745094
     - _Metallic: 0
     - _Minimum: 0
     - _OcclusionStrength: 1
@@ -119,8 +119,8 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0
-    - _Square: 1
+    - _Speed: 2
+    - _Square: 0
     - _SrcBlend: 1
     - _SunDisk: 2
     - _SunSize: 0.04

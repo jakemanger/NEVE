@@ -34,7 +34,7 @@ paras = {
     'displayStimulusCode': [0, 0],  # display the stimulus code at all times on the sync square? (in white) 0 = false, 1 = true
 
     # perspective
-    'eyeHeight': [2, 2],  # height of the animals eyes relative to the bottom PIXEL of the front/side monitors - used for calculating perspective (cm). This is always in the center of the monitors.
+    'eyeHeight': [3.435, 3.435],  # height of the animals eyes relative to the bottom PIXEL of the front/side monitors - used for calculating perspective (cm). This is always in the center of the monitors.
     'distanceToMonitors': [7, 7],  # distance from center of eye to all monitors (cm)
     'monitorDimensionsX': [12.176, 12.176],  # x dimensions of monitors (cm)
     'monitorDimensionsY': [6.87, 6.87],  # y dimensions of monitors (cm)

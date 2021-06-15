@@ -78,20 +78,22 @@ public class FrameWriter : MonoBehaviour
         // x, y and z coordinates of the stimulus
         if (stimTrans != null) {
             _sw.WriteLine(
-                "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}",
+                "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}",
                 Time.time,
+                System.DateTime.Now,
                 stimTrans.position.x,
                 stimTrans.position.y,
                 stimTrans.position.z,
                 stimTrans.localScale.x,
                 stimTrans.localScale.y,
                 stimTrans.localScale.z,
-                stimRenderer.enabled
+                syncSquareImg.enabled 
             );
         } else if (stimTrans1 != null) {
             _sw.WriteLine(
-                "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}",
+                "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}",
                 Time.time,
+                System.DateTime.Now,
                 stimTrans1.position.x,
                 stimTrans1.position.y,
                 stimTrans1.position.z,
@@ -108,8 +110,9 @@ public class FrameWriter : MonoBehaviour
             );
         } else {
             _sw.WriteLine(
-                "{0}, {1}",
+                "{0}, {1:o}, {2}",
                 Time.time,
+                System.DateTime.Now,
                 syncSquareImg.enabled
             );
         }

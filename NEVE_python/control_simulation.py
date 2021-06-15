@@ -33,11 +33,16 @@ env = UnityEnvironment(file_name=file_name, side_channels=[env_parameters, eng_c
 num_exps = len(paras[list(paras)[0]])
 print('Running for', num_exps, 'experiments')
 for i in execution_order:
-    input('Press Enter to change parameters and start experiment ' + str(paras['frameDataIdCode'][i]))
+    # input('Press Enter to change parameters and start experiment ' + str(paras['frameDataIdCode'][i]))
     print('Setting new environmental parameters...')
     for key, value in paras.items():
         print('Setting', key, '...')
-        env_parameters.set_float_parameter(key, value[i])
+        if len(value) == 1:
+            env_parameters.set_float_parameter(key, value)
+        else:
+            env_parameters.set_float_parameter(key, value[i])
+            assert len(value) == len(execution_order)
+
 
     # Any change to a SideChannel (env_parameters) will only be effective after a step or reset
     print('Starting experiment...')

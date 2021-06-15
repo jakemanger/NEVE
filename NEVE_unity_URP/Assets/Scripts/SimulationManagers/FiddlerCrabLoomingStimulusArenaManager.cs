@@ -15,20 +15,32 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
     public int rightDisplayNum = 1;
     public int backDisplayNum = 2;
     public int leftDisplayNum = 3;
+    public Vector3 cameraRotation = Vector3.zero;
+    public bool fixedAngularSize = false;
+    public bool fixXAxis = true; // otherwise fix the Y axis
+    public float minAngularAngle = -30f;
+    public float maxAngularAngle = 30f;
 
     [Header("Stimulus parameters")]
     public float horizonHeight = 0f;
     public Color aboveHorizonColour = Color.grey;
     public Color belowHorizonColour = Color.white;
 
-    public float stimulusSize = 1f;
+    public float stimulusSize = 1f; // is ignored if startScale != endScale
+    public Vector3 startScale = Vector3.one;
+    public Vector3 endScale = Vector3.one;
     public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
     public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
     public float startOffset = 10f;
     public float endOffset = 10f;
-    public float stimulusMoveSpeed = 1f; // units (cm) per second
+    public float duration = 1f; // units (cm) per second
     public float delayToApproach = 5f;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    
+    public float gratingNum = 100f;
+    public int gratingIsSquare = 0;
+    public float gratingMaxIntensity = 0.1f;
+    public float gratingMinIntensity = 0f;
 
     public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
@@ -43,6 +55,10 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 60f;
+
+    public GameObject blackOutCanvases;
+    public float darkAdaptTime = 5f;
+    float timeSinceDarkAdaptStart = 0f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -73,6 +89,8 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
             GetPropertiesFromPython();
         }
 
+        blackOutCanvases.SetActive(true);
+
         episodeController.experimentDuration = experimentDuration;
 
         SetupStimuli();
@@ -82,6 +100,7 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
+        camMon.transform.localEulerAngles = cameraRotation;
         camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, false, new Color[] {Color.clear, Color.clear, Color.clear, Color.clear});
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
@@ -93,6 +112,7 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         syncSquare.displayStimulusCode = displayStimulusCode;
         syncSquare.stimulusCode = frameDataIdCode;
         syncSquare.Reset();
+        timeSinceDarkAdaptStart = 0f;
     }
 
     void GetPropertiesFromPython() {
@@ -122,7 +142,6 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         float b = floatChannel.GetWithDefault("outlineColourB", 0f);
         float a = floatChannel.GetWithDefault("outlineColourA", 1f);
         outlineColor = new Color(r, g, b, a);
-        stimulusMoveSpeed = floatChannel.GetWithDefault("stimulusMoveSpeed", 1f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
         flickerDuration = floatChannel.GetWithDefault("flickerDuration", 0.1f);
         r = floatChannel.GetWithDefault("syncSquareColorR", 1f);
@@ -159,6 +178,36 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
         backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);
         leftDisplayNum = (int)floatChannel.GetWithDefault("leftDisplayNum", 3f);
+        gratingNum = floatChannel.GetWithDefault("gratingNum", 100f);
+        gratingIsSquare = (int)floatChannel.GetWithDefault("gratingIsSquare", 0f);
+        gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", 0.1f);
+        gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", 0f);
+        float x = floatChannel.GetWithDefault("startScaleX", 1f);
+        float y = floatChannel.GetWithDefault("startScaleY", 1f);
+        float z = floatChannel.GetWithDefault("startScaleZ", 1f);
+        startScale = new Vector3(x, y, z);
+        x = floatChannel.GetWithDefault("endScaleX", 1f);
+        y = floatChannel.GetWithDefault("endScaleY", 1f);
+        z = floatChannel.GetWithDefault("endScaleZ", 1f);
+        endScale = new Vector3(x, y, z);
+        duration = floatChannel.GetWithDefault("duration", 1f);
+        x = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        y = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        z = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        cameraRotation = new Vector3(x, y, z);
+        darkAdaptTime = floatChannel.GetWithDefault("darkAdaptTime", 5f);
+        fixedAngularSize = floatChannel.GetWithDefault("fixedAngularSize", 0) != 0;
+        fixXAxis = floatChannel.GetWithDefault("fixXAxis", 1) != 0; // otherwise fix the Y axis
+        minAngularAngle = floatChannel.GetWithDefault("minAngularAngle", -30f);
+        maxAngularAngle = floatChannel.GetWithDefault("maxAngularAngle", 30f);
+    }
+
+    void Update() {
+        if (timeSinceDarkAdaptStart < darkAdaptTime) {
+            timeSinceDarkAdaptStart += Time.deltaTime;
+        } else {
+            blackOutCanvases.SetActive(false);
+        }
     }
 
     void SetupStimuli() {
@@ -172,6 +221,8 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         // sphere
         stimGenerator.stimulusColour = stimulusColour;
         stimGenerator.stimulusSize = stimulusSize;
+        stimGenerator.startScale = startScale;
+        stimGenerator.endScale = endScale;
         stimGenerator.startPolarPosition = stimulusPolarPosition;
         stimGenerator.endPolarPosition = stimulusPolarPosition;
         stimGenerator.startOffset = startOffset;
@@ -184,9 +235,15 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         stimGenerator.drawOutline = drawOutline;
         stimGenerator.outlineWidth = outlineWidth;
         stimGenerator.outlineColor = outlineColor;
+        stimGenerator.gratingNum = gratingNum;
+        stimGenerator.gratingIsSquare = gratingIsSquare;
+        stimGenerator.gratingMaxIntensity = gratingMaxIntensity;
+        stimGenerator.gratingMinIntensity = gratingMinIntensity;
+        stimGenerator.fixedAngularSize = fixedAngularSize;
+        stimGenerator.fixXAxis = fixXAxis; // otherwise fix the Y axis
+        stimGenerator.minAngularAngle = minAngularAngle;
+        stimGenerator.maxAngularAngle = maxAngularAngle;
 
-
-        float duration = Mathf.Abs(startOffset - endOffset) / stimulusMoveSpeed;
         stimGenerator.duration = duration; 
 
         stimGenerator.manualControl = manualControl;

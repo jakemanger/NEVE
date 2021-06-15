@@ -21,6 +21,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
     public int rightDisplayNum = 1;
     public int backDisplayNum = 2;
     public int leftDisplayNum = 3;
+    public Vector3 cameraRotation = Vector3.zero;
 
     [Header("Stimulus parameters")]
     public float stimulusSize1 = 1f;
@@ -51,14 +52,21 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
     public bool drawOutline2 = false;
     public float outlineWidth2 = 5f;
     public Color outlineColor2 = Color.black;
+    public float gratingNum = 100f;
+    public int gratingIsSquare = 0;
+    public float gratingMaxIntensity = 0.1f;
+    public float gratingMinIntensity = 0f;
 
     public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
 
-
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 99999f;
+
+    public GameObject blackOutCanvases;
+    public float darkAdaptTime = 5f;
+    float timeSinceDarkAdaptStart = 0f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -91,6 +99,8 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
             GetPropertiesFromPython();
         }
 
+        blackOutCanvases.SetActive(true);
+
         episodeController.experimentDuration = experimentDuration;
 
         SetupStimuli();
@@ -100,6 +110,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
+        camMon.transform.localEulerAngles = cameraRotation;
         camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, true, new Color[]{frontBackgroundColour, rightBackgroundColour, backBackgroundColour, leftBackgroundColour});
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
@@ -142,6 +153,10 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
         backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);
         leftDisplayNum = (int)floatChannel.GetWithDefault("leftDisplayNum", 3f);
+        float x = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        float y = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        float z = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        cameraRotation = new Vector3(x, y, z);
 
         r = floatChannel.GetWithDefault("frontBackgroundColourR", 0f);
         g = floatChannel.GetWithDefault("frontBackgroundColourG", 0f);
@@ -224,6 +239,20 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         b = floatChannel.GetWithDefault("outlineColourB1", 0f);
         a = floatChannel.GetWithDefault("outlineColourA1", 1f);
         outlineColor2 = new Color(r, g, b, a);
+        
+        gratingNum = floatChannel.GetWithDefault("gratingNum", 100f);
+        gratingIsSquare = (int)floatChannel.GetWithDefault("gratingIsSquare", 0f);
+        gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", 0.1f);
+        gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", 0f);
+        darkAdaptTime = floatChannel.GetWithDefault("darkAdaptTime", 5f);
+    }
+
+    void Update() {
+        if (timeSinceDarkAdaptStart < darkAdaptTime) {
+            timeSinceDarkAdaptStart += Time.deltaTime;
+        } else {
+            blackOutCanvases.SetActive(false);
+        }
     }
 
     void SetupStimuli() {
@@ -243,31 +272,42 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         stimGenerator1.drawOutline = drawOutline1;
         stimGenerator1.outlineWidth = outlineWidth1;
         stimGenerator1.outlineColor = outlineColor1;
+        stimGenerator1.gratingNum = gratingNum;
+        stimGenerator1.gratingIsSquare = gratingIsSquare;
+        stimGenerator1.gratingMaxIntensity = gratingMaxIntensity;
+        stimGenerator1.gratingMinIntensity = gratingMinIntensity;
 
         stimGenerator1.manualControl = manualControl;
         stimGenerator1.mouseMoveSpeed = mouseMoveSpeed;
+
         stimGenerator1.Reset();
 
         // stimulus 2
-        stimGenerator2.flickerDuration = flickerDuration;
-        stimGenerator2.stimulusColour = stimulusColour2;
-        stimGenerator2.stimulusSize = stimulusSize2;
-        stimGenerator2.startOffset = startOffset2;
-        stimGenerator2.endOffset = endOffset2;
-        stimGenerator2.delayToApproach = delayToApproach2;
-        stimGenerator2.targetLocationOffset = targetLocationOffset2;
-        stimGenerator2.startPolarPosition = startPolarPosition2;
-        stimGenerator2.endPolarPosition = endPolarPosition2;
-        stimGenerator2.numReps = numReps2;
-        stimGenerator2.duration = stimulusDuration2; 
-        stimGenerator2.stimulusType = stimulusType2;
-        stimGenerator2.drawOutline = drawOutline2;
-        stimGenerator2.outlineWidth = outlineWidth2;
-        stimGenerator2.outlineColor = outlineColor2;
+        if (stimGenerator2 != null) {
+            stimGenerator2.flickerDuration = flickerDuration;
+            stimGenerator2.stimulusColour = stimulusColour2;
+            stimGenerator2.stimulusSize = stimulusSize2;
+            stimGenerator2.startOffset = startOffset2;
+            stimGenerator2.endOffset = endOffset2;
+            stimGenerator2.delayToApproach = delayToApproach2;
+            stimGenerator2.targetLocationOffset = targetLocationOffset2;
+            stimGenerator2.startPolarPosition = startPolarPosition2;
+            stimGenerator2.endPolarPosition = endPolarPosition2;
+            stimGenerator2.numReps = numReps2;
+            stimGenerator2.duration = stimulusDuration2; 
+            stimGenerator2.stimulusType = stimulusType2;
+            stimGenerator2.drawOutline = drawOutline2;
+            stimGenerator2.outlineWidth = outlineWidth2;
+            stimGenerator2.outlineColor = outlineColor2;
+            stimGenerator2.gratingNum = gratingNum;
+            stimGenerator2.gratingIsSquare = gratingIsSquare;
+            stimGenerator2.gratingMaxIntensity = gratingMaxIntensity;
+            stimGenerator2.gratingMinIntensity = gratingMinIntensity;
 
-        stimGenerator2.manualControl = manualControl;
-        stimGenerator2.mouseMoveSpeed = mouseMoveSpeed;
-        stimGenerator2.Reset();
+            stimGenerator2.manualControl = manualControl;
+            stimGenerator2.mouseMoveSpeed = mouseMoveSpeed;
+            stimGenerator2.Reset();
+        }
     }
 
     Vector3 PolarToCartesian(Vector2 polar, float offset) {

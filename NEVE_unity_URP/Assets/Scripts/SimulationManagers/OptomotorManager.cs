@@ -15,6 +15,7 @@ public class OptomotorManager : MonoBehaviour
     public int rightDisplayNum = 1;
     public int backDisplayNum = 2;
     public int leftDisplayNum = 3;
+    public Vector3 cameraRotation = Vector3.zero;
 
     [Header("Stimulus parameters")]
     public float density = 5f; // density of sine waves
@@ -28,6 +29,10 @@ public class OptomotorManager : MonoBehaviour
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 60f;
+
+    public GameObject blackOutCanvases;
+    public float darkAdaptTime = 5f;
+    float timeSinceDarkAdaptStart = 0f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -58,6 +63,8 @@ public class OptomotorManager : MonoBehaviour
             GetPropertiesFromPython();
         }
 
+        blackOutCanvases.SetActive(true);
+
         episodeController.experimentDuration = experimentDuration;
 
         SetupStimuli();
@@ -67,6 +74,7 @@ public class OptomotorManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
+        camMon.transform.localEulerAngles = cameraRotation;
         camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, false, new Color[] {Color.clear, Color.clear, Color.clear, Color.clear});
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
@@ -113,6 +121,19 @@ public class OptomotorManager : MonoBehaviour
         rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
         backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);
         leftDisplayNum = (int)floatChannel.GetWithDefault("leftDisplayNum", 3f);
+        float x = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        float y = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        float z = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        cameraRotation = new Vector3(x, y, z);
+        darkAdaptTime = floatChannel.GetWithDefault("darkAdaptTime", 5f);
+    }
+
+    void Update() {
+        if (timeSinceDarkAdaptStart < darkAdaptTime) {
+            timeSinceDarkAdaptStart += Time.deltaTime;
+        } else {
+            blackOutCanvases.SetActive(false);
+        }
     }
 
     void SetupStimuli() {

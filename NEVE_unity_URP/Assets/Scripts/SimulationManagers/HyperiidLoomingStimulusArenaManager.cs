@@ -18,6 +18,7 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
     public int rightDisplayNum = 1;
     public int backDisplayNum = 2;
     public int leftDisplayNum = 3;
+    public Vector3 cameraRotation = Vector3.zero;
 
     [Header("Stimulus parameters")]
     public float stimulusSize = 1f;
@@ -32,6 +33,10 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
     public bool drawOutline = false;
     public float outlineWidth = 5f;
     public Color outlineColor = Color.black;
+    public float gratingNum = 100f;
+    public int gratingIsSquare = 0;
+    public float gratingMaxIntensity = 0.1f;
+    public float gratingMinIntensity = 0f;
 
     public bool manualControl = true;
     public float mouseMoveSpeed = 2f;
@@ -41,6 +46,10 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 60f;
+
+    public GameObject blackOutCanvases;
+    public float darkAdaptTime = 5f;
+    float timeSinceDarkAdaptStart = 0f;
 
     [Header("Saving parameters")]
     public bool recordFrameData = true;
@@ -71,6 +80,8 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
             GetPropertiesFromPython();
         }
 
+        blackOutCanvases.SetActive(true);
+
         episodeController.experimentDuration = experimentDuration;
 
         SetupStimuli();
@@ -80,6 +91,7 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
         camMon.rightDisplayNum = rightDisplayNum;
         camMon.backDisplayNum = backDisplayNum;
         camMon.leftDisplayNum = leftDisplayNum;
+        camMon.transform.localEulerAngles = cameraRotation;
         camMon.SetupCams(distanceToMonitors, -eyeHeight, monitorDimensions, true, new Color[] {backgroundColour, backgroundColour, backgroundColour, backgroundColour});
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
@@ -151,6 +163,23 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
         rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
         backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);
         leftDisplayNum = (int)floatChannel.GetWithDefault("leftDisplayNum", 3f);
+        gratingNum = floatChannel.GetWithDefault("gratingNum", 100f);
+        gratingIsSquare = (int)floatChannel.GetWithDefault("gratingIsSquare", 0f);
+        gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", 0.1f);
+        gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", 0f);
+        float x = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        float y = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        float z = floatChannel.GetWithDefault("cameraRotationX", 0f);
+        cameraRotation = new Vector3(x, y, z);
+        darkAdaptTime = floatChannel.GetWithDefault("darkAdaptTime", 5f);
+    }
+
+    void Update() {
+        if (timeSinceDarkAdaptStart < darkAdaptTime) {
+            timeSinceDarkAdaptStart += Time.deltaTime;
+        } else {
+            blackOutCanvases.SetActive(false);
+        }
     }
 
     void SetupStimuli() {
@@ -168,6 +197,10 @@ public class HyperiidLoomingStimulusArenaManager : MonoBehaviour
         stimGenerator.drawOutline = drawOutline;
         stimGenerator.outlineWidth = outlineWidth;
         stimGenerator.outlineColor = outlineColor;
+        stimGenerator.gratingNum = gratingNum;
+        stimGenerator.gratingIsSquare = gratingIsSquare;
+        stimGenerator.gratingMaxIntensity = gratingMaxIntensity;
+        stimGenerator.gratingMinIntensity = gratingMinIntensity;
 
         float duration = Mathf.Abs(startOffset - endOffset) / stimulusMoveSpeed;
         stimGenerator.duration = duration; 
