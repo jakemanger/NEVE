@@ -22,7 +22,8 @@ public class Outline : MonoBehaviour {
     OutlineVisible,
     OutlineHidden,
     OutlineAndSilhouette,
-    SilhouetteOnly
+    SilhouetteOnly,
+    WorldSpace
   }
 
   public Mode OutlineMode {
@@ -77,86 +78,110 @@ public class Outline : MonoBehaviour {
   private Renderer[] renderers;
   private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
+  public Material outlineWorldSpaceMaterial;
 
   private bool needsUpdate;
 
   void Awake() {
+    if (OutlineMode != Mode.WorldSpace) {
+        // Cache renderers
+        renderers = GetComponentsInChildren<Renderer>();
 
-    // Cache renderers
-    renderers = GetComponentsInChildren<Renderer>();
+        // Instantiate outline materials
+        outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"));
+        outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
 
-    // Instantiate outline materials
-    outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"));
-    outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
+        outlineMaskMaterial.name = "OutlineMask (Instance)";
+        outlineFillMaterial.name = "OutlineFill (Instance)";
 
-    outlineMaskMaterial.name = "OutlineMask (Instance)";
-    outlineFillMaterial.name = "OutlineFill (Instance)";
+        // Retrieve or generate smooth normals
+        LoadSmoothNormals();
 
-    // Retrieve or generate smooth normals
-    LoadSmoothNormals();
-
+    }
     // Apply material properties immediately
     needsUpdate = true;
   }
 
   void OnEnable() {
-    foreach (var renderer in renderers) {
+    if (OutlineMode != Mode.WorldSpace) {
+        foreach (var renderer in renderers) {
 
-      // Append outline shaders
-      var materials = renderer.sharedMaterials.ToList();
+        // Append outline shaders
+        var materials = renderer.sharedMaterials.ToList();
 
-      materials.Add(outlineMaskMaterial);
-      materials.Add(outlineFillMaterial);
+        materials.Add(outlineMaskMaterial);
+        materials.Add(outlineFillMaterial);
 
-      renderer.materials = materials.ToArray();
+        renderer.materials = materials.ToArray();
+        }
     }
     // Apply material properties immediately
     needsUpdate = true;
   }
 
+  void SetupWorldSpaceOutline() {
+    // get the material and set its properties
+    Material mat = outlineWorldSpaceMaterial;
+    mat.SetColor("_Color", outlineColor);
+    mat.SetFloat("_Width", outlineWidth);
+
+    Renderer renderer = GetComponent<Renderer>();
+    Material material = renderer.material;
+    Material[] materials = new Material[] {material, mat};
+    renderer.materials = materials;
+  }
+
   void OnValidate() {
+    if (OutlineMode != Mode.WorldSpace) {
+        // Update material properties
+        needsUpdate = true;
 
-    // Update material properties
-    needsUpdate = true;
+        // Clear cache when baking is disabled or corrupted
+        if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
+        bakeKeys.Clear();
+        bakeValues.Clear();
+        }
 
-    // Clear cache when baking is disabled or corrupted
-    if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
-      bakeKeys.Clear();
-      bakeValues.Clear();
-    }
-
-    // Generate smooth normals when baking is enabled
-    if (precomputeOutline && bakeKeys.Count == 0) {
-      Bake();
+        // Generate smooth normals when baking is enabled
+        if (precomputeOutline && bakeKeys.Count == 0) {
+        Bake();
+        }
     }
   }
 
   void Update() {
     if (needsUpdate) {
-      needsUpdate = false;
+        needsUpdate = false;
 
-      UpdateMaterialProperties();
+        if (OutlineMode != Mode.WorldSpace) {
+            UpdateMaterialProperties();
+        } else {
+            SetupWorldSpaceOutline();
+        }
     }
   }
 
   void OnDisable() {
-    foreach (var renderer in renderers) {
+    if (OutlineMode != Mode.WorldSpace) {
+        foreach (var renderer in renderers) {
 
-      // Remove outline shaders
-      var materials = renderer.sharedMaterials.ToList();
+        // Remove outline shaders
+        var materials = renderer.sharedMaterials.ToList();
 
-      materials.Remove(outlineMaskMaterial);
-      materials.Remove(outlineFillMaterial);
+        materials.Remove(outlineMaskMaterial);
+        materials.Remove(outlineFillMaterial);
 
-      renderer.materials = materials.ToArray();
+        renderer.materials = materials.ToArray();
+        }
     }
   }
 
   void OnDestroy() {
-
-    // Destroy material instances
-    Destroy(outlineMaskMaterial);
-    Destroy(outlineFillMaterial);
+    if (OutlineMode != Mode.WorldSpace) {
+        // Destroy material instances
+        Destroy(outlineMaskMaterial);
+        Destroy(outlineFillMaterial);
+    }
   }
 
   void Bake() {

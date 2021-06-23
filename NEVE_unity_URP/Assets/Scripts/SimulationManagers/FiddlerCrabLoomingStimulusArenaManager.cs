@@ -26,7 +26,6 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
     public Color aboveHorizonColour = Color.grey;
     public Color belowHorizonColour = Color.white;
 
-    public float stimulusSize = 1f; // is ignored if startScale != endScale
     public Vector3 startScale = Vector3.one;
     public Vector3 endScale = Vector3.one;
     public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
@@ -124,7 +123,6 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
         float monitorDimensionsX = floatChannel.GetWithDefault("monitorDimensionsX", 12.176f);
         float monitorDimensionsY = floatChannel.GetWithDefault("monitorDimensionsY", 6.87f);
         monitorDimensions = new Vector2(monitorDimensionsX, monitorDimensionsY);
-        stimulusSize = floatChannel.GetWithDefault("stimulusSize", 1f);
         float stimulusPolarPositionX = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
         float stimulusPolarPositionY = floatChannel.GetWithDefault("stimulusPolarPositionY", 0f);
         stimulusPolarPosition = new Vector2(stimulusPolarPositionX, stimulusPolarPositionY);
@@ -220,7 +218,6 @@ public class FiddlerCrabLoomingStimulusArenaManager : MonoBehaviour
 
         // sphere
         stimGenerator.stimulusColour = stimulusColour;
-        stimGenerator.stimulusSize = stimulusSize;
         stimGenerator.startScale = startScale;
         stimGenerator.endScale = endScale;
         stimGenerator.startPolarPosition = stimulusPolarPosition;

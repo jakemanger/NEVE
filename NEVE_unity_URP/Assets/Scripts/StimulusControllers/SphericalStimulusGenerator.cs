@@ -277,6 +277,8 @@ public class SphericalStimulusGenerator : MonoBehaviour
         mat.SetInt("_FixX", fixXAxis ? 1 : 0);
         mat.SetFloat("_MinAngle", minAngularAngle);
         mat.SetFloat("_MaxAngle", maxAngularAngle);
-        stimulusRenderer.material = mat;
+        Material[] materials = stimulusRenderer.materials;
+        materials[0] = mat;
+        stimulusRenderer.materials = materials;
     }
 }
