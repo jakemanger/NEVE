@@ -103,13 +103,13 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FixX: 1
+    - _FixX: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxAngle: 15
+    - _MaxAngle: -9
     - _Metallic: 0
-    - _MinAngle: -15
+    - _MinAngle: -11
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0

@@ -52,7 +52,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
     public bool drawOutline2 = false;
     public float outlineWidth2 = 5f;
     public Color outlineColor2 = Color.black;
-    public float gratingNum = 100f;
+    public float gratingNum = 100f; // only used if the stimulusType has a grating material
     public int gratingIsSquare = 0;
     public float gratingMaxIntensity = 0.1f;
     public float gratingMinIntensity = 0f;

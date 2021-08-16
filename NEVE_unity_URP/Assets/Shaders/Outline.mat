@@ -19,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_B9FCFFE6:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -47,7 +55,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Metallic:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -77,7 +93,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_161c2b6ed4574fe9ba8b3c984a3e8b22: 0.41
-    - Vector1_513a598254c04eaca9114a39e2f021e6: 0.29
+    - Vector1_513a598254c04eaca9114a39e2f021e6: 0
     - Vector1_b2223630284b47a5a242e1dc4f0995f9: 0.5
     - _AlphaClip: 0
     - _Blend: 0
@@ -103,15 +119,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Width: 0.2
+    - _Width: 0.5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - Color_0ac78a0e97014808b2bd7965cf138dc8: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_037265613ee04617b7b079eaac76951a: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.03644657, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5809430985025850070

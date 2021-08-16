@@ -79,6 +79,7 @@ public class Outline : MonoBehaviour {
   private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
   public Material outlineWorldSpaceMaterial;
+  public Material targetMaterial;
 
   private bool needsUpdate;
 
@@ -120,14 +121,19 @@ public class Outline : MonoBehaviour {
   }
 
   void SetupWorldSpaceOutline() {
+    // get current materail and material color and make sure that is preserved
+    Renderer renderer = GetComponent<Renderer>();
+    renderer.material = targetMaterial;
+    Color currentColor = renderer.material.color;
+
     // get the material and set its properties
     Material mat = outlineWorldSpaceMaterial;
     mat.SetColor("_Color", outlineColor);
     mat.SetFloat("_Width", outlineWidth);
 
-    Renderer renderer = GetComponent<Renderer>();
     Material material = renderer.material;
-    Material[] materials = new Material[] {material, mat};
+    Material[] materials = new Material[] {mat, material};
+    materials[1].color = currentColor;
     renderer.materials = materials;
   }
 
