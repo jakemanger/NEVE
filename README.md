@@ -15,3 +15,4 @@ Our examples have been applied to animals, specifically fiddler crabs and deep-s
 
 [Getting started controlling unity from python for development](Docs/getting_started/controlling_from_python.md)
 
+(c) 2021 Jake Manger
