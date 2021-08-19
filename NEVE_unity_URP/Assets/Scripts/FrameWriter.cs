@@ -29,6 +29,12 @@ public class FrameWriter : MonoBehaviour
     bool startNewFile = false;
     bool startedNewFile = false;
 
+    // to make it easy to be sure screen information matches
+    // exactly with the csv, we set the SyncSquare info here
+    public SphericalStimulusGenerator sphericalStimulusGenerator;
+    public Image stimulusStateImage;
+    public Text timeText;
+
     public void Reset() {
         startedNewFile = false;
         startNewFile = true;
@@ -37,8 +43,10 @@ public class FrameWriter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startedNewFile && recordEachFrame) 
+        if (startedNewFile && recordEachFrame) {
+            setSyncSquareValues();
             WriteData();
+        }
 
         if (startNewFile) {
             outputFilePath = System.DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + experimentId + ".csv";
@@ -116,5 +124,25 @@ public class FrameWriter : MonoBehaviour
                 syncSquareImg.enabled
             );
         }
+    }
+
+    void setSyncSquareValues() {
+        Color stimStateColor = Color.black;
+
+        if (sphericalStimulusGenerator != null) {
+            StimulusState stimState = sphericalStimulusGenerator.stimulusState;
+
+            if (stimState == StimulusState.Waiting) {
+                stimStateColor = Color.black;
+            } else if (stimState == StimulusState.Started) {
+                stimStateColor = Color.white;
+            } else if (stimState == StimulusState.Ended) {
+                stimStateColor = Color.grey;
+            }
+        }
+
+        stimulusStateImage.color = stimStateColor;
+
+        timeText.text = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
     }
 }

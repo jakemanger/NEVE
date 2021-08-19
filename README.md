@@ -11,4 +11,7 @@ Our examples have been applied to animals, specifically fiddler crabs and deep-s
 # Getting started
 [Setting up unity](Docs/getting_started/unity_setup.md)
 
-[Controlling from python](Docs/getting_started/controlling_from_python.md)
+[Running a build from python](NEVE_python/README.md)
+
+[Getting started controlling unity from python for development](Docs/getting_started/controlling_from_python.md)
+

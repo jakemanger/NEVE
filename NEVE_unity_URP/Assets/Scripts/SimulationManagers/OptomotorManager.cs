@@ -38,7 +38,8 @@ public class OptomotorManager : MonoBehaviour
     public bool recordFrameData = true;
     public bool recordEachFrame = true;
     public float recordingFrequency = 1f; // in seconds if recordEachFrame is false
-    public float frameDataIdCode = 9999; // a code to identify the frame data recording
+    public float frameDataIdCode = 9999f; // a code to identify the frame data recording
+    public float animalCode = 1f; // a code to identify the animal
 
     [Header("SyncSquare parameters")]
     public float flickerDuration = 0.1f; // time of sync square flicker
@@ -85,6 +86,7 @@ public class OptomotorManager : MonoBehaviour
         syncSquare.flickerColor = syncSquareColor;
         syncSquare.displayStimulusCode = displayStimulusCode;
         syncSquare.stimulusCode = frameDataIdCode;
+        syncSquare.animalCode = animalCode;
         syncSquare.Reset();
     }
 
@@ -117,6 +119,7 @@ public class OptomotorManager : MonoBehaviour
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
         recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
         frameDataIdCode = floatChannel.GetWithDefault("frameDataIdCode", 9999f);
+        animalCode = floatChannel.GetWithDefault("animalCode", 1f);
         frontDisplayNum = (int)floatChannel.GetWithDefault("frontDisplayNum", 0f);
         rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
         backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);

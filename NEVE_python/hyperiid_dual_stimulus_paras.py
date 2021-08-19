@@ -24,6 +24,7 @@
 paras = {
     # saving, control and syncing
     'frameDataIdCode': [800001, 800002],  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
+    'animalCode': [1, 2],  # a id code representing the animal
     'experimentDuration': [99999, 99999],  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
     'recordFrameData': [1, 1],  # 0 = false, 1 = true. record frame and stimulus related data?
     'recordEachFrame': [1, 1],  # 0 = false, 1 = true. record data each frame. If false, then uses the recording frequency

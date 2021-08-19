@@ -5,57 +5,61 @@ using UnityEngine.UI;
 
 public class SyncSquare : MonoBehaviour
 {
-    Image image;
-    Text text;
     public float flickerDuration = 0.1f;
     public Color flickerColor = Color.red;
 
     float timeWaited = 0f;
-    bool flicker = false;
+    bool doFlicker = false;
 
     public bool displayStimulusCode = false;
     public float stimulusCode = 9999f;
+    public float animalCode = 0f;
 
+    public GameObject additionalInfo;
+    public Image flicker;
+    public Text experimentId;
+    public Text animalId;
 
-    void Start() {
-        image = GetComponent<Image>();
-        text = transform.GetChild(0).GetComponent<Text>();
-    }
 
     public void Reset() {
         if (displayStimulusCode) {
-            image.enabled = true;
-            text.enabled = true;
+            flicker.enabled = true;
+            experimentId.enabled = true;
+            animalId.enabled = true;
+            additionalInfo.SetActive(true);
         } else {
-            image.enabled = false;
-            text.enabled = false;
+            flicker.enabled = false;
+            experimentId.enabled = false;
+            animalId.enabled = false;
+            additionalInfo.SetActive(false);
         }
-        image.color = flickerColor;
-        text.text = stimulusCode.ToString();
+        flicker.color = flickerColor;
+        experimentId.text = stimulusCode.ToString();
+        animalId.text = animalCode.ToString();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) {
             timeWaited = 0f;
-            flicker = true;
+            doFlicker = true;
         }
 
-        if (flicker) {
+        if (doFlicker) {
             if (displayStimulusCode) {
                 // flicker off or on
-                image.enabled = !image.enabled;
-                text.enabled = !text.enabled;
-                flicker = false;
+                flicker.enabled = !flicker.enabled;
+                experimentId.enabled = !experimentId.enabled;
+                doFlicker = false;
             } else {
                 // flicker on and off
-                image.enabled = true;
-                text.enabled = true;
+                flicker.enabled = true;
+                experimentId.enabled = true;
 
                 if (timeWaited >= flickerDuration) {
-                    flicker = false;
-                    image.enabled = false;
-                    text.enabled = false;
+                    doFlicker = false;
+                    flicker.enabled = false;
+                    experimentId.enabled = false;
                 }
                 timeWaited += Time.deltaTime;
 

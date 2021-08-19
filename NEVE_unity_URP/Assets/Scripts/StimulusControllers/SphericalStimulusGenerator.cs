@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StimulusState {Waiting, Started, Ended}
+
 public class SphericalStimulusGenerator : MonoBehaviour
 {
+
+    public StimulusState stimulusState = StimulusState.Waiting;
+
     // configurable parameters
     public float stimulusSize = 1f;
     Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
@@ -63,6 +68,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
     public void Reset() {
         // reset variables
+        stimulusState = StimulusState.Waiting;
         offsetFromCenter = startOffset;
         currentlyReturning = false;
         numRepsDone = 0;
@@ -188,6 +194,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
 
         // logic to change offset and polar position of stimulus
         if (move) {
+            stimulusState = StimulusState.Started;
             if (!currentlyReturning) {
                 // print("Moving out");
                 offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
@@ -226,6 +233,7 @@ public class SphericalStimulusGenerator : MonoBehaviour
                     move = false;
                     wantToMove = false;
                     justFinishedMoving = true;
+                    stimulusState = StimulusState.Ended;
                 }
             } 
 

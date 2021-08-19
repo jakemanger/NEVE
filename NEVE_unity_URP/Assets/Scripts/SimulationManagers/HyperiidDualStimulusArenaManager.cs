@@ -25,7 +25,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
 
     [Header("Stimulus parameters")]
     public float stimulusSize1 = 1f;
-    public float stimulusSize2 = 1f;
+    public float stimulusSize2 = 0f;
     public Vector2 startPolarPosition1 = new Vector2(0f, 0f);
     public Vector2 startPolarPosition2 = new Vector2(0f, 0f);
     public Vector2 endPolarPosition1 = new Vector2(0f, 0f);
@@ -73,6 +73,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
     public bool recordEachFrame = true;
     public float recordingFrequency = 1f; // in seconds if recordEachFrame is false
     public float frameDataIdCode = 9999; // a code to identify the frame data recording
+    public float animalCode = 1; // a code to identify the animal
 
     [Header("SyncSquare parameters")]
     public Color syncSquareColor = Color.red;
@@ -121,6 +122,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         syncSquare.flickerColor = syncSquareColor;
         syncSquare.displayStimulusCode = displayStimulusCode;
         syncSquare.stimulusCode = frameDataIdCode;
+        syncSquare.animalCode = animalCode;
         syncSquare.Reset();
     }
 
@@ -129,6 +131,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         var floatChannel = Academy.Instance.EnvironmentParameters;
         // set properties from python
         frameDataIdCode = floatChannel.GetWithDefault("frameDataIdCode", 9999f);
+        animalCode = floatChannel.GetWithDefault("animalCode", 1f);
         experimentDuration = floatChannel.GetWithDefault("experimentDuration", 99999f);
         recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
@@ -210,7 +213,7 @@ public class HyperiidDualStimulusArenaManager : MonoBehaviour
         a = floatChannel.GetWithDefault("outlineColourA1", 1f);
         outlineColor1 = new Color(r, g, b, a);
 
-        stimulusSize2 = floatChannel.GetWithDefault("stimulusSize2", 1f);
+        stimulusSize2 = floatChannel.GetWithDefault("stimulusSize2", 0f);
         stimulusDuration2 = floatChannel.GetWithDefault("stimulusDuration2", 5f);
         float startPolarPositionX2 = floatChannel.GetWithDefault("startPolarPositionX2", 0f);
         float startPolarPositionY2 = floatChannel.GetWithDefault("startPolarPositionY2", 0f);

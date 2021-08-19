@@ -12,18 +12,14 @@ public class EpisodeControllerAgent : Agent {
     float timeSinceStimulusStart = 0f;
 
     public FiddlerCrabLoomingStimulusArenaManager fcmanager;
-    public HyperiidLoomingStimulusArenaManager hmcmanager;
-    public OptomotorManager optmanager;
     public HyperiidDualStimulusArenaManager hdsmanager;
+    public OptomotorManager optmanager;
 
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
         timeSinceStimulusStart = 0f;
         if (fcmanager != null) {
             fcmanager.Reset();
-        }
-        if (hmcmanager != null) {
-            hmcmanager.Reset();
         }
         if (optmanager != null) {
             optmanager.Reset();
