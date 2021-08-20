@@ -10,10 +10,6 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 # from optomotor_paras import paras, execution_order
 # file_name = "Builds/OptomotorArena/NEVE_unity_URP.exe"
 
-# hyperiid looming stimulus/ static stimulus experiment
-# from hyperiid_looming_stimulus_paras import paras, execution_order
-# file_name = "Builds/HyperiidLoomingStimulusArena/NEVE_unity_URP.exe"
-
 # hyperiid dual stimulus experiment
 from hyperiid_dual_stimulus_paras import paras, execution_order
 file_name = "/Users/jakemanger/phd_projects/NEVE/NEVE_python/Builds/HyperiidManualControlArena.app"
