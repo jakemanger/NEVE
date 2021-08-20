@@ -12,7 +12,7 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 
 # hyperiid dual stimulus experiment
 from hyperiid_dual_stimulus_paras import paras, execution_order
-file_name = "/Users/jakemanger/phd_projects/NEVE/NEVE_python/Builds/HyperiidManualControlArena.app"
+file_name = "/Users/jakemanger/phd_projects/NEVE/NEVE_python/Builds/HyperiidDualStimulusArena.app"
 
 # fiddler crab looming stimulus/ static stimulus experiment
 # from fiddlercrab_looming_stimulus_paras import paras, execution_order
