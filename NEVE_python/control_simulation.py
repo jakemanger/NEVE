@@ -26,14 +26,16 @@ print('Waiting for connection to Unity environment...')
 print('When Unity launches, python will gain control.')
 env = UnityEnvironment(file_name=file_name, side_channels=[env_parameters, eng_config], timeout_wait=999999)
 
-num_exps = len(paras[list(paras)[0]])
-print('Running for', num_exps, 'experiments')
+num_exps = len(execution_order)
+print('Running for', num_exps, 'experimental conditions')
 for i in execution_order:
     # input('Press Enter to change parameters and start experiment ' + str(paras['frameDataIdCode'][i]))
     print('Setting new environmental parameters...')
     for key, value in paras.items():
         print('Setting', key, '...')
         if len(value) == 1:
+            # TODO check if this needs to be:
+            # env_parameters.set_float_parameter(key, value[0])
             env_parameters.set_float_parameter(key, value)
         else:
             env_parameters.set_float_parameter(key, value[i])
