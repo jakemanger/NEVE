@@ -1,3 +1,6 @@
+# WARNING: This is currently a work in progress
+
+
 ## Getting started: controlling from python
 The below terminal commands assume you are using a mac or linux distribution. If you are using windows, the same process can be followed with cmd or powershell, however, commands may need to be slightly modified due to differences in DOS and bash languages.
 
