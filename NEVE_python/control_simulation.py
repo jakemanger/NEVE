@@ -34,9 +34,7 @@ for i in execution_order:
     for key, value in paras.items():
         print('Setting', key, '...')
         if len(value) == 1:
-            # TODO check if this needs to be:
-            # env_parameters.set_float_parameter(key, value[0])
-            env_parameters.set_float_parameter(key, value)
+            env_parameters.set_float_parameter(key, value[0])
         else:
             env_parameters.set_float_parameter(key, value[i])
             assert len(value) == len(execution_order)
