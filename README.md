@@ -2,7 +2,7 @@
 ![](readme_gif.gif)
 # About
 
-Neuroecology virtual environments (NEVE) is a toolkit to allow researchers to build virtual environments to use in behavioural and physiological experiments. NEVE leverages the highly developed [Unity](https://unity.com/) engine to simulate and display stimuli. It provides the ability to simulate environments in a closed-loop fashion, providing visual feed-back to animal movement and/or behaviour.
+Neuroecology virtual environments (NEVE) is a toolkit to allow researchers to build virtual environments to use with animals behavioural and physiological experiments or reinforcement learning models in a simulation. NEVE leverages the highly developed [Unity](https://unity.com/) engine to simulate and display stimuli. It provides the ability to simulate environments in a closed-loop fashion, providing visual feed-back to animal movement and/or behaviour.
 
 NEVE uses the [Unity Python API](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md) and [Unity Machine Learning Agents Toolkit](https://github.com/Unity-Technologies/ml-agents) to record data, modify experimental conditions and introduce animals or reinforcement learning agents into simulations. A number of pre-built objects and environments are provided to allow researchers to quickly build, test and deploy experiments on conventional computer monitors using custom animal inputs (e.g. movement recorded on a trackball).
 
