@@ -144,7 +144,7 @@ public class MovingRectangleManager : MonoBehaviour
         startPos = new Vector2(startPosX, startPosY);
         float endPosX = floatChannel.GetWithDefault("endPosX", 5f);
         float endPosY = floatChannel.GetWithDefault("endPosY", 5f);
-        endPos = new Vector2(startPosX, startPosY);
+        endPos = new Vector2(endPosX, endPosY);
         duration = floatChannel.GetWithDefault("duration", 5f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
         r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);

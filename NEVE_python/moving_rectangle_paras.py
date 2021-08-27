@@ -60,15 +60,15 @@ paras = {
     'belowHorizonColourB': [0.2],
     'belowHorizonColourA': [1],
 
-    'width': [300, 500],
-    'height': [300, 500],
-    'startPosX': [300, 500],  # x coordinate of start position
-    'startPosY': [300, 500],  # y coordinate of start position
-    'endPosX': [300, 800],  # x coordinate of end position
-    'endPosY': [300, 1000],  # y coordinate of end position
+    'width': [300],
+    'height': [300],
+    'startPosX': [0, 0],  # x coordinate of start position
+    'startPosY': [0, 500],  # y coordinate of start position
+    'endPosX': [800, 500],  # x coordinate of end position
+    'endPosY': [0, 500],  # y coordinate of end position
     'numReps': [0.5, 1], # the number of reps back and forth (0.5 = start to end, 1 = start to end to start, etc)
 
-    'duration': [1, 3],
+    'duration': [1],
     'delayToApproach': [5],
     'stimulusColourR': [1],
     'stimulusColourG': [0],

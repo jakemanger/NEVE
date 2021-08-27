@@ -4,7 +4,7 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 
 # type in the full path to the executable file
 # or set to None if testing in the unity editor
-# file_name = None
+file_name = None
 
 # optomotor experiment
 # from optomotor_paras import paras, execution_order
@@ -19,8 +19,8 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 # file_name = "Builds/FiddlerCrabLoomingStimulusArena/NEVE_unity_URP.exe"
 
 # hyperiid dual stimulus experiment
-from moving_rectange_paras import paras, execution_order
-file_name = "Builds/MovingRectangle/NEVE_unity_URP.exe"
+from moving_rectangle_paras import paras, execution_order
+# file_name = "Builds/MovingRectangle/NEVE_unity_URP.exe"
 
 
 # Create the side channels to communicate with unity
