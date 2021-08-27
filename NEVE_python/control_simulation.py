@@ -11,12 +11,17 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 # file_name = "Builds/OptomotorArena/NEVE_unity_URP.exe"
 
 # hyperiid dual stimulus experiment
-from hyperiid_dual_stimulus_paras import paras, execution_order
-file_name = "/Users/jakemanger/phd_projects/NEVE/NEVE_python/Builds/HyperiidDualStimulusArena.app"
+# from hyperiid_dual_stimulus_paras import paras, execution_order
+# file_name = "Builds/HyperiidDualStimulusArena/NEVE_unity_URP.exe"
 
 # fiddler crab looming stimulus/ static stimulus experiment
 # from fiddlercrab_looming_stimulus_paras import paras, execution_order
 # file_name = "Builds/FiddlerCrabLoomingStimulusArena/NEVE_unity_URP.exe"
+
+# hyperiid dual stimulus experiment
+from moving_rectange_paras import paras, execution_order
+file_name = "Builds/MovingRectangle/NEVE_unity_URP.exe"
+
 
 # Create the side channels to communicate with unity
 env_parameters = EnvironmentParametersChannel()

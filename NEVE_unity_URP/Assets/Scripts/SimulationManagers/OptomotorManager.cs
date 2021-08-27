@@ -53,11 +53,6 @@ public class OptomotorManager : MonoBehaviour
     public FrameWriter frameWriter;
     public EpisodeControllerAgent episodeController; // for controlling when a stimulus has finished and a new one should be loaded
 
-    // use OnEnable as it is executed before stimGenerators Start() function
-    // and can restart the stimulus if you disable and enable this gameObject
-    // void OnEnable() {
-    //     Reset();
-    // }
 
     public void Reset() {
         if (recieveParametersFromPython) {

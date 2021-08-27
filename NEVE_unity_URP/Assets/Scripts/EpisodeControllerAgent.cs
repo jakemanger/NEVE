@@ -14,6 +14,7 @@ public class EpisodeControllerAgent : Agent {
     public FiddlerCrabLoomingStimulusArenaManager fcmanager;
     public HyperiidDualStimulusArenaManager hdsmanager;
     public OptomotorManager optmanager;
+    public MovingRectangleManager mrmanager;
 
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
@@ -26,6 +27,9 @@ public class EpisodeControllerAgent : Agent {
         }
         if (hdsmanager != null) {
             hdsmanager.Reset();
+        }
+        if (mrmanager != null) {
+            mrmanager.Reset();
         }
         Cursor.visible = false;
     }

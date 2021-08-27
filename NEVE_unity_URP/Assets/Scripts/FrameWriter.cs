@@ -32,6 +32,7 @@ public class FrameWriter : MonoBehaviour
     // to make it easy to be sure screen information matches
     // exactly with the csv, we set the SyncSquare info here
     public SphericalStimulusGenerator sphericalStimulusGenerator;
+    public SquareStimulusController squareStimulusController;
     public Image stimulusStateImage;
     public Text timeText;
 
@@ -129,16 +130,20 @@ public class FrameWriter : MonoBehaviour
     void setSyncSquareValues() {
         Color stimStateColor = Color.black;
 
-        if (sphericalStimulusGenerator != null) {
-            StimulusState stimState = sphericalStimulusGenerator.stimulusState;
+        StimulusState stimState = StimulusState.Waiting;
 
-            if (stimState == StimulusState.Waiting) {
-                stimStateColor = Color.black;
-            } else if (stimState == StimulusState.Started) {
-                stimStateColor = Color.white;
-            } else if (stimState == StimulusState.Ended) {
-                stimStateColor = Color.grey;
-            }
+        if (sphericalStimulusGenerator != null) {
+            stimState = sphericalStimulusGenerator.stimulusState;
+        } else if (squareStimulusController != null) {
+            stimState = squareStimulusController.stimulusState;
+        }
+        
+        if (stimState == StimulusState.Waiting) {
+            stimStateColor = Color.black;
+        } else if (stimState == StimulusState.Started) {
+            stimStateColor = Color.white;
+        } else if (stimState == StimulusState.Ended) {
+            stimStateColor = Color.grey;
         }
 
         stimulusStateImage.color = stimStateColor;
