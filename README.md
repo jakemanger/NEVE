@@ -12,6 +12,7 @@ Our examples have been applied to certain animals, specifically fiddler crabs an
 # Getting started
 ## Experiments with animals
 [Running a pre-built experiment](NEVE_python/README.md)
+
 [Creating a custom experiment](Docs/creating_custom_experiment.md)
 
 ## Experiments with machine learning models
@@ -22,4 +23,4 @@ Our examples have been applied to certain animals, specifically fiddler crabs an
 NEVE is seperated into two components:
 
 1) NEVE_unity: A Unity project containing the files and tools needed to build a experiment.
-2) NEVE_python: A Python project used to control built experiments for 
+2) NEVE_python: A Python project used to run, modify and control built experiments.
