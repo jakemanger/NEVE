@@ -1,6 +1,10 @@
 from mlagents_envs.environment import UnityEnvironment
-from mlagents_envs.side_channel.environment_parameters_channel import EnvironmentParametersChannel
-from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
+from mlagents_envs.side_channel.environment_parameters_channel import (
+    EnvironmentParametersChannel
+)
+from mlagents_envs.side_channel.engine_configuration_channel import (
+    EngineConfigurationChannel
+)
 import yaml
 from yaml.loader import SafeLoader
 
@@ -45,13 +49,14 @@ class Nenv:
     def set_params(self, i):
         """Sets the parameters for the experimental trial
 
-        Any change using set_params requires a reset (self.reset()) to be activated.
+        Any change using set_params requires a reset (self.reset()).
 
         Args:
             i (int): The index of the trial.
         """
 
-        # Any change to a Unity SideChannel (self.env_parameters) will only be effective after a step or reset
+        # Any change to a Unity SideChannel (self.env_parameters) will
+        # only be effective after a step or reset
         # so self.reset() will need to be called to apply the changes.
         print('Setting new environmental parameters...')
         for key, value in self.params.items():
@@ -61,7 +66,8 @@ class Nenv:
             else:
                 self.env_parameters.set_float_parameter(key, value[i])
                 assert len(value) == len(self.execution_order), (
-                    f'the length of {key} must be the same as the length of execution_order'
+                    f'the length of {key} must be the same as the length of'
+                    'execution_order'
                 )
     
     def reset(self):
@@ -70,7 +76,10 @@ class Nenv:
         Should be called after self.set_params().
         """
         print('Resetting environment/Starting experiment...')
-        print('Press EXIT to end the Unity experiment prematurely. Press ALT-TAB to access python.')
+        print(
+            'Press EXIT to end the Unity experiment prematurely.'
+            ' Press ALT-TAB to access python.'
+        )
         self.env.reset()
 
     def close(self):
