@@ -1,8 +1,7 @@
 # NEVE toolkit
 
-![Loom experiment](Docs/loom_exp.gif)
-
-![Reinforcement learning model learning to find a burrow](Docs/readme_gif.gif)
+![Loom experiment](Docs/loom_experiment.gif) ![Reinforcement learning model learning to find a burrow](Docs/readme_gif.gif)
+  
 
 
 Neuroecology virtual environments (NEVE) is a simple toolkit to build and run stimuli for behavioural and physiological experiments or reinforcement learning modelling.
@@ -24,7 +23,7 @@ The following pre-built stimuli are provided:
 
 ### Install
 
-#### Clone the repository
+#### Clone this repository
 
 From the terminal or command-line:
 
@@ -32,7 +31,7 @@ From the terminal or command-line:
 git clone git@github.com:jakemanger/NEVE.git 
 ```
 
-Or alternatively use [Github desktop](https://desktop.github.com/) to clone the project into your desired folder.
+Or alternatively use [Github desktop](https://desktop.github.com/) to clone this project into your desired folder.
 
 
 
@@ -49,13 +48,14 @@ python3 -m venv venv
 ```
 
 3. Activate your virtual environment
-   (on mac/linux)
+
+(on mac or linux)
 
 ```bash
 source venv/bin/activate
 ```
 
-	(on windows)
+(on windows)
 
 ```
 venv\Scripts\Activate
@@ -72,11 +72,6 @@ pip install -r requirements.txt
 Pick a desired experiment to use. In this example, we will use an optomotor experiment.
 
 Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
-
-If you want all trials to have the same value just supply a single number
-(integer or float). If you want a number of trials to have a different
-parameters, supply an array the size of your number of trials (e.g. [400,
-200]).
 
 *For an optomotor experiment, we could change the grating density in the
 `configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
@@ -95,6 +90,10 @@ maximumVal: [0.1, 0.5]
 ...
 ```
 
+*Note: The value you supply to each parameter should have a length equal to your number of trials
+or a single value to indicate it is fixed for all trials. For example, if you wanted two trials 
+with different density parameters but the same square parameter, supply an array the size of your
+number of trials `density: [400, 200]` and a single value `square: 0`.*
 
 ### Run
 
@@ -108,17 +107,23 @@ and follow the prompts. You should see control-related messages in the terminal 
 stimulus displayed on your designated screen (specified by your config file).
 
 Expected terminal output:
+
 ![Expected output from a successful setup](Docs/successful_setup.png)
 
 Expected stimulus with `./configs/optomotor.yaml`
+
 ![Optomotor experiment](Docs/optomotor_experiment.gif)
 
-Data from each trial in the experiment (parameters of stimuli and timing of frames) will 
-be continuously written and saved in the directory of the experiment e.g.
-`NEVE_python/builds/Optomotor/` as a csv file. To view the frame rate reported from unity,
+
+Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
+be continuously written and saved in the directory of the experiment i.e.
+`NEVE_python/builds/Optomotor/trial_logs` as a csv file.
+
+To view the frame rate reported from unity,
 look at the difference in time (column t) in the csv output. Other data may also be present,
 such as the timing of when a flash on the sync square was made (with a press of the F key)
 or the position of a moving stimulus.
+
 
 
 ## Creating your own custom experiment
@@ -126,6 +131,8 @@ or the position of a moving stimulus.
 Users can also use a set of Unity prebuilt objects (prefabs) and environments (scenes) to rapidly
 build an entirely new experiment. Sharing of custom built experiments is highly encouraged. See
 the following guide for [creating a custom experiment](Docs/creating_custom_experiment.md).
+
+
 
 ## Placing a reinforcement learning model in experiments
 
