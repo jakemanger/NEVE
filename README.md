@@ -1,26 +1,142 @@
 # NEVE toolkit
-![Reinforcement learning model learning to find a burrow](readme_gif.gif)
 
-# About
+![Loom experiment](Docs/loom_exp.gif)
 
-Neuroecology virtual environments (NEVE) is a toolkit to allow researchers to build virtual environments to use with animals in behavioural and physiological experiments or reinforcement learning models in a simulation. NEVE leverages the highly developed [Unity](https://unity.com/) engine to simulate and display stimuli. It provides the ability to simulate environments in a closed-loop fashion, providing visual feed-back to animal movement and/or behaviour.
+![Reinforcement learning model learning to find a burrow](Docs/readme_gif.gif)
 
-NEVE uses the [Unity Python API](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md) and [Unity Machine Learning Agents Toolkit](https://github.com/Unity-Technologies/ml-agents) to record data, modify experimental conditions and introduce animals or reinforcement learning agents into simulations. A number of pre-built objects and environments are provided to allow researchers to quickly build, test and deploy experiments on conventional computer monitors using custom animal inputs (e.g. movement recorded on a trackball).
 
-Our examples have been applied to certain animals, specifically fiddler crabs and deep-sea hyperiid amphipods, however, the use of these tools are not species specific. We have created experiments previously time-intensive or infeasible with conventional approaches, such as those with physical objects or simple computer simulation tools (e.g. Psychtoolbox). We have also recreated simpler traditional physiological experiments that are routinely conducted on multiple species of animals, including humans. Our tools and examples are highly applicable to most species with visual systems and are designed to be easily modifiable if required.
+Neuroecology virtual environments (NEVE) is a simple toolkit to build and run stimuli for behavioural and physiological experiments or reinforcement learning modelling.
+NEVE uses the [Unity](https://unity.com/) engine to create and display perspectively correct stimuli at high-frame rates and in real time. Users can modify a set of
+commonly-used pre-built experiments for their purposes with configuration files and control experiments from the command-line (via python).
 
-# Getting started
-## Experiments with animals
-[Running a pre-built experiment](NEVE_python/README.md)
+The following pre-built stimuli are provided:
 
-[Creating a custom experiment](Docs/creating_custom_experiment.md)
+| Stimulus | Description | Status |
+| -------- | ----------- | -------- |
+| Optomotor | Moving gratings that rotate around the viewer, used to identify the innate orienting behaviour caused by whole-field visual motion, known as an optomotor response. | Usable |
+|Looming| Moving spheres or rectangles that approach a target, used to trigger escape responses. | Usable |
+| Moving           | Similar to looming, however, one stimuli can be displayed and also rotate around the viewer. Can display either looming or translating objects. This is useful to observe tracking or escape behaviours. | WIP    |
+| Dual Moving      | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
+| Moving rectangle | A simple 2D moving rectangle stimulus used to trigger responses from movement detector neurons in electrophysiology experiments. | Usable |
 
-## Experiments with machine learning models
-[Running a pre-built experiment for reinforcement learning](Docs/running_prebuilt_experiment_for_reinforcement_learning.md)
 
-# Project structure
+## Pre-built experiment example
 
-NEVE is seperated into two components:
+### Install
 
-1) NEVE_unity: A Unity project containing the files and tools needed to build a experiment.
-2) NEVE_python: A Python project used to run, modify and control built experiments.
+#### Clone the repository
+
+From the terminal or command-line:
+
+```bash
+git clone git@github.com:jakemanger/NEVE.git 
+```
+
+Or alternatively use [Github desktop](https://desktop.github.com/) to clone the project into your desired folder.
+
+
+
+#### Install python and dependencies
+
+If you are unfamiliar with python and python virtual environments, see https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240
+
+1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
+
+2. Create a virtual environment in the NEVE_python directory
+
+```bash
+python3 -m venv venv
+```
+
+3. Activate your virtual environment
+   (on mac/linux)
+
+```bash
+source venv/bin/activate
+```
+
+	(on windows)
+
+```
+venv\Scripts\Activate
+```
+
+4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Setup
+
+Pick a desired experiment to use. In this example, we will use an optomotor experiment.
+
+Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
+
+If you want all trials to have the same value just supply a single number
+(integer or float). If you want a number of trials to have a different
+parameters, supply an array the size of your number of trials (e.g. [400,
+200]).
+
+*For an optomotor experiment, we could change the grating density in the
+`configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
+trial with speeds of 5 and 10 degrees per second, like so*:
+
+```python
+... LINE 48
+# stimuli
+density: [800, 50] # CHANGED FROM [400, 200]
+offset: 0
+angle: 0
+speed: [5, 10] # CHANGED FROM 5 (FOR ALL TRIALS)
+square: 0
+minimumVal: [0, 0]
+maximumVal: [0.1, 0.5]
+...
+```
+
+
+### Run
+
+Start the stimulus, specifying the configuration file to use:
+
+```
+python control_simulation.py ./configs/optomotor.yaml
+```
+
+and follow the prompts. You should see control-related messages in the terminal and the
+stimulus displayed on your designated screen (specified by your config file).
+
+Expected terminal output:
+![Expected output from a successful setup](Docs/successful_setup.png)
+
+Expected stimulus with `./configs/optomotor.yaml`
+![Optomotor experiment](Docs/optomotor_experiment.gif)
+
+Data from each trial in the experiment (parameters of stimuli and timing of frames) will 
+be continuously written and saved in the directory of the experiment e.g.
+`NEVE_python/builds/Optomotor/` as a csv file. To view the frame rate reported from unity,
+look at the difference in time (column t) in the csv output. Other data may also be present,
+such as the timing of when a flash on the sync square was made (with a press of the F key)
+or the position of a moving stimulus.
+
+
+## Creating your own custom experiment
+
+Users can also use a set of Unity prebuilt objects (prefabs) and environments (scenes) to rapidly
+build an entirely new experiment. Sharing of custom built experiments is highly encouraged. See
+the following guide for [creating a custom experiment](Docs/creating_custom_experiment.md).
+
+## Placing a reinforcement learning model in experiments
+
+A big motivation to create NEVE was to allow machine learning models to see the same stimuli as
+animals and react in the scene. By integrating the 
+[Unity Python API](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md)
+and [Unity Machine Learning Agents Toolkit](https://github.com/Unity-Technologies/ml-agents), this
+allows NEVE to performantly add inputs and outputs from machine learning models to the environment,
+allowing a model to be trained to do the same task as an animal. This should then allow estimates 
+of how animals process visual information to produce behaviours or recorded electrophysiogical responses.
+
+To view the work in progress guide, see
+[running a pre-built experiment for reinforcement learning](Docs/running_prebuilt_experiment_for_reinforcement_learning.md).
+

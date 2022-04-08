@@ -1,16 +1,27 @@
 import random
+import sys
 
-rand_num_min = 0
-# rand_num_max = 12 
-# rand_num_max = 15 
-rand_num_max = 47 
 
-# random.seed(936)
-# random.seed(342)
-random.seed(451)
+def main(min_num, max_num, num_times, seed=12345):
+    random.seed(seed)
 
-for i in range(0, 30):
-    randomlist = list(range(rand_num_min, rand_num_max))
-    random.shuffle(randomlist) 
+    for _ in range(num_times):
+        randomlist = list(range(min_num, max_num))
+        random.shuffle(randomlist) 
 
-    print(randomlist)
+        print(randomlist)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print(
+            '''
+            Usage: generate_random_presentation_order.py <min_num> <max_num> <num_times>
+            '''
+        )
+        sys.exit(1)
+
+    main(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+
+
+

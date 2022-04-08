@@ -14,6 +14,8 @@ public class FrameWriter : MonoBehaviour
     // only used if recordEachFrame is false
     public float recordingFrequency = 1f; // in seconds
 
+    string logsDir = "trial_logs/";
+
     public Transform stimTrans;
 
     public Transform stimTrans1;
@@ -50,9 +52,14 @@ public class FrameWriter : MonoBehaviour
         }
 
         if (startNewFile) {
-            outputFilePath = System.DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + experimentId + ".csv";
+            outputFilePath = logsDir + System.DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + experimentId + ".csv";
             if (outputFilePath == null || outputFilePath == "") {
                 Debug.LogError("FrameWriter outputFilePath was not specified.");
+            }
+
+            // if the logs directory doesn't already exist, create it
+            if (!Directory.Exists(logsDir)) {
+                Directory.CreateDirectory(logsDir);
             }
 
             _sw = System.IO.File.AppendText(outputFilePath);

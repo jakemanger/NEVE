@@ -1,16 +1,31 @@
 from neve.env import Nenv
+import sys
 
-config_path = 'configs/looming_stimulus.yaml'
-# config_path = 'configs/optomotor.yaml'
-# config_path = 'configs/dual_moving_stimulus.yaml'
-# config_path = 'configs/moving_rectangle_stimulus.yaml'
-# config_path = '' # for testing with unity
 
-nenv = Nenv(params=config_path)
+def main(config_path):
+    nenv = Nenv(params=config_path)
 
-print('Running for', nenv.execution_order, 'experimental conditions')
-for i in len(nenv.execution_order):
-    nenv.set_params(i)
-    nenv.reset()
+    print('Running for', nenv.execution_order, 'experimental conditions')
+    for i in range(len(nenv.execution_order)):
+        nenv.set_params(i)
+        nenv.reset()
 
-nenv.close()
+    nenv.close()
+
+
+if __name__ == '__main__':
+    usage = (
+        '''
+        Usage:
+            python control_simulation.py path/to/config.yaml
+
+        Example:
+            python control_simulation.py configs/looming.yaml
+        '''
+    )
+
+    if len(sys.argv) == 2 and sys.argv[1] not in ('-h', '--help'):
+        main(sys.argv[1])
+    else:
+        print(usage)
+

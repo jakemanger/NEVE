@@ -145,6 +145,8 @@ public class MovingRectangleManager : MonoBehaviour
         float endPosX = floatChannel.GetWithDefault("endPosX", 5f);
         float endPosY = floatChannel.GetWithDefault("endPosY", 5f);
         endPos = new Vector2(endPosX, endPosY);
+        numReps = floatChannel.GetWithDefault("numReps", 2f);
+
         duration = floatChannel.GetWithDefault("duration", 5f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
         r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);
@@ -152,7 +154,6 @@ public class MovingRectangleManager : MonoBehaviour
         b = floatChannel.GetWithDefault("stimulusColourB", 0.1f);
         a = floatChannel.GetWithDefault("stimulusColourA", 1f);
         stimulusColour = new Color(r, g, b, a);
-        numReps = floatChannel.GetWithDefault("numReps", 2f);
     }
 
     void Update() {
