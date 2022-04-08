@@ -1,7 +1,9 @@
 # NEVE toolkit
 
-![Loom experiment](Docs/loom_experiment.gif) ![Reinforcement learning model learning to find a burrow](Docs/readme_gif.gif)
-  
+<p align="center">
+  <img src="Docs/loom_experiment.gif" />
+  <img src="Docs/readme_gif.gif" />
+</p>
 
 
 Neuroecology virtual environments (NEVE) is a simple toolkit to build and run stimuli for behavioural and physiological experiments or reinforcement learning modelling.
@@ -96,6 +98,8 @@ with different density parameters but the same square parameter, supply an array
 number of trials `density: [400, 200]` and a single value `square: 0`.*
 
 ### Run
+
+Ensure you have an activated virtual environment (Install step 3 above).
 
 Start the stimulus, specifying the configuration file to use:
 
