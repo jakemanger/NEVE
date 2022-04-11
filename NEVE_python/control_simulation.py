@@ -20,7 +20,7 @@ if __name__ == '__main__':
             python control_simulation.py path/to/config.yaml
 
         Example:
-            python control_simulation.py configs/looming.yaml
+            python control_simulation.py configs/loom.yaml
         '''
     )
 

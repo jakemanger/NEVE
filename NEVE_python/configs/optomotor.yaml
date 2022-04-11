@@ -8,7 +8,7 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 # general
-buildDir: ./builds/optomotor/
+buildDir: ./builds/Optomotor/
 frameDataIdCode: [100001, 100002]  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
 animalCode: [1, 2]  # a id code representing the animal
 execution_order: [0, 1]  # 0 = first, 1 = second

@@ -101,6 +101,8 @@ class Nenv:
                 )
             elif platform in ['darwin']:
                 file_name = os.path.join(build_dir, 'Mac.app')
+            elif platform in ['linux', 'linux2']:
+                file_name = os.path.join(build_dir, '')
             else:
                 raise Exception(
                     f'Build file for platform {platform} has not been made.'
@@ -109,7 +111,7 @@ class Nenv:
             print(
                 'No buildDir provided. Assuming you are'
                 ' running your experiment in Unity for development.'
-                'Press play in the Unity Editor to start.'
+                ' Press play in the Unity Editor to start.'
             )
 
         # now remove buildDir from params, as we should not send it to unity
