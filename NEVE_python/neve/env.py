@@ -38,7 +38,8 @@ class Nenv:
         self.env = UnityEnvironment(
             file_name=self._get_built_file_path(),
             side_channels=[self.env_parameters, self.eng_config],
-            timeout_wait=999999
+            timeout_wait=999999,
+            worker_id=self._get_worker_id()
         )
         self.execution_order = self.params['execution_order']
 
@@ -118,4 +119,20 @@ class Nenv:
         self.params.pop('buildDir')
 
         return file_name
+
+    def _get_worker_id(self, filename=".worker_id.dat"):
+        """ Workaround for ml-agents socket connection communicator problem
+
+        This changes the worker id if there is one left over from a old unity environment
+        that didn't close its socket connection correctly.
+
+        See https://github.com/Unity-Technologies/ml-agents/issues/1505
+        """
+        with open(filename, 'a+') as f:
+            f.seek(0)
+            val = int(f.read() or 0) + 1
+            f.seek(0)
+            f.truncate()
+            f.write(str(val))
+            return val
 
