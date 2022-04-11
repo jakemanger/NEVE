@@ -102,7 +102,7 @@ class Nenv:
             elif platform in ['darwin']:
                 file_name = os.path.join(build_dir, 'Mac.app')
             elif platform in ['linux', 'linux2']:
-                file_name = os.path.join(build_dir, '')
+                file_name = os.path.join(build_dir, 'Linux/Linux.x86_64')
             else:
                 raise Exception(
                     f'Build file for platform {platform} has not been made.'
