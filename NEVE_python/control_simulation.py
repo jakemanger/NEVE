@@ -6,7 +6,7 @@ def main(config_path):
     nenv = Nenv(params=config_path)
 
     print('Running for', nenv.execution_order, 'experimental conditions')
-    for i in range(len(nenv.execution_order)):
+    for i in nenv.execution_order:
         nenv.set_params(i)
         nenv.reset()
 
