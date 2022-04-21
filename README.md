@@ -28,7 +28,6 @@ The following pre-built stimuli are provided:
 #### Clone this repository
 
 From the terminal or command-line:
-
 ```bash
 git clone git@github.com:jakemanger/NEVE.git 
 ```
@@ -151,3 +150,11 @@ of how animals process visual information to produce behaviours or recorded elec
 To view the work in progress guide, see
 [running a pre-built experiment for reinforcement learning](Docs/running_prebuilt_experiment_for_reinforcement_learning.md).
 
+
+## Calibrating screen parameters
+
+You will commonly want to calibrate what stimulus's parameter translate to in the real
+world (i.e., displayed from the screen). For example, you may want to identify what
+parameters provide what intensity, so you can accurately control contrast in your
+experiments. To do this, follow the work in progress guide at
+[calibration](Docs/calibration.md)

@@ -27,14 +27,15 @@ the usb com port number that appears and disapears when
 plugging and unplugging the device.
 
 3. Using your port string (e.g. 'COM1' or '/dev/ttyUSB0')
-and the number of measurments you want to make/save (e.g. 10),
+and the number of measurements you want to make/save (e.g. 10),
 start calibrating:
 
 ```
-python calibrate.py COM1 10
+python calibrate.py ./config/calibration.yaml -p /dev/ttyUSB0 -n 10
 ```
+Note, on linux, your user will require additional privileges to access
+serial devices at a port.
 
-You should end up with a lookup table of with a number of rows
+You should end up with a lookup table. The number of rows are 
 equal to the number of trials in your ./configs/calibration.yaml
-file. The first row is your trial number and the other rows
-are the number of measurements saved.
+file multiplied by the number of measurements you specified.
