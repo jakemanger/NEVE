@@ -1,8 +1,8 @@
 # NEVE toolkit
 
 <p align="center">
-  <img src="Docs/loom_experiment.gif" />
-  <img src="Docs/readme_gif.gif" />
+  <img src="docs/loom_experiment.gif" />
+  <img src="docs/readme_gif.gif" />
 </p>
 
 
@@ -34,51 +34,60 @@ git clone git@github.com:jakemanger/NEVE.git
 
 Or alternatively use [Github desktop](https://desktop.github.com/) to clone this project into your desired folder.
 
+### Start NEVE
+
+Depending on what operating system you are using, click on the following file to start NEVE (with a graphical user interface):
+
+| Linux | Mac | Windows |
+| ----- | --- | ------- |
+| NEVE_linux | NEVE_mac.app | NEVE_windows.exe |
 
 
-#### Install python and dependencies
+Pick a desired stimulus to use from the drop down menu. In this example, we will use the stimulus for an optomotor experiment (`configs/optomotor.yaml`).
 
-If you are unfamiliar with python and python virtual environments, see https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240
+IMAGE of NEVE with dropdown menu
 
-1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
+### Run
 
-2. Create a virtual environment in the NEVE_python directory
+Click Start
 
-```bash
-python3 -m venv venv
-```
+IMAGE of NEVE with start button
 
-3. Activate your virtual environment
+and follow the prompts. You should see control-related messages in the status window and the
+stimulus displayed on your designated screen (specified by your config file).
 
-(on mac or linux)
+Expected status window output:
 
-```bash
-source venv/bin/activate
-```
+replace below with status window
 
-(on windows)
+![Expected output from a successful setup](docs/successful_setup.png)
 
-```
-venv\Scripts\Activate
-```
+Expected stimulus with `./configs/optomotor.yaml`
 
-4. Install dependencies
+![Optomotor experiment](docs/optomotor_experiment.gif)
 
-```bash
-pip install -r requirements.txt
-```
 
-### Setup
+Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
+be continuously written and saved in the directory of the experiment i.e.
+`NEVE_run/trial_logs` as a csv file.
 
-Pick a desired experiment to use. In this example, we will use an optomotor experiment.
+To view the frame rate reported from unity,
+look at the difference in time (column t) in the csv output. Other data may also be present,
+such as the timing of when a flash on the sync square was made (with a press of the F key)
+or the position of a moving stimulus.
 
-Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
+
+#### Modify a stimulus
+
+If you want to modify a how a stimulus behaves, make changes to the stimulus's configuration file (found in the `NEVE_run/configs` directory).
+It's a good idea to copy and paste from an existing example configuration file if you are creating a new stimulus. If you do this, make sure the new configuration file
+is inside the `NEVE_run/configs` directory, or NEVE will not know how to find it.
 
 *For an optomotor experiment, we could change the grating density in the
-`configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
+`configs/optomotor.yaml` file (or a copy of it) to be 800 in the first trial and 50 in the second
 trial with speeds of 5 and 10 degrees per second, like so*:
 
-```python
+```yaml
 ... LINE 48
 # stimuli
 density: [800, 50] # CHANGED FROM [400, 200]
@@ -96,45 +105,24 @@ or a single value to indicate it is fixed for all trials. For example, if you wa
 with different density parameters but the same square parameter, supply an array the size of your
 number of trials `density: [400, 200]` and a single value `square: 0`.*
 
-### Run
 
-Ensure you have an activated virtual environment (Install step 3 above).
+## Run NEVE with python
 
-Start the stimulus, specifying the configuration file to use:
-
-```
-python control_simulation.py ./configs/optomotor.yaml
-```
-
-and follow the prompts. You should see control-related messages in the terminal and the
-stimulus displayed on your designated screen (specified by your config file).
-
-Expected terminal output:
-
-![Expected output from a successful setup](Docs/successful_setup.png)
-
-Expected stimulus with `./configs/optomotor.yaml`
-
-![Optomotor experiment](Docs/optomotor_experiment.gif)
+NEVE can be run and controlled by python. This is useful for combining your experiments with machine learning models or some other custom setup.
+To do this, follow [this guide](docs/starting_an_experiment_from_python.md).
 
 
-Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
-be continuously written and saved in the directory of the experiment i.e.
-`NEVE_python/builds/Optomotor/trial_logs` as a csv file.
+## Run NEVE from the command line
 
-To view the frame rate reported from unity,
-look at the difference in time (column t) in the csv output. Other data may also be present,
-such as the timing of when a flash on the sync square was made (with a press of the F key)
-or the position of a moving stimulus.
-
+NEVE can be run from the command line. This may be useful for some custom setups.
+To do this, follow [this guide](docs/starting_an_experiment_from_command_line.md).
 
 
 ## Creating your own custom experiment
 
 Users can also use a set of Unity prebuilt objects (prefabs) and environments (scenes) to rapidly
 build an entirely new experiment. Sharing of custom built experiments is highly encouraged. See
-the following guide for [creating a custom experiment](Docs/creating_custom_experiment.md).
-
+the following guide for [creating a custom experiment](docs/creating_custom_experiment.md).
 
 
 ## Placing a reinforcement learning model in experiments
@@ -148,7 +136,7 @@ allowing a model to be trained to do the same task as an animal. This should the
 of how animals process visual information to produce behaviours or recorded electrophysiogical responses.
 
 To view the work in progress guide, see
-[running a pre-built experiment for reinforcement learning](Docs/running_prebuilt_experiment_for_reinforcement_learning.md).
+[running a pre-built experiment for reinforcement learning](docs/running_prebuilt_experiment_for_reinforcement_learning.md).
 
 
 ## Calibrating screen parameters
@@ -157,4 +145,4 @@ You will commonly want to calibrate what stimulus's parameter translate to in th
 world (i.e., displayed from the screen). For example, you may want to identify what
 parameters provide what intensity, so you can accurately control contrast in your
 experiments. To do this, follow the work in progress guide at
-[calibration](Docs/calibration.md)
+[calibration](docs/calibration.md)
