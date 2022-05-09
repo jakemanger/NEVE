@@ -2,13 +2,20 @@
 
 If you are not a fan of GUIs or are doing some developement. You can use NEVE with python.
 
+
 #### Install python and dependencies
 
 If you are unfamiliar with python and python virtual environments, see https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240
 
 1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
 
-2. Create a virtual environment in the NEVE_run directory
+* For the special case when you want to access the GUI and are using MacOS, you
+will have to use your system installation of python and cannot use a python virtual
+environment (as `wxpython` requires a Framework build of python to function), so skip
+to step 4 and swap out `python` and `pip` for your main installation of python 3, e.g. 
+`python3` and `pip3` in all steps. *
+
+2. Create a virtual environment in the NEVE_python directory
 
 ```bash
 python3 -m venv venv
@@ -38,7 +45,7 @@ pip install -r requirements.txt
 
 Pick a desired experiment to use. In this example, we will use an optomotor experiment.
 
-Make desired changes to the experiment's configuration file in the `NEVE_run/configs` directory.
+Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
 
 *For an optomotor experiment, we could change the grating density in the
 `configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
@@ -69,11 +76,13 @@ Ensure you have an activated virtual environment (Install step 3 above).
 Start the stimulus, specifying the configuration file to use:
 
 ```
-python control_simulation.py ./configs/optomotor.yaml
+python control_simulation.py --ignore-gooey ./configs/optomotor.yaml
 ```
 
 and follow the prompts. You should see control-related messages in the terminal and the
 stimulus displayed on your designated screen (specified by your config file).
+Note, the `--ignore-gooey` flag removes the GUI from the program. Exclude this
+from the command if you want to see a GUI.
 
 Expected terminal output:
 
@@ -86,7 +95,7 @@ Expected stimulus with `./configs/optomotor.yaml`
 
 Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
 be continuously written and saved in the directory of the experiment i.e.
-`NEVE_run/trial_logs` as a csv file.
+`NEVE_python/trial_logs` as a csv file.
 
 To view the frame rate reported from unity,
 look at the difference in time (column t) in the csv output. Other data may also be present,

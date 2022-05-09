@@ -1,5 +1,0 @@
-mlagents-envs==0.16.1
-PyYAML==6.0
-pyserial
-Gooey
-pyinstaller

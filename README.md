@@ -42,6 +42,8 @@ Depending on what operating system you are using, click on the following file to
 | ----- | --- | ------- |
 | NEVE_linux | NEVE_mac.app | NEVE_windows.exe |
 
+* Note, if these do not work for your OS, you can build one by
+following [this guide](docs/building_exectuables.md). *
 
 Pick a desired stimulus to use from the drop down menu. In this example, we will use the stimulus for an optomotor experiment (`configs/optomotor.yaml`).
 
@@ -116,6 +118,7 @@ To do this, follow [this guide](docs/starting_an_experiment_from_python.md).
 
 NEVE can be run from the command line. This may be useful for some custom setups.
 To do this, follow [this guide](docs/starting_an_experiment_from_command_line.md).
+
 
 
 ## Creating your own custom experiment
