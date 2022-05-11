@@ -13,10 +13,10 @@ commonly-used pre-built experiments for their purposes with configuration files 
 The following pre-built stimuli are provided:
 
 | Stimulus | Description | Status |
-| -------- | ----------- | -------- |
+| -------- | ----------- | ------ |
 | Optomotor | Moving gratings that rotate around the viewer, used to identify the innate orienting behaviour caused by whole-field visual motion, known as an optomotor response. | Usable |
 |Looming| Moving spheres or rectangles that approach a target, used to trigger escape responses. | Usable |
-| Moving           | Similar to looming, however, one stimuli can be displayed and also rotate around the viewer. Can display either looming or translating objects. This is useful to observe tracking or escape behaviours. | WIP    |
+| Moving Objects | Similar to looming, however, one stimuli can be displayed and also rotate around the viewer. Can display either looming or translating objects. This is useful to observe tracking or escape behaviours. | WIP    |
 | Dual Moving      | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
 | Moving rectangle | A simple 2D moving rectangle stimulus used to trigger responses from movement detector neurons in electrophysiology experiments. | Usable |
 
@@ -34,35 +34,56 @@ git clone git@github.com:jakemanger/NEVE.git
 
 Or alternatively use [Github desktop](https://desktop.github.com/) to clone this project into your desired folder.
 
+
 ### Start NEVE
 
-Depending on what operating system you are using, click on the following file to start NEVE (with a graphical user interface):
+Depending on what operating system (OS) you are using, do the following to start NEVE (with a graphical user interface):
 
-| Linux | Mac | Windows |
-| ----- | --- | ------- |
-| NEVE_linux | NEVE_mac.app | NEVE_windows.exe |
+*Note, if these do not work for your OS, you can build one by
+following [this guide](docs/building_exectuables.md) or follow
+the [using with python guide](docs/docs/starting_an_experiment_from_python.md).*
 
-* Note, if these do not work for your OS, you can build one by
-following [this guide](docs/building_exectuables.md). *
+#### Linux (tested on Ubuntu 20.04.3)
 
-Pick a desired stimulus to use from the drop down menu. In this example, we will use the stimulus for an optomotor experiment (`configs/optomotor.yaml`).
+From the terminal, extract the executable
 
-IMAGE of NEVE with dropdown menu
+```
+tar -xf NEVE_linux.tar.xz
+```
+
+and start NEVE
+
+```
+./NEVE_linux/control_simulation
+```
+
+#### Mac
+
+Double click on NEVE_mac.app.zip to extract the app.
+
+Double click on NEVE_max.app to start NEVE.
+
+#### Windows
+
+Double click on NEVE_windows.zip to extract the executable.
+
+Double click on NEVE_windows/control_simulation.exe to start NEVE.
+
 
 ### Run
 
-Click Start
+Pick a desired stimulus to use from the drop down menu. In this example, we will use the stimulus for an optomotor experiment (`configs/optomotor.yaml`).
 
-IMAGE of NEVE with start button
+![NEVE GUI](docs/NEVE_gui.png)
+
+Click Start
 
 and follow the prompts. You should see control-related messages in the status window and the
 stimulus displayed on your designated screen (specified by your config file).
 
 Expected status window output:
 
-replace below with status window
-
-![Expected output from a successful setup](docs/successful_setup.png)
+![NEVE GUI after clicking start](docs/NEVE_gui.png)
 
 Expected stimulus with `./configs/optomotor.yaml`
 
