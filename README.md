@@ -92,7 +92,7 @@ Expected stimulus with `./configs/optomotor.yaml`
 
 Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
 be continuously written and saved in the directory of the experiment i.e.
-`NEVE_run/trial_logs` as a csv file.
+`trial_logs` as a csv file.
 
 To view the frame rate reported from unity,
 look at the difference in time (column t) in the csv output. Other data may also be present,
@@ -102,9 +102,9 @@ or the position of a moving stimulus.
 
 #### Modify a stimulus
 
-If you want to modify a how a stimulus behaves, make changes to the stimulus's configuration file (found in the `NEVE_run/configs` directory).
+If you want to modify a how a stimulus behaves, make changes to the stimulus's configuration file (found in the `configs` directory).
 It's a good idea to copy and paste from an existing example configuration file if you are creating a new stimulus. If you do this, make sure the new configuration file
-is inside the `NEVE_run/configs` directory, or NEVE will not know how to find it.
+is inside the `configs` directory, or NEVE will not know how to find it.
 
 *For an optomotor experiment, we could change the grating density in the
 `configs/optomotor.yaml` file (or a copy of it) to be 800 in the first trial and 50 in the second
