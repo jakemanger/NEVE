@@ -61,7 +61,7 @@ and start NEVE
 
 Double click on NEVE_mac.app.zip to extract the app.
 
-Double click on NEVE_max.app to start NEVE.
+Double click on NEVE_mac.app to start NEVE.
 
 #### Windows
 
