@@ -40,7 +40,7 @@ Or alternatively use [Github desktop](https://desktop.github.com/) to clone this
 Depending on what operating system (OS) you are using, do the following to start NEVE (with a graphical user interface):
 
 *Note, if these do not work for your OS, you can build one by
-following [this guide](docs/building_exectuables.md) or follow
+following [this guide](docs/building_executables.md) or follow
 the [using with python guide](docs/docs/starting_an_experiment_from_python.md).*
 
 #### Linux (tested on Ubuntu 20.04.3)
