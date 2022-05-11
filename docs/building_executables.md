@@ -11,7 +11,7 @@ To build a new executable, change directory to the `NEVE_python` directory and
 run the following command:
 
 ```
-python3 -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle --assume-yes-for-downloads --remove-output --onefile control_simulation.py
+python3 -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle --assume-yes-for-downloads --remove-output control_simulation.py
 ```
 
 This will save the executable in the `NEVE_python` directory. Move it into the
