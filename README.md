@@ -83,7 +83,7 @@ stimulus displayed on your designated screen (specified by your config file).
 
 Expected status window output:
 
-![NEVE GUI after clicking start](docs/NEVE_gui.png)
+![NEVE GUI after clicking start](docs/NEVE_gui2.png)
 
 Expected stimulus with `./configs/optomotor.yaml`
 
