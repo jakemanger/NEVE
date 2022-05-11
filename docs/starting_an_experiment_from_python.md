@@ -86,11 +86,11 @@ from the command if you want to see a GUI.
 
 Expected terminal output:
 
-![Expected output from a successful setup](Docs/successful_setup.png)
+![Expected output from a successful setup](./successful_setup.png)
 
 Expected stimulus with `./configs/optomotor.yaml`
 
-![Optomotor experiment](Docs/optomotor_experiment.gif)
+![Optomotor experiment](./optomotor_experiment.gif)
 
 
 Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
