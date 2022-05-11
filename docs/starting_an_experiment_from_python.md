@@ -1,4 +1,4 @@
- Starting an experiment from python
+# Starting an experiment from python
 
 If you are not a fan of GUIs or are doing some developement. You can use NEVE with python.
 
