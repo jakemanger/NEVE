@@ -8,7 +8,7 @@
 
 Neuroecology virtual environments (NEVE) is a simple toolkit to build and run stimuli for behavioural and physiological experiments or reinforcement learning modelling.
 NEVE uses the [Unity](https://unity.com/) engine to create and display perspectively correct stimuli at high-frame rates and in real time. Users can modify a set of
-commonly-used pre-built experiments for their purposes with configuration files and control experiments from the command-line (via python).
+commonly-used pre-built experiments for their purposes with configuration files and control experiments from a simple app, via the command-line or python.
 
 The following pre-built stimuli are provided:
 
