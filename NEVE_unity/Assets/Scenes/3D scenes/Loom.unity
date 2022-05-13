@@ -271,6 +271,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 0
@@ -566,6 +567,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 0
@@ -738,6 +740,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 0
@@ -1166,6 +1169,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 0
@@ -1271,8 +1275,8 @@ MonoBehaviour:
   manualControl: 0
   mouseMoveSpeed: 2
   stimulusColour: {r: 0.8018868, g: 0.018912422, b: 0.018912422, a: 1}
-  stimulusType: 0
-  drawOutline: 1
+  stimulusType: 1
+  drawOutline: 0
   outlineWidth: 0.5
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   experimentDuration: 60
@@ -1327,6 +1331,7 @@ MonoBehaviour:
   experimentId: test_
   outputFilePath: test.csv
   sphericalStimulusGenerator: {fileID: 4517113866636580001}
+  squareStimulusController: {fileID: 0}
   stimulusStateImage: {fileID: 1556760272}
   timeText: {fileID: 1768751036}
 --- !u!114 &1851185965
@@ -1349,6 +1354,7 @@ MonoBehaviour:
   fcmanager: {fileID: 1851185962}
   hdsmanager: {fileID: 0}
   optmanager: {fileID: 0}
+  mrmanager: {fileID: 0}
 --- !u!114 &1851185966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,6 +1544,10 @@ PrefabInstance:
       propertyPath: targetMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
+    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineWorldSpaceMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e48bcc56a92dc4d6a974a3d2cbcc0dec, type: 2}
     - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
       value: 5
@@ -1558,6 +1568,10 @@ PrefabInstance:
       propertyPath: targetMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
+    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineWorldSpaceMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e48bcc56a92dc4d6a974a3d2cbcc0dec, type: 2}
     - target: {fileID: 7929488127660487860, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1572,7 +1586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7929488127660487863, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929488127660487866, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Materials.Array.size
