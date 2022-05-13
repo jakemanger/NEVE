@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SquareStimulusController : MonoBehaviour
+public class SquareStimulusController : GenericStimulusController
 {
     // configurable stimulus parameters
     public float width = 100f;
@@ -26,7 +26,6 @@ public class SquareStimulusController : MonoBehaviour
     bool move = false;
     bool justFinishedMoving = false;
 
-    public StimulusState stimulusState = StimulusState.Waiting;
 
     // objects to manipulate
     RectTransform rectTransform;
@@ -35,7 +34,9 @@ public class SquareStimulusController : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void Reset() {
+    public override void Reset() {
+        base.Reset();
+
         currentlyReturning = false;
         numRepsDone = 0;
         delayTimeElapsed = 0f;
@@ -46,7 +47,7 @@ public class SquareStimulusController : MonoBehaviour
         rectTransform.position = startPos;
         rectTransform.sizeDelta = new Vector2(width, height);
         GetComponent<Image>().color = stimulusColour;
-        stimulusState = StimulusState.Waiting;
+        base.stimulusState = StimulusState.Waiting;
     }
 
     void Update()
@@ -81,7 +82,7 @@ public class SquareStimulusController : MonoBehaviour
         }
 
         if (move) {
-            stimulusState = StimulusState.Started;
+            base.stimulusState = StimulusState.Started;
             if (!currentlyReturning) {
                 rectTransform.position = Vector2.Lerp(startPos, endPos, timeElapsed / duration);
             } else {
@@ -102,7 +103,7 @@ public class SquareStimulusController : MonoBehaviour
                     move = false;
                     wantToMove = false;
                     justFinishedMoving = true;
-                    stimulusState = StimulusState.Ended;
+                    base.stimulusState = StimulusState.Ended;
                 }
             } 
 

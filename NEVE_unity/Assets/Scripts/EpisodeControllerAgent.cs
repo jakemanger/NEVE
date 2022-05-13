@@ -11,26 +11,10 @@ public class EpisodeControllerAgent : Agent {
     public float experimentDuration = 99999f; // duration in seconds
     float timeSinceStimulusStart = 0f;
 
-    public FiddlerCrabLoomingStimulusArenaManager fcmanager;
-    public HyperiidDualStimulusArenaManager hdsmanager;
-    public OptomotorManager optmanager;
-    public MovingRectangleManager mrmanager;
-
     public override void OnEpisodeBegin() {
         // used for initialising and resetting the environment
         timeSinceStimulusStart = 0f;
-        if (fcmanager != null) {
-            fcmanager.Reset();
-        }
-        if (optmanager != null) {
-            optmanager.Reset();
-        }
-        if (hdsmanager != null) {
-            hdsmanager.Reset();
-        }
-        if (mrmanager != null) {
-            mrmanager.Reset();
-        }
+        GetComponent<GenericStimulusManager>().Reset();
         Cursor.visible = false;
     }
 

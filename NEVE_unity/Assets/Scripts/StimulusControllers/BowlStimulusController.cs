@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // [RequireComponent(typeof(SphereGenerator)), RequireComponent(typeof(SphereEditor))]
-public class BowlStimulusController : MonoBehaviour
+public class BowlStimulusController : GenericStimulusController
 {
     public Vector3 rotation = Vector3.zero;
 

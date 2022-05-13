@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24999999, g: 0.24999999, b: 0.24999999, a: 1}
+  m_IndirectSpecularColor: {r: 0.031348895, g: 0.031348895, b: 0.031348895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -711,6 +711,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -1129,6 +1130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -1255,6 +1257,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -1422,6 +1425,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -1496,14 +1500,9 @@ MonoBehaviour:
   recordEachFrame: 1
   recordingFrequency: 1
   stimTrans: {fileID: 0}
-  stimTrans1: {fileID: 0}
-  stimTrans2: {fileID: 0}
-  stimRenderer: {fileID: 0}
   syncSquareImg: {fileID: 69513663}
   experimentId: test_
   outputFilePath: test.csv
-  sphericalStimulusGenerator: {fileID: 0}
-  squareStimulusController: {fileID: 0}
   stimulusStateImage: {fileID: 508935453}
   timeText: {fileID: 1574576096}
 --- !u!114 &5309253760061736713
@@ -1523,10 +1522,6 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   experimentDuration: 99999
-  fcmanager: {fileID: 0}
-  hdsmanager: {fileID: 0}
-  optmanager: {fileID: 5309253760061736718}
-  mrmanager: {fileID: 0}
 --- !u!114 &5309253760061736714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,6 +1600,24 @@ MonoBehaviour:
   backDisplayNum: 2
   leftDisplayNum: 3
   cameraRotation: {x: 0, y: 0, z: 0}
+  experimentDuration: 60
+  darkAdaptTime: 5
+  recordFrameData: 1
+  recordEachFrame: 1
+  recordingFrequency: 1
+  frameDataIdCode: 9999
+  animalCode: 1
+  syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquare: {fileID: 790943268}
+  syncSquareDisplayNum: 1
+  displayStimulusCode: 0
+  flickerDuration: 0.1
+  camMon: {fileID: 7767219509833157209}
+  frameWriter: {fileID: 5309253760061736712}
+  episodeController: {fileID: 5309253760061736713}
+  blackOutCanvases: {fileID: 1369575005}
+  manualControl: 1
+  mouseMoveSpeed: 2
   density: 500
   offset: 0
   angle: 0
@@ -1612,22 +1625,6 @@ MonoBehaviour:
   square: 0
   minimumVal: 0
   maximumVal: 0.062745094
-  experimentDuration: 60
-  blackOutCanvases: {fileID: 1369575005}
-  darkAdaptTime: 5
-  recordFrameData: 1
-  recordEachFrame: 1
-  recordingFrequency: 1
-  frameDataIdCode: 9999
-  animalCode: 1
-  flickerDuration: 0.1
-  syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
-  syncSquare: {fileID: 790943268}
-  syncSquareDisplayNum: 1
-  displayStimulusCode: 0
-  camMon: {fileID: 7767219509833157209}
-  frameWriter: {fileID: 5309253760061736712}
-  episodeController: {fileID: 5309253760061736713}
 --- !u!4 &5309253760061736719
 Transform:
   m_ObjectHideFlags: 0

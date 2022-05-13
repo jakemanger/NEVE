@@ -18,10 +18,6 @@ public class FrameWriter : MonoBehaviour
 
     public Transform stimTrans;
 
-    public Transform stimTrans1;
-    public Transform stimTrans2;
-
-    public Renderer stimRenderer;
     public Image syncSquareImg;
 
     public string experimentId = "test_";
@@ -33,14 +29,23 @@ public class FrameWriter : MonoBehaviour
 
     // to make it easy to be sure screen information matches
     // exactly with the csv, we set the SyncSquare info here
-    public SphericalStimulusGenerator sphericalStimulusGenerator;
-    public SquareStimulusController squareStimulusController;
+
+    // Use SphericalStimulusGenerator or SquareStimulusGenerator
+    // in the inspector
+    GenericStimulusController[] stimulusControllers;
     public Image stimulusStateImage;
     public Text timeText;
+
+    int stimControllerLength;
 
     public void Reset() {
         startedNewFile = false;
         startNewFile = true;
+
+        // find all stimulus controllers GenericStimulusController
+        stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
+
+        stimControllerLength = stimulusControllers.Length;
     }
 
     // Update is called once per frame
@@ -68,18 +73,17 @@ public class FrameWriter : MonoBehaviour
                 InvokeRepeating("WriteData", 0, 1/recordingFrequency);
             }
 
-            if (stimTrans != null) {
+            if (stimControllerLength == 2) {
                 _sw.WriteLine(
-                    "t, x , y, z , scale_x, scale_y, scale_z, stimulusOn"
+                    "time, datetime, x1, y1, z1, scale_x1, scale_y1, scale_z1, x2, y2, z2, scale_x2, scale_y2, scale_z2, stimulusOn"
                 );
-            } else if (stimTrans1 != null) {
+            } else if (stimControllerLength == 1) {
                 _sw.WriteLine(
-                    "t, x1, y1, z1, scale_x1, scale_y1, scale_z1, x2, y2, z2, scale_x2, scale_y2, scale_z2, stimulusOn"
+                    "time, datetime, x , y, z , scale_x, scale_y, scale_z, stimulusOn"
                 );
-
             } else {
                 _sw.WriteLine(
-                    "t, stimulusOn"
+                    "time, datetime, stimulusOn"
                 );
             }
 
@@ -92,20 +96,9 @@ public class FrameWriter : MonoBehaviour
     {
         // write the time data and
         // x, y and z coordinates of the stimulus
-        if (stimTrans != null) {
-            _sw.WriteLine(
-                "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}",
-                Time.time,
-                System.DateTime.Now,
-                stimTrans.position.x,
-                stimTrans.position.y,
-                stimTrans.position.z,
-                stimTrans.localScale.x,
-                stimTrans.localScale.y,
-                stimTrans.localScale.z,
-                syncSquareImg.enabled 
-            );
-        } else if (stimTrans1 != null) {
+        if (stimControllerLength == 2) {
+            Transform stimTrans1 = stimulusControllers[0].transform;
+            Transform stimTrans2 = stimulusControllers[1].transform;
             _sw.WriteLine(
                 "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}",
                 Time.time,
@@ -124,6 +117,20 @@ public class FrameWriter : MonoBehaviour
                 stimTrans2.localScale.z,
                 syncSquareImg.enabled
             );
+        } else if (stimControllerLength == 1) {
+            Transform stimTrans = stimulusControllers[0].transform;
+            _sw.WriteLine(
+                "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}",
+                Time.time,
+                System.DateTime.Now,
+                stimTrans.position.x,
+                stimTrans.position.y,
+                stimTrans.position.z,
+                stimTrans.localScale.x,
+                stimTrans.localScale.y,
+                stimTrans.localScale.z,
+                syncSquareImg.enabled 
+            );
         } else {
             _sw.WriteLine(
                 "{0}, {1:o}, {2}",
@@ -139,10 +146,10 @@ public class FrameWriter : MonoBehaviour
 
         StimulusState stimState = StimulusState.Waiting;
 
-        if (sphericalStimulusGenerator != null) {
-            stimState = sphericalStimulusGenerator.stimulusState;
-        } else if (squareStimulusController != null) {
-            stimState = squareStimulusController.stimulusState;
+        if (stimControllerLength > 0) {
+            stimState = stimulusControllers[0].stimulusState;
+        } else {
+            stimState = StimulusState.Waiting;
         }
         
         if (stimState == StimulusState.Waiting) {
