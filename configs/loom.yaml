@@ -69,7 +69,7 @@ targetLocationOffsetX: 0  # x offset for the target of a looming stimulus (cm) r
 targetLocationOffsetY: 0  # y offset for the target of a looming stimulus (cm) relative to animal eye position
 targetLocationOffsetZ: 0  # z offset for the target of a looming stimulus (cm) relative to animal eye position
 startOffset: 500  # start distance of object from eye of animal (cm)
-endOffset: 1.5  # end distance of object from eye of animal after looming (cm)
+endOffset: 50  # end distance of object from eye of animal after looming (cm)
 duration: 8 # 24.925  # duration of movement based off distance/velocity
 delayToApproach: 5  # delay in seconds before stimulus starts looming (if manual_control=false)
 stimulusColourR: [0.3, 0, 0]  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
