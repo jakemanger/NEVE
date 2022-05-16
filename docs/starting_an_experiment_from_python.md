@@ -9,11 +9,11 @@ If you are unfamiliar with python and python virtual environments, see https://t
 
 1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
 
-* For the special case when you want to access the GUI and are using MacOS, you
+*For the special case when you want to access the GUI and are using MacOS, you
 will have to use your system installation of python and cannot use a python virtual
 environment (as `wxpython` requires a Framework build of python to function), so skip
 to step 4 and swap out `python` and `pip` for your main installation of python 3, e.g. 
-`python3` and `pip3` in all steps. *
+`python3` and `pip3` in all steps.*
 
 2. Create a virtual environment in the NEVE_python directory
 
