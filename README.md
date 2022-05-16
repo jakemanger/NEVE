@@ -65,9 +65,9 @@ Double click on `NEVE_mac.app` to start NEVE.
 
 #### Windows
 
-Double click on NEVE_windows.zip and copy `NEVE_windows` to the `./NEVE` directory to extract.
+Double click on `NEVE_windows.zip` and copy `NEVE_windows` to the `./NEVE` directory to extract.
 
-Double click on NEVE_windows/control_simulation.exe to start NEVE.
+Double click on `NEVE_windows/control_simulation.exe` to start NEVE.
 
 
 ### Run
