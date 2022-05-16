@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 
-public class OptomotorManager : MonoBehaviour
+public abstract class GenericStimulusManager : MonoBehaviour
 {
+    // A generic class for managing stimuli
+
     public bool recieveParametersFromPython = true;
 
-    [Header("Camera view parameters")]
+    [Header("Generic camera view parameters")]
     public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
     public float distanceToMonitors = 7; // cm
     public Vector2 monitorDimensions = new Vector2(12.176f, 6.87f);
@@ -17,44 +19,46 @@ public class OptomotorManager : MonoBehaviour
     public int leftDisplayNum = 3;
     public Vector3 cameraRotation = Vector3.zero;
 
-    [Header("Stimulus parameters")]
-    public float density = 5f; // density of sine waves
-    public float offset = 0f;
-    public float angle = 0f;
-    public float speed = 2f;
-    public int square = 0;
-    public float minimumVal = 0f;
-    public float maximumVal = 0.5f;
-
+    [Header("Generic timing parameters")]
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 60f;
-
-    public GameObject blackOutCanvases;
     public float darkAdaptTime = 5f;
     float timeSinceDarkAdaptStart = 0f;
 
-    [Header("Saving parameters")]
+    [Header("Generic Saving parameters")]
     public bool recordFrameData = true;
     public bool recordEachFrame = true;
     public float recordingFrequency = 1f; // in seconds if recordEachFrame is false
     public float frameDataIdCode = 9999f; // a code to identify the frame data recording
     public float animalCode = 1f; // a code to identify the animal
 
-    [Header("SyncSquare parameters")]
-    public float flickerDuration = 0.1f; // time of sync square flicker
+    [Header("Generic SyncSquare parameters")]
     public Color syncSquareColor = Color.red;
     public SyncSquare syncSquare;
     public int syncSquareDisplayNum = 0;
     public bool displayStimulusCode = false;
+    public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
 
-    [Header("Components")]
+    [Header("Generic Components")]
     public CameraMonitorController camMon;
     public FrameWriter frameWriter;
     public EpisodeControllerAgent episodeController; // for controlling when a stimulus has finished and a new one should be loaded
+    public GameObject blackOutCanvases;
+
+    [Header("Generic manual control parameters")]
+    public bool manualControl = true;
+    public float mouseMoveSpeed = 2f;
 
 
-    public void Reset() {
+    void Start() {
+        if (recieveParametersFromPython) {
+            print("Recieving parameters from python. If this is not desired (e.g. you are testing in the editor), set recieveParametersFromPython to false on your Stimulus Manager.");
+        }
+    }
+
+
+    public virtual void Reset() {
         if (recieveParametersFromPython) {
             GetPropertiesFromPython();
         }
@@ -83,9 +87,10 @@ public class OptomotorManager : MonoBehaviour
         syncSquare.stimulusCode = frameDataIdCode;
         syncSquare.animalCode = animalCode;
         syncSquare.Reset();
+        timeSinceDarkAdaptStart = 0f;
     }
 
-    void GetPropertiesFromPython() {
+    protected virtual void GetPropertiesFromPython() {
         // load properties from python
         var floatChannel = Academy.Instance.EnvironmentParameters;
         // set properties from python
@@ -102,13 +107,8 @@ public class OptomotorManager : MonoBehaviour
         syncSquareColor = new Color(r, g, b, a);
         syncSquareDisplayNum = (int)floatChannel.GetWithDefault("syncSquareDisplayNum", 0f);
         displayStimulusCode = floatChannel.GetWithDefault("displayStimulusCode", 1f) != 0;
-        density = floatChannel.GetWithDefault("density", 5f);
-        offset = floatChannel.GetWithDefault("offset", 0f);
-        angle = floatChannel.GetWithDefault("angle", 0f);
-        speed = floatChannel.GetWithDefault("speed", 2f);
-        square = (int)floatChannel.GetWithDefault("square", 5f);
-        minimumVal = floatChannel.GetWithDefault("minimumVal", 0f);
-        maximumVal = floatChannel.GetWithDefault("maximumVal", 0.5f);
+        manualControl = floatChannel.GetWithDefault("manualControl", 1f) != 0;
+        mouseMoveSpeed = floatChannel.GetWithDefault("mouseMoveSpeed", 2f);
         experimentDuration = floatChannel.GetWithDefault("experimentDuration", 60f);
         recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
         recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
@@ -134,15 +134,6 @@ public class OptomotorManager : MonoBehaviour
         }
     }
 
-    void SetupStimuli() {
-        Material mat = RenderSettings.skybox;
-        mat.SetFloat("_Density", density);
-        mat.SetFloat("_Offset", offset);
-        mat.SetFloat("_Angle", angle);
-        mat.SetFloat("_Speed", speed);
-        mat.SetInt("_Square", square);
-        mat.SetFloat("_Minimum", minimumVal);
-        mat.SetFloat("_Maximum", maximumVal);
-        RenderSettings.skybox = mat;
-    }
+    // should be overridden by child classes
+    public abstract void SetupStimuli();
 }
