@@ -21,9 +21,12 @@ class Nenv:
         """Initialize the NEVE environment.
 
         Args:
-            params (str): The path to the parameters of the Unity
-            experiment/environment.
+            params (str): The path to the configuration file with parameters of the Unity
+            stimulus/environment.
         """
+
+        if not os.path.exists(params):
+            raise Exception('Could not find the configuration file')
 
         with open(params, 'r') as f:
             self.params = yaml.load(f, Loader=SafeLoader)
@@ -94,6 +97,27 @@ class Nenv:
                 '', 'none', 'null', 'na', 'nan'
         ):
             build_dir = self.params['buildDir']
+
+            if not os.path.exists(build_dir):
+                build_dir = os.path.join(os.path.dirname(__file__), '..',
+                        self.params['buildDir'])
+                if not os.path.exists(build_dir):
+                    build_dir = os.path.join(os.path.dirname(__file__), '..',
+                            '..', self.params['buildDir'])
+
+                    if not os.path.isdir(build_dir):
+                        # running as a mac app and need to go up 5 or 6 levels
+                        build_dir = os.path.join(
+                            os.path.dirname(__file__),
+                            '..', '..', '..', '..', self.params['buildDir']
+                        )
+                        if not os.path.isdir(build_dir):
+                            build_dir = os.path.join(os.path.dirname(__file__),
+                              '..', '..', '..', '..', '..', self.params['buildDir'])
+                            raise FileNotFoundError(
+                                f'Could not find build file at {build_dir}'
+                                'Please check the buildDir parameter in the config file.'
+                            )
 
             if platform in ['win32', 'cygwin']:
                 file_name = os.path.join(
