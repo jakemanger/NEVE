@@ -102,7 +102,7 @@ or the position of a moving stimulus.
 
 #### Modify a stimulus
 
-If you want to modify a how a stimulus behaves, make changes to the stimulus's configuration file (found in the `configs` directory).
+If you want to modify how a stimulus behaves, make changes to the stimulus's configuration file (found in the `configs` directory).
 It's a good idea to copy and paste from an existing example configuration file if you are creating a new stimulus. If you do this, make sure the new configuration file
 is inside the `configs` directory, or NEVE will not know how to find it.
 
