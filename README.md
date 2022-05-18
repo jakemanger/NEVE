@@ -138,7 +138,27 @@ To do this, follow [this guide](docs/starting_an_experiment_from_python.md).
 ## Run NEVE from the command line
 
 NEVE can be run from the command line. This may be useful for some custom setups.
-To do this, follow [this guide](docs/starting_an_experiment_from_command_line.md).
+Specify the `--ignore-gooey` flag if you don't want to use a graphical user interface,
+however this requires you to link a config file.
+
+(on linux)
+```
+./NEVE_linux/control_simulation optomotor.yaml --ignore-gooey
+```
+(on windows)
+```
+NEVE_windows\control_simulation.exe optomotor.yaml --ignore-gooey
+```
+(on mac)
+```
+./NEVE_mac.app optomotor.yaml --ignore-gooey
+```
+
+Use the `-h` flag to get help.
+(on linux)
+```
+./NEVE_linux/control_simulation -h
+```
 
 
 
