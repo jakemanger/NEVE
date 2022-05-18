@@ -39,8 +39,8 @@ Or alternatively use [Github desktop](https://desktop.github.com/) to clone this
 
 Depending on what operating system (OS) you are using, do the following to start NEVE (with a graphical user interface):
 
-*Note, if these do not work for your OS, you can build one by
-following [this guide](docs/building_executables.md) or follow
+*Note, if you get errors or something isn't working on your OS, you can build an executable for your specific OS by
+following [this guide](docs/building_executables.md) or you can use python to run NEVE by following
 the [using with python guide](docs/docs/starting_an_experiment_from_python.md).*
 
 #### Linux (tested on Ubuntu 20.04.3)
@@ -139,7 +139,7 @@ To do this, follow [this guide](docs/starting_an_experiment_from_python.md).
 
 NEVE can be run from the command line. This may be useful for some custom setups.
 Specify the `--ignore-gooey` flag if you don't want to use a graphical user interface,
-however this requires you to link a config file.
+however this requires you to specify a config file (`optomotor.yaml` in this case).
 
 (on linux)
 ```
@@ -154,12 +154,10 @@ NEVE_windows\control_simulation.exe optomotor.yaml --ignore-gooey
 ./NEVE_mac.app optomotor.yaml --ignore-gooey
 ```
 
-Use the `-h` flag to get help.
-(on linux)
+Use the `-h` flag to get help, e.g. for linux:
 ```
 ./NEVE_linux/control_simulation -h
 ```
-
 
 
 ## Creating your own custom experiment
