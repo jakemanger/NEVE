@@ -31,6 +31,7 @@ Make your own directory with your output from fictrac and logs (inside the fictr
 ```
 cd ..
 mkdir output
+cd output
 ```
 
 Also follow instructions on fictrac's github page to ensure your setup is properly configured, see
@@ -54,6 +55,7 @@ And with correct configuration, after running:
 
 *Note, I have fixed sock_host and sock_port in this example, as NEVE has been setup to use these for input from fictrac.
 If changing these values is required, please create a Github issue and I can add some customisation to this.*
+
 
 ## Start NEVE
 
