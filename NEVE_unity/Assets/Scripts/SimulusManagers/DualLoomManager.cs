@@ -15,8 +15,10 @@ public class DualLoomManager : GenericStimulusManager
     // public Color rightBackgroundColour = new Color(0f, 0f, 0f, 1f);
     // public Color backBackgroundColour = new Color(0f, 0f, 0f, 1f);
     // public Color leftBackgroundColour = new Color(0f, 0f, 0f, 1f);
-    public float stimulusSize1 = 1f;
-    public float stimulusSize2 = 0f;
+    public Vector3 startScale1 = Vector3.one;
+    public Vector3 endScale1 = Vector3.one;
+    public Vector3 startScale2 = Vector3.one;
+    public Vector3 endScale2 = Vector3.one;
     public Vector2 startPolarPosition1 = new Vector2(0f, 0f);
     public Vector2 startPolarPosition2 = new Vector2(0f, 0f);
     public Vector2 endPolarPosition1 = new Vector2(0f, 0f);
@@ -69,7 +71,14 @@ public class DualLoomManager : GenericStimulusManager
         a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
         belowHorizonColour = new Color(r, g, b, a);
 
-        stimulusSize1 = floatChannel.GetWithDefault("stimulusSize1", 1f);
+        float x = floatChannel.GetWithDefault("startScaleX1", 1f);
+        float y = floatChannel.GetWithDefault("startScaleY1", 1f);
+        float z = floatChannel.GetWithDefault("startScaleZ1", 1f);
+        startScale1 = new Vector3(x, y, z);
+        x = floatChannel.GetWithDefault("endScaleX1", 1f);
+        y = floatChannel.GetWithDefault("endScaleY1", 1f);
+        z = floatChannel.GetWithDefault("endScaleZ1", 1f);
+        endScale1 = new Vector3(x, y, z);
         stimulusDuration1 = floatChannel.GetWithDefault("stimulusDuration1", 5f);
         float startPolarPositionX1 = floatChannel.GetWithDefault("startPolarPositionX1", 0f);
         float startPolarPositionY1 = floatChannel.GetWithDefault("startPolarPositionY1", 0f);
@@ -99,7 +108,14 @@ public class DualLoomManager : GenericStimulusManager
         a = floatChannel.GetWithDefault("outlineColourA1", 1f);
         outlineColor1 = new Color(r, g, b, a);
 
-        stimulusSize2 = floatChannel.GetWithDefault("stimulusSize2", 0f);
+        x = floatChannel.GetWithDefault("startScaleX2", 1f);
+        y = floatChannel.GetWithDefault("startScaleY2", 1f);
+        z = floatChannel.GetWithDefault("startScaleZ2", 1f);
+        startScale2 = new Vector3(x, y, z);
+        x = floatChannel.GetWithDefault("endScaleX2", 1f);
+        y = floatChannel.GetWithDefault("endScaleY2", 1f);
+        z = floatChannel.GetWithDefault("endScaleZ2", 1f);
+        endScale2 = new Vector3(x, y, z);
         stimulusDuration2 = floatChannel.GetWithDefault("stimulusDuration2", 5f);
         float startPolarPositionX2 = floatChannel.GetWithDefault("startPolarPositionX2", 0f);
         float startPolarPositionY2 = floatChannel.GetWithDefault("startPolarPositionY2", 0f);
@@ -148,7 +164,8 @@ public class DualLoomManager : GenericStimulusManager
         // stimulus 1
         stimGenerator1.flickerDuration = flickerDuration;
         stimGenerator1.stimulusColour = stimulusColour1;
-        stimGenerator1.stimulusSize = stimulusSize1;
+        stimGenerator1.startScale = startScale1;
+        stimGenerator1.endScale = endScale1;
         stimGenerator1.startOffset = startOffset1;
         stimGenerator1.endOffset = endOffset1;
         stimGenerator1.delayToApproach = delayToApproach1;
@@ -176,7 +193,8 @@ public class DualLoomManager : GenericStimulusManager
             SphericalStimulusGenerator stimGenerator2 = stimGenerators[1];
             stimGenerator2.flickerDuration = flickerDuration;
             stimGenerator2.stimulusColour = stimulusColour2;
-            stimGenerator2.stimulusSize = stimulusSize2;
+            stimGenerator2.startScale = startScale2;
+            stimGenerator2.endScale = endScale2;
             stimGenerator2.startOffset = startOffset2;
             stimGenerator2.endOffset = endOffset2;
             stimGenerator2.delayToApproach = delayToApproach2;

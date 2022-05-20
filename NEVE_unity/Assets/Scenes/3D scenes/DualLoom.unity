@@ -211,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 18.171
+      value: 18.17102
       objectReference: {fileID: 0}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -361,6 +361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrabModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2148647837753813655, guid: 446d3468f9fcb4341baf07c921caaea8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2148647837754046135, guid: 446d3468f9fcb4341baf07c921caaea8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -419,6 +423,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105145883, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator (1)
@@ -682,6 +690,9 @@ MonoBehaviour:
   recieveInputFromSocket: 1
   port: 1111
   ballRadius: 6
+  minMovementDistance: 0
+  maxDistanceDelta: 0.1
+  verbose: 0
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &201717202390483252
 Transform:
@@ -1313,31 +1324,33 @@ MonoBehaviour:
   horizonHeight: 0
   aboveHorizonColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   belowHorizonColour: {r: 1, g: 1, b: 1, a: 1}
-  stimulusSize1: 1
-  stimulusSize2: 1
-  startPolarPosition1: {x: 0, y: -20}
-  startPolarPosition2: {x: -20, y: 0}
-  endPolarPosition1: {x: 0, y: 20}
-  endPolarPosition2: {x: 20, y: 0}
+  startScale1: {x: 1.5, y: 1.5, z: 1.5}
+  endScale1: {x: 1.5, y: 1.5, z: 1.5}
+  startScale2: {x: 1, y: 1, z: 1}
+  endScale2: {x: 1, y: 1, z: 1}
+  startPolarPosition1: {x: -10, y: 0}
+  startPolarPosition2: {x: -10, y: 0}
+  endPolarPosition1: {x: -10, y: 0}
+  endPolarPosition2: {x: -10, y: 0}
   targetLocationOffset1: {x: 0, y: 0, z: 0}
   targetLocationOffset2: {x: 0, y: 0, z: 0}
-  startOffset1: 10
-  startOffset2: 10
-  endOffset1: 10
-  endOffset2: 10
+  startOffset1: 60
+  startOffset2: 50
+  endOffset1: 5
+  endOffset2: 3
   delayToApproach1: 5
   delayToApproach2: 5
   numReps1: 2
   numReps2: 2
-  stimulusColour1: {r: 1, g: 1, b: 1, a: 1}
-  stimulusColour2: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  stimulusColour1: {r: 0, g: 0, b: 0, a: 1}
+  stimulusColour2: {r: 0.5021897, g: 0.5021897, b: 0.5021897, a: 1}
   stimulusDuration1: 5
   stimulusDuration2: 5
-  stimulusType1: 2
+  stimulusType1: 1
   drawOutline1: 0
   outlineWidth1: 5
   outlineColor1: {r: 0, g: 0, b: 0, a: 1}
-  stimulusType2: 0
+  stimulusType2: 1
   drawOutline2: 0
   outlineWidth2: 5
   outlineColor2: {r: 0, g: 0, b: 0, a: 1}
