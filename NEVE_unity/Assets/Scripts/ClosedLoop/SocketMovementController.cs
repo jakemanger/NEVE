@@ -18,9 +18,17 @@ public class SocketMovementController : MonoBehaviour
     public int port = 1111;
 
     public float ballRadius = 60f;
+
+    // a minimum distance for the movement to be registered
+    public float minMovementDistance = 0f;
+
+    public float maxDistanceDelta = 0.1f;
     
     // variables for error checking
     int lastIndex = -1;
+    public bool verbose = false;
+
+
 
     Thread thread = null;
 
@@ -28,25 +36,51 @@ public class SocketMovementController : MonoBehaviour
     Vector3 positionOffset;
     bool setPositionOffset = false;
 
+    public void Reset()
+    {
+        Vector3 initialPos = new Vector3(0f, transform.position.y, 0f);
+        positionOffset = targetPosition;
+        targetPosition = initialPos;
+        transform.position = initialPos;
+    }
+
 
     void Start()
     {
         targetPosition = transform.position; 
-        if (recieveInputFromSocket) {
+        if (recieveInputFromSocket)
+        {
+            StartThread();
+        }
+    }
+
+    void StartThread()
+    {
+        if (thread == null)
+        {
             thread = new Thread(new ThreadStart(GetSocketData));
             thread.IsBackground = true;
             thread.Start();
         }
+
     }
 
     void Update()
     {
-        if (recieveInputFromSocket && setPositionOffset) {
-
-            transform.position = targetPosition - positionOffset;
-
-            // transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 10f);
-
+        if (recieveInputFromSocket && setPositionOffset)
+        {
+            if (Vector3.Distance(transform.position, targetPosition) > minMovementDistance)
+            {
+                if (maxDistanceDelta > 0)
+                {
+                    // use MoveTowards
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition - positionOffset, maxDistanceDelta * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = targetPosition - positionOffset;
+                }
+            }
         }
     }
 
@@ -63,8 +97,13 @@ public class SocketMovementController : MonoBehaviour
                 string receivedString = Encoding.ASCII.GetString(receiveBytes);
 
                 // do something with message
-                // print("Message received from the server: \n " + receivedString);
+                if (verbose)
+                {
+                    print("Message received from the server: \n " + receivedString);
+                }
+
                 MoveWithFictracInput(receivedString);
+
             }
             catch(Exception e)
             {
@@ -96,18 +135,25 @@ public class SocketMovementController : MonoBehaviour
             );
         }
 
-        float x = (2f * (float)Math.PI * ballRadius) * (2f * float.Parse(splitInput[20]));
-        float z = -(2f * (float)Math.PI * ballRadius) * (2f * float.Parse(splitInput[21]));
+        float x = ballRadius * float.Parse(splitInput[20]);
+        float z = ballRadius * float.Parse(splitInput[21]);
 
         targetPosition = new Vector3(x, targetPosition.y, z);
 
-        if (!setPositionOffset) {
+        if (!setPositionOffset)
+        {
             positionOffset = targetPosition;
             setPositionOffset = true;
+            if (verbose)
+            {
+                print("position offset = " + positionOffset);
+            }
+        }
+        if (verbose)
+        {
+            print("target position = " + targetPosition);
         }
 
-        targetPosition += positionOffset;
-        // print(index.ToString());
 
         lastIndex = index;
     }

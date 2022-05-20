@@ -88,6 +88,9 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquare.animalCode = animalCode;
         syncSquare.Reset();
         timeSinceDarkAdaptStart = 0f;
+
+        SocketMovementController socketMovementController =  GameObject.FindObjectOfType<SocketMovementController>();
+        socketMovementController.Reset();
     }
 
     protected virtual void GetPropertiesFromPython() {
