@@ -38,14 +38,30 @@ public class FrameWriter : MonoBehaviour
 
     int stimControllerLength;
 
+    List<Transform> transformsToRecord = new List<Transform>();
+
     public void Reset() {
         startedNewFile = false;
         startNewFile = true;
 
         // find all stimulus controllers GenericStimulusController
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
-
         stimControllerLength = stimulusControllers.Length;
+
+        // record the transforms of active stimulus controller objects
+        for (int i = 0; i < stimControllerLength; i++) {
+            Transform stimControllerTrans = stimulusControllers[i].transform;
+            for (int j = 0; j < stimControllerTrans.childCount; j++)
+            {
+                if(stimControllerTrans.GetChild(j).gameObject.activeSelf == true)
+                {
+                    transformsToRecord.Add(stimControllerTrans.GetChild(j));
+                }
+            }
+        }
+
+        // find the SocketMovementController
+        transformsToRecord.Add(GameObject.FindObjectOfType<SocketMovementController>().transform);
     }
 
     // Update is called once per frame
@@ -73,19 +89,13 @@ public class FrameWriter : MonoBehaviour
                 InvokeRepeating("WriteData", 0, 1/recordingFrequency);
             }
 
-            if (stimControllerLength == 2) {
-                _sw.WriteLine(
-                    "time, datetime, x1, y1, z1, scale_x1, scale_y1, scale_z1, x2, y2, z2, scale_x2, scale_y2, scale_z2, stimulusOn"
-                );
-            } else if (stimControllerLength == 1) {
-                _sw.WriteLine(
-                    "time, datetime, x , y, z , scale_x, scale_y, scale_z, stimulusOn"
-                );
-            } else {
-                _sw.WriteLine(
-                    "time, datetime, stimulusOn"
-                );
+            string headers = "unityTime, datetime, stimulusOn";
+
+            for (int i = 0; i < transformsToRecord.Count; i++) {
+                headers += ", " + transformsToRecord[i].name + "_x, " + transformsToRecord[i].name + "_y, " + transformsToRecord[i].name + "_z, " + transformsToRecord[i].name + "_scale_x, " + transformsToRecord[i].name + "_scale_y, " + transformsToRecord[i].name + "_scale_z";
             }
+
+            _sw.WriteLine(headers);
 
             startNewFile = false;
             startedNewFile = true;
@@ -94,51 +104,13 @@ public class FrameWriter : MonoBehaviour
 
     public void WriteData()
     {
-        // write the time data and
-        // x, y and z coordinates of the stimulus
-        if (stimControllerLength == 2) {
-            Transform stimTrans1 = stimulusControllers[0].transform;
-            Transform stimTrans2 = stimulusControllers[1].transform;
-            _sw.WriteLine(
-                "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}",
-                Time.time,
-                System.DateTime.Now,
-                stimTrans1.position.x,
-                stimTrans1.position.y,
-                stimTrans1.position.z,
-                stimTrans1.localScale.x,
-                stimTrans1.localScale.y,
-                stimTrans1.localScale.z,
-                stimTrans2.position.x,
-                stimTrans2.position.y,
-                stimTrans2.position.z,
-                stimTrans2.localScale.x,
-                stimTrans2.localScale.y,
-                stimTrans2.localScale.z,
-                syncSquareImg.enabled
-            );
-        } else if (stimControllerLength == 1) {
-            Transform stimTrans = stimulusControllers[0].transform;
-            _sw.WriteLine(
-                "{0}, {1:o}, {2}, {3}, {4}, {5}, {6}, {7}, {8}",
-                Time.time,
-                System.DateTime.Now,
-                stimTrans.position.x,
-                stimTrans.position.y,
-                stimTrans.position.z,
-                stimTrans.localScale.x,
-                stimTrans.localScale.y,
-                stimTrans.localScale.z,
-                syncSquareImg.enabled 
-            );
-        } else {
-            _sw.WriteLine(
-                "{0}, {1:o}, {2}",
-                Time.time,
-                System.DateTime.Now,
-                syncSquareImg.enabled
-            );
+        string data = Time.time + ", " + System.DateTime.Now + ", " + syncSquareImg.enabled;
+
+        for (int i = 0; i < transformsToRecord.Count; i++) {
+            data += ", " + transformsToRecord[i].position.x + ", " + transformsToRecord[i].position.y + ", " + transformsToRecord[i].position.z + ", " + transformsToRecord[i].localScale.x + ", " + transformsToRecord[i].localScale.y + ", " + transformsToRecord[i].localScale.z;
         }
+
+        _sw.WriteLine(data);
     }
 
     void setSyncSquareValues() {

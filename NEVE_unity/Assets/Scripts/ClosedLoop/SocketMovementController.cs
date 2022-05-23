@@ -26,9 +26,10 @@ public class SocketMovementController : MonoBehaviour
     
     // variables for error checking
     int lastIndex = -1;
+    int n_socket_updates = 0;
+    float t_since_last_ups = 0f;
     public bool verbose = false;
-
-
+    public bool displayUPS = false;
 
     Thread thread = null;
 
@@ -82,6 +83,21 @@ public class SocketMovementController : MonoBehaviour
                 }
             }
         }
+
+        // calculate updates per second every second
+        if (displayUPS)
+        {
+            if (t_since_last_ups > 1f)
+            {
+                t_since_last_ups = 0f;
+                Debug.Log("Socket updates per second: " + n_socket_updates);
+                n_socket_updates = 0;
+            }
+            else
+            {
+                t_since_last_ups += Time.deltaTime;
+            }
+        }
     }
 
     void GetSocketData()
@@ -103,7 +119,7 @@ public class SocketMovementController : MonoBehaviour
                 }
 
                 MoveWithFictracInput(receivedString);
-
+                n_socket_updates++;
             }
             catch(Exception e)
             {
@@ -135,8 +151,8 @@ public class SocketMovementController : MonoBehaviour
             );
         }
 
-        float x = ballRadius * float.Parse(splitInput[20]);
-        float z = ballRadius * float.Parse(splitInput[21]);
+        float z = ballRadius * float.Parse(splitInput[20]);
+        float x = ballRadius * float.Parse(splitInput[21]);
 
         targetPosition = new Vector3(x, targetPosition.y, z);
 
