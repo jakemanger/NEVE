@@ -56,6 +56,7 @@ belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0  # degrees
+
 startScaleX: 3  # only vary scale if you are not translating or moving the object
 startScaleY: 3
 startScaleZ: 3
@@ -82,8 +83,8 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-stimulusType: 0 # 0 = sphere, 1 = cube
+stimulusType: 1 # 0 = sphere, 1 = cube
 fixedAngularSize: 0 # 0 = no fixing of angular size, 1 = you want to keep angular size on a axis constant
 fixXAxis: 0 # 0 = Y axis, 1 = X axis
-minAngularAngle: 0 # the min angular size to fix (if fixedAngularSize == 1)
-maxAngularAngle: 0
+minAngularAngle: -15.5 # the min angular size to fix (if fixedAngularSize == 1)
+maxAngularAngle: -14.5
