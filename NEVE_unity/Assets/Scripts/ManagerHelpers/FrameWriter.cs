@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.UI;
+using System.Reflection;
+
 
 // a class to control the writing of information to file
 // about the simulation each frame
@@ -62,6 +64,8 @@ public class FrameWriter : MonoBehaviour
 
         // find the SocketMovementController
         transformsToRecord.Add(GameObject.FindObjectOfType<SocketMovementController>().transform);
+
+        SaveStimulusManagerValues();
     }
 
     // Update is called once per frame
@@ -113,6 +117,13 @@ public class FrameWriter : MonoBehaviour
         _sw.WriteLine(data);
     }
 
+    void OnDestroy()
+    {
+        if (_sw != null) {
+            _sw.Close();
+        }
+    }
+
     void setSyncSquareValues() {
         Color stimStateColor = Color.black;
 
@@ -135,5 +146,36 @@ public class FrameWriter : MonoBehaviour
         stimulusStateImage.color = stimStateColor;
 
         timeText.text = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+    }
+
+    void SaveStimulusManagerValues()
+    {
+        string path = logsDir + System.DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + experimentId + "_params.txt";
+        StreamWriter sw = System.IO.File.AppendText(path);
+
+        GenericStimulusManager stimulusManager = GameObject.FindObjectOfType<GenericStimulusManager>();
+
+        if (stimulusManager == null) {
+            Debug.LogError("FrameWriter could not find GenericStimulusManager.");
+            return;
+        }
+
+        // const BindingFlags flags = BindingFlags.Public;
+        Type myObject_type = stimulusManager.GetType();
+        FieldInfo[] fields = myObject_type.GetFields(
+            BindingFlags.Instance | 
+            BindingFlags.Static |
+            BindingFlags.NonPublic |
+            BindingFlags.Public
+        );
+        print(fields);
+        foreach(FieldInfo field in fields) {
+            if (field != null) {
+                    string text = field.Name + ": " + field.GetValue(stimulusManager);
+                    sw.WriteLine(text);
+                    // print(text);
+                }
+        }
+        sw.Close();
     }
 }

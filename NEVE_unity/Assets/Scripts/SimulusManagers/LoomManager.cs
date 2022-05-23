@@ -8,9 +8,14 @@ public class LoomManager : GenericStimulusManager
     // A class for controlling looming stimuli
 
     [Header("Looming Background stimulus parameters")]
+    public Material skyboxMaterial;
     public float horizonHeight = 0f;
     public Color aboveHorizonColour = Color.grey;
     public Color belowHorizonColour = Color.white;
+
+    public float[] horizonHeights = new float[4] { -9999f, -9999f, -9999f, -9999f };
+    public Color[] aboveHorizonColours = new Color[4] { Color.grey, Color.grey, Color.grey, Color.grey };
+    public Color[] belowHorizonColours = new Color[4] { Color.white, Color.white, Color.white, Color.white };
 
     [Header("Looming transform parameters")]
     public Vector3 startScale = Vector3.one;
@@ -44,6 +49,7 @@ public class LoomManager : GenericStimulusManager
     public SphericalStimulusGenerator stimGenerator;
 
     protected override void GetPropertiesFromPython() {
+        print("Getting properties from python...");
         // get generic stimulus parameters from python
         base.GetPropertiesFromPython();
 
@@ -73,17 +79,6 @@ public class LoomManager : GenericStimulusManager
         b = floatChannel.GetWithDefault("stimulusColourB", 0.1f);
         a = floatChannel.GetWithDefault("stimulusColourA", 1f);
         stimulusColour = new Color(r, g, b, a);
-        horizonHeight = floatChannel.GetWithDefault("horizonHeight", 0f);
-        r = floatChannel.GetWithDefault("aboveHorizonColourR", 0.1f);
-        g = floatChannel.GetWithDefault("aboveHorizonColourG", 0.1f);
-        b = floatChannel.GetWithDefault("aboveHorizonColourB", 0.1f);
-        a = floatChannel.GetWithDefault("aboveHorizonColourA", 1f);
-        aboveHorizonColour = new Color(r, g, b, a);
-        r = floatChannel.GetWithDefault("belowHorizonColourR", 0.1f);
-        g = floatChannel.GetWithDefault("belowHorizonColourG", 0.1f);
-        b = floatChannel.GetWithDefault("belowHorizonColourB", 0.1f);
-        a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
-        belowHorizonColour = new Color(r, g, b, a);
         gratingNum = floatChannel.GetWithDefault("gratingNum", 100f);
         gratingIsSquare = (int)floatChannel.GetWithDefault("gratingIsSquare", 0f);
         gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", 0.1f);
@@ -102,15 +97,52 @@ public class LoomManager : GenericStimulusManager
         minAngularAngle = floatChannel.GetWithDefault("minAngularAngle", -30f);
         maxAngularAngle = floatChannel.GetWithDefault("maxAngularAngle", 30f);
         delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
+
+        horizonHeight = floatChannel.GetWithDefault("horizonHeight", 0f);
+        r = floatChannel.GetWithDefault("aboveHorizonColourR", 0.1f);
+        g = floatChannel.GetWithDefault("aboveHorizonColourG", 0.1f);
+        b = floatChannel.GetWithDefault("aboveHorizonColourB", 0.1f);
+        a = floatChannel.GetWithDefault("aboveHorizonColourA", 1f);
+        aboveHorizonColour = new Color(r, g, b, a);
+        r = floatChannel.GetWithDefault("belowHorizonColourR", 0.1f);
+        g = floatChannel.GetWithDefault("belowHorizonColourG", 0.1f);
+        b = floatChannel.GetWithDefault("belowHorizonColourB", 0.1f);
+        a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
+        belowHorizonColour = new Color(r, g, b, a);
+
+        // specific overrides for backgrounds on different cameras
+        string[] sides = new string[] { "Front", "Right", "Back", "Left" };
+        for (int i = 0; i < sides.Length; i++) {
+            string side = sides[i];
+            horizonHeights[i] = floatChannel.GetWithDefault("horizonHeight"+side, -9999f);
+            r = floatChannel.GetWithDefault("aboveHorizonColourR"+side, 0f);
+            g = floatChannel.GetWithDefault("aboveHorizonColourG"+side, 0f);
+            b = floatChannel.GetWithDefault("aboveHorizonColourB"+side, 0f);
+            a = floatChannel.GetWithDefault("aboveHorizonColourA"+side, 0f);
+            aboveHorizonColours[i] = new Color(r, g, b, a);
+            r = floatChannel.GetWithDefault("belowHorizonColourR"+side, 0f);
+            g = floatChannel.GetWithDefault("belowHorizonColourG"+side, 0f);
+            b = floatChannel.GetWithDefault("belowHorizonColourB"+side, 0f);
+            a = floatChannel.GetWithDefault("belowHorizonColourA"+side, 0f);
+            belowHorizonColours[i] = new Color(r, g, b, a);
+        }
+
     }
 
     public override void SetupStimuli() {
-        // skybox
-        Material mat = RenderSettings.skybox;
+        // overall skybox
+        Material mat = new Material(RenderSettings.skybox);
         mat.SetFloat("_horizonHeight", horizonHeight);
         mat.SetColor("_aboveHorizonColour", aboveHorizonColour);
         mat.SetColor("_belowHorizonColour", belowHorizonColour);
         RenderSettings.skybox = mat;
+
+        // if specified, override the skybox for individual cameras
+        // check if skybox component exists
+        SetSkybox(camMon.frontCam.gameObject, horizonHeights[0], aboveHorizonColours[0], belowHorizonColours[0]);
+        SetSkybox(camMon.rightCam.gameObject, horizonHeights[1], aboveHorizonColours[1], belowHorizonColours[1]);
+        SetSkybox(camMon.backCam.gameObject, horizonHeights[2], aboveHorizonColours[2], belowHorizonColours[2]);
+        SetSkybox(camMon.leftCam.gameObject, horizonHeights[3], aboveHorizonColours[3], belowHorizonColours[3]);
 
         // sphere
         stimGenerator.stimulusColour = stimulusColour;
@@ -142,5 +174,18 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.manualControl = manualControl;
         stimGenerator.mouseMoveSpeed = mouseMoveSpeed;
         stimGenerator.Reset();
+    }
+
+    void SetSkybox(GameObject camGameObject, float horizonHeight, Color aboveHorizonColour, Color belowHorizonColour) {
+        if (horizonHeight != -9999f) {
+            if (camGameObject.GetComponent<Skybox>() == null) {
+                camGameObject.AddComponent<Skybox>();
+            }
+            Skybox skybox = camGameObject.GetComponent<Skybox>();
+            skybox.material = new Material(skyboxMaterial);
+            skybox.material.SetFloat("_horizonHeight", horizonHeight);
+            skybox.material.SetColor("_aboveHorizonColour", aboveHorizonColour);
+            skybox.material.SetColor("_belowHorizonColour", belowHorizonColour);
+        }
     }
 }

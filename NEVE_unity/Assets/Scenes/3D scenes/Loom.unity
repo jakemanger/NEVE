@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43139657, g: 0.43139657, b: 0.43139657, a: 1}
+  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,7 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc6b326c8ef9f866ac356ebdfc63060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 0
+  recieveParametersFromPython: 1
+  recieveInputFromSocket: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -587,9 +588,25 @@ MonoBehaviour:
   blackOutCanvases: {fileID: 220729435}
   manualControl: 0
   mouseMoveSpeed: 2
+  skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
   horizonHeight: 0
   aboveHorizonColour: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
-  belowHorizonColour: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  belowHorizonColour: {r: 0.21462265, g: 0.30249012, b: 0.8584906, a: 1}
+  horizonHeights:
+  - -9999
+  - -9999
+  - -9999
+  - -9999
+  aboveHorizonColours:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  belowHorizonColours:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
   stimulusPolarPosition: {x: -15, y: 0}
@@ -633,6 +650,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1254457337793107896, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1254457337841208640, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_RootOrder
       value: 1

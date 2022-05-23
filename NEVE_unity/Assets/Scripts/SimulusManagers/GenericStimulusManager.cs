@@ -9,6 +9,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
     public bool recieveParametersFromPython = true;
 
+    public bool recieveInputFromSocket = false;
+
     [Header("Generic camera view parameters")]
     public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
     public float distanceToMonitors = 7; // cm
@@ -89,7 +91,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquare.Reset();
         timeSinceDarkAdaptStart = 0f;
 
-        SocketMovementController socketMovementController =  GameObject.FindObjectOfType<SocketMovementController>();
+        SocketMovementController socketMovementController = GameObject.FindObjectOfType<SocketMovementController>();
+        socketMovementController.recieveInputFromSocket = recieveInputFromSocket;
         socketMovementController.Reset();
     }
 
@@ -127,6 +130,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         float z = floatChannel.GetWithDefault("cameraRotationX", 0f);
         cameraRotation = new Vector3(x, y, z);
         darkAdaptTime = floatChannel.GetWithDefault("darkAdaptTime", 5f);
+        recieveInputFromSocket = floatChannel.GetWithDefault("fictracFeedback", 0f) != 0;
     }
 
     void Update() {
