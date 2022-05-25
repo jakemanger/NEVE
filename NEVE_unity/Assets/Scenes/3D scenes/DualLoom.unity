@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150ddd4eac8414b1a9ac8f70fe79b8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
+  recieveParametersFromPython: 0
   recieveInputFromSocket: 0
   eyeHeight: 2
   distanceToMonitors: 7
@@ -800,6 +800,14 @@ MonoBehaviour:
   gratingIsSquare: 0
   gratingMaxIntensity: 0.01
   gratingMinIntensity: 0
+  fixedAngularSize1: 0
+  fixXAxis1: 1
+  minAngularAngle1: -2
+  maxAngularAngle1: 2
+  fixedAngularSize2: 0
+  fixXAxis2: 1
+  minAngularAngle2: -17
+  maxAngularAngle2: -13
 --- !u!1001 &1415290230749237764
 PrefabInstance:
   m_ObjectHideFlags: 0

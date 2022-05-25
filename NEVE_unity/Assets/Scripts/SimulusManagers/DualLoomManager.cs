@@ -11,10 +11,7 @@ public class DualLoomManager : GenericStimulusManager
     public Color belowHorizonColour = Color.white;
 
     [Header("Specific stimulus parameters")]
-    // public Color frontBackgroundColour = new Color(0f, 0f, 0f, 1f);
-    // public Color rightBackgroundColour = new Color(0f, 0f, 0f, 1f);
-    // public Color backBackgroundColour = new Color(0f, 0f, 0f, 1f);
-    // public Color leftBackgroundColour = new Color(0f, 0f, 0f, 1f);
+
     public Vector3 startScale1 = Vector3.one;
     public Vector3 endScale1 = Vector3.one;
     public Vector3 startScale2 = Vector3.one;
@@ -46,9 +43,19 @@ public class DualLoomManager : GenericStimulusManager
     public float outlineWidth2 = 5f;
     public Color outlineColor2 = Color.black;
     public float gratingNum = 100f; // only used if the stimulusType has a grating material
-    public int gratingIsSquare = 0;
+    public bool gratingIsSquare = false;
     public float gratingMaxIntensity = 0.1f;
     public float gratingMinIntensity = 0f;
+
+    public bool fixedAngularSize1 = false;
+    public bool fixXAxis1 = true; // otherwise fix the Y axis
+    public float minAngularAngle1 = -30f;
+    public float maxAngularAngle1 = 30f;
+
+    public bool fixedAngularSize2 = false;
+    public bool fixXAxis2 = true; // otherwise fix the Y axis
+    public float minAngularAngle2 = -30f;
+    public float maxAngularAngle2 = 30f;
 
 
     protected override void GetPropertiesFromPython() {
@@ -56,99 +63,54 @@ public class DualLoomManager : GenericStimulusManager
         base.GetPropertiesFromPython();
 
         // now get those specific to this stimuli
-        // load properties from python
-        var floatChannel = Academy.Instance.EnvironmentParameters;
-        // set properties from python
-        horizonHeight = floatChannel.GetWithDefault("horizonHeight", 0f);
-        float r = floatChannel.GetWithDefault("aboveHorizonColourR", 0.1f);
-        float g = floatChannel.GetWithDefault("aboveHorizonColourG", 0.1f);
-        float b = floatChannel.GetWithDefault("aboveHorizonColourB", 0.1f);
-        float a = floatChannel.GetWithDefault("aboveHorizonColourA", 1f);
-        aboveHorizonColour = new Color(r, g, b, a);
-        r = floatChannel.GetWithDefault("belowHorizonColourR", 0.1f);
-        g = floatChannel.GetWithDefault("belowHorizonColourG", 0.1f);
-        b = floatChannel.GetWithDefault("belowHorizonColourB", 0.1f);
-        a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
-        belowHorizonColour = new Color(r, g, b, a);
+        horizonHeight = floatChannel.GetWithDefault("horizonHeight", horizonHeight);
+        aboveHorizonColour = GetColorFromPython("aboveHorizonColour", aboveHorizonColour);
+        belowHorizonColour = GetColorFromPython("belowHorizonColour", belowHorizonColour);
 
-        float x = floatChannel.GetWithDefault("startScaleX1", 1f);
-        float y = floatChannel.GetWithDefault("startScaleY1", 1f);
-        float z = floatChannel.GetWithDefault("startScaleZ1", 1f);
-        startScale1 = new Vector3(x, y, z);
-        x = floatChannel.GetWithDefault("endScaleX1", 1f);
-        y = floatChannel.GetWithDefault("endScaleY1", 1f);
-        z = floatChannel.GetWithDefault("endScaleZ1", 1f);
-        endScale1 = new Vector3(x, y, z);
-        stimulusDuration1 = floatChannel.GetWithDefault("stimulusDuration1", 5f);
-        float startPolarPositionX1 = floatChannel.GetWithDefault("startPolarPositionX1", 0f);
-        float startPolarPositionY1 = floatChannel.GetWithDefault("startPolarPositionY1", 0f);
-        startPolarPosition1 = new Vector2(startPolarPositionX1, startPolarPositionY1);
-        float endPolarPositionX1 = floatChannel.GetWithDefault("endPolarPositionX1", 0f);
-        float endPolarPositionY1 = floatChannel.GetWithDefault("endPolarPositionY1", 0f);
-        endPolarPosition1 = new Vector2(endPolarPositionX1, endPolarPositionY1);
-        float targetLocationOffsetX1 = floatChannel.GetWithDefault("targetLocationOffsetX1", 0f);
-        float targetLocationOffsetY1 = floatChannel.GetWithDefault("targetLocationOffsetY1", 0f);
-        float targetLocationOffsetZ1 = floatChannel.GetWithDefault("targetLocationOffsetZ1", 0f);
-        targetLocationOffset1 = new Vector3(targetLocationOffsetX1, targetLocationOffsetY1, targetLocationOffsetZ1);
-        startOffset1 = floatChannel.GetWithDefault("startOffset1", 50f);
-        endOffset1 = floatChannel.GetWithDefault("endOffset1", 1f);
-        delayToApproach1 = floatChannel.GetWithDefault("delayToApproach1", 5f);
-        numReps1 = floatChannel.GetWithDefault("numReps1", 1f);
-        r = floatChannel.GetWithDefault("stimulusColourR1", 0.1f);
-        g = floatChannel.GetWithDefault("stimulusColourG1", 0.1f);
-        b = floatChannel.GetWithDefault("stimulusColourB1", 0.1f);
-        a = floatChannel.GetWithDefault("stimulusColourA1", 1f);
-        stimulusColour1 = new Color(r, g, b, a);
-        stimulusType1 = (int)floatChannel.GetWithDefault("stimulusType1", 0); // 0 = icosphere, 1 = unity cube
-        drawOutline1 = floatChannel.GetWithDefault("drawOutline1", 0) != 0;
-        outlineWidth1 = floatChannel.GetWithDefault("outlineWidth1", 5f);
-        r = floatChannel.GetWithDefault("outlineColourR1", 0f);
-        g = floatChannel.GetWithDefault("outlineColourG1", 0f);
-        b = floatChannel.GetWithDefault("outlineColourB1", 0f);
-        a = floatChannel.GetWithDefault("outlineColourA1", 1f);
-        outlineColor1 = new Color(r, g, b, a);
+        gratingNum = GetFloatFromPython("gratingNum", gratingNum);
+        gratingIsSquare = GetBoolFromPython("gratingIsSquare", false);
+        gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", gratingMaxIntensity);
+        gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", gratingMinIntensity);
 
-        x = floatChannel.GetWithDefault("startScaleX2", 1f);
-        y = floatChannel.GetWithDefault("startScaleY2", 1f);
-        z = floatChannel.GetWithDefault("startScaleZ2", 1f);
-        startScale2 = new Vector3(x, y, z);
-        x = floatChannel.GetWithDefault("endScaleX2", 1f);
-        y = floatChannel.GetWithDefault("endScaleY2", 1f);
-        z = floatChannel.GetWithDefault("endScaleZ2", 1f);
-        endScale2 = new Vector3(x, y, z);
-        stimulusDuration2 = floatChannel.GetWithDefault("stimulusDuration2", 5f);
-        float startPolarPositionX2 = floatChannel.GetWithDefault("startPolarPositionX2", 0f);
-        float startPolarPositionY2 = floatChannel.GetWithDefault("startPolarPositionY2", 0f);
-        startPolarPosition2 = new Vector2(startPolarPositionX2, startPolarPositionY2);
-        float endPolarPositionX2 = floatChannel.GetWithDefault("endPolarPositionX2", 0f);
-        float endPolarPositionY2 = floatChannel.GetWithDefault("endPolarPositionY2", 0f);
-        endPolarPosition2 = new Vector2(endPolarPositionX2, endPolarPositionY2);
-        float targetLocationOffsetX2 = floatChannel.GetWithDefault("targetLocationOffsetX2", 0f);
-        float targetLocationOffsetY2 = floatChannel.GetWithDefault("targetLocationOffsetY2", 0f);
-        float targetLocationOffsetZ2 = floatChannel.GetWithDefault("targetLocationOffsetZ2", 0f);
-        targetLocationOffset2 = new Vector3(targetLocationOffsetX2, targetLocationOffsetY2, targetLocationOffsetZ2);
-        startOffset2 = floatChannel.GetWithDefault("startOffset2", 50f);
-        endOffset2 = floatChannel.GetWithDefault("endOffset2", 1f);
-        delayToApproach2 = floatChannel.GetWithDefault("delayToApproach2", 5f);
-        numReps2 = floatChannel.GetWithDefault("numReps2", 1f);
-        r = floatChannel.GetWithDefault("stimulusColourR2", 0.1f);
-        g = floatChannel.GetWithDefault("stimulusColourG2", 0.1f);
-        b = floatChannel.GetWithDefault("stimulusColourB2", 0.1f);
-        a = floatChannel.GetWithDefault("stimulusColourA2", 1f);
-        stimulusColour2 = new Color(r, g, b, a);
-        stimulusType2 = (int)floatChannel.GetWithDefault("stimulusType1", 0); // 0 = icosphere, 1 = unity cube
-        drawOutline2 = floatChannel.GetWithDefault("drawOutline1", 0) != 0;
-        outlineWidth2 = floatChannel.GetWithDefault("outlineWidth1", 5f);
-        r = floatChannel.GetWithDefault("outlineColourR1", 0f);
-        g = floatChannel.GetWithDefault("outlineColourG1", 0f);
-        b = floatChannel.GetWithDefault("outlineColourB1", 0f);
-        a = floatChannel.GetWithDefault("outlineColourA1", 1f);
-        outlineColor2 = new Color(r, g, b, a);
-        
-        gratingNum = floatChannel.GetWithDefault("gratingNum", 100f);
-        gratingIsSquare = (int)floatChannel.GetWithDefault("gratingIsSquare", 0f);
-        gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", 0.1f);
-        gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", 0f);
+        startScale1 = GetVector3FromPython("startScale", startScale1);
+        endScale1 = GetVector3FromPython("endScale", endScale1);
+        stimulusDuration1 = GetFloatFromPython("stimulusDuration1", stimulusDuration1);
+        startPolarPosition1 = GetVector2FromPython("startPolarPosition1", startPolarPosition1);
+        endPolarPosition1 = GetVector2FromPython("endPolarPosition1", endPolarPosition1);
+        targetLocationOffset1 = GetVector3FromPython("targetLocationOffset1", targetLocationOffset1);
+        startOffset1 = GetFloatFromPython("startOffset1", 50f);
+        endOffset1 = GetFloatFromPython("endOffset1", 1f);
+        delayToApproach1 = GetFloatFromPython("delayToApproach1", 5f);
+        numReps1 = GetFloatFromPython("numReps1", 1f);
+        stimulusColour1 = GetColorFromPython("stimulusColour1", stimulusColour1);
+        stimulusType1 = GetIntFromPython("stimulusType1", 0);
+        drawOutline1 = GetBoolFromPython("drawOutline1", false);
+        outlineWidth1 = GetFloatFromPython("outlineWidth1", 5f);
+        outlineColor1 = GetColorFromPython("outlineColor1", outlineColor1);
+        fixedAngularSize1 = GetBoolFromPython("fixedAngularSize1", false);
+        fixXAxis1 = GetBoolFromPython("fixXAxis1", false); // otherwise fix the Y axis
+        minAngularAngle1 = GetFloatFromPython("minAngularAngle1", -30f);
+        maxAngularAngle1 = GetFloatFromPython("maxAngularAngle1", 30f);
+
+        startScale2 = GetVector3FromPython("startScale2", startScale2);
+        endScale2 = GetVector3FromPython("endScale2", endScale2);
+        stimulusDuration2 = GetFloatFromPython("stimulusDuration2", 5f);
+        startPolarPosition2 = GetVector2FromPython("startPolarPosition2", startPolarPosition2);
+        endPolarPosition2 = GetVector2FromPython("endPolarPosition2", endPolarPosition2);
+        targetLocationOffset2 = GetVector3FromPython("targetLocationOffset2", targetLocationOffset2);
+        startOffset2 = GetFloatFromPython("startOffset2", 50f);
+        endOffset2 = GetFloatFromPython("endOffset2", 1f);
+        delayToApproach2 = GetFloatFromPython("delayToApproach2", 5f);
+        numReps2 = GetFloatFromPython("numReps2", 1f);
+        stimulusColour2 = GetColorFromPython("stimulusColour2", stimulusColour2);
+        stimulusType2 = GetIntFromPython("stimulusType2", 0); // 0 = icosphere, 1 = unity cube
+        drawOutline2 = GetBoolFromPython("drawOutline2", false);
+        outlineWidth2 = GetFloatFromPython("outlineWidth2", 5f);
+        outlineColor2 = GetColorFromPython("outlineColor2", outlineColor2);
+        fixedAngularSize2 = GetBoolFromPython("fixedAngularSize2", false);
+        fixXAxis2 = GetBoolFromPython("fixXAxis2", false); // otherwise fix the Y axis
+        minAngularAngle2 = GetFloatFromPython("minAngularAngle2", -30f);
+        maxAngularAngle2 = GetFloatFromPython("maxAngularAngle2", 30f);
     }
 
     public override void SetupStimuli() {
@@ -161,6 +123,7 @@ public class DualLoomManager : GenericStimulusManager
 
         SphericalStimulusGenerator[] stimGenerators = GameObject.FindObjectsOfType<SphericalStimulusGenerator>();
         SphericalStimulusGenerator stimGenerator1 = stimGenerators[0];
+
         // stimulus 1
         stimGenerator1.flickerDuration = flickerDuration;
         stimGenerator1.stimulusColour = stimulusColour1;
@@ -179,10 +142,13 @@ public class DualLoomManager : GenericStimulusManager
         stimGenerator1.outlineWidth = outlineWidth1;
         stimGenerator1.outlineColor = outlineColor1;
         stimGenerator1.gratingNum = gratingNum;
-        stimGenerator1.gratingIsSquare = gratingIsSquare;
+        stimGenerator1.gratingIsSquare = gratingIsSquare ? 1 : 0;
         stimGenerator1.gratingMaxIntensity = gratingMaxIntensity;
         stimGenerator1.gratingMinIntensity = gratingMinIntensity;
-
+        stimGenerator1.fixedAngularSize = fixedAngularSize1;
+        stimGenerator1.fixXAxis = fixXAxis1; // otherwise fix the Y axis
+        stimGenerator1.minAngularAngle = minAngularAngle1;
+        stimGenerator1.maxAngularAngle = maxAngularAngle1;
         stimGenerator1.manualControl = manualControl;
         stimGenerator1.mouseMoveSpeed = mouseMoveSpeed;
 
@@ -208,12 +174,16 @@ public class DualLoomManager : GenericStimulusManager
             stimGenerator2.outlineWidth = outlineWidth2;
             stimGenerator2.outlineColor = outlineColor2;
             stimGenerator2.gratingNum = gratingNum;
-            stimGenerator2.gratingIsSquare = gratingIsSquare;
+            stimGenerator2.gratingIsSquare = gratingIsSquare ? 1 : 0;
             stimGenerator2.gratingMaxIntensity = gratingMaxIntensity;
             stimGenerator2.gratingMinIntensity = gratingMinIntensity;
-
+            stimGenerator2.fixedAngularSize = fixedAngularSize2;
+            stimGenerator2.fixXAxis = fixXAxis2; // otherwise fix the Y axis
+            stimGenerator2.minAngularAngle = minAngularAngle2;
+            stimGenerator2.maxAngularAngle = maxAngularAngle2;
             stimGenerator2.manualControl = manualControl;
             stimGenerator2.mouseMoveSpeed = mouseMoveSpeed;
+
             stimGenerator2.Reset();
         }
     }

@@ -109,7 +109,6 @@ public class FrameWriter : MonoBehaviour
     public void WriteData()
     {
         string data = Time.time + ", " + System.DateTime.Now + ", " + syncSquareImg.enabled;
-
         for (int i = 0; i < transformsToRecord.Count; i++) {
             data += ", " + transformsToRecord[i].position.x + ", " + transformsToRecord[i].position.y + ", " + transformsToRecord[i].position.z + ", " + transformsToRecord[i].localScale.x + ", " + transformsToRecord[i].localScale.y + ", " + transformsToRecord[i].localScale.z;
         }
@@ -168,7 +167,7 @@ public class FrameWriter : MonoBehaviour
             BindingFlags.NonPublic |
             BindingFlags.Public
         );
-        print(fields);
+        // print(fields);
         foreach(FieldInfo field in fields) {
             if (field != null) {
                     string text = field.Name + ": " + field.GetValue(stimulusManager);

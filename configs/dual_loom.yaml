@@ -13,7 +13,7 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: ./builds/DualLoom
+buildDir: None # ./builds/DualLoom
 frameDataIdCode: [800001, 800002]  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
 animalCode: [1, 2]  # a id code representing the animal
 execution_order: [0, 1]  # 0 = first, 1 = second

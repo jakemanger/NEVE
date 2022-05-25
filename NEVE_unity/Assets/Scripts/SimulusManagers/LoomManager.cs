@@ -18,10 +18,11 @@ public class LoomManager : GenericStimulusManager
     public Color[] belowHorizonColours = new Color[4] { Color.white, Color.white, Color.white, Color.white };
 
     [Header("Looming transform parameters")]
+    public Vector2 startPolarPosition = Vector2.zero;
+    public Vector2 endPolarPosition = Vector2.zero;
     public Vector3 startScale = Vector3.one;
     public Vector3 endScale = Vector3.one;
-    public Vector2 stimulusPolarPosition = new Vector2(0f, 0f);
-    public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
+    public Vector3 targetLocationOffset = Vector3.zero;
     public float startOffset = 10f;
     public float endOffset = 10f;
     public float duration = 1f; // units (cm) per second
@@ -45,6 +46,7 @@ public class LoomManager : GenericStimulusManager
     public float outlineWidth = 5f;
     public Color outlineColor = Color.black;
 
+
     [Header("Looming Components")]
     public SphericalStimulusGenerator stimGenerator;
 
@@ -55,78 +57,45 @@ public class LoomManager : GenericStimulusManager
 
         // now get those specific to this stimuli
         // load properties from python
-        var floatChannel = Academy.Instance.EnvironmentParameters;
+        floatChannel = Academy.Instance.EnvironmentParameters;
+
         // set properties from python
-        float stimulusPolarPositionX = floatChannel.GetWithDefault("stimulusPolarPositionX", 0f);
-        float stimulusPolarPositionY = floatChannel.GetWithDefault("stimulusPolarPositionY", 0f);
-        stimulusPolarPosition = new Vector2(stimulusPolarPositionX, stimulusPolarPositionY);
-        float targetLocationOffsetX = floatChannel.GetWithDefault("targetLocationOffsetX", 0f);
-        float targetLocationOffsetY = floatChannel.GetWithDefault("targetLocationOffsetY", 0f);
-        float targetLocationOffsetZ = floatChannel.GetWithDefault("targetLocationOffsetZ", 0f);
-        targetLocationOffset = new Vector3(targetLocationOffsetX, targetLocationOffsetY, targetLocationOffsetZ);
-        startOffset = floatChannel.GetWithDefault("startOffset", 50f);
-        endOffset = floatChannel.GetWithDefault("endOffset", 1f);
-        stimulusType = (int)floatChannel.GetWithDefault("stimulusType", 0); // 0 = icosphere, 1 = unity cube
-        drawOutline = floatChannel.GetWithDefault("drawOutline", 0) != 0;
-        outlineWidth = floatChannel.GetWithDefault("outlineWidth", 5f);
-        float r = floatChannel.GetWithDefault("outlineColourR", 0f);
-        float g = floatChannel.GetWithDefault("outlineColourG", 0f);
-        float b = floatChannel.GetWithDefault("outlineColourB", 0f);
-        float a = floatChannel.GetWithDefault("outlineColourA", 1f);
-        outlineColor = new Color(r, g, b, a);
-        r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);
-        g = floatChannel.GetWithDefault("stimulusColourG", 0.1f);
-        b = floatChannel.GetWithDefault("stimulusColourB", 0.1f);
-        a = floatChannel.GetWithDefault("stimulusColourA", 1f);
-        stimulusColour = new Color(r, g, b, a);
-        gratingNum = floatChannel.GetWithDefault("gratingNum", 100f);
-        gratingIsSquare = (int)floatChannel.GetWithDefault("gratingIsSquare", 0f);
-        gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", 0.1f);
-        gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", 0f);
-        float x = floatChannel.GetWithDefault("startScaleX", 1f);
-        float y = floatChannel.GetWithDefault("startScaleY", 1f);
-        float z = floatChannel.GetWithDefault("startScaleZ", 1f);
-        startScale = new Vector3(x, y, z);
-        x = floatChannel.GetWithDefault("endScaleX", 1f);
-        y = floatChannel.GetWithDefault("endScaleY", 1f);
-        z = floatChannel.GetWithDefault("endScaleZ", 1f);
-        endScale = new Vector3(x, y, z);
-        duration = floatChannel.GetWithDefault("duration", 1f);
-        fixedAngularSize = floatChannel.GetWithDefault("fixedAngularSize", 0) != 0;
-        fixXAxis = floatChannel.GetWithDefault("fixXAxis", 1) != 0; // otherwise fix the Y axis
-        minAngularAngle = floatChannel.GetWithDefault("minAngularAngle", -30f);
-        maxAngularAngle = floatChannel.GetWithDefault("maxAngularAngle", 30f);
-        delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
+        // object
+        startPolarPosition = GetVector2FromPython("startPolarPosition", Vector2.zero);
+        endPolarPosition = GetVector2FromPython("endPolarPosition", Vector2.zero);
+        targetLocationOffset = GetVector3FromPython("targetLocationOffset", Vector3.zero);
+        startOffset = GetFloatFromPython("startOffset", 50f);
+        endOffset = GetFloatFromPython("endOffset", 1f);
+        stimulusType = (int)GetFloatFromPython("stimulusType", 0); // 0 = icosphere, 1 = unity cube
+        drawOutline = GetBoolFromPython("drawOutline", false);
+        outlineWidth = GetFloatFromPython("outlineWidth", 5f);
+        outlineColor = GetColorFromPython("outlineColor", Color.black);
+        stimulusColour = GetColorFromPython("simulusColor", Color.grey);
+        gratingNum = GetFloatFromPython("gratingNum", 100f);
+        gratingIsSquare = (int)GetFloatFromPython("gratingIsSquare", 0f);
+        gratingMaxIntensity = GetFloatFromPython("gratingMaxIntensity", 0.1f);
+        gratingMinIntensity = GetFloatFromPython("gratingMinIntensity", 0f);
+        startScale = GetVector3FromPython("startScale", Vector3.one);
+        endScale = GetVector3FromPython("endScale", Vector3.one);
+        duration = GetFloatFromPython("duration", 1f);
+        fixedAngularSize = GetBoolFromPython("fixedAngularSize", false);
+        fixXAxis = GetBoolFromPython("fixXAxis", true);
+        minAngularAngle = GetFloatFromPython("minAngularAngle", -30f);
+        maxAngularAngle = GetFloatFromPython("maxAngularAngle", 30f);
+        delayToApproach = GetFloatFromPython("delayToApproach", 5f);
 
+        // background 
         horizonHeight = floatChannel.GetWithDefault("horizonHeight", 0f);
-        r = floatChannel.GetWithDefault("aboveHorizonColourR", 0.1f);
-        g = floatChannel.GetWithDefault("aboveHorizonColourG", 0.1f);
-        b = floatChannel.GetWithDefault("aboveHorizonColourB", 0.1f);
-        a = floatChannel.GetWithDefault("aboveHorizonColourA", 1f);
-        aboveHorizonColour = new Color(r, g, b, a);
-        r = floatChannel.GetWithDefault("belowHorizonColourR", 0.1f);
-        g = floatChannel.GetWithDefault("belowHorizonColourG", 0.1f);
-        b = floatChannel.GetWithDefault("belowHorizonColourB", 0.1f);
-        a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
-        belowHorizonColour = new Color(r, g, b, a);
-
+        aboveHorizonColour = GetColorFromPython("aboveHorizonColour", Color.white);
+        belowHorizonColour = GetColorFromPython("belowHorizonColour", Color.grey);
         // specific overrides for backgrounds on different cameras
         string[] sides = new string[] { "Front", "Right", "Back", "Left" };
         for (int i = 0; i < sides.Length; i++) {
             string side = sides[i];
-            horizonHeights[i] = floatChannel.GetWithDefault("horizonHeight"+side, -9999f);
-            r = floatChannel.GetWithDefault("aboveHorizonColourR"+side, 0f);
-            g = floatChannel.GetWithDefault("aboveHorizonColourG"+side, 0f);
-            b = floatChannel.GetWithDefault("aboveHorizonColourB"+side, 0f);
-            a = floatChannel.GetWithDefault("aboveHorizonColourA"+side, 0f);
-            aboveHorizonColours[i] = new Color(r, g, b, a);
-            r = floatChannel.GetWithDefault("belowHorizonColourR"+side, 0f);
-            g = floatChannel.GetWithDefault("belowHorizonColourG"+side, 0f);
-            b = floatChannel.GetWithDefault("belowHorizonColourB"+side, 0f);
-            a = floatChannel.GetWithDefault("belowHorizonColourA"+side, 0f);
-            belowHorizonColours[i] = new Color(r, g, b, a);
+            horizonHeights[i] = GetFloatFromPython("horizonHeight", -9999f, side);
+            aboveHorizonColours[i] = GetColorFromPython("aboveHorizonColour", Color.white, side);
+            belowHorizonColours[i] = GetColorFromPython("belowHorizonColour", Color.grey, side);
         }
-
     }
 
     public override void SetupStimuli() {
@@ -148,8 +117,8 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.stimulusColour = stimulusColour;
         stimGenerator.startScale = startScale;
         stimGenerator.endScale = endScale;
-        stimGenerator.startPolarPosition = stimulusPolarPosition;
-        stimGenerator.endPolarPosition = stimulusPolarPosition;
+        stimGenerator.startPolarPosition = startPolarPosition;
+        stimGenerator.endPolarPosition = endPolarPosition;
         stimGenerator.startOffset = startOffset;
         stimGenerator.endOffset = endOffset;
         stimGenerator.delayToApproach = delayToApproach;

@@ -1,0 +1,69 @@
+horizonHeight: 0
+aboveHorizonColour: RGBA(0.500, 0.500, 0.500, 1.000)
+belowHorizonColour: RGBA(1.000, 1.000, 1.000, 1.000)
+startScale1: (1.5, 1.5, 1.5)
+endScale1: (1.5, 1.5, 1.5)
+startScale2: (1.0, 1.0, 1.0)
+endScale2: (1.0, 1.0, 1.0)
+startPolarPosition1: (-10.0, 0.0)
+startPolarPosition2: (-10.0, -15.0)
+endPolarPosition1: (-10.0, 0.0)
+endPolarPosition2: (-10.0, -15.0)
+targetLocationOffset1: (0.0, 0.0, 0.0)
+targetLocationOffset2: (0.0, 0.0, 0.0)
+startOffset1: 60
+startOffset2: 50
+endOffset1: 5
+endOffset2: 3
+delayToApproach1: 5
+delayToApproach2: 5
+numReps1: 2
+numReps2: 2
+stimulusColour1: RGBA(0.000, 0.000, 0.000, 1.000)
+stimulusColour2: RGBA(0.198, 0.198, 0.198, 1.000)
+stimulusDuration1: 5
+stimulusDuration2: 5
+stimulusType1: 1
+drawOutline1: False
+outlineWidth1: 5
+outlineColor1: RGBA(0.000, 0.000, 0.000, 1.000)
+stimulusType2: 0
+drawOutline2: False
+outlineWidth2: 5
+outlineColor2: RGBA(0.000, 0.000, 0.000, 1.000)
+gratingNum: 1000
+gratingIsSquare: 0
+gratingMaxIntensity: 0.01
+gratingMinIntensity: 0
+fixedAngularSize: True
+fixXAxis: True
+minAngularAngle: -5
+maxAngularAngle: 5
+recieveParametersFromPython: False
+recieveInputFromSocket: False
+eyeHeight: 2
+distanceToMonitors: 7
+monitorDimensions: (12.2, 6.9)
+frontDisplayNum: 0
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+cameraRotation: (0.0, 0.0, 0.0)
+experimentDuration: 99999
+darkAdaptTime: 0
+recordFrameData: True
+recordEachFrame: True
+recordingFrequency: 1
+frameDataIdCode: 22
+animalCode: 10
+syncSquareColor: RGBA(1.000, 0.000, 0.000, 1.000)
+syncSquare: SyncSquare (SyncSquare)
+syncSquareDisplayNum: 0
+displayStimulusCode: True
+flickerDuration: 0.1
+camMon: Eyes (CameraMonitorController)
+frameWriter: SimulationManager (FrameWriter)
+episodeController: SimulationManager (EpisodeControllerAgent)
+blackOutCanvases: BlackOutCanvases (UnityEngine.GameObject)
+manualControl: False
+mouseMoveSpeed: 2

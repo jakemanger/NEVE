@@ -28,38 +28,17 @@ public class MovingRectangleManager : GenericStimulusManager
         base.GetPropertiesFromPython();
 
         // now get those specific to this stimuli
-        // load properties from python
-        var floatChannel = Academy.Instance.EnvironmentParameters;
-        // set properties from python
-        horizonHeight = floatChannel.GetWithDefault("horizonHeight", 0f);
-        float r = floatChannel.GetWithDefault("aboveHorizonColourR", 0.1f);
-        float g = floatChannel.GetWithDefault("aboveHorizonColourG", 0.1f);
-        float b = floatChannel.GetWithDefault("aboveHorizonColourB", 0.1f);
-        float a = floatChannel.GetWithDefault("aboveHorizonColourA", 1f);
-        aboveHorizonColour = new Color(r, g, b, a);
-        r = floatChannel.GetWithDefault("belowHorizonColourR", 0.1f);
-        g = floatChannel.GetWithDefault("belowHorizonColourG", 0.1f);
-        b = floatChannel.GetWithDefault("belowHorizonColourB", 0.1f);
-        a = floatChannel.GetWithDefault("belowHorizonColourA", 1f);
-        belowHorizonColour = new Color(r, g, b, a);
-
-        width = floatChannel.GetWithDefault("width", 5f);
-        height = floatChannel.GetWithDefault("height", 5f);
-        float startPosX = floatChannel.GetWithDefault("startPosX", 0f);
-        float startPosY = floatChannel.GetWithDefault("startPosY", 0f);
-        startPos = new Vector2(startPosX, startPosY);
-        float endPosX = floatChannel.GetWithDefault("endPosX", 5f);
-        float endPosY = floatChannel.GetWithDefault("endPosY", 5f);
-        endPos = new Vector2(endPosX, endPosY);
-        numReps = floatChannel.GetWithDefault("numReps", 2f);
-
-        duration = floatChannel.GetWithDefault("duration", 5f);
-        delayToApproach = floatChannel.GetWithDefault("delayToApproach", 5f);
-        r = floatChannel.GetWithDefault("stimulusColourR", 0.1f);
-        g = floatChannel.GetWithDefault("stimulusColourG", 0.1f);
-        b = floatChannel.GetWithDefault("stimulusColourB", 0.1f);
-        a = floatChannel.GetWithDefault("stimulusColourA", 1f);
-        stimulusColour = new Color(r, g, b, a);
+        horizonHeight = GetFloatFromPython("horizonHeight", 0f);
+        aboveHorizonColour = GetColorFromPython("aboveHorizonColour", aboveHorizonColour);
+        belowHorizonColour = GetColorFromPython("belowHorizonColour", belowHorizonColour);
+        width = GetFloatFromPython("width", 5f);
+        height = GetFloatFromPython("height", 5f);
+        startPos = GetVector2FromPython("startPos", startPos);
+        endPos = GetVector2FromPython("endPos", endPos);
+        numReps = GetFloatFromPython("numReps", 2f);
+        duration = GetFloatFromPython("duration", 5f);
+        delayToApproach = GetFloatFromPython("delayToApproach", 5f);
+        stimulusColour = GetColorFromPython("stimulusColour", stimulusColour);
     }
 
     public override void SetupStimuli() {
