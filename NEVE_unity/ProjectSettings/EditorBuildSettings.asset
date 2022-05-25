@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3D scenes/Loom.unity
-    guid: ae090b3b34ef9485da1de212b71f766e
+    path: Assets/Scenes/3D scenes/Optomotor.unity
+    guid: a8fda65cfe1cd4d85bbbc01d8be083c9
   m_configObjects: {}

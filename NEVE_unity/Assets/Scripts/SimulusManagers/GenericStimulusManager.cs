@@ -9,6 +9,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
     public bool recieveParametersFromPython = true;
 
+    public bool recieveInputFromSocket = false;
+
     [Header("Generic camera view parameters")]
     public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
     public float distanceToMonitors = 7; // cm
@@ -23,7 +25,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
     // the time in seconds that the stimulus will run for until it waits for
     // further input from python
     public float experimentDuration = 60f;
-    public float darkAdaptTime = 5f;
+    public float darkAdaptTime = 1f;
     float timeSinceDarkAdaptStart = 0f;
 
     [Header("Generic Saving parameters")]
@@ -37,7 +39,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public Color syncSquareColor = Color.red;
     public SyncSquare syncSquare;
     public int syncSquareDisplayNum = 0;
-    public bool displayStimulusCode = false;
+    public bool displayStimulusCode = true;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
 
     [Header("Generic Components")]
@@ -47,8 +49,10 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public GameObject blackOutCanvases;
 
     [Header("Generic manual control parameters")]
-    public bool manualControl = true;
+    public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
+
+    public EnvironmentParameters floatChannel;
 
 
     void Start() {
@@ -88,42 +92,45 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquare.animalCode = animalCode;
         syncSquare.Reset();
         timeSinceDarkAdaptStart = 0f;
+
+        SocketMovementController socketMovementController = GameObject.FindObjectOfType<SocketMovementController>();
+        socketMovementController.recieveInputFromSocket = recieveInputFromSocket;
+        socketMovementController.Reset();
     }
 
     protected virtual void GetPropertiesFromPython() {
         // load properties from python
-        var floatChannel = Academy.Instance.EnvironmentParameters;
+        floatChannel = Academy.Instance.EnvironmentParameters;
+
+        // print("Recieved " + floatChannel.Keys().Count + " properties from python:");
+        // foreach (string key in floatChannel.Keys()) {
+        //     float value = floatChannel.GetWithDefault(key, 0f);
+        //     print(key + ": " + value);
+        // }
+
         // set properties from python
-        eyeHeight = floatChannel.GetWithDefault("eyeHeight", 2f);
-        distanceToMonitors = floatChannel.GetWithDefault("distanceToMonitors", 7f);
-        float monitorDimensionsX = floatChannel.GetWithDefault("monitorDimensionsX", 12.176f);
-        float monitorDimensionsY = floatChannel.GetWithDefault("monitorDimensionsY", 6.87f);
-        monitorDimensions = new Vector2(monitorDimensionsX, monitorDimensionsY);
-        flickerDuration = floatChannel.GetWithDefault("flickerDuration", 0.1f);
-        float r = floatChannel.GetWithDefault("syncSquareColorR", 1f);
-        float g = floatChannel.GetWithDefault("syncSquareColorG", 0f);
-        float b = floatChannel.GetWithDefault("syncSquareColorB", 0f);
-        float a = floatChannel.GetWithDefault("syncSquareColorA", 1f);
-        syncSquareColor = new Color(r, g, b, a);
-        syncSquareDisplayNum = (int)floatChannel.GetWithDefault("syncSquareDisplayNum", 0f);
-        displayStimulusCode = floatChannel.GetWithDefault("displayStimulusCode", 1f) != 0;
-        manualControl = floatChannel.GetWithDefault("manualControl", 1f) != 0;
-        mouseMoveSpeed = floatChannel.GetWithDefault("mouseMoveSpeed", 2f);
-        experimentDuration = floatChannel.GetWithDefault("experimentDuration", 60f);
-        recordFrameData = floatChannel.GetWithDefault("recordFrameData", 1f) != 0;
-        recordEachFrame = floatChannel.GetWithDefault("recordEachFrame", 1f) != 0;
-        recordingFrequency = floatChannel.GetWithDefault("recordingFrequency", 1f);
-        frameDataIdCode = floatChannel.GetWithDefault("frameDataIdCode", 9999f);
-        animalCode = floatChannel.GetWithDefault("animalCode", 1f);
-        frontDisplayNum = (int)floatChannel.GetWithDefault("frontDisplayNum", 0f);
-        rightDisplayNum = (int)floatChannel.GetWithDefault("rightDisplayNum", 1f);
-        backDisplayNum = (int)floatChannel.GetWithDefault("backDisplayNum", 2f);
-        leftDisplayNum = (int)floatChannel.GetWithDefault("leftDisplayNum", 3f);
-        float x = floatChannel.GetWithDefault("cameraRotationX", 0f);
-        float y = floatChannel.GetWithDefault("cameraRotationX", 0f);
-        float z = floatChannel.GetWithDefault("cameraRotationX", 0f);
-        cameraRotation = new Vector3(x, y, z);
-        darkAdaptTime = floatChannel.GetWithDefault("darkAdaptTime", 5f);
+        eyeHeight = GetFloatFromPython("eyeHeight", 2f);
+        distanceToMonitors = GetFloatFromPython("distanceToMonitors", 7f);
+        monitorDimensions = GetVector2FromPython("monitorDimensions", new Vector2(12.176f, 6.87f));
+        flickerDuration = GetFloatFromPython("flickerDuration", 0.1f);
+        syncSquareColor = GetColorFromPython("syncSquareColor", Color.red);
+        syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
+        displayStimulusCode = GetBoolFromPython("displayStimulusCode", false);
+        manualControl = GetBoolFromPython("manualControl", false);
+        mouseMoveSpeed = GetFloatFromPython("mouseMoveSpeed", 1f);
+        experimentDuration = GetFloatFromPython("experimentDuration", 60f);
+        recordFrameData = GetBoolFromPython("recordFrameData", true);
+        recordEachFrame = GetBoolFromPython("recordEachFrame", true);
+        recordingFrequency = GetFloatFromPython("recordingFrequency", 1f);
+        frameDataIdCode = GetFloatFromPython("frameDataIdCode", 9999f);
+        animalCode = GetFloatFromPython("animalCode", 1f);
+        frontDisplayNum = GetIntFromPython("frontDisplayNum", 0);
+        rightDisplayNum = GetIntFromPython("rightDisplayNum", 1);
+        backDisplayNum = GetIntFromPython("backDisplayNum", 2);
+        leftDisplayNum = GetIntFromPython("leftDisplayNum", 3);
+        cameraRotation = GetVector3FromPython("cameraRotation", Vector3.zero);
+        darkAdaptTime = GetFloatFromPython("darkAdaptTime", 0f);
+        recieveInputFromSocket = GetBoolFromPython("fictracFeedback", false);
     }
 
     void Update() {
@@ -136,4 +143,42 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
     // should be overridden by child classes
     public abstract void SetupStimuli();
+
+
+    // some helper classes
+    public float GetFloatFromPython(string parameterName, float defaultValue, string extraSuffix = "") {
+        return floatChannel.GetWithDefault(parameterName + extraSuffix, defaultValue);
+    }
+
+    public int GetIntFromPython(string parameterName, int defaultValue, string extraSuffix = "") {
+        return (int)floatChannel.GetWithDefault(parameterName + extraSuffix, (float)defaultValue);
+    }
+
+    public Vector2 GetVector2FromPython(string parameterName, Vector2 defaultValue, string extraSuffix = "") {
+        return new Vector2(
+            floatChannel.GetWithDefault(parameterName + "X" + extraSuffix, defaultValue.x),
+            floatChannel.GetWithDefault(parameterName + "Y" + extraSuffix, defaultValue.y)
+        );
+    }
+
+    public Vector3 GetVector3FromPython(string parameterName, Vector3 defaultValue, string extraSuffix = "") {
+        return new Vector3(
+            floatChannel.GetWithDefault(parameterName + "X" + extraSuffix, defaultValue.x),
+            floatChannel.GetWithDefault(parameterName + "Y" + extraSuffix, defaultValue.y),
+            floatChannel.GetWithDefault(parameterName + "Z" + extraSuffix, defaultValue.z)
+        );
+    }
+
+    public Color GetColorFromPython(string parameterName, Color defaultValue, string extraSuffix = "") {
+        return new Color(
+            floatChannel.GetWithDefault(parameterName + "R" + extraSuffix, defaultValue.r),
+            floatChannel.GetWithDefault(parameterName + "G" + extraSuffix, defaultValue.g),
+            floatChannel.GetWithDefault(parameterName + "B" + extraSuffix, defaultValue.b),
+            floatChannel.GetWithDefault(parameterName + "A" + extraSuffix, defaultValue.a)
+        );
+    }
+
+    public bool GetBoolFromPython(string parameterName, bool defaultValue, string extraSuffix = "") {
+        return floatChannel.GetWithDefault(parameterName + extraSuffix, defaultValue ? 1f : 0f) != 0f;
+    }
 }

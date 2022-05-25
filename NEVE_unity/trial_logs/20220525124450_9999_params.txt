@@ -1,0 +1,78 @@
+horizonHeight: 0
+aboveHorizonColour: RGBA(0.100, 0.100, 0.100, 1.000)
+belowHorizonColour: RGBA(0.100, 0.100, 0.100, 1.000)
+startScale1: (1.0, 1.0, 1.0)
+endScale1: (1.0, 1.0, 1.0)
+startScale2: (1.0, 1.0, 1.0)
+endScale2: (1.0, 1.0, 1.0)
+startPolarPosition1: (0.0, 0.0)
+startPolarPosition2: (0.0, 0.0)
+endPolarPosition1: (0.0, 0.0)
+endPolarPosition2: (0.0, 0.0)
+targetLocationOffset1: (0.0, 0.0, 0.0)
+targetLocationOffset2: (0.0, 0.0, 0.0)
+startOffset1: 50
+startOffset2: 50
+endOffset1: 1
+endOffset2: 1
+delayToApproach1: 5
+delayToApproach2: 5
+numReps1: 1
+numReps2: 1
+stimulusColour1: RGBA(0.100, 0.100, 0.100, 1.000)
+stimulusColour2: RGBA(0.100, 0.100, 0.100, 1.000)
+stimulusDuration1: 5
+stimulusDuration2: 5
+stimulusType1: 0
+drawOutline1: False
+outlineWidth1: 5
+outlineColor1: RGBA(0.000, 0.000, 0.000, 1.000)
+stimulusType2: 0
+drawOutline2: False
+outlineWidth2: 5
+outlineColor2: RGBA(0.000, 0.000, 0.000, 1.000)
+gratingNum: 100
+gratingIsSquare: 0
+gratingMaxIntensity: 0.1
+gratingMinIntensity: 0
+fixedAngularSize: False
+fixXAxis: True
+minAngularAngle: -30
+maxAngularAngle: 30
+fixedAngularSize1: False
+fixXAxis1: True
+minAngularAngle1: -30
+maxAngularAngle1: 30
+fixedAngularSize2: False
+fixXAxis2: True
+minAngularAngle2: -30
+maxAngularAngle2: 30
+recieveParametersFromPython: True
+recieveInputFromSocket: False
+eyeHeight: 2
+distanceToMonitors: 7
+monitorDimensions: (12.2, 6.9)
+frontDisplayNum: 0
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+cameraRotation: (0.0, 0.0, 0.0)
+experimentDuration: 60
+darkAdaptTime: 5
+recordFrameData: True
+recordEachFrame: True
+recordingFrequency: 1
+frameDataIdCode: 9999
+animalCode: 1
+syncSquareColor: RGBA(0.000, 0.000, 1.000, 1.000)
+syncSquare: SyncSquare (SyncSquare)
+syncSquareDisplayNum: 0
+displayStimulusCode: True
+flickerDuration: 0.1
+camMon: Eyes (CameraMonitorController)
+frameWriter: SimulationManager (FrameWriter)
+episodeController: SimulationManager (EpisodeControllerAgent)
+blackOutCanvases: BlackOutCanvases (UnityEngine.GameObject)
+manualControl: True
+mouseMoveSpeed: 2
+floatChannel: Unity.MLAgents.EnvironmentParameters

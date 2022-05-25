@@ -11,7 +11,7 @@ public class OptomotorManager : GenericStimulusManager
     public float offset = 0f;
     public float angle = 0f;
     public float speed = 2f;
-    public int square = 0;
+    public bool square = false;
     public float minimumVal = 0f;
     public float maximumVal = 0.5f;
 
@@ -21,16 +21,13 @@ public class OptomotorManager : GenericStimulusManager
         base.GetPropertiesFromPython();
 
         // now get those specific to this stimuli
-        // load properties from python
-        var floatChannel = Academy.Instance.EnvironmentParameters;
-        // set properties from python
-        density = floatChannel.GetWithDefault("density", 5f);
-        offset = floatChannel.GetWithDefault("offset", 0f);
-        angle = floatChannel.GetWithDefault("angle", 0f);
-        speed = floatChannel.GetWithDefault("speed", 2f);
-        square = (int)floatChannel.GetWithDefault("square", 5f);
-        minimumVal = floatChannel.GetWithDefault("minimumVal", 0f);
-        maximumVal = floatChannel.GetWithDefault("maximumVal", 0.5f);
+        density = GetFloatFromPython("density", 5f);
+        offset = GetFloatFromPython("offset", 0f);
+        angle = GetFloatFromPython("angle", 0f);
+        speed = GetFloatFromPython("speed", 2f);
+        square = GetBoolFromPython("square", false);
+        minimumVal = GetFloatFromPython("minimumVal", 0f);
+        maximumVal = GetFloatFromPython("maximumVal", 0.5f);
     }
 
     public override void SetupStimuli() {
@@ -39,7 +36,7 @@ public class OptomotorManager : GenericStimulusManager
         mat.SetFloat("_Offset", offset);
         mat.SetFloat("_Angle", angle);
         mat.SetFloat("_Speed", speed);
-        mat.SetInt("_Square", square);
+        mat.SetInt("_Square", square ? 1 : 0);
         mat.SetFloat("_Minimum", minimumVal);
         mat.SetFloat("_Maximum", maximumVal);
         RenderSettings.skybox = mat;

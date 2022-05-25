@@ -53,6 +53,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
     public GameObject stimulus;
     Renderer stimulusRenderer;
+    Material originalMaterial;
 
     public int stimulusType = 0; // 0 = icosphere, 1 = unity cube
     public GameObject[] stimuli; // 0 = icosphere, 1 = unity cube
@@ -92,8 +93,14 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
         stimulusRenderer = stimulus.GetComponent<Renderer>();
         if (!fixedAngularSize) {
+            if (originalMaterial != null) {
+                stimulusRenderer.material = originalMaterial;
+            }
             stimulusRenderer.material.color = stimulusColour;
         } else {
+            if (originalMaterial == null) {
+                originalMaterial = stimulusRenderer.material;
+            }
             SetupFixedAngularSizeMaterial();
         }
 

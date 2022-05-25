@@ -37,12 +37,13 @@ class Nenv:
 
         print('Waiting for connection to Unity environment...')
         print('When Unity launches, python will gain control.')
-
+	
+        file_name = self._get_built_file_path()
         self.env = UnityEnvironment(
-            file_name=self._get_built_file_path(),
+            file_name=file_name,
             side_channels=[self.env_parameters, self.eng_config],
             timeout_wait=999999,
-            worker_id=self._get_worker_id()
+            worker_id=0 if file_name is None else self._get_worker_id()
         )
         self.execution_order = self.params['execution_order']
 
@@ -152,6 +153,7 @@ class Nenv:
 
         See https://github.com/Unity-Technologies/ml-agents/issues/1505
         """
+        
         with open(filename, 'a+') as f:
             f.seek(0)
             val = int(f.read() or 0) + 1
