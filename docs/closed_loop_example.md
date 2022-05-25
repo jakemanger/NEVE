@@ -60,6 +60,9 @@ If changing these values is required, please create a Github issue and I can add
 ## Start NEVE
 
 Follow instructions on how to run NEVE at the main [README](../README.md).
+
+Ensure you set the `fictracFeedback` parameter to `1` in your configuration file to let NEVE know to use sockets with fictrac.
+
 From the command line, this involves running:
 
 (on windows)

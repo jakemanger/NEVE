@@ -15,9 +15,8 @@ The following pre-built stimuli are provided:
 | Stimulus | Description | Status |
 | -------- | ----------- | ------ |
 | Optomotor | Moving gratings that rotate around the viewer, used to identify the innate orienting behaviour caused by whole-field visual motion, known as an optomotor response. | Usable |
-|Looming| Moving spheres or rectangles that approach a target, used to trigger escape responses. | Usable |
-| Moving Objects | Similar to looming, however, one stimuli can be displayed and also rotate around the viewer. Can display either looming or translating objects. This is useful to observe tracking or escape behaviours. | WIP    |
-| Dual Moving      | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
+| Loom | Moving spheres or rectangles that approach a target or more around a target, used to trigger escape responses. | Usable |
+| Dual loom | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
 | Moving rectangle | A simple 2D moving rectangle stimulus used to trigger responses from movement detector neurons in electrophysiology experiments. | Usable |
 
 
@@ -41,7 +40,7 @@ Depending on what operating system (OS) you are using, do the following to start
 
 *Note, if you get errors or something isn't working on your OS, you can build an executable for your specific OS by
 following [this guide](docs/building_executables.md) or you can use python to run NEVE by following
-the [using with python guide](docs/docs/starting_an_experiment_from_python.md).*
+the [using with python guide](docs/starting_an_experiment_from_python.md).*
 
 #### Linux (tested on Ubuntu 20.04.3)
 
@@ -89,7 +88,6 @@ Expected stimulus with `./configs/optomotor.yaml`
 
 ![Optomotor experiment](docs/optomotor_experiment.gif)
 
-
 Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
 be continuously written and saved in the directory of the experiment i.e.
 `trial_logs` as a csv file.
@@ -99,8 +97,9 @@ look at the difference in time (column t) in the csv output. Other data may also
 such as the timing of when a flash on the sync square was made (with a press of the F key)
 or the position of a moving stimulus.
 
+Instructions for using a stimulus is found in its corresponding config file.
 
-#### Modify a stimulus
+### Modify a stimulus
 
 If you want to modify how a stimulus behaves, make changes to the stimulus's configuration file (found in the `configs` directory).
 It's a good idea to copy and paste from an existing example configuration file if you are creating a new stimulus. If you do this, make sure the new configuration file
@@ -127,6 +126,10 @@ maximumVal: [0.1, 0.5]
 or a single value to indicate it is fixed for all trials. For example, if you wanted two trials 
 with different density parameters but the same square parameter, supply an array the size of your
 number of trials `density: [400, 200]` and a single value `square: 0`.*
+
+## Config parameters
+
+**A guide to the config parameters for each stimulus is found [here](docs/configs_guide.md)**
 
 
 ## Run NEVE with python
@@ -159,6 +162,13 @@ Use the `-h` flag to get help, e.g. for linux:
 ./NEVE_linux/control_simulation -h
 ```
 
+## Running a closed-loop experiment
+
+Because stimuli are generated in real-time with Unity, movement input from the animal can be used to update the environment it sees.
+This is known as closing the loop, or a closed-loop experiment.
+All stimuli are setup to work in a closed-loop fashion with `fictrac`, a software that reconstructs the fictive path of an animal
+walking on a patterned sphere. See [this guide](docs/closed_loop_example.md) for instructions on how to use NEVE with fictrac.
+
 
 ## Creating your own custom experiment
 
@@ -178,7 +188,7 @@ allowing a model to be trained to do the same task as an animal. This should the
 of how animals process visual information to produce behaviours or recorded electrophysiogical responses.
 
 To view the work in progress guide, see
-[running a pre-built experiment for reinforcement learning](docs/running_prebuilt_experiment_for_reinforcement_learning.md).
+[running a pre-built experiment for reinforcement learning](docs/running_experiment_for_reinforcement_learning.md).
 
 
 ## Calibrating screen parameters
