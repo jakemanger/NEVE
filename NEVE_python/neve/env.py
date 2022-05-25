@@ -21,9 +21,12 @@ class Nenv:
         """Initialize the NEVE environment.
 
         Args:
-            params (str): The path to the parameters of the Unity
-            experiment/environment.
+            params (str): The path to the configuration file with parameters of the Unity
+            stimulus/environment.
         """
+
+        if not os.path.exists(params):
+            raise Exception('Could not find the configuration file')
 
         with open(params, 'r') as f:
             self.params = yaml.load(f, Loader=SafeLoader)
@@ -34,12 +37,13 @@ class Nenv:
 
         print('Waiting for connection to Unity environment...')
         print('When Unity launches, python will gain control.')
-
+	
+        file_name = self._get_built_file_path()
         self.env = UnityEnvironment(
-            file_name=self._get_built_file_path(),
+            file_name=file_name,
             side_channels=[self.env_parameters, self.eng_config],
             timeout_wait=999999,
-            worker_id=self._get_worker_id()
+            worker_id=0 if file_name is None else self._get_worker_id()
         )
         self.execution_order = self.params['execution_order']
 
@@ -95,6 +99,27 @@ class Nenv:
         ):
             build_dir = self.params['buildDir']
 
+            if not os.path.exists(build_dir):
+                build_dir = os.path.join(os.path.dirname(__file__), '..',
+                        self.params['buildDir'])
+                if not os.path.exists(build_dir):
+                    build_dir = os.path.join(os.path.dirname(__file__), '..',
+                            '..', self.params['buildDir'])
+
+                    if not os.path.isdir(build_dir):
+                        # running as a mac app and need to go up 5 or 6 levels
+                        build_dir = os.path.join(
+                            os.path.dirname(__file__),
+                            '..', '..', '..', '..', self.params['buildDir']
+                        )
+                        if not os.path.isdir(build_dir):
+                            build_dir = os.path.join(os.path.dirname(__file__),
+                              '..', '..', '..', '..', '..', self.params['buildDir'])
+                            raise FileNotFoundError(
+                                f'Could not find build file at {build_dir}'
+                                'Please check the buildDir parameter in the config file.'
+                            )
+
             if platform in ['win32', 'cygwin']:
                 file_name = os.path.join(
                     build_dir,
@@ -128,6 +153,7 @@ class Nenv:
 
         See https://github.com/Unity-Technologies/ml-agents/issues/1505
         """
+        
         with open(filename, 'a+') as f:
             f.seek(0)
             val = int(f.read() or 0) + 1

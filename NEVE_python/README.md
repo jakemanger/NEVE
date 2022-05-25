@@ -20,7 +20,7 @@ For a more in depth explanation, see https://towardsdatascience.com/getting-star
 
 1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
 
-2. Create a virtual environment in the NEVE_python directory
+2. Create a virtual environment in the NEVE_run directory
 
 ```bash
 python3 -m venv venv
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 
 Pick a desired experiment to use. In this example, we will use an optomotor experiment.
 
-Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
+Make desired changes to the experiment's configuration file in the `NEVE_run/configs` directory.
 
 *For an optomotor experiment, we could change the grating density in the
 `configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
@@ -80,15 +80,15 @@ python control_simulation.py ./configs/optomotor.yaml
 and follow the prompts. You should see control-related messages in the terminal and the stimulus displayed on your designated screen (specified in your config file).
 
 Expected terminal output:
-![Expected output from a successful setup](Docs/successful_setup.png)
+![Expected output from a successful setup](docs/successful_setup.png)
 
 Expected stimulus with `./configs/optomotor.yaml`
-![Optomotor experiment](Docs/optomotor_exp.gif)
+![Optomotor experiment](docs/optomotor_exp.gif)
 
 Expected stimulus with `./configs/loom.yaml`
-![Loom experiment](Docs/loom_exp.gif)
+![Loom experiment](docs/loom_exp.gif)
 
-Data from each trial in the experiment (parameters of stimuli and timing of frames) will be continuously written and saved in the directory of the experiment e.g. `NEVE_python/builds/Optomotor/` as a csv file.
+Data from each trial in the experiment (parameters of stimuli and timing of frames) will be continuously written and saved in the directory of the experiment e.g. `NEVE_run/builds/Optomotor/` as a csv file.
 To view the frame rate reported from unity, look at the difference in time
 (column t) in the csv output. Other data may also be present, such as the
 timing of when a flash on the sync square was made (with a press of the F key)
