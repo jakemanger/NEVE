@@ -69,8 +69,8 @@ public class LoomManager : GenericStimulusManager
         stimulusType = (int)GetFloatFromPython("stimulusType", 0); // 0 = icosphere, 1 = unity cube
         drawOutline = GetBoolFromPython("drawOutline", false);
         outlineWidth = GetFloatFromPython("outlineWidth", 5f);
-        outlineColor = GetColorFromPython("outlineColor", Color.black);
-        stimulusColour = GetColorFromPython("simulusColor", Color.grey);
+        outlineColor = GetColorFromPython("outlineColour", Color.black);
+        stimulusColour = GetColorFromPython("stimulusColour", Color.grey);
         gratingNum = GetFloatFromPython("gratingNum", 100f);
         gratingIsSquare = (int)GetFloatFromPython("gratingIsSquare", 0f);
         gratingMaxIntensity = GetFloatFromPython("gratingMaxIntensity", 0.1f);

@@ -24,10 +24,10 @@ recordingFrequency: 1
 manualControl: 0
 mouseMoveSpeed: 2
 flickerDuration: 0.1
-syncSquareColorR: 1
-syncSquareColorG: 0
-syncSquareColorB: 0
-syncSquareColorA: 1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
 syncSquareDisplayNum: 0
 displayStimulusCode: 0
 fictracFeedback: 0
@@ -62,7 +62,7 @@ startScaleZ1: 1
 endScaleX1: 1
 endScaleY1: 1
 endScaleZ1: 1
-stimulusDuration1: 5
+duration1: 5
 startPolarPositionX1: -15
 startPolarPositionY1: 0 
 endPolarPositionX1: -15
@@ -90,7 +90,7 @@ startScaleZ2: 1.5
 endScaleX2: 1.5
 endScaleY2: 1.5
 endScaleZ2: 1.5
-stimulusDuration2: 5
+duration2: 5
 startPolarPositionX2: -15
 startPolarPositionY2: 0 
 endPolarPositionX2: -15

@@ -20,10 +20,10 @@ recordingFrequency: 1  # only used if recordFrameData=1 and recordEachFrame=0. t
 manualControl: 0  # 0 = false, 1 = true. Give manual control to the user? if so, follow control the guide at the top of this script
 mouseMoveSpeed: 2  # move speed of mouse if manual_control=1
 flickerDuration: 0.1  # duration of flicker of sync square and stimulus when pressing f and at start of experiment
-syncSquareColorR: 1
-syncSquareColorG: 0
-syncSquareColorB: 0
-syncSquareColorA: 1 # alpha
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1 # alpha
 syncSquareDisplayNum: 0  # 0 = first connected display, 1 = second, and so on
 displayStimulusCode: 0  # display the stimulus code at all times on the sync square? (in white) 0 = false, 1 = true
 

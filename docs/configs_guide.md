@@ -16,7 +16,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `manualControl` | Whether to allow manual mouse control of the experiment or not. | `0` (false) or `1` (true) | `0` |
 | `mouseMoveSpeed` | The speed at which the mouse moves objects in the experiment. | `0`-`99999` | `1` |
 | `flickerDuration` | The duration of a flicker on the sync square in seconds when the `f` key is pressed. | `0`-`99999` | `0.1` |
-| `syncSquareColorR`, `syncSquareG`, `syncSquareB`, `syncSquareA` | The RGBA values of the sync square. | `0`-`1` | Red |
+| `syncSquareColourR`, `syncSquareColourG`, `syncSquareColourB`, `syncSquareColourA` | The RGBA values of the sync square. | `0`-`1` | Red |
 | `syncSquareDisplayNum` | The display number to put the sync square on. | `0`-`3` | `0` |
 | `displayStimulusCode` | Whether to display the sync square or not. | `0` (false) or `1` (true) | `1` |
 | `eyeHeight` | The height of the eye of the animal relative to the bottom PIXEL of the front/side monitors (cm). This is always in the center of the monitors. | `0`-`99999` | `0.1` |

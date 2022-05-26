@@ -74,7 +74,7 @@ public class DualLoomManager : GenericStimulusManager
 
         startScale1 = GetVector3FromPython("startScale", startScale1);
         endScale1 = GetVector3FromPython("endScale", endScale1);
-        stimulusDuration1 = GetFloatFromPython("stimulusDuration1", stimulusDuration1);
+        stimulusDuration1 = GetFloatFromPython("duration1", stimulusDuration1);
         startPolarPosition1 = GetVector2FromPython("startPolarPosition1", startPolarPosition1);
         endPolarPosition1 = GetVector2FromPython("endPolarPosition1", endPolarPosition1);
         targetLocationOffset1 = GetVector3FromPython("targetLocationOffset1", targetLocationOffset1);
@@ -86,7 +86,7 @@ public class DualLoomManager : GenericStimulusManager
         stimulusType1 = GetIntFromPython("stimulusType1", 0);
         drawOutline1 = GetBoolFromPython("drawOutline1", false);
         outlineWidth1 = GetFloatFromPython("outlineWidth1", 5f);
-        outlineColor1 = GetColorFromPython("outlineColor1", outlineColor1);
+        outlineColor1 = GetColorFromPython("outlineColour1", outlineColor1);
         fixedAngularSize1 = GetBoolFromPython("fixedAngularSize1", false);
         fixXAxis1 = GetBoolFromPython("fixXAxis1", false); // otherwise fix the Y axis
         minAngularAngle1 = GetFloatFromPython("minAngularAngle1", -30f);
@@ -94,7 +94,7 @@ public class DualLoomManager : GenericStimulusManager
 
         startScale2 = GetVector3FromPython("startScale2", startScale2);
         endScale2 = GetVector3FromPython("endScale2", endScale2);
-        stimulusDuration2 = GetFloatFromPython("stimulusDuration2", 5f);
+        stimulusDuration2 = GetFloatFromPython("duration2", 5f);
         startPolarPosition2 = GetVector2FromPython("startPolarPosition2", startPolarPosition2);
         endPolarPosition2 = GetVector2FromPython("endPolarPosition2", endPolarPosition2);
         targetLocationOffset2 = GetVector3FromPython("targetLocationOffset2", targetLocationOffset2);
@@ -106,7 +106,7 @@ public class DualLoomManager : GenericStimulusManager
         stimulusType2 = GetIntFromPython("stimulusType2", 0); // 0 = icosphere, 1 = unity cube
         drawOutline2 = GetBoolFromPython("drawOutline2", false);
         outlineWidth2 = GetFloatFromPython("outlineWidth2", 5f);
-        outlineColor2 = GetColorFromPython("outlineColor2", outlineColor2);
+        outlineColor2 = GetColorFromPython("outlineColour2", outlineColor2);
         fixedAngularSize2 = GetBoolFromPython("fixedAngularSize2", false);
         fixXAxis2 = GetBoolFromPython("fixXAxis2", false); // otherwise fix the Y axis
         minAngularAngle2 = GetFloatFromPython("minAngularAngle2", -30f);

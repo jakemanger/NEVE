@@ -19,10 +19,10 @@ recordingFrequency: 1
 manualControl: 0 
 mouseMoveSpeed: 2 
 flickerDuration: 0.1
-syncSquareColorR: 1
-syncSquareColorG: 0
-syncSquareColorB: 0
-syncSquareColorA: 1 
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1 
 syncSquareDisplayNum: 1
 displayStimulusCode: 0
 
