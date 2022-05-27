@@ -33,6 +33,7 @@ syncSquareColourA: 1
 syncSquareDisplayNum: 0 
 displayStimulusCode: 1 
 fictracFeedback: 0
+darkAdaptTime: 0
 
 # perspective
 eyeHeight: 2.864 
@@ -43,7 +44,6 @@ frontDisplayNum: 0
 rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
-darkAdaptTime: 0
 
 # stimuli
 # background
@@ -79,7 +79,7 @@ stimulusColourR: [0.3, 0, 0]
 stimulusColourG: [0.3, 1, 0]
 stimulusColourB: [0.3, 0, 1]
 stimulusColourA: 1
-drawOutline: 1
+drawOutline: 0
 outlineWidth: 1
 outlineColourR: 0
 outlineColourG: 0

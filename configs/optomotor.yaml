@@ -12,7 +12,7 @@ buildDir: ./builds/Optomotor/
 frameDataIdCode: [100001, 100002] 
 animalCode: [1, 2] 
 execution_order: [0, 1]
-experimentDuration: [99999, 99999]
+experimentDuration: 99999
 recordFrameData: 1
 recordEachFrame: 1
 recordingFrequency: 1
@@ -24,7 +24,9 @@ syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1 
 syncSquareDisplayNum: 1
-displayStimulusCode: 0
+displayStimulusCode: 1
+darkAdaptTime: 0
+fictracFeedback: 0
 
 # perspective
 eyeHeight: 3.435 
