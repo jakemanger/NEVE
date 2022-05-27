@@ -63,7 +63,11 @@ public class FrameWriter : MonoBehaviour
         }
 
         // find the SocketMovementController
-        transformsToRecord.Add(GameObject.FindObjectOfType<SocketMovementController>().transform);
+        SocketMovementController socketMoveController = GameObject.FindObjectOfType<SocketMovementController>();
+        if (socketMoveController != null)
+        {
+            transformsToRecord.Add(socketMoveController.transform);
+        }
 
         SaveStimulusManagerValues();
     }
