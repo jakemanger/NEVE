@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150ddd4eac8414b1a9ac8f70fe79b8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 0
+  recieveParametersFromPython: 1
   recieveInputFromSocket: 0
   eyeHeight: 2
   distanceToMonitors: 7
