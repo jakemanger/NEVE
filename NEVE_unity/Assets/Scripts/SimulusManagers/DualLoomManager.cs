@@ -74,43 +74,43 @@ public class DualLoomManager : GenericStimulusManager
 
         startScale1 = GetVector3FromPython("startScale", startScale1);
         endScale1 = GetVector3FromPython("endScale", endScale1);
-        stimulusDuration1 = GetFloatFromPython("duration1", stimulusDuration1);
-        startPolarPosition1 = GetVector2FromPython("startPolarPosition1", startPolarPosition1);
-        endPolarPosition1 = GetVector2FromPython("endPolarPosition1", endPolarPosition1);
-        targetLocationOffset1 = GetVector3FromPython("targetLocationOffset1", targetLocationOffset1);
-        startOffset1 = GetFloatFromPython("startOffset1", 50f);
-        endOffset1 = GetFloatFromPython("endOffset1", 1f);
-        delayToApproach1 = GetFloatFromPython("delayToApproach1", 5f);
-        numReps1 = GetFloatFromPython("numReps1", 1f);
-        stimulusColour1 = GetColorFromPython("stimulusColour1", stimulusColour1);
-        stimulusType1 = GetIntFromPython("stimulusType1", 0);
-        drawOutline1 = GetBoolFromPython("drawOutline1", false);
-        outlineWidth1 = GetFloatFromPython("outlineWidth1", 5f);
-        outlineColor1 = GetColorFromPython("outlineColour1", outlineColor1);
-        fixedAngularSize1 = GetBoolFromPython("fixedAngularSize1", false);
-        fixXAxis1 = GetBoolFromPython("fixXAxis1", false); // otherwise fix the Y axis
-        minAngularAngle1 = GetFloatFromPython("minAngularAngle1", -30f);
-        maxAngularAngle1 = GetFloatFromPython("maxAngularAngle1", 30f);
+        stimulusDuration1 = GetFloatFromPython("duration", stimulusDuration1, "1");
+        startPolarPosition1 = GetVector2FromPython("startPolarPosition", startPolarPosition1, "1");
+        endPolarPosition1 = GetVector2FromPython("endPolarPosition", endPolarPosition1, "1");
+        targetLocationOffset1 = GetVector3FromPython("targetLocationOffset", targetLocationOffset1, "1");
+        startOffset1 = GetFloatFromPython("startOffset", 50f, "1");
+        endOffset1 = GetFloatFromPython("endOffset", 1f, "1");
+        delayToApproach1 = GetFloatFromPython("delayToApproach", 5f, "1");
+        numReps1 = GetFloatFromPython("numReps", 1f, "1");
+        stimulusColour1 = GetColorFromPython("stimulusColour", stimulusColour1, "1");
+        stimulusType1 = GetIntFromPython("stimulusType", 0, "1");
+        drawOutline1 = GetBoolFromPython("drawOutline", false, "1");
+        outlineWidth1 = GetFloatFromPython("outlineWidth", 5f, "1");
+        outlineColor1 = GetColorFromPython("outlineColour", outlineColor1, "1");
+        fixedAngularSize1 = GetBoolFromPython("fixedAngularSize", false, "1");
+        fixXAxis1 = GetBoolFromPython("fixXAxis", false, "1"); // otherwise fix the Y axis
+        minAngularAngle1 = GetFloatFromPython("minAngularAngle", -30f, "1");
+        maxAngularAngle1 = GetFloatFromPython("maxAngularAngle", 30f, "1");
 
-        startScale2 = GetVector3FromPython("startScale2", startScale2);
-        endScale2 = GetVector3FromPython("endScale2", endScale2);
-        stimulusDuration2 = GetFloatFromPython("duration2", 5f);
-        startPolarPosition2 = GetVector2FromPython("startPolarPosition2", startPolarPosition2);
-        endPolarPosition2 = GetVector2FromPython("endPolarPosition2", endPolarPosition2);
-        targetLocationOffset2 = GetVector3FromPython("targetLocationOffset2", targetLocationOffset2);
-        startOffset2 = GetFloatFromPython("startOffset2", 50f);
-        endOffset2 = GetFloatFromPython("endOffset2", 1f);
-        delayToApproach2 = GetFloatFromPython("delayToApproach2", 5f);
-        numReps2 = GetFloatFromPython("numReps2", 1f);
-        stimulusColour2 = GetColorFromPython("stimulusColour2", stimulusColour2);
-        stimulusType2 = GetIntFromPython("stimulusType2", 0); // 0 = icosphere, 1 = unity cube
-        drawOutline2 = GetBoolFromPython("drawOutline2", false);
-        outlineWidth2 = GetFloatFromPython("outlineWidth2", 5f);
-        outlineColor2 = GetColorFromPython("outlineColour2", outlineColor2);
-        fixedAngularSize2 = GetBoolFromPython("fixedAngularSize2", false);
-        fixXAxis2 = GetBoolFromPython("fixXAxis2", false); // otherwise fix the Y axis
-        minAngularAngle2 = GetFloatFromPython("minAngularAngle2", -30f);
-        maxAngularAngle2 = GetFloatFromPython("maxAngularAngle2", 30f);
+        startScale2 = GetVector3FromPython("startScale", startScale2, "2");
+        endScale2 = GetVector3FromPython("endScale", endScale2, "2");
+        stimulusDuration2 = GetFloatFromPython("duration", 5f, "2");
+        startPolarPosition2 = GetVector2FromPython("startPolarPosition", startPolarPosition2, "2");
+        endPolarPosition2 = GetVector2FromPython("endPolarPosition", endPolarPosition2, "2");
+        targetLocationOffset2 = GetVector3FromPython("targetLocationOffset", targetLocationOffset2, "2");
+        startOffset2 = GetFloatFromPython("startOffset", 50f, "2");
+        endOffset2 = GetFloatFromPython("endOffset", 1f, "2");
+        delayToApproach2 = GetFloatFromPython("delayToApproach", 5f, "2");
+        numReps2 = GetFloatFromPython("numReps", 1f, "2");
+        stimulusColour2 = GetColorFromPython("stimulusColour", stimulusColour2, "2");
+        stimulusType2 = GetIntFromPython("stimulusType", 0, "2"); // 0 = icosphere, 1 = unity cube
+        drawOutline2 = GetBoolFromPython("drawOutline", false, "2");
+        outlineWidth2 = GetFloatFromPython("outlineWidth", 5f, "2");
+        outlineColor2 = GetColorFromPython("outlineColour", outlineColor2, "2");
+        fixedAngularSize2 = GetBoolFromPython("fixedAngularSize", false, "2");
+        fixXAxis2 = GetBoolFromPython("fixXAxis", false, "2"); // otherwise fix the Y axis
+        minAngularAngle2 = GetFloatFromPython("minAngularAngle", -30f, "2");
+        maxAngularAngle2 = GetFloatFromPython("maxAngularAngle", 30f, "2");
     }
 
     public override void SetupStimuli() {
