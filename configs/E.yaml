@@ -1,0 +1,115 @@
+# Below are the parameters used to alter a unity experiment with the name
+# DualMoving
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset the position of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# general
+buildDir: ./builds/DualLoom
+frameDataIdCode: [1, 2]
+animalCode: [1, 2]
+execution_order: [0, 1]
+experimentDuration: 99999
+recordFrameData: 1
+recordEachFrame: 1
+recordingFrequency: 1
+manualControl: 0
+mouseMoveSpeed: 2
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 0
+displayStimulusCode: 1
+fictracFeedback: 0
+
+# perspective
+eyeHeight: 2.864
+distanceToMonitors: 27
+monitorDimensionsX: 52
+monitorDimensionsY: 32
+frontDisplayNum: 0
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+
+# stimuli
+# background
+darkAdaptTime: 0
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0 
+
+
+# object 1
+stimulusType1: 1
+startScaleX1: 3
+startScaleY1: 6
+startScaleZ1: 3
+endScaleX1: 3
+endScaleY1: 6
+endScaleZ1: 3
+duration1: 5
+startPolarPositionX1: -15
+startPolarPositionY1: 0 
+endPolarPositionX1: -15
+endPolarPositionY1: 0 
+targetLocationOffsetX1: 0
+targetLocationOffsetY1: 0
+targetLocationOffsetZ1: 0
+startOffset1: 500
+endOffset1: 1.5
+numReps1: 0.5 
+delayToApproach1: 5
+stimulusColourR1: 0.5
+stimulusColourG1: 0.5
+stimulusColourB1: 0.5
+stimulusColourA1: 1
+fixedAngularSize1: 0
+fixXAxis1: 1
+minAngularAngle1: -3.17
+maxAngularAngle1: 3.17
+
+# object 2
+stimulusType2: 1
+startScaleX2: 3.5
+startScaleY2: 3.5
+startScaleZ2: 3.5
+endScaleX2: 3.5
+endScaleY2: 3.5
+endScaleZ2: 3.5
+duration2: 5
+startPolarPositionX2: -15
+startPolarPositionY2: 0 
+endPolarPositionX2: -15
+endPolarPositionY2: 0 
+targetLocationOffsetX2: 0 
+targetLocationOffsetY2: 0 
+targetLocationOffsetZ2: 0
+startOffset2: 550
+endOffset2: 1.5  
+numReps2: 0.5 
+delayToApproach2: 5
+stimulusColourR2: 0 
+stimulusColourG2: 0
+stimulusColourB2: 0
+stimulusColourA2: 1
+fixedAngularSize2: 0
+fixXAxis2: 1
+minAngularAngle2: -3.17
+maxAngularAngle2: 3.17
