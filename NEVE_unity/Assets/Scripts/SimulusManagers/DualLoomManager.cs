@@ -72,8 +72,8 @@ public class DualLoomManager : GenericStimulusManager
         gratingMaxIntensity = floatChannel.GetWithDefault("gratingMaxIntensity", gratingMaxIntensity);
         gratingMinIntensity = floatChannel.GetWithDefault("gratingMinIntensity", gratingMinIntensity);
 
-        startScale1 = GetVector3FromPython("startScale", startScale1);
-        endScale1 = GetVector3FromPython("endScale", endScale1);
+        startScale1 = GetVector3FromPython("startScale", startScale1, "1");
+        endScale1 = GetVector3FromPython("endScale", endScale1, "1");
         stimulusDuration1 = GetFloatFromPython("duration", stimulusDuration1, "1");
         startPolarPosition1 = GetVector2FromPython("startPolarPosition", startPolarPosition1, "1");
         endPolarPosition1 = GetVector2FromPython("endPolarPosition", endPolarPosition1, "1");
