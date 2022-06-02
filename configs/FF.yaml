@@ -70,7 +70,7 @@ endPolarPositionY: 0
 targetLocationOffsetX: 0 
 targetLocationOffsetY: 0 
 targetLocationOffsetZ: 0 
-startOffset: 500
+startOffset: 3000
 endOffset: 1.5
 duration: 24.925
 delayToApproach: 5 
