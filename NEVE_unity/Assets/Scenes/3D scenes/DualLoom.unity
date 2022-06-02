@@ -737,6 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -752,6 +753,8 @@ MonoBehaviour:
   recordingFrequency: 1
   frameDataIdCode: 22
   animalCode: 10
+  syncSquarePos: {x: -29.84, y: 18.17102}
+  syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 508959246}
   syncSquareDisplayNum: 0
@@ -763,6 +766,8 @@ MonoBehaviour:
   blackOutCanvases: {fileID: 188564488}
   manualControl: 0
   mouseMoveSpeed: 2
+  parametersExpected: []
+  errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   horizonHeight: 0
   aboveHorizonColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   belowHorizonColour: {r: 1, g: 1, b: 1, a: 1}
@@ -784,8 +789,8 @@ MonoBehaviour:
   delayToApproach2: 5
   numReps1: 2
   numReps2: 2
-  stimulusColour1: {r: 0, g: 0, b: 0, a: 1}
-  stimulusColour2: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+  stimulusColour1: {r: 0.8867924, g: 0.12967247, b: 0.12967247, a: 1}
+  stimulusColour2: {r: 0.22574759, g: 0.486399, b: 0.8396226, a: 1}
   stimulusDuration1: 5
   stimulusDuration2: 5
   stimulusType1: 1
@@ -800,14 +805,16 @@ MonoBehaviour:
   gratingIsSquare: 0
   gratingMaxIntensity: 0.01
   gratingMinIntensity: 0
-  fixedAngularSize1: 0
-  fixXAxis1: 1
+  fixedAngularSize1: 1
+  fixXAxis1: 0
   minAngularAngle1: -2
   maxAngularAngle1: 2
   fixedAngularSize2: 0
-  fixXAxis2: 1
+  fixXAxis2: 0
   minAngularAngle2: -17
   maxAngularAngle2: -13
+  delayToAppear1: 10
+  delayToAppear2: 0
 --- !u!1001 &1415290230749237764
 PrefabInstance:
   m_ObjectHideFlags: 0

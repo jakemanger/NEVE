@@ -19,6 +19,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public float endOffset = 1f;
     public float duration = 5f;
     public float delayToApproach = 5f;
+    public float delayToAppear = 0f;
     public Color stimulusColour = Color.white;
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
@@ -43,6 +44,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
     float timeElapsed = 0f;
     Vector3 stimulusCartesianPosition;
     float delayTimeElapsed = 0f;
+    float delayToAppearTimeElapsed = 0f;
     Color lastStimulusColour = Color.white;
 
     public Material fixedAngularSizeMaterial;
@@ -112,6 +114,11 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
         if (stimulusType == 2) {
             SetupGratings();
+        }
+
+        print(delayToAppear);
+        if (delayToAppear > 0) {
+            stimulusRenderer.enabled = false;
         }
     }
 
@@ -197,6 +204,14 @@ public class SphericalStimulusGenerator : GenericStimulusController
             }
         }
 
+        if ((wantToMove || move) && delayToAppear > 0) {
+            delayToAppearTimeElapsed += Time.deltaTime;
+            if (delayToAppearTimeElapsed >= delayToAppear) {
+                delayToAppearTimeElapsed = 0f;
+                stimulusRenderer.enabled = true;
+                delayToAppear = 0f;
+            }
+        }
 
 
         // logic to change offset and polar position of stimulus

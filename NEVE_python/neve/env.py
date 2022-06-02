@@ -46,6 +46,7 @@ class Nenv:
             worker_id=0 if file_name is None else self._get_worker_id()
         )
         self.execution_order = self.params['execution_order']
+        self.params.pop('execution_order')
 
     def set_params(self, i):
         """Sets the parameters for the experimental trial
