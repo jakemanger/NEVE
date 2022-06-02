@@ -1770,6 +1770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -1796,6 +1797,8 @@ MonoBehaviour:
   blackOutCanvases: {fileID: 1369575005}
   manualControl: 1
   mouseMoveSpeed: 2
+  parametersExpected: []
+  errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   horizonHeight: 0
   aboveHorizonColour: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   belowHorizonColour: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}

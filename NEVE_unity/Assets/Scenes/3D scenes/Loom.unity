@@ -562,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -588,6 +589,8 @@ MonoBehaviour:
   blackOutCanvases: {fileID: 220729435}
   manualControl: 0
   mouseMoveSpeed: 1
+  parametersExpected: []
+  errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
   horizonHeight: 0
   aboveHorizonColour: {r: 1, g: 1, b: 1, a: 1}
@@ -629,6 +632,7 @@ MonoBehaviour:
   drawOutline: 0
   outlineWidth: 5
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  delayToAppear: 0
   stimGenerator: {fileID: 4517113866636580001}
 --- !u!115 &1905380798
 MonoScript:

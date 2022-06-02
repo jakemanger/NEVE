@@ -18,6 +18,8 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `flickerDuration` | The duration of a flicker on the sync square in seconds when the `f` key is pressed. | `0`-`99999` | `0.1` |
 | `syncSquareColourR`, `syncSquareColourG`, `syncSquareColourB`, `syncSquareColourA` | The RGBA values of the sync square. | `0`-`1` | Red |
 | `syncSquareDisplayNum` | The display number to put the sync square on. | `0`-`3` | `0` |
+| `syncSquarePosX` `syncSquarePosY` | The X and Y positions of the sync square. | a really small number-a really big number | `syncSquarePosX: -29.84` `syncSquarePosY: 18.17102`|
+| `syncSquareScalar` | A scalar to modify the size of the sync square | `0`-a really big number (but you probably don't want it to be too big) | `1` |
 | `displayStimulusCode` | Whether to display the sync square or not. | `0` (false) or `1` (true) | `1` |
 | `eyeHeight` | The height of the eye of the animal relative to the bottom PIXEL of the front/side monitors (cm). This is always in the center of the monitors. | `0`-`99999` | `0.1` |
 | `distanceToMonitors` | The distance from the center of the eye to all monitors (cm). | `0`-a very large number | `27` |
@@ -25,6 +27,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `frontDisplayNum`, `rightDisplayNum`, `backDisplayNum`, `leftDisplayNum` | The display numbers for front, right, back and left displays. | `0`-`3` | `frontDisplayNum: 0`, `rightDisplayNum: 1`, `backDisplayNum: 2`, `leftDisplayNum: 3` |
 | `darkAdaptTime` | The time in seconds to display a black screen for dark Adaptation (at the start of a trial). | `0`-`99999` | `0` |
 | `fictracFeedback` | Whether to use a closed-loop experiment that moves the animal's position using a socket connection with FicTrac. Note, fictrac must be sending socket info to `localhost:1111` | `0` (false) or `1` (true) | `0` |
+| `mustIncludeEveryParameter` | Whether you should enforce specifying every parameter in a config file. This can be useful for debugging, or if you want to be extra-cautious when specifying your stimuli. | `0` (false) or `1` (true) | `0` |
 
 
 ## Loom specific
@@ -39,14 +42,15 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `horizonHeightFront` | An override of the height of the horizon in degrees for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `-90`-`90` | *Ignored* |
 | `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
 | `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
-| `startPolarPositionX`, `stimulusPolarPositionY` | The stimulus polar position at the start of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. | X: `-90`-`90`, Y: `-180`-`180` | `startPolarPositionX: 0`, `stimulusPolarPositionY: 0` |
-| `endPolarPositionX`, `endPolarPositionY` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. | X: `-90`-`90`, Y: `-180`-`180` | `endPolarPositionX: 0`, `endPolarPositionY: 0` |
+| `startPolarPositionX`, `startPolarPositionY` | The stimulus polar position at the start of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `startPolarPositionX: 0`, `startPolarPositionY: 0` |
+| `endPolarPositionX`, `endPolarPositionY` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endPolarPositionX: 0`, `endPolarPositionY: 0` |
 | `targetLocationOffsetX`, `targetLocationOffsetY`, `targetLocationOffsetZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
 | `startOffset` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
 | `endOffset` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `0` |
 | `duration` | The duration of one cycle of the loom in seconds. | `0`-`99999` | `0` |
 | `numReps` | The number of times to repeat the stimulus movement (`0.5` is start-finish, `1` is start-finish-start). | `0`-`99999` | `1` |
 | `delayToApproach` | The delay in seconds before the loom starts. | `0`-`99999` | `5` |
+| `delayToAppear` | The delay in seconds before the looming object appears. | `0`-`99999` | `0` |
 | `stimulusColourR`, `stimulusColourG`, `stimulusColourB`, `stimulusColourA` | The RGBA values of the looming object in the stimulus. | `0`-`1` | Grey |
 | `drawOutline` | Whether to draw an outline around the stimulus or not. | `0` (false) or `1` (true) | `0` |
 | `outlineColourR`, `outlineColourG`, `outlineColourB`, `outlineColourA` | The RGBA values of the outline. | `0`-`1` | Black |
@@ -57,7 +61,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `gratingMaxIntensity` | The maximum intensity of the grating. | `0`-`1` | `1` |
 | `gratingMinIntensity` | The minimum intensity of the grating. | `0`-`1` | `0` |
 | `fixedAngularSize` | Whether to use a fixed angular size or not. | `0` (false) or `1` (true) | `0` |
-| `fixXAxis` | Whether to fix the X axis (if true) or the Y axis (if false). | `0` (false) or `1` (true) | `0` |
+| `fixXAxis` | Whether to fix the X axis (up and down) if true or the Y axis if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `minAngularAngle`, `maxAngularAngle` | The minimum and maximum angular degrees to allow the stimulus object to be displayed in if `fixedAngularSize` is true. If the object is outside this range, then it will become partly or wholely invisible (will not be rendered). 0 is forwards, -ve is up/left and +ve is down/right | `-180`-`180` | `minAngularSize: -30`, `maxAngularSize: 30` |
 
 ## DualLoom specific
@@ -69,7 +73,7 @@ Same as Loom, but the following parameters are modified for each looming object 
 | -------------- | ----------- | ------- | ------------- |
 | `startScaleX1`, `startScaleY1`, `startScaleZ1` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX1: 1`, `startScaleY1: 1`, `startScaleZ1: 1` |
 | `endScaleX1`, `endScaleY1`, `endScaleZ1` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX1: 1`, `endScaleY1: 1`, `endScaleZ1: 1` |
-| `startPolarPositionX1`, `stimulusPolarPositionY1` | The stimulus polar position at the start of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. | X: `-90`-`90`, Y: `-180`-`180` | `startPolarPositionX1: 0`, `stimulusPolarPositionY1: 0` |
+| `startPolarPositionX1`, `startPolarPositionY1` | The stimulus polar position at the start of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth.| X: `-90`-`90`, Y: `-180`-`180` | `startPolarPositionX1: 0`, `startPolarPositionY1: 0` |
 | `endPolarPositionX1`, `endPolarPositionY1` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. | X: `-90`-`90`, Y: `-180`-`180` | `endPolarPositionX1: 0`, `endPolarPositionY1: 0` |
 | `targetLocationOffsetX1`, `targetLocationOffsetY1`, `targetLocationOffsetZ1` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
 | `startOffset1` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
@@ -77,6 +81,7 @@ Same as Loom, but the following parameters are modified for each looming object 
 | `duration1` | The duration of one cycle of the loom in seconds. | `0`-`99999` | `0` |
 | `numReps1` | The number of times to repeat the stimulus movement (`0.5` is start-finish, `1` is start-finish-start). | `0`-a very large number | `1` |
 | `delayToApproach1` | The delay in seconds before the loom starts. | `0`-`99999` | `5` |
+| `delayToAppear1` | The delay in seconds before the looming object appears. | `0`-`99999` | `0` |
 | `stimulusColourR1`, `stimulusColourG1`, `stimulusColourB1`, `stimulusColourA1` | The RGBA values of the looming object in the stimulus. | `0`-`1` | Grey |
 | `drawOutline1` | Whether to draw an outline around the stimulus or not. | `0` (false) or `1` (true) | `0` |
 | `outlineColourR1`, `outlineColourG1`, `outlineColourB1`, `outlineColourA1` | The RGBA values of the outline. | `0`-`1` | Black |
