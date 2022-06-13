@@ -72,7 +72,7 @@ targetLocationOffsetX1: [0, 0]  # x offset for the target of a looming stimulus 
 targetLocationOffsetY1: [0, 0]  # y offset for the target of a looming stimulus (cm) relative to animal eye position
 targetLocationOffsetZ1: [0, 0]  # z offset for the target of a looming stimulus (cm) relative to animal eye position
 startOffset1: 500  # start distance of object from eye of animal (cm)
-endOffset1: 27 # end distance of object from eye of animal after looming (cm)
+endOffset1: 1.5 # end distance of object from eye of animal after looming (cm)
 numReps1: 0.5  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
 delayToApproach1: [5, 5]  # delay in seconds before stimulus starts moving (if manual_control=false)
 stimulusColourR1: 0.5  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
@@ -98,7 +98,7 @@ targetLocationOffsetX2: [0, 0]  # x offset for the target of a looming stimulus 
 targetLocationOffsetY2: [0, 0]  # y offset for the target of a looming stimulus (cm) relative to animal eye position
 targetLocationOffsetZ2: [0, 0]  # z offset for the target of a looming stimulus (cm) relative to animal eye position
 startOffset2: 500.0001  # start distance of object from eye of animal (cm)
-endOffset2: 27.0001  # end distance of object from eye of animal after looming (cm)
+endOffset2: 1.5001  # end distance of object from eye of animal after looming (cm)
 numReps2: 0.5  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
 delayToApproach2: [5, 5]  # delay in seconds before stimulus starts moving (if manual_control=false)
 stimulusColourR2: 0  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)

@@ -73,7 +73,7 @@ targetLocationOffsetX1: 0
 targetLocationOffsetY1: 0
 targetLocationOffsetZ1: 0
 startOffset1: 3000
-endOffset1: 27
+endOffset1: 1.5
 numReps1: 0.5 
 delayToApproach1: 5
 stimulusColourR1: 0.5
@@ -102,7 +102,7 @@ targetLocationOffsetX2: 0
 targetLocationOffsetY2: 0 
 targetLocationOffsetZ2: 0
 startOffset2: 3000.1
-endOffset2: 27.0001
+endOffset2: 1.5001
 numReps2: 0.5 
 delayToApproach2: 5
 stimulusColourR2: 0 

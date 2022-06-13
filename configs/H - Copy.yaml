@@ -71,7 +71,7 @@ targetLocationOffsetX: 20
 targetLocationOffsetY: 20
 targetLocationOffsetZ: 0 
 startOffset: 500
-endOffset: 27
+endOffset: 1.5
 duration: 5
 delayToApproach: 0
 stimulusColourR: 0
