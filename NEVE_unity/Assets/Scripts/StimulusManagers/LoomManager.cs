@@ -22,9 +22,9 @@ public class LoomManager : GenericStimulusManager
     public Vector2 endPolarPosition = Vector2.zero;
     public Vector3 startScale = Vector3.one;
     public Vector3 endScale = Vector3.one;
-    public Vector3 targetLocationOffset = Vector3.zero;
-    public float startOffset = 10f;
-    public float endOffset = 10f;
+    public Vector3 origin = Vector3.zero;
+    public float startDistance = 10f;
+    public float endDistance = 10f;
     public float duration = 1f; // units (cm) per second
     public float delayToApproach = 5f;
     public bool fixedAngularSize = false;
@@ -46,6 +46,8 @@ public class LoomManager : GenericStimulusManager
     public float outlineWidth = 5f;
     public Color outlineColor = Color.black;
     public float delayToAppear = 0f;
+    public bool directPath = true;
+    public bool hideAtEnd = true;
 
 
     [Header("Looming Components")]
@@ -62,11 +64,13 @@ public class LoomManager : GenericStimulusManager
 
         // set properties from python
         // object
-        startPolarPosition = GetVector2FromPython("startPolarPosition", Vector2.zero);
-        endPolarPosition = GetVector2FromPython("endPolarPosition", Vector2.zero);
-        targetLocationOffset = GetVector3FromPython("targetLocationOffset", Vector3.zero);
-        startOffset = GetFloatFromPython("startOffset", 50f);
-        endOffset = GetFloatFromPython("endOffset", 1f);
+        origin = GetVector3FromPython("origin", Vector3.zero);
+        startPolarPosition.x = -1 * GetFloatFromPython("startElevation", 0f);
+        startPolarPosition.y = GetFloatFromPython("startAzimuth", 0f);
+        endPolarPosition.x = -1 * GetFloatFromPython("endElevation", 0f);
+        endPolarPosition.y = GetFloatFromPython("endAzimuth", 0f);
+        startDistance = GetFloatFromPython("startDistance", 50f);
+        endDistance = GetFloatFromPython("endDistance", 1f);
         stimulusType = (int)GetFloatFromPython("stimulusType", 0); // 0 = icosphere, 1 = unity cube
         drawOutline = GetBoolFromPython("drawOutline", false);
         outlineWidth = GetFloatFromPython("outlineWidth", 5f);
@@ -80,11 +84,17 @@ public class LoomManager : GenericStimulusManager
         endScale = GetVector3FromPython("endScale", Vector3.one);
         duration = GetFloatFromPython("duration", 1f);
         fixedAngularSize = GetBoolFromPython("fixedAngularSize", false);
-        fixXAxis = GetBoolFromPython("fixXAxis", true);
-        minAngularAngle = GetFloatFromPython("minAngularAngle", -30f);
-        maxAngularAngle = GetFloatFromPython("maxAngularAngle", 30f);
+        fixXAxis = GetBoolFromPython("fixElevation", true);
+        float negativeCorrection = 0f;
+        if (fixXAxis) {
+            negativeCorrection = -1f;
+        }
+        minAngularAngle = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f);
+        maxAngularAngle = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f);
         delayToApproach = GetFloatFromPython("delayToApproach", 5f);
         delayToAppear = GetFloatFromPython("delayToAppear", 0f);
+        directPath = GetBoolFromPython("directPath", true);
+        hideAtEnd = GetBoolFromPython("hideAtEnd", false);
 
         // background 
         horizonHeight = GetFloatFromPython("horizonHeight", 0f);
@@ -121,10 +131,10 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.endScale = endScale;
         stimGenerator.startPolarPosition = startPolarPosition;
         stimGenerator.endPolarPosition = endPolarPosition;
-        stimGenerator.startOffset = startOffset;
-        stimGenerator.endOffset = endOffset;
+        stimGenerator.startDistance = startDistance;
+        stimGenerator.endDistance = endDistance;
         stimGenerator.delayToApproach = delayToApproach;
-        stimGenerator.targetLocationOffset = targetLocationOffset;
+        stimGenerator.origin = origin;
         stimGenerator.flickerDuration = base.flickerDuration;
         stimGenerator.numReps = 0.5f;
         stimGenerator.stimulusType = stimulusType;
@@ -140,6 +150,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.minAngularAngle = minAngularAngle;
         stimGenerator.maxAngularAngle = maxAngularAngle;
         stimGenerator.delayToAppear = delayToAppear;
+        stimGenerator.directPath = directPath;
 
         stimGenerator.duration = duration; 
 

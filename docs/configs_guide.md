@@ -42,11 +42,11 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `horizonHeightFront` | An override of the height of the horizon in degrees for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `-90`-`90` | *Ignored* |
 | `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
 | `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
-| `startPolarPositionX`, `startPolarPositionY` | The stimulus polar position at the start of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `startPolarPositionX: 0`, `startPolarPositionY: 0` |
-| `endPolarPositionX`, `endPolarPositionY` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endPolarPositionX: 0`, `endPolarPositionY: 0` |
-| `targetLocationOffsetX`, `targetLocationOffsetY`, `targetLocationOffsetZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
-| `startOffset` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
-| `endOffset` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `0` |
+| `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `: 0`, `startAzimuth: 0` |
+| `endElevation`, `endAzimuth` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation: 0`, `endAzimuth: 0` |
+| `originX`, `originY`, `originZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
+| `startDistance` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
+| `endDistance` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `0` |
 | `duration` | The duration of one cycle of the loom in seconds. | `0`-`99999` | `0` |
 | `numReps` | The number of times to repeat the stimulus movement (`0.5` is start-finish, `1` is start-finish-start). | `0`-`99999` | `1` |
 | `delayToApproach` | The delay in seconds before the loom starts. | `0`-`99999` | `5` |
@@ -55,13 +55,16 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `drawOutline` | Whether to draw an outline around the stimulus or not. | `0` (false) or `1` (true) | `0` |
 | `outlineColourR`, `outlineColourG`, `outlineColourB`, `outlineColourA` | The RGBA values of the outline. | `0`-`1` | Black |
 | `outlineWidth` | The width of the outline in pixels. | `0`-`99999` | `1` |
-| `stimulusType` | The type of stimulus to display. | `0` (sphere), `1` (square) `2` (a sphere with a grating)) | `0` |
+| `stimulusType` | The type of stimulus to display. Note, square will always face the origin | `0` (sphere), `1` (square) `2` (a sphere with a grating)) | `0` |
 | `gratingNum` | The number of grating cycles to display if `stimulusType` is `2`. | `0`-`99999` | `100` |
 | `gratingIsSquare` | Whether the grating is square (true) or a sinewave (false). | `0` (false) or `1` (true) | `0` |
 | `gratingMaxIntensity` | The maximum intensity of the grating. | `0`-`1` | `1` |
 | `gratingMinIntensity` | The minimum intensity of the grating. | `0`-`1` | `0` |
 | `fixedAngularSize` | Whether to use a fixed angular size or not. | `0` (false) or `1` (true) | `0` |
-| `fixXAxis` | Whether to fix the X axis (up and down) if true or the Y axis if false (right and left). | `0` (false) or `1` (true) | `0` |
+| `fixElevation` | Whether to fix the elevation (up and down) if true or the azimuth if false (right and left). | `0` (false) or `1` (true) | `0` |
+| `hideAtEnd` | Whether to hide the stimulus at the end of the loom. | `0` (false) or `1` (true) | `0` |
+| `directPath` | Whether to loom with a direct path from the start to end polar coordinates. If false, then will use the greater circle distance. | `0` (false) or `1` (true) | `1` |
+| `` | Whether to fix the X axis (up and down) if true or the Y axis if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `minAngularAngle`, `maxAngularAngle` | The minimum and maximum angular degrees to allow the stimulus object to be displayed in if `fixedAngularSize` is true. If the object is outside this range, then it will become partly or wholely invisible (will not be rendered). 0 is forwards, -ve is up/left and +ve is down/right | `-180`-`180` | `minAngularSize: -30`, `maxAngularSize: 30` |
 
 ## DualLoom specific
@@ -73,11 +76,11 @@ Same as Loom, but the following parameters are modified for each looming object 
 | -------------- | ----------- | ------- | ------------- |
 | `startScaleX1`, `startScaleY1`, `startScaleZ1` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX1: 1`, `startScaleY1: 1`, `startScaleZ1: 1` |
 | `endScaleX1`, `endScaleY1`, `endScaleZ1` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX1: 1`, `endScaleY1: 1`, `endScaleZ1: 1` |
-| `startPolarPositionX1`, `startPolarPositionY1` | The stimulus polar position at the start of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth.| X: `-90`-`90`, Y: `-180`-`180` | `startPolarPositionX1: 0`, `startPolarPositionY1: 0` |
-| `endPolarPositionX1`, `endPolarPositionY1` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. | X: `-90`-`90`, Y: `-180`-`180` | `endPolarPositionX1: 0`, `endPolarPositionY1: 0` |
-| `targetLocationOffsetX1`, `targetLocationOffsetY1`, `targetLocationOffsetZ1` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
-| `startOffset1` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
-| `endOffset1` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `0` |
+| `startElevation1`, `startAzimuth1` | The stimulus polar position at the start of the loom. | elevation: `-90`-`90`, azimuth: `-180`-`180` | `startElevation1: 0`, `startAzimuth1: 0` |
+| `endElevation1`, `endAzimuth1` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation1: 0`, `endAzimuth1: 0` |
+| `originX1`, `originY1`, `originZ1` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
+| `startDistance1` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
+| `endDistance1` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `0` |
 | `duration1` | The duration of one cycle of the loom in seconds. | `0`-`99999` | `0` |
 | `numReps1` | The number of times to repeat the stimulus movement (`0.5` is start-finish, `1` is start-finish-start). | `0`-a very large number | `1` |
 | `delayToApproach1` | The delay in seconds before the loom starts. | `0`-`99999` | `5` |

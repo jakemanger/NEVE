@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3D scenes/Loom.unity
-    guid: ae090b3b34ef9485da1de212b71f766e
+    path: Assets/Scenes/3D scenes/DualLoom.unity
+    guid: 1d47893855ce94c36b834f989a548552
   m_configObjects: {}

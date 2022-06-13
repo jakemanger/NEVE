@@ -20,12 +20,12 @@ public class DualLoomManager : GenericStimulusManager
     public Vector2 startPolarPosition2 = new Vector2(0f, 0f);
     public Vector2 endPolarPosition1 = new Vector2(0f, 0f);
     public Vector2 endPolarPosition2 = new Vector2(0f, 0f);
-    public Vector3 targetLocationOffset1 = new Vector3(0f, 0f, 0f);
-    public Vector3 targetLocationOffset2 = new Vector3(0f, 0f, 0f);
-    public float startOffset1 = 10f;
-    public float startOffset2 = 10f;
-    public float endOffset1 = 10f;
-    public float endOffset2 = 10f;
+    public Vector3 origin1 = new Vector3(0f, 0f, 0f);
+    public Vector3 origin2 = new Vector3(0f, 0f, 0f);
+    public float startDistance1 = 10f;
+    public float startDistance2 = 10f;
+    public float endDistance1 = 10f;
+    public float endDistance2 = 10f;
     public float delayToApproach1 = 5f;
     public float delayToApproach2 = 5f;
     public float numReps1 = 2;
@@ -59,6 +59,10 @@ public class DualLoomManager : GenericStimulusManager
 
     public float delayToAppear1 = 0f;
     public float delayToAppear2 = 0f;
+    public bool directPath1 = true;
+    public bool directPath2 = true;
+    public bool hideAtEnd1 = false;
+    public bool hideAtEnd2 = false;
 
 
     protected override void GetPropertiesFromPython() {
@@ -78,11 +82,13 @@ public class DualLoomManager : GenericStimulusManager
         startScale1 = GetVector3FromPython("startScale", startScale1, "1");
         endScale1 = GetVector3FromPython("endScale", endScale1, "1");
         stimulusDuration1 = GetFloatFromPython("duration", stimulusDuration1, "1");
-        startPolarPosition1 = GetVector2FromPython("startPolarPosition", startPolarPosition1, "1");
-        endPolarPosition1 = GetVector2FromPython("endPolarPosition", endPolarPosition1, "1");
-        targetLocationOffset1 = GetVector3FromPython("targetLocationOffset", targetLocationOffset1, "1");
-        startOffset1 = GetFloatFromPython("startOffset", 50f, "1");
-        endOffset1 = GetFloatFromPython("endOffset", 1f, "1");
+        origin1 = GetVector3FromPython("origin", Vector3.zero, "1");
+        startPolarPosition1.x = -1 * GetFloatFromPython("startElevation", 0f, "1");
+        startPolarPosition1.y = GetFloatFromPython("startAzimuth", 0f, "1");
+        endPolarPosition1.x = -1 * GetFloatFromPython("endElevation", 0f, "1");
+        endPolarPosition1.y = GetFloatFromPython("endAzimuth", 0f, "1");
+        startDistance1 = GetFloatFromPython("startDistance", 50f, "1");
+        endDistance1 = GetFloatFromPython("endDistance", 1f, "1");
         delayToApproach1 = GetFloatFromPython("delayToApproach", 5f, "1");
         numReps1 = GetFloatFromPython("numReps", 1f, "1");
         stimulusColour1 = GetColorFromPython("stimulusColour", stimulusColour1, "1");
@@ -91,19 +97,27 @@ public class DualLoomManager : GenericStimulusManager
         outlineWidth1 = GetFloatFromPython("outlineWidth", 5f, "1");
         outlineColor1 = GetColorFromPython("outlineColour", outlineColor1, "1");
         fixedAngularSize1 = GetBoolFromPython("fixedAngularSize", false, "1");
-        fixXAxis1 = GetBoolFromPython("fixXAxis", false, "1"); // otherwise fix the Y axis
-        minAngularAngle1 = GetFloatFromPython("minAngularAngle", -30f, "1");
-        maxAngularAngle1 = GetFloatFromPython("maxAngularAngle", 30f, "1");
+        fixXAxis1 = GetBoolFromPython("fixElevation", false, "1"); // otherwise fix the Y axis
+        float negativeCorrection = 0f;
+        if (fixXAxis1) {
+            negativeCorrection = -1f;
+        }
+        minAngularAngle1 = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f, "1");
+        maxAngularAngle1 = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f, "1");
         delayToAppear1 = GetFloatFromPython("delayToAppear", 0f, "1");
+        directPath1 = GetBoolFromPython("directPath", true, "1");
+        hideAtEnd1 = GetBoolFromPython("hideAtEnd", false, "1");
 
         startScale2 = GetVector3FromPython("startScale", startScale2, "2");
         endScale2 = GetVector3FromPython("endScale", endScale2, "2");
         stimulusDuration2 = GetFloatFromPython("duration", 5f, "2");
-        startPolarPosition2 = GetVector2FromPython("startPolarPosition", startPolarPosition2, "2");
-        endPolarPosition2 = GetVector2FromPython("endPolarPosition", endPolarPosition2, "2");
-        targetLocationOffset2 = GetVector3FromPython("targetLocationOffset", targetLocationOffset2, "2");
-        startOffset2 = GetFloatFromPython("startOffset", 50f, "2");
-        endOffset2 = GetFloatFromPython("endOffset", 1f, "2");
+        origin2 = GetVector3FromPython("origin", Vector3.zero, "2");
+        startPolarPosition2.x = -1 * GetFloatFromPython("startElevation", 0f, "2");
+        startPolarPosition2.y = GetFloatFromPython("startAzimuth", 0f, "2");
+        endPolarPosition2.x = -1 * GetFloatFromPython("endElevation", 0f, "2");
+        endPolarPosition2.y = GetFloatFromPython("endAzimuth", 0f, "2");
+        startDistance2 = GetFloatFromPython("startDistance", 50f, "2");
+        endDistance2 = GetFloatFromPython("endDistance", 1f, "2");
         delayToApproach2 = GetFloatFromPython("delayToApproach", 5f, "2");
         numReps2 = GetFloatFromPython("numReps", 1f, "2");
         stimulusColour2 = GetColorFromPython("stimulusColour", stimulusColour2, "2");
@@ -112,10 +126,16 @@ public class DualLoomManager : GenericStimulusManager
         outlineWidth2 = GetFloatFromPython("outlineWidth", 5f, "2");
         outlineColor2 = GetColorFromPython("outlineColour", outlineColor2, "2");
         fixedAngularSize2 = GetBoolFromPython("fixedAngularSize", false, "2");
-        fixXAxis2 = GetBoolFromPython("fixXAxis", false, "2"); // otherwise fix the Y axis
-        minAngularAngle2 = GetFloatFromPython("minAngularAngle", -30f, "2");
-        maxAngularAngle2 = GetFloatFromPython("maxAngularAngle", 30f, "2");
+        fixXAxis2 = GetBoolFromPython("fixElevation", false, "2"); // otherwise fix the Y axis
+        negativeCorrection = 0f;
+        if (fixXAxis1) {
+            negativeCorrection = -1f;
+        }
+        minAngularAngle2 = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f, "2");
+        maxAngularAngle2 = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f, "2");
         delayToAppear2 = GetFloatFromPython("delayToAppear", 0f, "2");
+        directPath2 = GetBoolFromPython("directPath", true, "2");
+        hideAtEnd2 = GetBoolFromPython("hideAtEnd", false, "2");
     }
 
     public override void SetupStimuli() {
@@ -134,10 +154,10 @@ public class DualLoomManager : GenericStimulusManager
         stimGenerator1.stimulusColour = stimulusColour1;
         stimGenerator1.startScale = startScale1;
         stimGenerator1.endScale = endScale1;
-        stimGenerator1.startOffset = startOffset1;
-        stimGenerator1.endOffset = endOffset1;
+        stimGenerator1.startDistance = startDistance1;
+        stimGenerator1.endDistance = endDistance1;
         stimGenerator1.delayToApproach = delayToApproach1;
-        stimGenerator1.targetLocationOffset = targetLocationOffset1;
+        stimGenerator1.origin = origin1;
         stimGenerator1.startPolarPosition = startPolarPosition1;
         stimGenerator1.endPolarPosition = endPolarPosition1;
         stimGenerator1.numReps = numReps1;
@@ -157,6 +177,8 @@ public class DualLoomManager : GenericStimulusManager
         stimGenerator1.manualControl = manualControl;
         stimGenerator1.mouseMoveSpeed = mouseMoveSpeed;
         stimGenerator1.delayToAppear = delayToAppear1;
+        stimGenerator1.directPath = directPath1;
+        stimGenerator1.hideAtEnd = hideAtEnd1;
 
         stimGenerator1.Reset();
 
@@ -167,10 +189,10 @@ public class DualLoomManager : GenericStimulusManager
             stimGenerator2.stimulusColour = stimulusColour2;
             stimGenerator2.startScale = startScale2;
             stimGenerator2.endScale = endScale2;
-            stimGenerator2.startOffset = startOffset2;
-            stimGenerator2.endOffset = endOffset2;
+            stimGenerator2.startDistance = startDistance2;
+            stimGenerator2.endDistance = endDistance2;
             stimGenerator2.delayToApproach = delayToApproach2;
-            stimGenerator2.targetLocationOffset = targetLocationOffset2;
+            stimGenerator2.origin = origin2;
             stimGenerator2.startPolarPosition = startPolarPosition2;
             stimGenerator2.endPolarPosition = endPolarPosition2;
             stimGenerator2.numReps = numReps2;
@@ -190,6 +212,8 @@ public class DualLoomManager : GenericStimulusManager
             stimGenerator2.manualControl = manualControl;
             stimGenerator2.mouseMoveSpeed = mouseMoveSpeed;
             stimGenerator2.delayToAppear = delayToAppear2;
+            stimGenerator2.directPath = directPath2;
+            stimGenerator2.hideAtEnd = hideAtEnd2;
 
             stimGenerator2.Reset();
         }

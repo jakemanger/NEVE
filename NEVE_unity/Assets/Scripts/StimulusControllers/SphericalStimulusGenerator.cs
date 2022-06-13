@@ -14,15 +14,19 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public Vector2 endPolarPosition = new Vector2(0f, 0f);
     public Vector3 startScale = new Vector3(1f, 1f, 1f);
     public Vector3 endScale = new Vector3(1f, 1f, 1f);
-    public Vector3 targetLocationOffset = new Vector3(0f, 0f, 0f);
-    public float startOffset = 100f;
-    public float endOffset = 1f;
+    public Vector3 origin = new Vector3(0f, 0f, 0f);
+    public float startDistance = 100f;
+    public float endDistance = 1f;
     public float duration = 5f;
     public float delayToApproach = 5f;
     public float delayToAppear = 0f;
     public Color stimulusColour = Color.white;
     public bool manualControl = false;
     public float mouseMoveSpeed = 2f;
+    public bool directPath = true; // if false, the stimulus will follow the greater circle path according to how elevation and azimuth were changed.
+    public bool hideAtEnd = false;
+
+
     // for gratings
     public float gratingNum = 100f;
     public int gratingIsSquare = 0;
@@ -72,7 +76,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         base.Reset();
 
         // reset variables
-        offsetFromCenter = startOffset;
+        offsetFromCenter = startDistance;
         currentlyReturning = false;
         numRepsDone = 0;
         delayTimeElapsed = 0f;
@@ -106,9 +110,14 @@ public class SphericalStimulusGenerator : GenericStimulusController
             SetupFixedAngularSizeMaterial();
         }
 
-        Vector3 pos = stimulus.transform.localPosition;
-        stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
-        transform.rotation = Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f));
+        if (directPath) {
+            Vector3 startPositionCartesian = PolarToCartesian(startPolarPosition, startDistance);
+            stimulus.transform.position = startPositionCartesian;
+        } else {
+            Vector3 pos = stimulus.transform.localPosition;
+            stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+            transform.rotation = Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f));
+        }
 
         stimulus.transform.localScale = startScale;
 
@@ -119,33 +128,16 @@ public class SphericalStimulusGenerator : GenericStimulusController
         print(delayToAppear);
         if (delayToAppear > 0) {
             stimulusRenderer.enabled = false;
+        } else {
+            stimulusRenderer.enabled = true;
         }
     }
 
     void Update()
     {
         if (manualControl) {
-            if (!move && !wantToMove && !justFinishedMoving) {
-                Vector3 rot = transform.eulerAngles;
-                transform.rotation = Quaternion.Euler(new Vector3(
-                        rot.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed,
-                        rot.y += Input.GetAxis("Mouse X") * mouseMoveSpeed,
-                        0f
-                    )
-                );
-            }
-            stimulusSize += Input.mouseScrollDelta.y * mouseMoveSpeed;
-            stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
-
-            if (startScale == endScale) {
-                stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha0)) {
-                transform.rotation = Quaternion.identity;
-                stimulus.transform.localScale = startScale;
-            }
-        } 
+            ManualControl();
+        }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (move || justFinishedMoving) {
@@ -155,7 +147,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
             } else {
                 wantToMove = true;
             }
-            offsetFromCenter = startOffset;
+            offsetFromCenter = startDistance;
             timeElapsed = 0f;
             numRepsDone = 0;
             delayTimeElapsed = 0f;
@@ -180,11 +172,14 @@ public class SphericalStimulusGenerator : GenericStimulusController
         if (wantToMove) {
             // print("wanting to move");
             delayTimeElapsed += Time.deltaTime;
+            if (hideAtEnd) {
+                stimulusRenderer.enabled = true;
+            }
             if (!move && delayTimeElapsed >= delayToApproach) {
                 move = true;
                 wantToMove = false;
                 delayTimeElapsed = 0f;
-                offsetFromCenter = startOffset;
+                offsetFromCenter = startDistance;
                 currentlyReturning = false;
                 timeElapsed = 0f;
                 numRepsDone = 0;
@@ -219,22 +214,14 @@ public class SphericalStimulusGenerator : GenericStimulusController
             base.stimulusState = StimulusState.Started;
             if (!currentlyReturning) {
                 // print("Moving out");
-                offsetFromCenter = Mathf.Lerp(startOffset, endOffset, timeElapsed / duration);
-                // move rotation
-                transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
-                                                                Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
-                                                                timeElapsed / duration);
+                Move(startDistance, endDistance, startPolarPosition, endPolarPosition);
                 if (startScale != endScale) {
                     // scale axes
                     stimulus.transform.localScale = Vector3.Lerp(startScale, endScale, timeElapsed / duration);
                 }
             } else {
                 // print("Coming back in");
-                offsetFromCenter = Mathf.Lerp(endOffset, startOffset, timeElapsed / duration);
-                // move rotation
-                transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(endPolarPosition.x, endPolarPosition.y, 0f)),
-                                                                Quaternion.Euler(new Vector3(startPolarPosition.x, startPolarPosition.y, 0f)),
-                                                                timeElapsed / duration);
+                Move(endDistance, startDistance, endPolarPosition, startPolarPosition);
                 if (startScale != endScale) {
                     // scale axes
                     stimulus.transform.localScale = Vector3.Lerp(endScale, startScale, timeElapsed / duration);
@@ -256,16 +243,62 @@ public class SphericalStimulusGenerator : GenericStimulusController
                     wantToMove = false;
                     justFinishedMoving = true;
                     base.stimulusState = StimulusState.Ended;
+                    if (hideAtEnd) {
+                        stimulusRenderer.enabled = false;
+                    }
                 }
             } 
 
             timeElapsed += Time.deltaTime;
         } 
-        Vector3 pos = stimulus.transform.localPosition;
-        stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
 
-        // add offset to cartesian position in case you want a near miss stimuli
-        transform.position = targetLocationOffset;
+        if (!directPath) {
+            Vector3 pos = stimulus.transform.localPosition;
+            stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
+        }
+        // add offset to the origin
+        transform.position = origin;
+
+        // always make the object face the origin
+        stimulus.transform.LookAt(origin);
+    }
+
+    void ManualControl() {
+        if (!move && !wantToMove && !justFinishedMoving) {
+            Vector3 rot = transform.eulerAngles;
+            transform.rotation = Quaternion.Euler(new Vector3(
+                    rot.x += -Input.GetAxis("Mouse Y") * mouseMoveSpeed,
+                    rot.y += Input.GetAxis("Mouse X") * mouseMoveSpeed,
+                    0f
+                )
+            );
+        }
+        stimulusSize += Input.mouseScrollDelta.y * mouseMoveSpeed;
+        stimulusSize = Mathf.Clamp(stimulusSize, 0f, 1000f);
+
+        if (startScale == endScale) {
+            stimulus.transform.localScale = new Vector3(stimulusSize, stimulusSize, stimulusSize);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            transform.rotation = Quaternion.identity;
+            stimulus.transform.localScale = startScale;
+        }
+    }
+
+    void Move(float startDistance, float endDistance, Vector2 startPolarCoordinate, Vector2 endPolarCoordinate) {
+        if (directPath) {
+            Vector3 startPositionCartesian = PolarToCartesian(startPolarCoordinate, startDistance);
+            Vector3 endPositionCartesian = PolarToCartesian(endPolarCoordinate, endDistance);
+            stimulus.transform.position = Vector3.Lerp(startPositionCartesian, endPositionCartesian, timeElapsed / duration);
+        } else {
+            // greater circle path
+            offsetFromCenter = Mathf.Lerp(startDistance, endDistance, timeElapsed / duration);
+            // move rotation
+            transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(startPolarCoordinate.x, startPolarCoordinate.y, 0f)),
+                                                            Quaternion.Euler(new Vector3(endPolarCoordinate.x, endPolarCoordinate.y, 0f)),
+                                                            timeElapsed / duration);
+        }
     }
 
     Vector2 CartesianToPolar(Vector3 point) {
@@ -281,8 +314,8 @@ public class SphericalStimulusGenerator : GenericStimulusController
         return polar;
     }
 
-    Vector3 PolarToCartesian(Vector2 polar) {
-        Vector3 origin = new Vector3(0, 0, offsetFromCenter);
+    Vector3 PolarToCartesian(Vector2 polar, float distance) {
+        Vector3 origin = new Vector3(0, 0, distance);
 
         // build a quaternion using euler angles for lat and lon
         Quaternion rotation = Quaternion.Euler(polar.x, polar.y, 0);
