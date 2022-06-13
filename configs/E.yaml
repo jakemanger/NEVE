@@ -60,10 +60,10 @@ horizonHeight: 0
 stimulusType1: 1
 startScaleX1: 5
 startScaleY1: 2.5
-startScaleZ1: 0.0001
+startScaleZ1: 2.5
 endScaleX1: 5
 endScaleY1: 2.5
-endScaleZ1: 0.0001
+endScaleZ1: 2.5
 duration1: 5
 startPolarPositionX1: -15
 startPolarPositionY1: 0 
@@ -89,10 +89,10 @@ maxAngularAngle1: 3.185
 stimulusType2: 1
 startScaleX2: 500
 startScaleY2: 3
-startScaleZ2: 0.0001
+startScaleZ2: 3
 endScaleX2: 500
 endScaleY2: 3
-endScaleZ2: 0.0001
+endScaleZ2: 3
 duration2: 5
 startPolarPositionX2: -15
 startPolarPositionY2: 0 
@@ -102,7 +102,7 @@ targetLocationOffsetX2: 0
 targetLocationOffsetY2: 0 
 targetLocationOffsetZ2: 0
 startOffset2: 3000.1
-endOffset2: 1.5001
+endOffset2: 1.50001
 numReps2: 0.5 
 delayToApproach2: 5
 stimulusColourR2: 0 

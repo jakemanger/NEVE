@@ -63,15 +63,15 @@ startScaleZ: 3
 endScaleX: 3
 endScaleY: 3
 endScaleZ: 3  
-startPolarPositionX: -13.854
-startPolarPositionY: -1.146
-endPolarPositionX: -13.854
-endPolarPositionY: -1.146
-targetLocationOffsetX: 10
-targetLocationOffsetY: 10
+startPolarPositionX: -15
+startPolarPositionY: 0
+endPolarPositionX: -15 ## use equation to calculate 
+endPolarPositionY: 0 ## use equation to calculate 
+targetLocationOffsetX: 0
+targetLocationOffsetY: 0
 targetLocationOffsetZ: 0 
-startOffset: 500.0999
-endOffset: 15
+startOffset: 500
+endOffset: 1.5
 duration: 5
 delayToApproach: 5 
 stimulusColourR: 0

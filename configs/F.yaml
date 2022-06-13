@@ -59,10 +59,10 @@ horizonHeight: 0
 stimulusType: 1
 startScaleX: 3
 startScaleY: 400
-startScaleZ: 0.0001
+startScaleZ: 3
 endScaleX: 3
 endScaleY: 400
-endScaleZ: 0.0001
+endScaleZ: 3
 startPolarPositionX: -15 
 startPolarPositionY: 0  
 endPolarPositionX: -15
@@ -71,7 +71,7 @@ targetLocationOffsetX: 0
 targetLocationOffsetY: 0 
 targetLocationOffsetZ: 0 
 startOffset: 3000
-endOffset: 1.5
+endOffset: 1.50001
 duration: 5
 delayToApproach: 5 
 stimulusColourR: 0

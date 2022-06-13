@@ -63,14 +63,15 @@ startScaleZ: 3
 endScaleX: 3
 endScaleY: 3
 endScaleZ: 3  
-startPolarPositionX: -14.771
-startPolarPositionY: -0.229
-endPolarPositionX: -14.771
-endPolarPositionY: -0.229
+startPolarPositionX: -15
+startPolarPositionY: 0
+endPolarPositionX: -15 ## use equation to calculate 
+endPolarPositionY: 0 ## use equation to calculate 
+
 targetLocationOffsetX: 1.5
 targetLocationOffsetY: 1.5
 targetLocationOffsetZ: 0 
-startOffset: 500.004
+startOffset: 500
 endOffset: 1.5
 duration: 5
 delayToApproach: 5 
