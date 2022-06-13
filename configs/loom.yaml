@@ -15,7 +15,7 @@
 # an example with three approaching looming stimuli: grey, green, blue
 
 # general
-buildDir: ./builds/Loom/
+buildDir: None # ./builds/Loom/
 frameDataIdCode: [11, 12, 13]
 animalCode: [1, 2, 3] 
 execution_order: [0, 1, 2]
@@ -64,28 +64,28 @@ startScaleZ: 1
 endScaleX: 1
 endScaleY: 1
 endScaleZ: 1  
-startPolarPositionX: -15 
-startPolarPositionY: 0  
-endPolarPositionX: -15
-endPolarPositionY: 0 
-targetLocationOffsetX: 0 
-targetLocationOffsetY: 0 
-targetLocationOffsetZ: 0 
-startOffset: 100 
-endOffset: 5 
+startElevation: 15 
+startAzimuth: 0  
+endElevation: 15
+endAzimuth: 0 
+startDistance: 100 
+endDistance: 5 
 duration: 8 
 delayToApproach: 5 
 stimulusColourR: [0.3, 0, 0]
 stimulusColourG: [0.3, 1, 0]
 stimulusColourB: [0.3, 0, 1]
 stimulusColourA: 1
-drawOutline: 1
+drawOutline: 0
 outlineWidth: 1
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
 fixedAngularSize: 0
-fixXAxis: 0 
-minAngularAngle: -15.5
-maxAngularAngle: -14.5
+fixElevation: 0 
+minAngularAngle: 15.5
+maxAngularAngle: 14.5
+originX: 0 
+originY: 0 
+originZ: 0 

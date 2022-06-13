@@ -13,7 +13,7 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: ./builds/DualLoom
+buildDir: None # ./builds/DualLoom
 frameDataIdCode: [800001, 800002]
 animalCode: [1, 2]
 execution_order: [0, 1]
@@ -29,7 +29,7 @@ syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1
 syncSquareDisplayNum: 0
-displayStimulusCode: 0
+displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
@@ -63,15 +63,12 @@ endScaleX1: 1
 endScaleY1: 1
 endScaleZ1: 1
 duration1: 5
-startPolarPositionX1: -15
-startPolarPositionY1: 0 
-endPolarPositionX1: -15
-endPolarPositionY1: 0 
-targetLocationOffsetX1: [0, 0] 
-targetLocationOffsetY1: [0, 0]
-targetLocationOffsetZ1: [0, 0]
-startOffset1: 50 
-endOffset1: 5
+startElevation1: 15
+startAzimuth1: 0 
+endElevation1: 15
+endAzimuth1: 90 
+startDistance1: 50 
+endDistance1: 5
 numReps1: [0.5, 1] 
 delayToApproach1: [5, 5] 
 stimulusColourR1: 0.3 
@@ -79,9 +76,12 @@ stimulusColourG1: 0.3
 stimulusColourB1: 0.3
 stimulusColourA1: 1
 fixedAngularSize1: 0
-fixXAxis1: 0 
-minAngularAngle1: -15.5
-maxAngularAngle1: -14.5
+fixElevation1: 1
+minAngularAngle1: 15.5
+maxAngularAngle1: 14.5
+originX1: [0, 0] 
+originY1: [0, 0]
+originZ1: [0, 0]
 # object 2
 stimulusType2: 1
 startScaleX2: 1.5
@@ -91,15 +91,12 @@ endScaleX2: 1.5
 endScaleY2: 1.5
 endScaleZ2: 1.5
 duration2: 5
-startPolarPositionX2: -15
-startPolarPositionY2: 0 
-endPolarPositionX2: -15
-endPolarPositionY2: 0 
-targetLocationOffsetX2: [0, 0]  
-targetLocationOffsetY2: [0, 0] 
-targetLocationOffsetZ2: [0, 0]
-startOffset2: 55 
-endOffset2: 6  
+startElevation2: 15
+startAzimuth2: 0 
+endElevation2: 15
+endAzimuth2: 0 
+startDistance2: 55 
+endDistance2: 6  
 numReps2: [0.5, 1] 
 delayToApproach2: [5, 5]
 stimulusColourR2: 0 
@@ -107,6 +104,9 @@ stimulusColourG2: 0
 stimulusColourB2: 0
 stimulusColourA2: 1
 fixedAngularSize2: 0
-fixXAxis2: 0 
-minAngularAngle2: -15.5
-maxAngularAngle2: -14.5
+fixElevation2: 1
+minAngularAngle2: 15.5
+maxAngularAngle2: 14.5
+originX2: [0, 0]  
+originY2: [0, 0] 
+originZ2: [0, 0]

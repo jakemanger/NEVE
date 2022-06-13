@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
+  m_IndirectSpecularColor: {r: 0.14358507, g: 0.14358507, b: 0.14358507, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -364,6 +364,10 @@ PrefabInstance:
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929488128777664785, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: directPath
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664790, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_RootOrder
@@ -737,6 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -752,6 +757,8 @@ MonoBehaviour:
   recordingFrequency: 1
   frameDataIdCode: 22
   animalCode: 10
+  syncSquarePos: {x: -29.84, y: 18.17102}
+  syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 508959246}
   syncSquareDisplayNum: 0
@@ -763,6 +770,8 @@ MonoBehaviour:
   blackOutCanvases: {fileID: 188564488}
   manualControl: 0
   mouseMoveSpeed: 2
+  parametersExpected: []
+  errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   horizonHeight: 0
   aboveHorizonColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   belowHorizonColour: {r: 1, g: 1, b: 1, a: 1}
@@ -772,20 +781,20 @@ MonoBehaviour:
   endScale2: {x: 1, y: 1, z: 1}
   startPolarPosition1: {x: -10, y: 0}
   startPolarPosition2: {x: -10, y: -15}
-  endPolarPosition1: {x: -10, y: 0}
+  endPolarPosition1: {x: -10, y: 90}
   endPolarPosition2: {x: -10, y: -15}
-  targetLocationOffset1: {x: 0, y: 0, z: 0}
-  targetLocationOffset2: {x: 0, y: 0, z: 0}
-  startOffset1: 60
-  startOffset2: 50
-  endOffset1: 5
-  endOffset2: 3
+  origin1: {x: 0, y: 0, z: 0}
+  origin2: {x: 0, y: 0, z: 0}
+  startDistance1: 50
+  startDistance2: 50
+  endDistance1: 10
+  endDistance2: 10
   delayToApproach1: 5
   delayToApproach2: 5
   numReps1: 2
   numReps2: 2
-  stimulusColour1: {r: 0, g: 0, b: 0, a: 1}
-  stimulusColour2: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+  stimulusColour1: {r: 0.8867924, g: 0.12967247, b: 0.12967247, a: 1}
+  stimulusColour2: {r: 0.22574759, g: 0.486399, b: 0.8396226, a: 1}
   stimulusDuration1: 5
   stimulusDuration2: 5
   stimulusType1: 1
@@ -801,13 +810,19 @@ MonoBehaviour:
   gratingMaxIntensity: 0.01
   gratingMinIntensity: 0
   fixedAngularSize1: 0
-  fixXAxis1: 1
+  fixXAxis1: 0
   minAngularAngle1: -2
   maxAngularAngle1: 2
   fixedAngularSize2: 0
-  fixXAxis2: 1
+  fixXAxis2: 0
   minAngularAngle2: -17
   maxAngularAngle2: -13
+  delayToAppear1: 0
+  delayToAppear2: 0
+  directPath1: 1
+  directPath2: 1
+  hideAtEnd1: 0
+  hideAtEnd2: 0
 --- !u!1001 &1415290230749237764
 PrefabInstance:
   m_ObjectHideFlags: 0
