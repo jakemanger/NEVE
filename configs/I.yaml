@@ -70,8 +70,8 @@ endPolarPositionY: -1.146
 targetLocationOffsetX: 10
 targetLocationOffsetY: 10
 targetLocationOffsetZ: 0 
-startOffset: 500.09999
-endOffset: 27
+startOffset: 500.0999
+endOffset: 15
 duration: 5
 delayToApproach: 5 
 stimulusColourR: 0

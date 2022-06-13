@@ -12,11 +12,13 @@
 # Scroll the mouse wheel - Make the stimulus larger or smaller
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
+# an example with three approaching looming stimuli: grey, green, blue
+
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2]
-animalCode: [1, 2] 
-execution_order: [0, 1]
+frameDataIdCode: [1, 2, 3]
+animalCode: [1, 2, 3] 
+execution_order: [0, 1, 2]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -63,15 +65,15 @@ startScaleZ: 3
 endScaleX: 3
 endScaleY: 3
 endScaleZ: 3  
-startPolarPositionX: -14.771
-startPolarPositionY: -0.229
-endPolarPositionX: -14.771
-endPolarPositionY: -0.229
-targetLocationOffsetX: 2
-targetLocationOffsetY: 2
+startPolarPositionX: [-15, -14.771, -13.853]
+startPolarPositionY: [0, -0.229, -1.146]
+endPolarPositionX: [-15, -14.771, -13.853]
+endPolarPositionY: [0, -0.229, -1.146]
+targetLocationOffsetX: [0, 2, 10]
+targetLocationOffsetY: [0, 2, 10]
 targetLocationOffsetZ: 0 
-startOffset: 500.004
-endOffset: 15
+startOffset: [500, 500.004, 500.0999]
+endOffset: 27
 duration: 5
 delayToApproach: 5 
 stimulusColourR: 0
