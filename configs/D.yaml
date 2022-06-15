@@ -1,23 +1,9 @@
-# Below are the parameters used to alter a unity experiment with the name
-# DualMoving
-
-# Controls for the experiment
-# escape - stall Unity, end the experiment and give control to python.
-# F - flicker the stimulus and the sync square to sync unity with the camera
-# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
-# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
-# Space - start movement/reset the position of the stimulus
-# IF manualControl==1,
-# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
-# Scroll the mouse wheel - Make the stimulus larger or smaller
-# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
-
 # general
 buildDir: ./builds/DualLoom
 frameDataIdCode: [1, 2]
 animalCode: [1, 2]
 execution_order: [0, 1]
-experimentDuration: 99999
+experimentDuration: [99999, 99999]
 recordFrameData: 1
 recordEachFrame: 1
 recordingFrequency: 1
@@ -57,33 +43,33 @@ horizonHeight: 0
 
 
 # object 1
-stimulusType1: 1
-startScaleX1: 2.5
+stimulusType1: 1 # 0 = sphere, 1 = cube
+startScaleX1: 2.5  # size of stimulus in cm (edge to edge of sphere)
 startScaleY1: 2.5
 startScaleZ1: 2.5
 endScaleX1: 2.5
 endScaleY1: 2.5
 endScaleZ1: 2.5
-duration1: 5
-startPolarPositionX1: -15
-startPolarPositionY1: 0 
-endPolarPositionX1: -15
-endPolarPositionY1: 0 
-targetLocationOffsetX1: 0
-targetLocationOffsetY1: 0
-targetLocationOffsetZ1: 0
-startOffset1: 3000
-endOffset1: 1.5
-numReps1: 0.5 
+duration1: 5 # 24.925 (to get 200 mm/s)
+startElevation1: 15
+startAzimuth1: 0 
+endElevation1: 15
+endAzimuth1: 0
+startDistance1: 3000
+endDistance1: 1.25
+numReps1: 0.5  
 delayToApproach1: 5
 stimulusColourR1: 0.5
 stimulusColourG1: 0.5
 stimulusColourB1: 0.5
 stimulusColourA1: 1
 fixedAngularSize1: 1
-fixXAxis1: 1
+fixElevation1: 1
 minAngularAngle1: -3.185
 maxAngularAngle1: 3.185
+originX1: 0
+originY1: 0
+originZ1: 0
 
 # object 2
 stimulusType2: 1
@@ -93,23 +79,23 @@ startScaleZ2: 3
 endScaleX2: 500
 endScaleY2: 3
 endScaleZ2: 3
-duration2: 5
-startPolarPositionX2: -15
-startPolarPositionY2: 0 
-endPolarPositionX2: -15
-endPolarPositionY2: 0 
-targetLocationOffsetX2: 0 
-targetLocationOffsetY2: 0 
-targetLocationOffsetZ2: 0
-startOffset2: 3000.1
-endOffset2: 1.50001
-numReps2: 0.5 
+duration2: 5 # 24.925 (to get 200 mm/s)
+startElevation2: 15
+startAzimuth2: 0 
+endElevation2: 15
+endAzimuth2: 0 
+startDistance2: 3000
+endDistance2: 1.5
+numReps2: 0.5
 delayToApproach2: 5
 stimulusColourR2: 0 
 stimulusColourG2: 0
 stimulusColourB2: 0
 stimulusColourA2: 1
 fixedAngularSize2: 1
-fixXAxis2: 1
+fixElevation2: 1
 minAngularAngle2: -3.185
 maxAngularAngle2: 3.185
+originX2: 0
+originY2: 0 
+originZ2: 0

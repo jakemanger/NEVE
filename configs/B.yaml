@@ -1,18 +1,3 @@
-# Below are the parameters used to alter a unity experiment with the name
-# DualMoving
-
-# Controls for the experiment
-# escape - stall Unity, end the experiment and give control to python.
-# F - flicker the stimulus and the sync square to sync unity with the camera
-# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
-# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
-# Space - start movement/reset the position of the stimulus
-# IF manualControl==1,
-# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
-# Scroll the mouse wheel - Make the stimulus larger or smaller
-# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
-
-# general
 # general
 buildDir: ./builds/DualLoom
 frameDataIdCode: [1, 2]
@@ -33,19 +18,18 @@ syncSquareDisplayNum: 0
 displayStimulusCode: 1
 fictracFeedback: 0
 
-
 # perspective
-eyeHeight: 2.864  # height of the animals eyes relative to the bottom PIXEL of the front/side monitors - used for calculating perspective (cm). This is always in the center of the monitors.
-distanceToMonitors: 27  # distance from center of eye to all monitors (cm)
-monitorDimensionsX: 52 # x dimensions of monitors (cm)
-monitorDimensionsY: 32  # y dimensions of monitors (cm)
-# WARNING unity considers display numbers from left to right
-frontDisplayNum: 0  # 0 = first connected display, 1 = second, and so on
-rightDisplayNum: 1  # front refers to front camera, right refers to right and so on
+eyeHeight: 2.864
+distanceToMonitors: 27
+monitorDimensionsX: 52
+monitorDimensionsY: 32
+frontDisplayNum: 0
+rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
 
 # stimuli
+# background
 darkAdaptTime: 0
 aboveHorizonColourR: 0.5
 aboveHorizonColourG: 0.5
@@ -55,9 +39,9 @@ belowHorizonColourR: 0.3
 belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
-horizonHeight: 0  # degrees
+horizonHeight: 0 
 
-# sphere 1
+# object 1
 stimulusType1: 1 # 0 = sphere, 1 = cube
 startScaleX1: 2.5  # size of stimulus in cm (edge to edge of sphere)
 startScaleY1: 2.5
@@ -65,44 +49,54 @@ startScaleZ1: 2.5
 endScaleX1: 2.5
 endScaleY1: 2.5
 endScaleZ1: 2.5
-duration1: 5
+duration1: 5 # 24.925 (to get 200 mm/s)
 startElevation1: 15
 startAzimuth1: 0 
 endElevation1: 15
 endAzimuth1: 0
 startDistance1: 500
-endDistance1: 1
-numReps1: 0.5  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
-delayToApproach1: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
-stimulusColourR1: 0.5  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
+endDistance1: 1.25
+numReps1: 0.5  
+delayToApproach1: 5
+stimulusColourR1: 0.5
 stimulusColourG1: 0.5
 stimulusColourB1: 0.5
 stimulusColourA1: 1
-originX1: [0, 0] 
-originY1: [0, 0]
-originZ1: [0, 0]
+fixedAngularSize1: 0
+fixElevation1: 1
+minAngularAngle1: 15.5
+maxAngularAngle1: 14.5
+originX1: 0
+originY1: 0
+originZ1: 0
 
-# sphere 2
-stimulusType2: 1 # 0 = sphere, 1 = cube
-startScaleX2: 3  # size of stimulus in cm (edge to edge of sphere)
+# object 2
+stimulusType2: 1
+startScaleX2: 3
 startScaleY2: 3
 startScaleZ2: 3
 endScaleX2: 3
 endScaleY2: 3
 endScaleZ2: 3
-duration2: 5
+duration2: 5 # 24.925 (to get 200 mm/s)
 startElevation2: 15
 startAzimuth2: 0 
 endElevation2: 15
 endAzimuth2: 0 
-startDistance2: 500.0001
-endDistance2: 1.0001
-numReps2: 0.5  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
-delayToApproach2: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
-stimulusColourR2: 0  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
+startDistance2: 500
+endDistance2: 1.5
+numReps2: 0.5
+delayToApproach2: 5
+stimulusColourR2: 0 
 stimulusColourG2: 0
 stimulusColourB2: 0
 stimulusColourA2: 1
-originX2: [0, 0]  
-originY2: [0, 0] 
-originZ2: [0, 0]
+fixedAngularSize2: 0
+fixElevation2: 1
+minAngularAngle2: 15.5
+maxAngularAngle2: 14.5
+originX2: 0
+originY2: 0 
+originZ2: 0
+
+

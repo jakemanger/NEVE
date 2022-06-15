@@ -54,6 +54,8 @@ belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
+
+
 # object 1
 stimulusType1: 1
 startScaleX1: 1 
@@ -62,6 +64,7 @@ startScaleZ1: 1
 endScaleX1: 1
 endScaleY1: 1
 endScaleZ1: 1
+
 duration1: 5
 startElevation1: 15
 startAzimuth1: 0 
