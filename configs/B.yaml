@@ -13,23 +13,26 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
+# general
 buildDir: ./builds/DualLoom
-frameDataIdCode: [1, 2]  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
-animalCode: [1, 1]  # a id code representing the animal
-execution_order: [0, 1]  # 0 = first, 1 = second
-experimentDuration: 99999  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python
-recordFrameData: 1  # 0 = false, 1 = true. record frame and stimulus related data?
-recordEachFrame: 1  # 0 = false, 1 = true. record data each frame. If false, then uses the recording frequency
-recordingFrequency: 1  # only used if recordFrameData=1 and recordEachFrame=0. time in seconds to record stimulus data
-manualControl: 0  # 0 = false, 1 = true. Give manual control to the user? if so, follow control the guide at the top of this script
-mouseMoveSpeed: 2  # move speed of mouse if manual_control=1
-flickerDuration: 0.1  # duration of flicker of sync square and stimulus when pressing f and at start of experiment
-syncSquareColorR: 1
-syncSquareColorG: 0
-syncSquareColorB: 0
-syncSquareColorA: 1
-syncSquareDisplayNum: 0  # 0 = first connected display, 1 = second, and so on
-displayStimulusCode: 1  # display the stimulus code at all times on the sync square? (in white) 0 = false, 1 = true
+frameDataIdCode: [1, 2]
+animalCode: [1, 2]
+execution_order: [0, 1]
+experimentDuration: [99999, 99999]
+recordFrameData: 1
+recordEachFrame: 1
+recordingFrequency: 1
+manualControl: 0
+mouseMoveSpeed: 2
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 0
+displayStimulusCode: 1
+fictracFeedback: 0
+
 
 # perspective
 eyeHeight: 2.864  # height of the animals eyes relative to the bottom PIXEL of the front/side monitors - used for calculating perspective (cm). This is always in the center of the monitors.
@@ -62,23 +65,22 @@ startScaleZ1: 2.5
 endScaleX1: 2.5
 endScaleY1: 2.5
 endScaleZ1: 2.5
-stimulusDuration1: 5  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
-# WARNING polar positions are in rotation axes (so the opposite of what you would intuitively think) x = up down, y = left right
-startPolarPositionX1: -15  # stimulus starting x ROTATION in polar coordinates in degrees (-90 to 90) relative to animal eye position
-startPolarPositionY1: 0  # stimulus starting y ROTATION in polar coordinates in degrees (-180 to 180) relative to animal eye position
-endPolarPositionX1: -15  # stimulus ending x ROTATION in polar coordinates in degrees (-90 to 90) relative to animal eye position
-endPolarPositionY1: 0  # stimulus ending y ROTATION in polar coordinates in degrees (-180 to 180) relative to animal eye position
-targetLocationOffsetX1: [0, 0]  # x offset for the target of a looming stimulus (cm) relative to animal eye position
-targetLocationOffsetY1: [0, 0]  # y offset for the target of a looming stimulus (cm) relative to animal eye position
-targetLocationOffsetZ1: [0, 0]  # z offset for the target of a looming stimulus (cm) relative to animal eye position
-startOffset1: 500  # start distance of object from eye of animal (cm)
-endOffset1: 1.5 # end distance of object from eye of animal after looming (cm)
+duration1: 5
+startElevation1: 15
+startAzimuth1: 0 
+endElevation1: 15
+endAzimuth1: 0
+startDistance1: 500
+endDistance1: 1
 numReps1: 0.5  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
 delayToApproach1: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
 stimulusColourR1: 0.5  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
 stimulusColourG1: 0.5
 stimulusColourB1: 0.5
 stimulusColourA1: 1
+originX1: [0, 0] 
+originY1: [0, 0]
+originZ1: [0, 0]
 
 # sphere 2
 stimulusType2: 1 # 0 = sphere, 1 = cube
@@ -88,20 +90,19 @@ startScaleZ2: 3
 endScaleX2: 3
 endScaleY2: 3
 endScaleZ2: 3
-stimulusDuration2: 5  # duration of stimulus movement (from the start to end position. NOT a whole back and forwards loop)
-# WARNING polar positions are in rotation axes (so the opposite of what you would intuitively think)  x = up down, y = left right
-startPolarPositionX2: -15  # stimulus starting x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
-startPolarPositionY2: 0  # stimulus starting y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
-endPolarPositionX2: -15  # stimulus ending x position in polar coordinates in degrees (-90 to 90) relative to animal eye position
-endPolarPositionY2: 0  # stimulus ending y position in polar coordinates in degrees (-180 to 180) relative to animal eye position
-targetLocationOffsetX2: [0, 0]  # x offset for the target of a looming stimulus (cm) relative to animal eye position
-targetLocationOffsetY2: [0, 0]  # y offset for the target of a looming stimulus (cm) relative to animal eye position
-targetLocationOffsetZ2: [0, 0]  # z offset for the target of a looming stimulus (cm) relative to animal eye position
-startOffset2: 500.0001  # start distance of object from eye of animal (cm)
-endOffset2: 1.5001  # end distance of object from eye of animal after looming (cm)
+duration2: 5
+startElevation2: 15
+startAzimuth2: 0 
+endElevation2: 15
+endAzimuth2: 0 
+startDistance2: 500.0001
+endDistance2: 1.0001
 numReps2: 0.5  # number of full back and fourth movements of stimulus (0.5 = start to end, 1 = start to end to start, 2 = start to end to start to end to start)
 delayToApproach2: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
 stimulusColourR2: 0  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
 stimulusColourG2: 0
 stimulusColourB2: 0
 stimulusColourA2: 1
+originX2: [0, 0]  
+originY2: [0, 0] 
+originZ2: [0, 0]
