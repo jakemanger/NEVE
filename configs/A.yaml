@@ -70,7 +70,7 @@ endElevation: 15
 endAzimuth: 0 
 startDistance: 500 
 endDistance: 1 
-duration: 5
+duration: 5 # 24.925 (to get 200 mm/s)
 originX: 0 
 originY: 0 
 originZ: 0 
