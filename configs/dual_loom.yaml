@@ -114,3 +114,4 @@ maxAngularAngle2: 14.5
 originX2: [0, 0]  
 originY2: [0, 0] 
 originZ2: [0, 0]
+mustIncludeEveryParameter: 1
