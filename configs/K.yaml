@@ -65,10 +65,10 @@ endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 15 # calculate via equation
-endAzimuth: 0 # calculate via equation
+endElevation: 41.0621 # calculate via equation
+endAzimuth: 47.7006 # calculate via equation
 startDistance: 500 
-endDistance: 1.5
+endDistance: 2.197
 duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX: 0 
 originY: 0 
