@@ -98,12 +98,13 @@ public class DualLoomManager : GenericStimulusManager
         outlineColor1 = GetColorFromPython("outlineColour", outlineColor1, "1");
         fixedAngularSize1 = GetBoolFromPython("fixedAngularSize", false, "1");
         fixXAxis1 = GetBoolFromPython("fixElevation", false, "1"); // otherwise fix the Y axis
-        float negativeCorrection = 0f;
         if (fixXAxis1) {
-            negativeCorrection = -1f;
+            minAngularAngle1 = -1 * GetFloatFromPython("maxAngularAngle", -30f, "1");
+            maxAngularAngle1 = -1 * GetFloatFromPython("minAngularAngle", 30f, "1");
+        } else {
+            minAngularAngle1 = GetFloatFromPython("minAngularAngle", -30f, "1");
+            maxAngularAngle1 = GetFloatFromPython("maxAngularAngle", 30f, "1");
         }
-        minAngularAngle1 = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f, "1");
-        maxAngularAngle1 = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f, "1");
         delayToAppear1 = GetFloatFromPython("delayToAppear", 0f, "1");
         directPath1 = GetBoolFromPython("directPath", true, "1");
         hideAtEnd1 = GetBoolFromPython("hideAtEnd", false, "1");
@@ -127,12 +128,13 @@ public class DualLoomManager : GenericStimulusManager
         outlineColor2 = GetColorFromPython("outlineColour", outlineColor2, "2");
         fixedAngularSize2 = GetBoolFromPython("fixedAngularSize", false, "2");
         fixXAxis2 = GetBoolFromPython("fixElevation", false, "2"); // otherwise fix the Y axis
-        negativeCorrection = 0f;
-        if (fixXAxis1) {
-            negativeCorrection = -1f;
+        if (fixXAxis2) {
+            minAngularAngle2 = -1 * GetFloatFromPython("maxAngularAngle", -30f, "2");
+            maxAngularAngle2 = -1 * GetFloatFromPython("minAngularAngle", 30f, "2");
+        } else {
+            minAngularAngle2 = GetFloatFromPython("minAngularAngle", -30f, "2");
+            maxAngularAngle2 = GetFloatFromPython("maxAngularAngle", 30f, "2");
         }
-        minAngularAngle2 = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f, "2");
-        maxAngularAngle2 = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f, "2");
         delayToAppear2 = GetFloatFromPython("delayToAppear", 0f, "2");
         directPath2 = GetBoolFromPython("directPath", true, "2");
         hideAtEnd2 = GetBoolFromPython("hideAtEnd", false, "2");

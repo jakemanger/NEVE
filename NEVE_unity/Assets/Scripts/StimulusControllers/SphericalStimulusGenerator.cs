@@ -331,7 +331,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         mat.SetInt("_Square", gratingIsSquare);
         mat.SetFloat("_Minimum", gratingMinIntensity);
         mat.SetFloat("_Maximum", gratingMaxIntensity);
-        gratingSphereMesh.material = mat;
+        gratingSphereMesh.material = Instantiate<Material>(mat);
     }
 
     void SetupFixedAngularSizeMaterial () {
@@ -341,7 +341,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         mat.SetFloat("_MinAngle", minAngularAngle);
         mat.SetFloat("_MaxAngle", maxAngularAngle);
         Material[] materials = stimulusRenderer.materials;
-        materials[0] = mat;
+        materials[0] = Instantiate<Material>(mat);
         stimulusRenderer.materials = materials;
     }
 }

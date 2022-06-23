@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
+  m_IndirectSpecularColor: {r: 0.14358507, g: 0.14358507, b: 0.14358507, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -578,6 +578,8 @@ MonoBehaviour:
   recordingFrequency: 1
   frameDataIdCode: 9999
   animalCode: 1
+  syncSquarePos: {x: -29.84, y: 18.17102}
+  syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 523473682}
   syncSquareDisplayNum: 0
@@ -614,13 +616,14 @@ MonoBehaviour:
   endPolarPosition: {x: -10, y: 0}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
-  targetLocationOffset: {x: 0, y: 0, z: 0}
-  startOffset: 50
-  endOffset: 1
+  origin: {x: 0, y: 0, z: 0}
+  startDistance: 10
+  endDistance: 10
   duration: 1
+  numReps: 0.5
   delayToApproach: 5
   fixedAngularSize: 1
-  fixXAxis: 1
+  fixXAxis: 0
   minAngularAngle: -2
   maxAngularAngle: 2
   stimulusType: 0
@@ -633,6 +636,8 @@ MonoBehaviour:
   outlineWidth: 5
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   delayToAppear: 0
+  directPath: 1
+  hideAtEnd: 1
   stimGenerator: {fileID: 4517113866636580001}
 --- !u!115 &1905380798
 MonoScript:
