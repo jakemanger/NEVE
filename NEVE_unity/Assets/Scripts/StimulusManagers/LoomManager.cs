@@ -50,7 +50,6 @@ public class LoomManager : GenericStimulusManager
     public bool directPath = true;
     public bool hideAtEnd = true;
 
-
     [Header("Looming Components")]
     public SphericalStimulusGenerator stimGenerator;
 
