@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14358507, g: 0.14358507, b: 0.14358507, a: 1}
+  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc6b326c8ef9f866ac356ebdfc63060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 0
+  recieveParametersFromPython: 1
   recieveInputFromSocket: 0
   mustIncludeEveryParameter: 0
   eyeHeight: 2
@@ -617,7 +617,7 @@ MonoBehaviour:
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
   origin: {x: 0, y: 0, z: 0}
-  startDistance: 10
+  startDistance: 100
   endDistance: 10
   duration: 1
   numReps: 0.5
@@ -633,7 +633,8 @@ MonoBehaviour:
   gratingMaxIntensity: 0.1
   gratingMinIntensity: 0
   drawOutline: 1
-  outlineWidth: 5
+  outlineWidth: 20
+  outlineType: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   delayToAppear: 0
   directPath: 1
@@ -757,6 +758,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
       value: 0

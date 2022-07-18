@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14358507, g: 0.14358507, b: 0.14358507, a: 1}
+  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -716,6 +716,7 @@ MonoBehaviour:
   gratingMinIntensity: 0
   drawOutline: 0
   outlineWidth: 5
+  outlineType: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   delayToAppear: 0
   directPath: 1
@@ -724,9 +725,13 @@ MonoBehaviour:
   mimicExpansionSpeed: 0
   mimicExpansionSpeedMethod: 0
   referenceInitialDistance: 1
+  referenceEndDistance: 2
   referenceSpeed: 1
   equalDistance: 1
   referenceDiameter: 1
+  moveTime: 1
+  referenceStartPolarPosition: {x: 0, y: 0}
+  referenceEndPolarPosition: {x: 0, y: 0}
 --- !u!4 &1851185963
 Transform:
   m_ObjectHideFlags: 0
@@ -912,6 +917,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7929488127660487863, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_IsActive
       value: 1

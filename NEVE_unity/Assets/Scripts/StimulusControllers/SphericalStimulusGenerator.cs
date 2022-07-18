@@ -81,6 +81,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
     Outline outline;
     public float outlineWidth = 2f;
     public bool drawOutline = false;
+    public int outlineType = 0;
     public Color outlineColor = Color.black;
     
     public MeshRenderer gratingSphereMesh;
@@ -101,15 +102,22 @@ public class SphericalStimulusGenerator : GenericStimulusController
         // disable all stimuli 
         for (int i = 0; i < stimuli.Length; i++)
         {
-            stimuli[i].SetActive(false);
+            if (stimuli[i].activeSelf)
+                stimuli[i].SetActive(false);
         }
         // select stimulus type
         stimulus = stimuli[stimulusType];
         outline = stimulus.GetComponent<Outline>();
         outline.enabled = drawOutline;
+        outline.targetMaterialColor = stimulusColour;
         outline.outlineWidth = outlineWidth;
         outline.OutlineColor = outlineColor;
-        stimulus.SetActive(true); // enable selected stimuli
+        if (outlineType == 1) { // if outline mode is 1, then use screen space, otherwise use worldspace
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+        } else {
+            outline.OutlineMode = Outline.Mode.WorldSpace;
+        }
+        stimulus.SetActive(true);
 
         stimulusRenderer = stimulus.GetComponent<Renderer>();
         if (!fixedAngularSize) {

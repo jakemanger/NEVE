@@ -31,7 +31,6 @@ public class MimicExpansionSpeedLoomManager : LoomManager
         referenceInitialDistance = GetFloatFromPython("referenceInitialDistance", 1f);
         referenceEndDistance = GetFloatFromPython("referenceEndDistance", 1f);
         referenceSpeed = GetFloatFromPython("referenceSpeed", 1f);
-        equalDistance = GetFloatFromPython("equalDistance", 1f);
         referenceDiameter = GetFloatFromPython("referenceDiameter", 1f);
         equalDistance = GetFloatFromPython("equalDistance", 1f);
         moveTime = GetFloatFromPython("moveTime", 1f);

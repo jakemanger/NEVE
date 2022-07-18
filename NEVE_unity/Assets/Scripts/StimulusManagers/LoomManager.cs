@@ -45,6 +45,7 @@ public class LoomManager : GenericStimulusManager
 
     public bool drawOutline = false;
     public float outlineWidth = 5f;
+    public int outlineType = 0; // 0 = world space fixed size, 1 = pixel space fixed size
     public Color outlineColor = Color.black;
     public float delayToAppear = 0f;
     public bool directPath = true;
@@ -59,10 +60,6 @@ public class LoomManager : GenericStimulusManager
         base.GetPropertiesFromPython();
 
         // now get those specific to this stimuli
-        // load properties from python
-        floatChannel = Academy.Instance.EnvironmentParameters;
-
-        // set properties from python
         // object
         origin = GetVector3FromPython("origin", Vector3.zero);
         startPolarPosition.x = -1 * GetFloatFromPython("startElevation", 0f);
@@ -76,6 +73,7 @@ public class LoomManager : GenericStimulusManager
         drawOutline = GetBoolFromPython("drawOutline", false);
         outlineWidth = GetFloatFromPython("outlineWidth", 5f);
         outlineColor = GetColorFromPython("outlineColour", Color.black);
+        outlineType = GetIntFromPython("outlineType", outlineType);
         stimulusColour = GetColorFromPython("stimulusColour", Color.grey);
         gratingNum = GetFloatFromPython("gratingNum", 100f);
         gratingIsSquare = (int)GetFloatFromPython("gratingIsSquare", 0f);
@@ -143,6 +141,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.drawOutline = drawOutline;
         stimGenerator.outlineWidth = outlineWidth;
         stimGenerator.outlineColor = outlineColor;
+        stimGenerator.outlineType = outlineType;
         stimGenerator.gratingNum = gratingNum;
         stimGenerator.gratingIsSquare = gratingIsSquare;
         stimGenerator.gratingMaxIntensity = gratingMaxIntensity;

@@ -15,7 +15,7 @@
 # an example with three approaching looming stimuli: grey, green, blue
 
 # general
-buildDir: None # ./builds/Loom/
+buildDir: ./builds/Loom/
 frameDataIdCode: [11, 12, 13]
 animalCode: [1, 2, 3] 
 execution_order: [0, 1, 2]
@@ -78,6 +78,7 @@ stimulusColourG: [0.3, 1, 0]
 stimulusColourB: [0.3, 0, 1]
 stimulusColourA: 1
 drawOutline: 0
+outlineType: 0
 outlineWidth: 1
 outlineColourR: 0
 outlineColourG: 0
