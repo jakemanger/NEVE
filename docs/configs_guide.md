@@ -92,6 +92,29 @@ Same as Loom, but the following parameters are modified for each looming object 
 | `stimulusType1` | The type of stimulus to display. | `0` (sphere), `1` (square) `2` (a sphere with a grating)) | `0` |
 | `minAngularAngle1`, `maxAngularAngle1` | The minimum and maximum angular degrees to allow the stimulus object to be displayed in if `fixedAngularSize1` is true. If the object is outside this range, then it will become partly or wholely invisible (will not be rendered). 0 is forwards, -ve is up/left and +ve is down/right | `-180`-`180` | `minAngularSize1: -30`, `maxAngularSize1: 30` |
 
+## Mimic Expansion Speed Loom specific
+*Parameters used in the MimicExpansionSpeedLoom stimulus*
+
+Same as Loom, but with the following additional parameters:
+| Parameter name | Description | Options | Default value |
+| -------------- | ----------- | ------- | ------------- |
+| `mimicExpansionSpeed` | Whether or not to mimic expansion speed using the reference parameters (below) | `0` (false) or `1` (true) | `1` |
+| `mimicExpansionSpeedMethod` | The method to use to mimic the expansion speed. | `0` (match expansionSpeed of directly approaching loom to another direct approaching looming stimuli) or `1` (match a near miss stimulus with the expansion speed of a directly looming stimulus by adjusting the current stimuli's size over time) | `0` |
+| `referenceInitialDistance` | Initial distance of the reference stimulus | Any number | `1` |
+| `referenceEndDistance` | End distance of the reference stimulus | Any number | `1` |
+| `equalDistance` | ? (Ask Zahra) | Any number | `1` |
+| `moveTime` | ? (Ask Zahra) | Any number | `1` |
+| `referenceStartElevation` | Starting elevation of the reference stimulus loom | Any number | `0` |
+| `referenceEndElevation` | Ending elevation of the reference stimulus loom | Any number | `0` |
+| `referenceStartAzimuth` | Starting Azimuth of the reference stimulus loom | Any number | `0` |
+| `referenceEndAzimuth` | Ending Azimuth of the reference stimulus loom | Any number | `0` |
+
+## Mimic Expansion Speed Dual Loom specific
+*Parameters used in the MimicExpansionSpeedDualLoom stimulus*
+
+Same as DualLoom, but the following parameters are modified for each looming object (designated by its suffex, `1` for the first object and `2` for the second).
+
+
 ## Moving Rectangle specific
 *Parameters used in the Moving Rectangle stimulus*
 
