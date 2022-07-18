@@ -42,7 +42,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `horizonHeightFront` | An override of the height of the horizon in degrees for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `-90`-`90` | *Ignored* |
 | `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
 | `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
-| `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `: 0`, `startAzimuth: 0` |
+| `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `startElevation: 0`, `startAzimuth: 0` |
 | `endElevation`, `endAzimuth` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation: 0`, `endAzimuth: 0` |
 | `originX`, `originY`, `originZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
 | `startDistance` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
@@ -70,7 +70,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 ## DualLoom specific
 *Parameters used in the DualLoom stimulus*
 
-Same as Loom, but the following parameters are modified for each looming object (designated by its suffex, `1` for the first object and `2` for the second). The below parameters have the `1` suffix for an example:
+Same as Loom, but the following parameters are modified for each looming object (designated by its suffix, `1` for the first object and `2` for the second). The below parameters have the `1` suffix for an example:
 
 | Parameter name | Description | Options | Default value |
 | -------------- | ----------- | ------- | ------------- |
@@ -112,7 +112,7 @@ Same as Loom, but with the following additional parameters:
 ## Mimic Expansion Speed Dual Loom specific
 *Parameters used in the MimicExpansionSpeedDualLoom stimulus*
 
-Same as DualLoom, but the following parameters are modified for each looming object (designated by its suffex, `1` for the first object and `2` for the second).
+Same as DualLoom with additional MimicExpansionSpeedLoom parameters that are modified for each looming object (designated by its suffix, `1` for the first object and `2` for the second).
 
 
 ## Moving Rectangle specific
