@@ -15,7 +15,7 @@
 # an example with three approaching looming stimuli: grey, green, blue
 
 # general
-buildDir: ./builds/Loom/
+buildDir: ./builds/MimicExpansionSpeedLoom/
 frameDataIdCode: [11, 12, 13]
 animalCode: [1, 2, 3] 
 execution_order: [0, 1, 2]
@@ -58,7 +58,7 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 # object
 stimulusType: 0
-startScaleX: 1
+startScaleX: 1  
 startScaleY: 1
 startScaleZ: 1
 endScaleX: 1
@@ -68,25 +68,41 @@ startElevation: 15
 startAzimuth: 0  
 endElevation: 15
 endAzimuth: 0 
-startDistance: 50
-endDistance: 0 
+startDistance: 100 
+endDistance: 5 
 duration: 8 
+numReps: 0.5 
 delayToApproach: 5 
-delayToAppear: 10
-stimulusColourR: [0, 0, 0]
-stimulusColourG: [0, 0, 0]
-stimulusColourB: [0, 0, 0]
+stimulusColourR: [0.3, 0, 0]
+stimulusColourG: [0.3, 1, 0]
+stimulusColourB: [0.3, 0, 1]
 stimulusColourA: 1
 drawOutline: 0
+outlineType: 0
 outlineWidth: 1
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 0
-fixElevation: 0 
-minAngularAngle: 15.5
-maxAngularAngle: 14.5
+fixedAngularSize: 1
+fixElevation: 0
+minAngularAngle: -0.5
+maxAngularAngle: 0.5
 originX: 0 
 originY: 0 
 originZ: 0 
+
+# expansion speed mimic parameters
+mimicExpansionSpeed: 1
+mimicExpansionSpeedMethod: 0
+referenceInitialDistance: 10
+referenceEndDistance: 1
+referenceSpeed: 1
+equalDistance: 1
+referenceDiameter: 1
+equalDistance: 1
+moveTime: 1
+referenceStartElevation: 0
+referenceStartAzimuth: 0
+referenceEndElevation: 0
+referenceEndAzimuth: 0
