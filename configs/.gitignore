@@ -3,5 +3,7 @@
 !calibration.yaml
 !dual_loom.yaml
 !loom.yaml
+!mimic_expansion_speed_dual_loom.yaml
+!mimic_expansion_speed_loom.yaml
 !moving_rectangle.yaml
 !optomotor.yaml
