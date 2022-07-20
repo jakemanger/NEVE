@@ -26,6 +26,18 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public bool directPath = true; // if false, the stimulus will follow the greater circle path according to how elevation and azimuth were changed.
     public bool hideAtEnd = false;
 
+    // for mimicking expansion speed of another loom
+    public bool mimicExpansionSpeed = false;
+    public int mimicExpansionSpeedMethod = 0;
+    public float referenceInitialDistance = 2f;
+     public float referenceEndDistance = 2f;
+    public float referenceSpeed = 1f;
+    public float equalDistance = 1f;
+    public float referenceDiameter = 1f;
+
+    public float moveTime=1f;
+    public Vector2 referenceStartPolarPosition = Vector2.zero;
+    public Vector2 referenceEndPolarPosition = Vector2.zero;
 
     // for gratings
     public float gratingNum = 100f;
@@ -57,6 +69,8 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public float minAngularAngle = -30f;
     public float maxAngularAngle = 30f;
 
+    //AAA: Add new public variables for new input params
+
     public GameObject stimulus;
     Renderer stimulusRenderer;
     Material originalMaterial;
@@ -67,6 +81,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
     Outline outline;
     public float outlineWidth = 2f;
     public bool drawOutline = false;
+    public int outlineType = 0;
     public Color outlineColor = Color.black;
     
     public MeshRenderer gratingSphereMesh;
@@ -87,15 +102,22 @@ public class SphericalStimulusGenerator : GenericStimulusController
         // disable all stimuli 
         for (int i = 0; i < stimuli.Length; i++)
         {
-            stimuli[i].SetActive(false);
+            if (stimuli[i].activeSelf)
+                stimuli[i].SetActive(false);
         }
         // select stimulus type
         stimulus = stimuli[stimulusType];
         outline = stimulus.GetComponent<Outline>();
         outline.enabled = drawOutline;
+        outline.targetMaterialColor = stimulusColour;
         outline.outlineWidth = outlineWidth;
         outline.OutlineColor = outlineColor;
-        stimulus.SetActive(true); // enable selected stimuli
+        if (outlineType == 1) { // if outline mode is 1, then use screen space, otherwise use worldspace
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+        } else {
+            outline.OutlineMode = Outline.Mode.WorldSpace;
+        }
+        stimulus.SetActive(true);
 
         stimulusRenderer = stimulus.GetComponent<Renderer>();
         if (!fixedAngularSize) {
@@ -214,18 +236,21 @@ public class SphericalStimulusGenerator : GenericStimulusController
             base.stimulusState = StimulusState.Started;
             if (!currentlyReturning) {
                 // print("Moving out");
-                Move(startDistance, endDistance, startPolarPosition, endPolarPosition);
                 if (startScale != endScale) {
+                    if (mimicExpansionSpeed) {
+                        throw new System.Exception("Changing scale doesn't make sense when mimicking the expansion speed of another stimulus.");
+                    }
                     // scale axes
                     stimulus.transform.localScale = Vector3.Lerp(startScale, endScale, timeElapsed / duration);
                 }
+                Move(startDistance, endDistance, startPolarPosition, endPolarPosition);
             } else {
                 // print("Coming back in");
-                Move(endDistance, startDistance, endPolarPosition, startPolarPosition);
                 if (startScale != endScale) {
                     // scale axes
                     stimulus.transform.localScale = Vector3.Lerp(endScale, startScale, timeElapsed / duration);
                 }
+                Move(endDistance, startDistance, endPolarPosition, startPolarPosition);
             }
 
             if (timeElapsed / duration >= 1f) {
@@ -287,17 +312,82 @@ public class SphericalStimulusGenerator : GenericStimulusController
     }
 
     void Move(float startDistance, float endDistance, Vector2 startPolarCoordinate, Vector2 endPolarCoordinate) {
+        float progress = timeElapsed / duration;
+
         if (directPath) {
             Vector3 startPositionCartesian = PolarToCartesian(startPolarCoordinate, startDistance);
             Vector3 endPositionCartesian = PolarToCartesian(endPolarCoordinate, endDistance);
-            stimulus.transform.position = Vector3.Lerp(startPositionCartesian, endPositionCartesian, timeElapsed / duration);
+            stimulus.transform.position = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
+
+            if (mimicExpansionSpeed) {
+                if (mimicExpansionSpeedMethod == 1) {
+                    // match expansionSpeed of directly approaching loom to another direct approaching looming stimuli
+                    // by adjusting the current stimuli's distance to the observer over time
+                    float diameter = stimulus.transform.localScale.x;
+                    //float startToCollisionDistance = Vector3.Distance(stimulus.transform.position, Vector3.zero);
+                    float tToCollision = referenceInitialDistance / referenceSpeed;
+                    float distance = (
+                        diameter / 2 / Mathf.Tan(
+                               Mathf.Atan(referenceDiameter / (2 * referenceSpeed * (tToCollision - timeElapsed)))
+                                + Mathf.Atan(diameter / (2 * equalDistance))
+                                - Mathf.Atan(referenceDiameter / (2 * equalDistance)))
+                    );
+                    if (timeElapsed<moveTime) {
+                        stimulus.transform.position = Vector3.Lerp(startPositionCartesian,  endPositionCartesian, (startDistance-startDistance)/(startDistance-endDistance));
+
+                    }
+                    if (timeElapsed>=moveTime){
+                        stimulus.transform.position = Vector3.Lerp(startPositionCartesian,  endPositionCartesian, (startDistance-distance)/(startDistance-endDistance));
+                    }
+
+                    //stimulus.transform.position = Vector3.Lerp(startPositionCartesian,  endPositionCartesian, (startDistance-distance)/(startDistance-endDistance));
+                }
+                if (mimicExpansionSpeedMethod == 2) {
+                    // match a near miss stimulus with the expansion speed of a directly looming stimulus
+                    // by adjusting the current stimuli's size over time
+                    Vector3 P = endPositionCartesian-startPositionCartesian;
+                    //float travellingDistance = Mathf.Sqrt(Mathf.Pow(P.x, 2) + Mathf.Pow(P.y, 2) + Mathf.Pow(P.z, 2));//Mathf.Sqrt(P.x^2 + P.y^2 + P.z^2);
+                    //float T = travellingDistance / referenceSpeed;
+                    Vector3 V = P / duration;
+                    float diameter = startScale.x;
+                    float stimulusDistance=Mathf.Sqrt(Mathf.Pow((V.x*timeElapsed+startPositionCartesian.x), 2) + Mathf.Pow((V.y*timeElapsed+startPositionCartesian.y), 2) + Mathf.Pow((V.z*timeElapsed+startPositionCartesian.z), 2));
+                    Vector3 refStartPositionCartesian = PolarToCartesian(referenceStartPolarPosition, referenceInitialDistance);
+                    Vector3 refEndPositionCartesian = PolarToCartesian(referenceEndPolarPosition, referenceEndDistance);
+
+                    Vector3 pRef =  refEndPositionCartesian-refStartPositionCartesian;
+                    Vector3 vRef = pRef / duration;
+                    float refDistance=Mathf.Sqrt(Mathf.Pow((vRef.x*timeElapsed+refStartPositionCartesian.x), 2) + Mathf.Pow((vRef.y*timeElapsed+refStartPositionCartesian.y), 2) + Mathf.Pow((vRef.z*timeElapsed+refStartPositionCartesian.z), 2));
+
+                    
+                    float newDiamater =2 * stimulusDistance* Mathf.Tan(Mathf.Atan(referenceDiameter /(2*refDistance) ) - Mathf.Atan(referenceDiameter / (2*referenceInitialDistance)) + Mathf.Atan(diameter /(2*startDistance)));
+                    
+                   stimulus.transform.localScale = new Vector3(newDiamater, newDiamater, newDiamater); 
+                }
+                //if(mimicExpansionSpeedMethod == 3)
+                //{
+                    //Match looming with near miss
+                  //  Vector3 P = startPositionCartesian - endPositionCartesian;
+                    //float travellingDistance = Mathf.Sqrt(Mathf.Pow(P.x, 2) + Mathf.Pow(P.y, 2) + Mathf.Pow(P.z, 2));
+                    //float T = travellingDistance / referenceSpeed;
+                    //Vector3 V = P / T;
+                    //float diameter = stimulus.transform.localScale.x;
+
+                    //float newDiamater = 2 * referenceSpeed * (T - timeElapsed) * 
+                    //Mathf.Tan(Mathf.Atan(referenceDiameter / (2 * Mathf.Sqrt(Mathf.Pow(V.x * timeElapsed + startPositionCartesian.x, 2) + Mathf.Pow(V.y * timeElapsed + startPositionCartesian.y, 2) + Mathf.Pow(V.z * timeElapsed + startPositionCartesian.z, 2)))) - Mathf.Atan(referenceDiameter / (2 * Mathf.Sqrt(Mathf.Pow(startPositionCartesian.x, 2) + Mathf.Pow(startPositionCartesian.y, 2) + Mathf.Pow(startPositionCartesian.z, 2)))) + Mathf.Atan(diameter / (2 * referenceSpeed * T)));
+
+                    //stimulus.transform.localScale = new Vector3(newDiamater, newDiamater, newDiamater); 
+                //}
+            }
         } else {
+            if (mimicExpansionSpeed) {
+                throw new System.Exception("Mimic expansion speed can only be used when directPath == True");
+            }
             // greater circle path
-            offsetFromCenter = Mathf.Lerp(startDistance, endDistance, timeElapsed / duration);
+            offsetFromCenter = Mathf.Lerp(startDistance, endDistance, progress);
             // move rotation
             transform.rotation = Quaternion.Slerp(Quaternion.Euler(new Vector3(startPolarCoordinate.x, startPolarCoordinate.y, 0f)),
                                                             Quaternion.Euler(new Vector3(endPolarCoordinate.x, endPolarCoordinate.y, 0f)),
-                                                            timeElapsed / duration);
+                                                            progress);
         }
     }
 
@@ -305,7 +395,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         Vector2 polar;
         // calculate longitude
         polar.y = Mathf.Atan2(point.x, point.z);
-        // calculate sqrt(pow(x, 2), pow(y, 2))
+        // calculate Sqrt(Pow(x, 2), Pow(y, 2))
         float xzLen = new Vector2(point.x, point.z).magnitude;
         polar.x = Mathf.Atan2(-point.y, xzLen);
         // convert to deg
@@ -331,7 +421,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         mat.SetInt("_Square", gratingIsSquare);
         mat.SetFloat("_Minimum", gratingMinIntensity);
         mat.SetFloat("_Maximum", gratingMaxIntensity);
-        gratingSphereMesh.material = mat;
+        gratingSphereMesh.material = Instantiate<Material>(mat);
     }
 
     void SetupFixedAngularSizeMaterial () {
@@ -341,7 +431,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         mat.SetFloat("_MinAngle", minAngularAngle);
         mat.SetFloat("_MaxAngle", maxAngularAngle);
         Material[] materials = stimulusRenderer.materials;
-        materials[0] = mat;
+        materials[0] = Instantiate<Material>(mat);
         stimulusRenderer.materials = materials;
     }
 }

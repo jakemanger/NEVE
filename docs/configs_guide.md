@@ -42,7 +42,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `horizonHeightFront` | An override of the height of the horizon in degrees for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `-90`-`90` | *Ignored* |
 | `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
 | `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
-| `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `: 0`, `startAzimuth: 0` |
+| `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `startElevation: 0`, `startAzimuth: 0` |
 | `endElevation`, `endAzimuth` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation: 0`, `endAzimuth: 0` |
 | `originX`, `originY`, `originZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
 | `startDistance` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
@@ -70,7 +70,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 ## DualLoom specific
 *Parameters used in the DualLoom stimulus*
 
-Same as Loom, but the following parameters are modified for each looming object (designated by its suffex, `1` for the first object and `2` for the second). The below parameters have the `1` suffix for an example:
+Same as Loom, but the following parameters are modified for each looming object (designated by its suffix, `1` for the first object and `2` for the second). The below parameters have the `1` suffix for an example:
 
 | Parameter name | Description | Options | Default value |
 | -------------- | ----------- | ------- | ------------- |
@@ -91,6 +91,29 @@ Same as Loom, but the following parameters are modified for each looming object 
 | `outlineWidth1` | The width of the outline in pixels. | `0`-`99999` | `1` |
 | `stimulusType1` | The type of stimulus to display. | `0` (sphere), `1` (square) `2` (a sphere with a grating)) | `0` |
 | `minAngularAngle1`, `maxAngularAngle1` | The minimum and maximum angular degrees to allow the stimulus object to be displayed in if `fixedAngularSize1` is true. If the object is outside this range, then it will become partly or wholely invisible (will not be rendered). 0 is forwards, -ve is up/left and +ve is down/right | `-180`-`180` | `minAngularSize1: -30`, `maxAngularSize1: 30` |
+
+## Mimic Expansion Speed Loom specific
+*Parameters used in the MimicExpansionSpeedLoom stimulus*
+
+Same as Loom, but with the following additional parameters:
+| Parameter name | Description | Options | Default value |
+| -------------- | ----------- | ------- | ------------- |
+| `mimicExpansionSpeed` | Whether or not to mimic expansion speed using the reference parameters (below) | `0` (false) or `1` (true) | `1` |
+| `mimicExpansionSpeedMethod` | The method to use to mimic the expansion speed. | `0` (match expansionSpeed of directly approaching loom to another direct approaching looming stimuli) or `1` (match a near miss stimulus with the expansion speed of a directly looming stimulus by adjusting the current stimuli's size over time) | `0` |
+| `referenceInitialDistance` | Initial distance of the reference stimulus | Any number | `1` |
+| `referenceEndDistance` | End distance of the reference stimulus | Any number | `1` |
+| `equalDistance` | ? (Ask Zahra) | Any number | `1` |
+| `moveTime` | ? (Ask Zahra) | Any number | `1` |
+| `referenceStartElevation` | Starting elevation of the reference stimulus loom | Any number | `0` |
+| `referenceEndElevation` | Ending elevation of the reference stimulus loom | Any number | `0` |
+| `referenceStartAzimuth` | Starting Azimuth of the reference stimulus loom | Any number | `0` |
+| `referenceEndAzimuth` | Ending Azimuth of the reference stimulus loom | Any number | `0` |
+
+## Mimic Expansion Speed Dual Loom specific
+*Parameters used in the MimicExpansionSpeedDualLoom stimulus*
+
+Same as DualLoom with additional MimicExpansionSpeedLoom parameters that are modified for each looming object (designated by its suffix, `1` for the first object and `2` for the second).
+
 
 ## Moving Rectangle specific
 *Parameters used in the Moving Rectangle stimulus*
