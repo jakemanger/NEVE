@@ -26,6 +26,7 @@ public class LoomManager : GenericStimulusManager
     public float startDistance = 10f;
     public float endDistance = 10f;
     public float duration = 1f; // units (cm) per second
+    public float numReps = 0.5f;
     public float delayToApproach = 5f;
     public bool fixedAngularSize = false;
     public bool fixXAxis = true; // otherwise fix the Y axis
@@ -44,11 +45,11 @@ public class LoomManager : GenericStimulusManager
 
     public bool drawOutline = false;
     public float outlineWidth = 5f;
+    public int outlineType = 0; // 0 = world space fixed size, 1 = pixel space fixed size
     public Color outlineColor = Color.black;
     public float delayToAppear = 0f;
     public bool directPath = true;
     public bool hideAtEnd = true;
-
 
     [Header("Looming Components")]
     public SphericalStimulusGenerator stimGenerator;
@@ -59,10 +60,6 @@ public class LoomManager : GenericStimulusManager
         base.GetPropertiesFromPython();
 
         // now get those specific to this stimuli
-        // load properties from python
-        floatChannel = Academy.Instance.EnvironmentParameters;
-
-        // set properties from python
         // object
         origin = GetVector3FromPython("origin", Vector3.zero);
         startPolarPosition.x = -1 * GetFloatFromPython("startElevation", 0f);
@@ -72,9 +69,11 @@ public class LoomManager : GenericStimulusManager
         startDistance = GetFloatFromPython("startDistance", 50f);
         endDistance = GetFloatFromPython("endDistance", 1f);
         stimulusType = (int)GetFloatFromPython("stimulusType", 0); // 0 = icosphere, 1 = unity cube
+        numReps = GetFloatFromPython("numReps", 0.5f);
         drawOutline = GetBoolFromPython("drawOutline", false);
         outlineWidth = GetFloatFromPython("outlineWidth", 5f);
         outlineColor = GetColorFromPython("outlineColour", Color.black);
+        outlineType = GetIntFromPython("outlineType", outlineType);
         stimulusColour = GetColorFromPython("stimulusColour", Color.grey);
         gratingNum = GetFloatFromPython("gratingNum", 100f);
         gratingIsSquare = (int)GetFloatFromPython("gratingIsSquare", 0f);
@@ -85,12 +84,13 @@ public class LoomManager : GenericStimulusManager
         duration = GetFloatFromPython("duration", 1f);
         fixedAngularSize = GetBoolFromPython("fixedAngularSize", false);
         fixXAxis = GetBoolFromPython("fixElevation", true);
-        float negativeCorrection = 0f;
         if (fixXAxis) {
-            negativeCorrection = -1f;
+            minAngularAngle = -1 * GetFloatFromPython("maxAngularAngle", -30f);
+            maxAngularAngle = -1 * GetFloatFromPython("minAngularAngle", 30f);
+        } else {
+            minAngularAngle = GetFloatFromPython("minAngularAngle", -30f);
+            maxAngularAngle = GetFloatFromPython("maxAngularAngle", 30f);
         }
-        minAngularAngle = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f);
-        maxAngularAngle = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f);
         delayToApproach = GetFloatFromPython("delayToApproach", 5f);
         delayToAppear = GetFloatFromPython("delayToAppear", 0f);
         directPath = GetBoolFromPython("directPath", true);
@@ -136,11 +136,12 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.delayToApproach = delayToApproach;
         stimGenerator.origin = origin;
         stimGenerator.flickerDuration = base.flickerDuration;
-        stimGenerator.numReps = 0.5f;
+        stimGenerator.numReps = numReps;
         stimGenerator.stimulusType = stimulusType;
         stimGenerator.drawOutline = drawOutline;
         stimGenerator.outlineWidth = outlineWidth;
         stimGenerator.outlineColor = outlineColor;
+        stimGenerator.outlineType = outlineType;
         stimGenerator.gratingNum = gratingNum;
         stimGenerator.gratingIsSquare = gratingIsSquare;
         stimGenerator.gratingMaxIntensity = gratingMaxIntensity;

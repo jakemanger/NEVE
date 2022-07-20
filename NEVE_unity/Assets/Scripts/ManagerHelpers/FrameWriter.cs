@@ -50,6 +50,7 @@ public class FrameWriter : MonoBehaviour
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
         stimControllerLength = stimulusControllers.Length;
 
+  
         // record the transforms of active stimulus controller objects
         for (int i = 0; i < stimControllerLength; i++) {
             Transform stimControllerTrans = stimulusControllers[i].transform;
@@ -100,7 +101,7 @@ public class FrameWriter : MonoBehaviour
             string headers = "unityTime, datetime, stimulusOn";
 
             for (int i = 0; i < transformsToRecord.Count; i++) {
-                headers += ", " + transformsToRecord[i].name + "_x, " + transformsToRecord[i].name + "_y, " + transformsToRecord[i].name + "_z, " + transformsToRecord[i].name + "_scale_x, " + transformsToRecord[i].name + "_scale_y, " + transformsToRecord[i].name + "_scale_z";
+                headers += ", " +  transformsToRecord[i].name + "_x, " + transformsToRecord[i].name + "_y, " + transformsToRecord[i].name + "_z, " + transformsToRecord[i].name + "_scale_x, " + transformsToRecord[i].name + "_scale_y, " + transformsToRecord[i].name + "_scale_z";
             }
 
             _sw.WriteLine(headers);

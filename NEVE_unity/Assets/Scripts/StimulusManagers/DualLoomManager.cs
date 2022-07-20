@@ -38,8 +38,10 @@ public class DualLoomManager : GenericStimulusManager
     public bool drawOutline1 = false;
     public float outlineWidth1 = 5f;
     public Color outlineColor1 = Color.black;
+    public int outlineType1 = 0; // 0 = world space fixed size, 1 = pixel space fixed size 
     public int stimulusType2 = 0;
     public bool drawOutline2 = false;
+    public int outlineType2 = 0;
     public float outlineWidth2 = 5f;
     public Color outlineColor2 = Color.black;
     public float gratingNum = 100f; // only used if the stimulusType has a grating material
@@ -96,14 +98,16 @@ public class DualLoomManager : GenericStimulusManager
         drawOutline1 = GetBoolFromPython("drawOutline", false, "1");
         outlineWidth1 = GetFloatFromPython("outlineWidth", 5f, "1");
         outlineColor1 = GetColorFromPython("outlineColour", outlineColor1, "1");
+        outlineType1 = GetIntFromPython("outlineType", outlineType1, "1");
         fixedAngularSize1 = GetBoolFromPython("fixedAngularSize", false, "1");
         fixXAxis1 = GetBoolFromPython("fixElevation", false, "1"); // otherwise fix the Y axis
-        float negativeCorrection = 0f;
         if (fixXAxis1) {
-            negativeCorrection = -1f;
+            minAngularAngle1 = -1 * GetFloatFromPython("maxAngularAngle", -30f, "1");
+            maxAngularAngle1 = -1 * GetFloatFromPython("minAngularAngle", 30f, "1");
+        } else {
+            minAngularAngle1 = GetFloatFromPython("minAngularAngle", -30f, "1");
+            maxAngularAngle1 = GetFloatFromPython("maxAngularAngle", 30f, "1");
         }
-        minAngularAngle1 = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f, "1");
-        maxAngularAngle1 = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f, "1");
         delayToAppear1 = GetFloatFromPython("delayToAppear", 0f, "1");
         directPath1 = GetBoolFromPython("directPath", true, "1");
         hideAtEnd1 = GetBoolFromPython("hideAtEnd", false, "1");
@@ -125,14 +129,16 @@ public class DualLoomManager : GenericStimulusManager
         drawOutline2 = GetBoolFromPython("drawOutline", false, "2");
         outlineWidth2 = GetFloatFromPython("outlineWidth", 5f, "2");
         outlineColor2 = GetColorFromPython("outlineColour", outlineColor2, "2");
+        outlineType2 = GetIntFromPython("outlineType", outlineType2, "2");
         fixedAngularSize2 = GetBoolFromPython("fixedAngularSize", false, "2");
         fixXAxis2 = GetBoolFromPython("fixElevation", false, "2"); // otherwise fix the Y axis
-        negativeCorrection = 0f;
-        if (fixXAxis1) {
-            negativeCorrection = -1f;
+        if (fixXAxis2) {
+            minAngularAngle2 = -1 * GetFloatFromPython("maxAngularAngle", -30f, "2");
+            maxAngularAngle2 = -1 * GetFloatFromPython("minAngularAngle", 30f, "2");
+        } else {
+            minAngularAngle2 = GetFloatFromPython("minAngularAngle", -30f, "2");
+            maxAngularAngle2 = GetFloatFromPython("maxAngularAngle", 30f, "2");
         }
-        minAngularAngle2 = negativeCorrection * GetFloatFromPython("minAngularAngle", -30f, "2");
-        maxAngularAngle2 = negativeCorrection * GetFloatFromPython("maxAngularAngle", 30f, "2");
         delayToAppear2 = GetFloatFromPython("delayToAppear", 0f, "2");
         directPath2 = GetBoolFromPython("directPath", true, "2");
         hideAtEnd2 = GetBoolFromPython("hideAtEnd", false, "2");
@@ -165,6 +171,7 @@ public class DualLoomManager : GenericStimulusManager
         stimGenerator1.stimulusType = stimulusType1;
         stimGenerator1.drawOutline = drawOutline1;
         stimGenerator1.outlineWidth = outlineWidth1;
+        stimGenerator1.outlineType = outlineType1;
         stimGenerator1.outlineColor = outlineColor1;
         stimGenerator1.gratingNum = gratingNum;
         stimGenerator1.gratingIsSquare = gratingIsSquare ? 1 : 0;
@@ -201,6 +208,7 @@ public class DualLoomManager : GenericStimulusManager
             stimGenerator2.drawOutline = drawOutline2;
             stimGenerator2.outlineWidth = outlineWidth2;
             stimGenerator2.outlineColor = outlineColor2;
+            stimGenerator2.outlineType = outlineType2;
             stimGenerator2.gratingNum = gratingNum;
             stimGenerator2.gratingIsSquare = gratingIsSquare ? 1 : 0;
             stimGenerator2.gratingMaxIntensity = gratingMaxIntensity;

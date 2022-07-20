@@ -79,7 +79,9 @@ public class Outline : MonoBehaviour {
   private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
   public Material outlineWorldSpaceMaterial;
+  public Material appliedOulineWorldSpaceMaterial;
   public Material targetMaterial;
+  public Color targetMaterialColor;
 
   private bool needsUpdate;
 
@@ -121,19 +123,19 @@ public class Outline : MonoBehaviour {
   }
 
   void SetupWorldSpaceOutline() {
-    // get current materail and material color and make sure that is preserved
+    // get current material and material color and make sure that is preserved
     Renderer renderer = GetComponent<Renderer>();
     renderer.material = targetMaterial;
     Color currentColor = renderer.material.color;
 
     // get the material and set its properties
-    Material mat = outlineWorldSpaceMaterial;
-    mat.SetColor("_Color", outlineColor);
-    mat.SetFloat("_Width", outlineWidth);
+    appliedOulineWorldSpaceMaterial = Instantiate<Material>(outlineWorldSpaceMaterial);
+    appliedOulineWorldSpaceMaterial.SetColor("_Color", outlineColor);
+    appliedOulineWorldSpaceMaterial.SetFloat("_Width", outlineWidth);
 
     Material material = renderer.material;
-    Material[] materials = new Material[] {mat, material};
-    materials[1].color = currentColor;
+    Material[] materials = new Material[] {appliedOulineWorldSpaceMaterial, material};
+    materials[1].color = targetMaterialColor;
     renderer.materials = materials;
   }
 
@@ -168,17 +170,18 @@ public class Outline : MonoBehaviour {
   }
 
   void OnDisable() {
-    if (OutlineMode != Mode.WorldSpace) {
-        foreach (var renderer in renderers) {
-
+    foreach (var renderer in renderers) {
         // Remove outline shaders
         var materials = renderer.sharedMaterials.ToList();
 
-        materials.Remove(outlineMaskMaterial);
-        materials.Remove(outlineFillMaterial);
+        if (outlineMaskMaterial != null)
+            materials.Remove(outlineMaskMaterial);
+        if (outlineFillMaterial != null)
+            materials.Remove(outlineFillMaterial);
+        if (appliedOulineWorldSpaceMaterial != null)
+            materials.Remove(appliedOulineWorldSpaceMaterial);
 
         renderer.materials = materials.ToArray();
-        }
     }
   }
 
@@ -187,6 +190,9 @@ public class Outline : MonoBehaviour {
         // Destroy material instances
         Destroy(outlineMaskMaterial);
         Destroy(outlineFillMaterial);
+    } else {
+        if (appliedOulineWorldSpaceMaterial != null)
+            Destroy(appliedOulineWorldSpaceMaterial);
     }
   }
 
