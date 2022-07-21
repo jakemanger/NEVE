@@ -89,6 +89,7 @@ maxAngularAngle1: 0.5
 originX1: [0, 0] 
 originY1: [0, 0]
 originZ1: [0, 0]
+
 # object 2
 stimulusType2: 1
 startScaleX2: 1.5

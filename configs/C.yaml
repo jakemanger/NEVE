@@ -89,6 +89,9 @@ numReps2: 0.5
 originX2: 0 
 originY2: 0
 originZ2: 0
+outlineType2: 1
+drawOutline2: 1
+outlineWidth2: 33.33
 delayToApproach2: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
 stimulusColourR2: 0  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
 stimulusColourG2: 0
