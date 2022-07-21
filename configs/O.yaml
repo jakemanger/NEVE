@@ -1,5 +1,5 @@
 # general
-buildDir: ./builds/Loom/
+buildDir: ./builds/DualLoom
 frameDataIdCode: [1, 2]
 animalCode: [1, 2] 
 execution_order: [0, 1]
@@ -74,6 +74,7 @@ fixedAngularSize1: 0
 fixElevation1: 0 
 minAngularAngle1: -15.5
 maxAngularAngle1: -14.5
+numReps1: 0.5
 
 # object 2 (near miss loom, 1.5 cm from crab)
 stimulusType2: 0
@@ -85,10 +86,10 @@ endScaleY2: 3
 endScaleZ2: 3
 startElevation2: 15 
 startAzimuth2: 0  
-endElevation2: 15 # calculate from equation!
-endAzimuth2: 0 # calculate from equation!
+endElevation2: 41.06 # calculate via equation
+endAzimuth2: 42.3 # calculate via equation
 startDistance2: 500 
-endDistance2: 1.5
+endDistance2: 2.12
 duration2: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX2: 0 
 originY2: 0 
@@ -108,3 +109,4 @@ fixedAngularSize2: 0
 fixElevation2: 0 
 minAngularAngle2: -15.5
 maxAngularAngle2: -14.5
+numReps2: 0.5

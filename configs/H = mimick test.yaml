@@ -42,7 +42,7 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
 
-# object 1 # direct approaching mimicking near miss
+# object 1 # direct 
 stimulusType1: 0
 startScaleX1: 3
 startScaleY1: 3
@@ -61,9 +61,9 @@ originX1: 0
 originY1: 0 
 originZ1: 0 
 delayToApproach1: 5 
-stimulusColourR1: 0
-stimulusColourG1: 0
-stimulusColourB1: 0
+stimulusColourR1: 1
+stimulusColourG1: 1
+stimulusColourB1: 1
 stimulusColourA1: 1
 drawOutline1: 0
 outlineWidth1: 1
@@ -77,18 +77,20 @@ minAngularAngle1: -15.5
 maxAngularAngle1: -14.5
 numReps1: 0.5
 
-mimicExpansionSpeed1: 1
-mimicExpansionSpeedMethod1: 2
-referenceInitialDistance1: 500
-referenceEndDistance1: 7.149
-referenceSpeed1: 200
-equalDistance1: 500
-referenceDiameter1: 3
-moveTime1: 0
-referenceStartElevation1: 15
-referenceStartAzimuth1: 0
-referenceEndElevation1: 45.3334
-referenceEndAzimuth1: 87.2495
+# expansion speed mimic parameters
+# mimicExpansionSpeed1: 1
+# mimicExpansionSpeedMethod1: 0
+# referenceInitialDistance1: 10
+# referenceEndDistance1: 1
+# referenceSpeed1: 1
+# equalDistance1: 1
+# referenceDiameter1: 1
+# equalDistance1: 1
+# moveTime1: 1
+# referenceStartElevation1: 0
+# referenceStartAzimuth1: 0
+# referenceEndElevation1: 0
+# referenceEndAzimuth1: 0
 
 
 # object 2 # near miss mimicking direct 
@@ -101,10 +103,10 @@ endScaleY2: 3
 endScaleZ2: 3
 startElevation2: 15 
 startAzimuth2: 0  
-endElevation2: 45.3334 # calculate via equation
-endAzimuth2: 87.2495 # calculate via equation
+endElevation2: 15 # calculate via equation
+endAzimuth2: 0 # calculate via equation
 startDistance2: 500 
-endDistance2: 7.149
+endDistance2: 1.5
 duration2: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX2: 0 
 originY2: 0 
@@ -129,12 +131,13 @@ numReps2: 0.5
 mimicExpansionSpeed2: 1
 mimicExpansionSpeedMethod2: 2
 referenceInitialDistance2: 500
-referenceEndDistance2: 1.5
-referenceSpeed2: 20
+referenceEndDistance2: 7.149
+referenceSpeed2: 200
 equalDistance2: 500
 referenceDiameter2: 3
 moveTime2: 0
 referenceStartElevation2: 15
 referenceStartAzimuth2: 0
-referenceEndElevation2: 15
-referenceEndAzimuth2: 0
+referenceEndElevation2: 45.3334
+referenceEndAzimuth2: 87.2495
+
