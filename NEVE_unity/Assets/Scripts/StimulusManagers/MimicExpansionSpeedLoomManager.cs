@@ -18,8 +18,6 @@ public class MimicExpansionSpeedLoomManager : LoomManager
     public Vector2 referenceStartPolarPosition = Vector2.zero;
     public Vector2 referenceEndPolarPosition = Vector2.zero;
     
-    
-   // public float timeElapsed=0f;
 
     //AAA: Add public params here for new input
 

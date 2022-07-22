@@ -300,18 +300,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator
@@ -369,29 +357,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 105145883, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7929488128777664785, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: directPath
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664790, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_RootOrder
@@ -987,16 +955,18 @@ MonoBehaviour:
   belowHorizonColour: {r: 1, g: 1, b: 1, a: 1}
   startScale1: {x: 1, y: 1, z: 1}
   endScale1: {x: 1, y: 1, z: 1}
-  startScale2: {x: 1, y: 1, z: 1}
-  endScale2: {x: 1, y: 1, z: 1}
-  startPolarPosition1: {x: -0, y: 0}
-  startPolarPosition2: {x: -30, y: 0}
-  endPolarPosition1: {x: -0, y: 0}
-  endPolarPosition2: {x: -0, y: 0}
+  startScale2: {x: 5, y: 1, z: 1}
+  endScale2: {x: 5, y: 1, z: 1}
+  startPolarPosition1: {x: -15, y: 0}
+  startPolarPosition2: {x: -15, y: 0}
+  endPolarPosition1: {x: -15, y: 0}
+  endPolarPosition2: {x: -15, y: 0}
   origin1: {x: 0, y: 0, z: 0}
   origin2: {x: 0, y: 0, z: 0}
+  rotationOffset1: {x: 0, y: 0}
+  rotationOffset2: {x: 0, y: 0}
   startDistance1: 50
-  startDistance2: 50
+  startDistance2: 49
   endDistance1: 1
   endDistance2: 1
   delayToApproach1: 5
@@ -1004,15 +974,17 @@ MonoBehaviour:
   numReps1: 1
   numReps2: 1
   stimulusColour1: {r: 1, g: 1, b: 1, a: 1}
-  stimulusColour2: {r: 1, g: 1, b: 1, a: 1}
+  stimulusColour2: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  opaqueObject1: 1
+  opaqueObject2: 1
   stimulusDuration1: 5
   stimulusDuration2: 5
-  stimulusType1: 0
-  drawOutline1: 0
+  stimulusType1: 1
+  drawOutline1: 1
   outlineWidth1: 5
   outlineColor1: {r: 0, g: 0, b: 0, a: 1}
-  outlineType1: 0
-  stimulusType2: 0
+  outlineType1: 1
+  stimulusType2: 1
   drawOutline2: 0
   outlineType2: 0
   outlineWidth2: 5
@@ -1021,12 +993,12 @@ MonoBehaviour:
   gratingIsSquare: 0
   gratingMaxIntensity: 0.1
   gratingMinIntensity: 0
-  fixedAngularSize1: 1
-  fixXAxis1: 1
+  fixedAngularSize1: 0
+  fixXAxis1: 0
   minAngularAngle1: -30
   maxAngularAngle1: 30
-  fixedAngularSize2: 1
-  fixXAxis2: 1
+  fixedAngularSize2: 0
+  fixXAxis2: 0
   minAngularAngle2: -30
   maxAngularAngle2: 30
   delayToAppear1: 0
