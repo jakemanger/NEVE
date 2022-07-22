@@ -495,11 +495,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851185963}
+  - component: {fileID: 1851185962}
   - component: {fileID: 1851185964}
   - component: {fileID: 1851185966}
   - component: {fileID: 1851185965}
   - component: {fileID: 1851185967}
-  - component: {fileID: 1851185962}
   m_Layer: 0
   m_Name: SimulationManager
   m_TagString: Untagged
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c125a6df125e45f9945f4f859bff719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
+  recieveParametersFromPython: 0
   recieveInputFromSocket: 0
   mustIncludeEveryParameter: 0
   eyeHeight: 2
@@ -542,7 +542,7 @@ MonoBehaviour:
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 7994142557635254136}
   syncSquareDisplayNum: 0
-  displayStimulusCode: 0
+  displayStimulusCode: 1
   flickerDuration: 0.1
   camMon: {fileID: 2115956405}
   frameWriter: {fileID: 1851185964}
@@ -694,18 +694,18 @@ MonoBehaviour:
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  startPolarPosition: {x: -0, y: 0}
-  endPolarPosition: {x: -0, y: 0}
+  startPolarPosition: {x: -15, y: 0}
+  endPolarPosition: {x: -15, y: 0}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
   origin: {x: 0, y: 0, z: 0}
-  startDistance: 50
-  endDistance: 1
-  duration: 1
+  startDistance: 76881
+  endDistance: 0.0282
+  duration: 10
   numReps: 0.5
   delayToApproach: 5
   fixedAngularSize: 0
-  fixXAxis: 1
+  fixXAxis: 0
   minAngularAngle: 30
   maxAngularAngle: -30
   stimulusType: 0
@@ -722,16 +722,16 @@ MonoBehaviour:
   directPath: 1
   hideAtEnd: 0
   stimGenerator: {fileID: 1103164934}
-  mimicExpansionSpeed: 0
-  mimicExpansionSpeedMethod: 0
-  referenceInitialDistance: 1
-  referenceEndDistance: 2
-  referenceSpeed: 1
-  equalDistance: 1
-  referenceDiameter: 1
-  moveTime: 1
-  referenceStartPolarPosition: {x: 0, y: 0}
-  referenceEndPolarPosition: {x: 0, y: 0}
+  mimicExpansionSpeed: 1
+  mimicExpansionSpeedMethod: 1
+  referenceInitialDistance: 500
+  referenceEndDistance: 1.5
+  referenceSpeed: 20
+  equalDistance: 500
+  referenceDiameter: 3
+  moveTime: 0
+  referenceStartPolarPosition: {x: -15, y: 0}
+  referenceEndPolarPosition: {x: -15, y: 0}
 --- !u!4 &1851185963
 Transform:
   m_ObjectHideFlags: 0
@@ -840,9 +840,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1254457336323470431, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: far clip plane
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254457337275033354, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: far clip plane
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 1254457337793107896, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_ClearFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254457337793107896, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: far clip plane
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 1254457337841208640, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_RootOrder
@@ -891,6 +903,10 @@ PrefabInstance:
     - target: {fileID: 1254457337841208641, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_Name
       value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254457338100167224, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: far clip plane
+      value: 3000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d540ffe142b2222809cd559c1576a785, type: 3}

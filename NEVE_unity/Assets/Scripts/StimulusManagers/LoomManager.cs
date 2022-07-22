@@ -23,6 +23,7 @@ public class LoomManager : GenericStimulusManager
     public Vector3 startScale = Vector3.one;
     public Vector3 endScale = Vector3.one;
     public Vector3 origin = Vector3.zero;
+    public Vector2 rotationOffset = Vector2.zero;
     public float startDistance = 10f;
     public float endDistance = 10f;
     public float duration = 1f; // units (cm) per second
@@ -36,6 +37,8 @@ public class LoomManager : GenericStimulusManager
     [Header("Looming object appearance parameters")]
     public int stimulusType = 0; // 0 = icosphere, 1 = unity cube
     public Color stimulusColour = Color.white;
+
+    public bool opaqueObject = false;
 
     // settings if stimulus type is 2 (grating stimulus)
     public float gratingNum = 100f;
@@ -62,6 +65,7 @@ public class LoomManager : GenericStimulusManager
         // now get those specific to this stimuli
         // object
         origin = GetVector3FromPython("origin", Vector3.zero);
+        rotationOffset = GetVector2FromPython("rotationOffset", Vector2.zero);
         startPolarPosition.x = -1 * GetFloatFromPython("startElevation", 0f);
         startPolarPosition.y = GetFloatFromPython("startAzimuth", 0f);
         endPolarPosition.x = -1 * GetFloatFromPython("endElevation", 0f);
@@ -75,6 +79,7 @@ public class LoomManager : GenericStimulusManager
         outlineColor = GetColorFromPython("outlineColour", Color.black);
         outlineType = GetIntFromPython("outlineType", outlineType);
         stimulusColour = GetColorFromPython("stimulusColour", Color.grey);
+        opaqueObject = GetBoolFromPython("opaqueObject", false);
         gratingNum = GetFloatFromPython("gratingNum", 100f);
         gratingIsSquare = (int)GetFloatFromPython("gratingIsSquare", 0f);
         gratingMaxIntensity = GetFloatFromPython("gratingMaxIntensity", 0.1f);
@@ -127,14 +132,16 @@ public class LoomManager : GenericStimulusManager
 
         // sphere
         stimGenerator.stimulusColour = stimulusColour;
+        stimGenerator.opaqueObject = opaqueObject;
         stimGenerator.startScale = startScale;
         stimGenerator.endScale = endScale;
-        stimGenerator.startPolarPosition = startPolarPosition;
-        stimGenerator.endPolarPosition = endPolarPosition;
+        stimGenerator.startPolarPosition = startPolarPosition + rotationOffset;
+        stimGenerator.endPolarPosition = endPolarPosition + rotationOffset;
         stimGenerator.startDistance = startDistance;
         stimGenerator.endDistance = endDistance;
         stimGenerator.delayToApproach = delayToApproach;
         stimGenerator.origin = origin;
+        stimGenerator.rotationOffset = rotationOffset;
         stimGenerator.flickerDuration = base.flickerDuration;
         stimGenerator.numReps = numReps;
         stimGenerator.stimulusType = stimulusType;
@@ -152,6 +159,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.maxAngularAngle = maxAngularAngle;
         stimGenerator.delayToAppear = delayToAppear;
         stimGenerator.directPath = directPath;
+        stimGenerator.hideAtEnd = hideAtEnd;
 
         stimGenerator.duration = duration; 
 

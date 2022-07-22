@@ -50,6 +50,7 @@ public class FrameWriter : MonoBehaviour
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
         stimControllerLength = stimulusControllers.Length;
 
+        transformsToRecord = new List<Transform>();
   
         // record the transforms of active stimulus controller objects
         for (int i = 0; i < stimControllerLength; i++) {

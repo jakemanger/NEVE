@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -14,7 +14,8 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public Vector2 endPolarPosition = new Vector2(0f, 0f);
     public Vector3 startScale = new Vector3(1f, 1f, 1f);
     public Vector3 endScale = new Vector3(1f, 1f, 1f);
-    public Vector3 origin = new Vector3(0f, 0f, 0f);
+    public Vector3 origin = Vector3.zero;
+    public Vector2 rotationOffset = Vector2.zero;
     public float startDistance = 100f;
     public float endDistance = 1f;
     public float duration = 5f;
@@ -83,12 +84,25 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public bool drawOutline = false;
     public int outlineType = 0;
     public Color outlineColor = Color.black;
+
     
     public MeshRenderer gratingSphereMesh;
+
+    public bool opaqueObject = false;
+    public Material target;
+    public Material opaqueTarget;
 
     public override void Reset() {
 
         base.Reset();
+
+        stimulusRenderer = stimulus.GetComponent<Renderer>();
+        if (opaqueObject) {
+            stimulusRenderer.material = opaqueTarget;
+        } else {
+            stimulusRenderer.material = target;
+        }
+        stimulusRenderer.material.color = stimulusColour;
 
         // reset variables
         offsetFromCenter = startDistance;
@@ -107,30 +121,10 @@ public class SphericalStimulusGenerator : GenericStimulusController
         }
         // select stimulus type
         stimulus = stimuli[stimulusType];
-        outline = stimulus.GetComponent<Outline>();
-        outline.enabled = drawOutline;
-        outline.targetMaterialColor = stimulusColour;
-        outline.outlineWidth = outlineWidth;
-        outline.OutlineColor = outlineColor;
-        if (outlineType == 1) { // if outline mode is 1, then use screen space, otherwise use worldspace
-            outline.OutlineMode = Outline.Mode.OutlineAll;
-        } else {
-            outline.OutlineMode = Outline.Mode.WorldSpace;
-        }
-        stimulus.SetActive(true);
 
-        stimulusRenderer = stimulus.GetComponent<Renderer>();
-        if (!fixedAngularSize) {
-            if (originalMaterial != null) {
-                stimulusRenderer.material = originalMaterial;
-            }
-            stimulusRenderer.material.color = stimulusColour;
-        } else {
-            if (originalMaterial == null) {
-                originalMaterial = stimulusRenderer.material;
-            }
-            SetupFixedAngularSizeMaterial();
-        }
+        SetupOutline();
+        stimulus.SetActive(true);
+        SetupFixedAngularSize();
 
         if (directPath) {
             Vector3 startPositionCartesian = PolarToCartesian(startPolarPosition, startDistance);
@@ -147,34 +141,36 @@ public class SphericalStimulusGenerator : GenericStimulusController
             SetupGratings();
         }
 
-        print(delayToAppear);
         if (delayToAppear > 0) {
             stimulusRenderer.enabled = false;
         } else {
             stimulusRenderer.enabled = true;
         }
+
     }
 
     void Update()
     {
+        // inputs from user
+
         if (manualControl) {
             ManualControl();
         }
+        if (canFlicker && Input.GetKeyDown(KeyCode.F)) {
+            flicker = true;
+            timeSinceFlickerStart = 0f;
+        }
+        if (flicker) {
+            stimulusRenderer.enabled = false;
+            timeSinceFlickerStart += Time.deltaTime;
+            if (timeSinceFlickerStart >= flickerDuration) {
+                stimulusRenderer.enabled = true;
+                flicker = false;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if (move || justFinishedMoving) {
-                // if currently moving
-                move = false;
-                wantToMove = false;
-            } else {
-                wantToMove = true;
-            }
-            offsetFromCenter = startDistance;
-            timeElapsed = 0f;
-            numRepsDone = 0;
-            delayTimeElapsed = 0f;
-            currentlyReturning = false;
-            justFinishedMoving = false;
+            PrepareToMove();
 
             if (manualControl) {
                 if (startPolarPosition == endPolarPosition) {
@@ -190,35 +186,12 @@ public class SphericalStimulusGenerator : GenericStimulusController
             } 
         }
 
+
+        // movement calculations
+
         // wait delay period and then start approach
         if (wantToMove) {
-            // print("wanting to move");
-            delayTimeElapsed += Time.deltaTime;
-            if (hideAtEnd) {
-                stimulusRenderer.enabled = true;
-            }
-            if (!move && delayTimeElapsed >= delayToApproach) {
-                move = true;
-                wantToMove = false;
-                delayTimeElapsed = 0f;
-                offsetFromCenter = startDistance;
-                currentlyReturning = false;
-                timeElapsed = 0f;
-                numRepsDone = 0;
-            }
-        }
-
-        if (canFlicker && Input.GetKeyDown(KeyCode.F)) {
-            flicker = true;
-            timeSinceFlickerStart = 0f;
-        }
-        if (flicker) {
-            stimulusRenderer.enabled = false;
-            timeSinceFlickerStart += Time.deltaTime;
-            if (timeSinceFlickerStart >= flickerDuration) {
-                stimulusRenderer.enabled = true;
-                flicker = false;
-            }
+            WaitToMove();
         }
 
         if ((wantToMove || move) && delayToAppear > 0) {
@@ -229,7 +202,6 @@ public class SphericalStimulusGenerator : GenericStimulusController
                 delayToAppear = 0f;
             }
         }
-
 
         // logic to change offset and polar position of stimulus
         if (move) {
@@ -284,7 +256,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         // add offset to the origin
         transform.position = origin;
 
-        // always make the object face the origin
+        // always make the object face the origin (the eye)
         stimulus.transform.LookAt(origin);
     }
 
@@ -315,39 +287,36 @@ public class SphericalStimulusGenerator : GenericStimulusController
         float progress = timeElapsed / duration;
 
         if (directPath) {
+            // set start and end positions
             Vector3 startPositionCartesian = PolarToCartesian(startPolarCoordinate, startDistance);
             Vector3 endPositionCartesian = PolarToCartesian(endPolarCoordinate, endDistance);
-            stimulus.transform.position = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
 
+            // modify progress or size (localScale) if mimicking expansion speed
             if (mimicExpansionSpeed) {
                 if (mimicExpansionSpeedMethod == 1) {
                     // match expansionSpeed of directly approaching loom to another direct approaching looming stimuli
                     // by adjusting the current stimuli's distance to the observer over time
                     float diameter = stimulus.transform.localScale.x;
-                    //float startToCollisionDistance = Vector3.Distance(stimulus.transform.position, Vector3.zero);
                     float tToCollision = referenceInitialDistance / referenceSpeed;
                     float distance = (
                         diameter / 2 / Mathf.Tan(
-                               Mathf.Atan(referenceDiameter / (2 * referenceSpeed * (tToCollision - timeElapsed)))
+                                Mathf.Atan(referenceDiameter / (2 * referenceSpeed * (tToCollision - timeElapsed)))
                                 + Mathf.Atan(diameter / (2 * equalDistance))
                                 - Mathf.Atan(referenceDiameter / (2 * equalDistance)))
                     );
+                    // moveTime - an extra delay to move, which is required in some mimic situations 
                     if (timeElapsed<moveTime) {
-                        stimulus.transform.position = Vector3.Lerp(startPositionCartesian,  endPositionCartesian, (startDistance-startDistance)/(startDistance-endDistance));
-
+                        progress = (startDistance - startDistance) / (startDistance - endDistance);
                     }
                     if (timeElapsed>=moveTime){
-                        stimulus.transform.position = Vector3.Lerp(startPositionCartesian,  endPositionCartesian, (startDistance-distance)/(startDistance-endDistance));
+                        progress = (startDistance - distance) / (startDistance - endDistance);
                     }
-
-                    //stimulus.transform.position = Vector3.Lerp(startPositionCartesian,  endPositionCartesian, (startDistance-distance)/(startDistance-endDistance));
+                    // print("Distance from Zahra's calc: " + distance);
                 }
                 if (mimicExpansionSpeedMethod == 2) {
-                    // match a near miss stimulus with the expansion speed of a directly looming stimulus
+                    // match a near miss stimulus with the expansion speed of a directly looming stimulus or vice versa
                     // by adjusting the current stimuli's size over time
                     Vector3 P = endPositionCartesian-startPositionCartesian;
-                    //float travellingDistance = Mathf.Sqrt(Mathf.Pow(P.x, 2) + Mathf.Pow(P.y, 2) + Mathf.Pow(P.z, 2));//Mathf.Sqrt(P.x^2 + P.y^2 + P.z^2);
-                    //float T = travellingDistance / referenceSpeed;
                     Vector3 V = P / duration;
                     float diameter = startScale.x;
                     float stimulusDistance=Mathf.Sqrt(Mathf.Pow((V.x*timeElapsed+startPositionCartesian.x), 2) + Mathf.Pow((V.y*timeElapsed+startPositionCartesian.y), 2) + Mathf.Pow((V.z*timeElapsed+startPositionCartesian.z), 2));
@@ -358,26 +327,18 @@ public class SphericalStimulusGenerator : GenericStimulusController
                     Vector3 vRef = pRef / duration;
                     float refDistance=Mathf.Sqrt(Mathf.Pow((vRef.x*timeElapsed+refStartPositionCartesian.x), 2) + Mathf.Pow((vRef.y*timeElapsed+refStartPositionCartesian.y), 2) + Mathf.Pow((vRef.z*timeElapsed+refStartPositionCartesian.z), 2));
 
+                    float newDiameter = 2 * stimulusDistance* Mathf.Tan(Mathf.Atan(referenceDiameter /(2*refDistance) ) - Mathf.Atan(referenceDiameter / (2*referenceInitialDistance)) + Mathf.Atan(diameter /(2*startDistance)));
                     
-                    float newDiamater =2 * stimulusDistance* Mathf.Tan(Mathf.Atan(referenceDiameter /(2*refDistance) ) - Mathf.Atan(referenceDiameter / (2*referenceInitialDistance)) + Mathf.Atan(diameter /(2*startDistance)));
-                    
-                   stimulus.transform.localScale = new Vector3(newDiamater, newDiamater, newDiamater); 
+                    // assign new size to mimic the reference stimulus's expansion speed
+                    stimulus.transform.localScale = new Vector3(newDiameter, newDiameter, newDiameter);
+                    print(newDiameter);
                 }
-                //if(mimicExpansionSpeedMethod == 3)
-                //{
-                    //Match looming with near miss
-                  //  Vector3 P = startPositionCartesian - endPositionCartesian;
-                    //float travellingDistance = Mathf.Sqrt(Mathf.Pow(P.x, 2) + Mathf.Pow(P.y, 2) + Mathf.Pow(P.z, 2));
-                    //float T = travellingDistance / referenceSpeed;
-                    //Vector3 V = P / T;
-                    //float diameter = stimulus.transform.localScale.x;
 
-                    //float newDiamater = 2 * referenceSpeed * (T - timeElapsed) * 
-                    //Mathf.Tan(Mathf.Atan(referenceDiameter / (2 * Mathf.Sqrt(Mathf.Pow(V.x * timeElapsed + startPositionCartesian.x, 2) + Mathf.Pow(V.y * timeElapsed + startPositionCartesian.y, 2) + Mathf.Pow(V.z * timeElapsed + startPositionCartesian.z, 2)))) - Mathf.Atan(referenceDiameter / (2 * Mathf.Sqrt(Mathf.Pow(startPositionCartesian.x, 2) + Mathf.Pow(startPositionCartesian.y, 2) + Mathf.Pow(startPositionCartesian.z, 2)))) + Mathf.Atan(diameter / (2 * referenceSpeed * T)));
-
-                    //stimulus.transform.localScale = new Vector3(newDiamater, newDiamater, newDiamater); 
-                //}
             }
+            // assign the new position according to the new expansion speed
+            stimulus.transform.position = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
+            // print("startDistance: " + startDistance + "; endDistance: " + endDistance + "; timeElapsed: " + timeElapsed);
+            // print("Progress: " + progress + "; Distance from unity: " + Vector3.Distance(stimulus.transform.position, endPositionCartesian));
         } else {
             if (mimicExpansionSpeed) {
                 throw new System.Exception("Mimic expansion speed can only be used when directPath == True");
@@ -433,5 +394,70 @@ public class SphericalStimulusGenerator : GenericStimulusController
         Material[] materials = stimulusRenderer.materials;
         materials[0] = Instantiate<Material>(mat);
         stimulusRenderer.materials = materials;
+    }
+
+    void SetupOutline() {
+        outline = stimulus.GetComponent<Outline>();
+
+        if (opaqueObject) {
+            outline.targetMaterial = Instantiate<Material>(opaqueTarget);
+        } else {
+            outline.targetMaterial = Instantiate<Material>(target);
+        }
+        outline.enabled = drawOutline;
+        outline.targetMaterialColor = stimulusColour;
+        outline.outlineWidth = outlineWidth;
+        outline.OutlineColor = outlineColor;
+        if (outlineType == 1) { // if outline mode is 1, then use screen space, otherwise use worldspace
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        } else {
+            outline.OutlineMode = Outline.Mode.WorldSpace;
+        }
+    }
+
+    void SetupFixedAngularSize() {
+        if (!fixedAngularSize) {
+            if (originalMaterial != null) {
+                stimulusRenderer.material = originalMaterial;
+            }
+            stimulusRenderer.material.color = stimulusColour;
+        } else {
+            if (originalMaterial == null) {
+                originalMaterial = stimulusRenderer.material;
+            }
+            SetupFixedAngularSizeMaterial();
+        }
+    }
+
+    void PrepareToMove() {
+        if (move || justFinishedMoving) {
+            // if currently moving
+            move = false;
+            wantToMove = false;
+        } else {
+            wantToMove = true;
+        }
+        offsetFromCenter = startDistance;
+        timeElapsed = 0f;
+        numRepsDone = 0;
+        delayTimeElapsed = 0f;
+        currentlyReturning = false;
+        justFinishedMoving = false;
+    }
+
+    void WaitToMove() {
+        delayTimeElapsed += Time.deltaTime;
+        if (hideAtEnd) {
+            stimulusRenderer.enabled = true;
+        }
+        if (!move && delayTimeElapsed >= delayToApproach) {
+            move = true;
+            wantToMove = false;
+            delayTimeElapsed = 0f;
+            offsetFromCenter = startDistance;
+            currentlyReturning = false;
+            timeElapsed = 0f;
+            numRepsDone = 0;
+        }
     }
 }

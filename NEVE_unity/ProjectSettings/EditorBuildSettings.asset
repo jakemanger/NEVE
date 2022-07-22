@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3D scenes/MimicExpansionSpeedDualLoom.unity
-    guid: 6527c6d21e76446eba4bae33e5f53174
+    path: Assets/Scenes/3D scenes/MimicExpansionSpeedLoom.unity
+    guid: 2ddd9d26e3d0373efaf5439ecb34e35c
   m_configObjects: {}

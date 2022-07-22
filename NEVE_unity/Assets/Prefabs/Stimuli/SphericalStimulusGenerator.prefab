@@ -94,14 +94,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 5
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
   outlineWorldSpaceMaterial: {fileID: 2100000, guid: e48bcc56a92dc4d6a974a3d2cbcc0dec, type: 2}
+  appliedOulineWorldSpaceMaterial: {fileID: 0}
   targetMaterial: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
+  targetMaterialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1026818042
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,14 +198,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 5
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
   outlineWorldSpaceMaterial: {fileID: 2100000, guid: e48bcc56a92dc4d6a974a3d2cbcc0dec, type: 2}
+  appliedOulineWorldSpaceMaterial: {fileID: 0}
   targetMaterial: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
+  targetMaterialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7929488127660487863
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,14 +302,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 5
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
   outlineWorldSpaceMaterial: {fileID: 2100000, guid: e48bcc56a92dc4d6a974a3d2cbcc0dec, type: 2}
+  appliedOulineWorldSpaceMaterial: {fileID: 0}
   targetMaterial: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
+  targetMaterialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7929488128777664784
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,14 +364,27 @@ MonoBehaviour:
   endPolarPosition: {x: 0, y: 0}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
-  targetLocationOffset: {x: 0, y: 0, z: 0}
-  startOffset: 100
-  endOffset: 1
+  origin: {x: 0, y: 0, z: 0}
+  startDistance: 100
+  endDistance: 1
   duration: 5
   delayToApproach: 5
+  delayToAppear: 0
   stimulusColour: {r: 1, g: 1, b: 1, a: 1}
   manualControl: 0
   mouseMoveSpeed: 2
+  directPath: 1
+  hideAtEnd: 0
+  mimicExpansionSpeed: 0
+  mimicExpansionSpeedMethod: 0
+  referenceInitialDistance: 2
+  referenceEndDistance: 2
+  referenceSpeed: 1
+  equalDistance: 1
+  referenceDiameter: 1
+  moveTime: 1
+  referenceStartPolarPosition: {x: 0, y: 0}
+  referenceEndPolarPosition: {x: 0, y: 0}
   gratingNum: 100
   gratingIsSquare: 0
   gratingMaxIntensity: 0.1
@@ -386,5 +405,9 @@ MonoBehaviour:
   - {fileID: 105145882}
   outlineWidth: 5
   drawOutline: 1
+  outlineType: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   gratingSphereMesh: {fileID: 105145885}
+  opaqueObject: 0
+  target: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
+  opaqueTarget: {fileID: 2100000, guid: 0d418c3848164c5c88aced90a972e24c, type: 2}
