@@ -88,3 +88,4 @@ fixedAngularSize: 0
 fixElevation: 0 
 minAngularAngle: -15.5
 maxAngularAngle: -14.5
+hideAtEnd: 1

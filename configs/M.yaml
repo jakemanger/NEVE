@@ -1,9 +1,9 @@
 
 # general
 buildDir: ./builds/MimicExpansionSpeedDualLoom
-frameDataIdCode: [11, 12, 13]
-animalCode: [1, 2, 3] 
-execution_order: [0, 1, 2]
+frameDataIdCode: [11, 12]
+animalCode: [1, 2] 
+execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -76,6 +76,7 @@ fixElevation1: 0
 minAngularAngle1: -15.5
 maxAngularAngle1: -14.5
 numReps1: 0.5
+hideAtEnd1: 1
 
 # expansion speed mimic parameters
 # mimicExpansionSpeed1: 1
@@ -127,6 +128,7 @@ fixElevation2: 0
 minAngularAngle2: -15.5
 maxAngularAngle2: -14.5
 numReps2: 0.5
+hideAtEnd2: 1
 
 mimicExpansionSpeed2: 1
 mimicExpansionSpeedMethod2: 2

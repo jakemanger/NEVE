@@ -21,8 +21,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 
-monitorDimensionsY: 32 
+monitorDimensionsX: 52 # 52 
+monitorDimensionsY: 32 # 32 
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -52,10 +52,10 @@ endScaleY: 3
 endScaleZ: 3  
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 15
+endElevation: 59.8711
 endAzimuth: 0 
 startDistance: 500
-endDistance: 28.5
+endDistance: 2.197
 duration: 5
 delayToApproach: 5 
 stimulusColourR: 0.5
@@ -76,3 +76,4 @@ maxAngularAngle: 14.5
 originX: 0 
 originY: 0 
 originZ: 0 
+hideAtEnd: 1

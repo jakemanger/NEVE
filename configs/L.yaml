@@ -75,6 +75,7 @@ fixElevation1: 0
 minAngularAngle1: -15.5
 maxAngularAngle1: -14.5
 numReps1: 0.5
+hideAtEnd1: 1
 
 # object 2 (near miss loom, 7 cm from crab)
 stimulusType2: 0
@@ -110,3 +111,4 @@ fixElevation2: 0
 minAngularAngle2: -15.5
 maxAngularAngle2: -14.5
 numReps2: 0.5
+hideAtEnd2: 1

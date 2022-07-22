@@ -56,7 +56,7 @@ endAzimuth: 0
 originX: 0 
 originY: 0 
 originZ: 0 
-startDistance: 500 # 3000
+startDistance: 3000
 endDistance: 1.5
 duration: 5
 delayToApproach: 5 

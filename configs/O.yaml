@@ -110,3 +110,4 @@ fixElevation2: 0
 minAngularAngle2: -15.5
 maxAngularAngle2: -14.5
 numReps2: 0.5
+hideAtEnd2: 1
