@@ -70,6 +70,7 @@ fixElevation1: 0
 minAngularAngle1: -3.185
 maxAngularAngle1: 3.185
 hideAtEnd1: 1
+opaqueObject1: 1
 
 # object 2
 stimulusType2: 1 # 0 = sphere, 1 = cube
@@ -107,3 +108,4 @@ fixElevation2: 0
 minAngularAngle2: -3.185
 maxAngularAngle2: 3.185
 hideAtEnd2: 1
+opaqueObject2: 0
