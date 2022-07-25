@@ -96,13 +96,6 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
         base.Reset();
 
-        stimulusRenderer = stimulus.GetComponent<Renderer>();
-        if (opaqueObject) {
-            stimulusRenderer.material = opaqueTarget;
-        } else {
-            stimulusRenderer.material = target;
-        }
-        stimulusRenderer.material.color = stimulusColour;
 
         // reset variables
         offsetFromCenter = startDistance;
@@ -121,6 +114,14 @@ public class SphericalStimulusGenerator : GenericStimulusController
         }
         // select stimulus type
         stimulus = stimuli[stimulusType];
+
+        stimulusRenderer = stimulus.GetComponent<Renderer>();
+        if (opaqueObject) {
+            stimulusRenderer.material = Instantiate<Material>(opaqueTarget);
+        } else {
+            stimulusRenderer.material = Instantiate<Material>(target);
+        }
+        stimulusRenderer.material.color = stimulusColour;
 
         SetupOutline();
         stimulus.SetActive(true);
@@ -404,7 +405,6 @@ public class SphericalStimulusGenerator : GenericStimulusController
         } else {
             outline.targetMaterial = Instantiate<Material>(target);
         }
-        outline.enabled = drawOutline;
         outline.targetMaterialColor = stimulusColour;
         outline.outlineWidth = outlineWidth;
         outline.OutlineColor = outlineColor;
@@ -413,6 +413,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         } else {
             outline.OutlineMode = Outline.Mode.WorldSpace;
         }
+        outline.enabled = drawOutline;
     }
 
     void SetupFixedAngularSize() {

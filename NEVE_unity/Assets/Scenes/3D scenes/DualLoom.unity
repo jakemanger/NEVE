@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
+  m_IndirectSpecularColor: {r: 0.14358507, g: 0.14358507, b: 0.14358507, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -301,11 +301,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
@@ -374,11 +386,23 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
@@ -809,6 +833,8 @@ MonoBehaviour:
   endPolarPosition2: {x: -10, y: -15}
   origin1: {x: 0, y: 0, z: 0}
   origin2: {x: 0, y: 0, z: 0}
+  rotationOffset1: {x: 0, y: 0}
+  rotationOffset2: {x: 0, y: 0}
   startDistance1: 50
   startDistance2: 50
   endDistance1: 10
@@ -819,6 +845,8 @@ MonoBehaviour:
   numReps2: 2
   stimulusColour1: {r: 0.8867924, g: 0.12967247, b: 0.12967247, a: 1}
   stimulusColour2: {r: 0.22574759, g: 0.486399, b: 0.8396226, a: 1}
+  opaqueObject1: 0
+  opaqueObject2: 0
   stimulusDuration1: 5
   stimulusDuration2: 5
   stimulusType1: 1
