@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c125a6df125e45f9945f4f859bff719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 0
+  recieveParametersFromPython: 1
   recieveInputFromSocket: 0
   mustIncludeEveryParameter: 0
   eyeHeight: 2
@@ -699,6 +699,7 @@ MonoBehaviour:
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
   origin: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0}
   startDistance: 76881
   endDistance: 0.0282
   duration: 10
@@ -710,6 +711,7 @@ MonoBehaviour:
   maxAngularAngle: -30
   stimulusType: 0
   stimulusColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  opaqueObject: 0
   gratingNum: 100
   gratingIsSquare: 0
   gratingMaxIntensity: 0.1
