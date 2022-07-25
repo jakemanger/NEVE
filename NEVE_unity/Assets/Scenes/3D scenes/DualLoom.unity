@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14358507, g: 0.14358507, b: 0.14358507, a: 1}
+  m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -306,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Enabled
@@ -322,8 +322,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929488127660487860, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7929488127660487866, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator
@@ -381,41 +389,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 105145883, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 7929488127660487860, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 7929488127660487866, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c297981143624d44b6e668e2a1576f3, type: 2}
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7929488128777664785, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: directPath
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664790, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_RootOrder

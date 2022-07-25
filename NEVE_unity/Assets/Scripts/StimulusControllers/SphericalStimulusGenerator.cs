@@ -129,7 +129,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
         if (directPath) {
             Vector3 startPositionCartesian = PolarToCartesian(startPolarPosition, startDistance);
-            stimulus.transform.position = startPositionCartesian;
+            stimulus.transform.localPosition = startPositionCartesian;
         } else {
             Vector3 pos = stimulus.transform.localPosition;
             stimulus.transform.localPosition = new Vector3(pos.x, pos.y, offsetFromCenter);
@@ -337,7 +337,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
             }
             // assign the new position according to the new expansion speed
-            stimulus.transform.position = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
+            stimulus.transform.localPosition = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
             // print("startDistance: " + startDistance + "; endDistance: " + endDistance + "; timeElapsed: " + timeElapsed);
             // print("Progress: " + progress + "; Distance from unity: " + Vector3.Distance(stimulus.transform.position, endPositionCartesian));
         } else {
