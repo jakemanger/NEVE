@@ -55,18 +55,18 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
 # object 1
-stimulusType1: 1
-startScaleX1: 1 
-startScaleY1: 1
-startScaleZ1: 1
-endScaleX1: 1
-endScaleY1: 1
-endScaleZ1: 1
+stimulusType1: 0
+startScaleX1: 1.5
+startScaleY1: 1.5
+startScaleZ1: 1.5
+endScaleX1: 1.5
+endScaleY1: 1.5
+endScaleZ1: 1.5
 duration1: 5
 startElevation1: 15
-startAzimuth1: 0 
+startAzimuth1: -10 
 endElevation1: 15
-endAzimuth1: 90 
+endAzimuth1: -10
 startDistance1: 50 
 endDistance1: 5
 numReps1: [0.5, 1] 
@@ -82,15 +82,16 @@ outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0
 outlineColourA1: 1
-fixedAngularSize1: 1
+fixedAngularSize1: 0
 fixElevation1: 0
 minAngularAngle1: -0.5
 maxAngularAngle1: 0.5
 originX1: [0, 0] 
 originY1: [0, 0]
 originZ1: [0, 0]
+
 # object 2
-stimulusType2: 1
+stimulusType2: 0
 startScaleX2: 1.5
 startScaleY2: 1.5
 startScaleZ2: 1.5
@@ -99,11 +100,11 @@ endScaleY2: 1.5
 endScaleZ2: 1.5
 duration2: 5
 startElevation2: 15
-startAzimuth2: 0 
+startAzimuth2: 10 
 endElevation2: 15
-endAzimuth2: 0 
-startDistance2: 55 
-endDistance2: 6  
+endAzimuth2: 10 
+startDistance2: 50
+endDistance2: 5  
 numReps2: [0.5, 1] 
 delayToApproach2: [5, 5]
 stimulusColourR2: 0 
@@ -117,7 +118,7 @@ outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
 outlineColourA2: 1
-fixedAngularSize2: 1
+fixedAngularSize2: 0
 fixElevation2: 0
 minAngularAngle2: -0.5
 maxAngularAngle2: 0.5
@@ -126,30 +127,28 @@ originY2: [0, 0]
 originZ2: [0, 0]
 
 # expansion speed mimic parameters
-mimicExpansionSpeed1: 1
-mimicExpansionSpeedMethod1: 0
+mimicExpansionSpeed1: 0
+mimicExpansionSpeedMethod1: 2
 referenceInitialDistance1: 10
 referenceEndDistance1: 1
-referenceSpeed1: 1
+referenceSpeed1: 2
 equalDistance1: 1
 referenceDiameter1: 1
-equalDistance1: 1
 moveTime1: 1
-referenceStartElevation1: 0
+referenceStartElevation1: 15
 referenceStartAzimuth1: 0
-referenceEndElevation1: 0
+referenceEndElevation1: 15
 referenceEndAzimuth1: 0
 
 mimicExpansionSpeed2: 1
-mimicExpansionSpeedMethod2: 0
-referenceInitialDistance2: 10
-referenceEndDistance2: 1
-referenceSpeed2: 1
-equalDistance2: 1
-referenceDiameter2: 1
-equalDistance2: 1
+mimicExpansionSpeedMethod2: 1
+referenceInitialDistance2: 500
+referenceEndDistance2: 1.5
+referenceSpeed2: 20
+equalDistance2: 60
+referenceDiameter2: 1.5
 moveTime2: 1
-referenceStartElevation2: 0
+referenceStartElevation2: 15
 referenceStartAzimuth2: 0
-referenceEndElevation2: 0
+referenceEndElevation2: 15
 referenceEndAzimuth2: 0
