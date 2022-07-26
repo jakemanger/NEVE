@@ -18,6 +18,8 @@ syncSquareDisplayNum: 0
 displayStimulusCode: 1
 fictracFeedback: 0
 
+
+
 # perspective
 eyeHeight: 2.864
 distanceToMonitors: 27
@@ -44,24 +46,24 @@ horizonHeight: 0
 # object 1
 stimulusType1: 1 # 0 = sphere, 1 = cube
 startScaleX1: 100  # size of stimulus in cm (edge to edge of sphere)
-startScaleY1: 2.5
-startScaleZ1: 0.1
+startScaleY1: 3
+startScaleZ1: 0.001
 endScaleX1: 100
-endScaleY1: 2.5
-endScaleZ1: 0.1
+endScaleY1: 3
+endScaleZ1: 0.001
 duration1: 5 # 24.925 (to get 200 mm/s)
 startElevation1: 15
 startAzimuth1: 0 
 endElevation1: 59.8711
 endAzimuth1: 0
-startDistance1: 499.8
-endDistance1: 1.999
+startDistance1: 500.001
+endDistance1: 2.198
 numReps1: 0.5  
 originX1: 0
 originY1: 0
 originZ1: 0
 delayToApproach1: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
-stimulusColourR1: 1  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
+stimulusColourR1: 0.5  # values from 0 to 1 (anything less or greater than these extremes will be rounded to 0 or 1, respectively)
 stimulusColourG1: 0.5
 stimulusColourB1: 0.5
 stimulusColourA1: 1
@@ -76,17 +78,17 @@ opaqueObject1: 1
 stimulusType2: 1 # 0 = sphere, 1 = cube
 startScaleX2: 3  # size of stimulus in cm (edge to edge of sphere)
 startScaleY2: 3
-startScaleZ2: 0.1
+startScaleZ2: 3
 endScaleX2: 3
 endScaleY2: 3
-endScaleZ2: 0.1
+endScaleZ2: 3
 duration2: 5 # 24.925 (to get 200 mm/s)
 startElevation2: 15
 startAzimuth2: 0 
 endElevation2: 59.8711
 endAzimuth2: 0 
 startDistance2: 500
-endDistance2: 2.199
+endDistance2: 2.197
 numReps2: 0.5  
 originX2: 0 
 originY2: 0
@@ -94,14 +96,14 @@ originZ2: 0
 outlineType2: 1
 drawOutline2: 1
 outlineWidth2: 33.33
-delayToApproach2: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
+delayToApproach2: 5  
 outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
 outlineColourA2: 1
-stimulusColourR2: 0  
-stimulusColourG2: 0
-stimulusColourB2: 0
+stimulusColourR2: 0.5  
+stimulusColourG2: 0.5
+stimulusColourB2: 0.5
 stimulusColourA2: 1
 fixedAngularSize2: 0
 fixElevation2: 0
