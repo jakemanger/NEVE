@@ -1,6 +1,6 @@
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2]
+frameDataIdCode: [11, 12]
 animalCode: [1, 2] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -21,8 +21,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 # 52
-monitorDimensionsY: 32 # 32
+monitorDimensionsX: 52 # 52 
+monitorDimensionsY: 32 # 32 
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -41,37 +41,39 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0  
 
+
 # object
-stimulusType: 0
-startScaleX: 3
+stimulusType: 1
+startScaleX: 10 
 startScaleY: 3
 startScaleZ: 3
-endScaleX: 3
+endScaleX: 10
 endScaleY: 3
-endScaleZ: 3
+endScaleZ: 3  
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 41.06 # calculate via equation
-endAzimuth: 42.3 # calculate via equation
-startDistance: 500 
-endDistance: 2.12
-duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
-originX: 0 
-originY: 0 
-originZ: 0 
+endElevation: 59.8711
+endAzimuth: 0 
+startDistance: 500
+endDistance: 2.197
+duration: 5
 delayToApproach: 5 
-stimulusColourR: 0
-stimulusColourG: 0
-stimulusColourB: 0
+stimulusColourR: 0.5
+stimulusColourG: 0.5
+stimulusColourB: 0.5
 stimulusColourA: 1
-drawOutline: 0
-outlineWidth: 1
+outlineType: 1
+drawOutline: 1
+outlineWidth: 33.33
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 0
-fixElevation: 0 
-minAngularAngle: -15.5
-maxAngularAngle: -14.5
+fixedAngularSize: 1
+fixElevation: 1
+minAngularAngle: -3.185
+maxAngularAngle: 3.185
+originX: 0 
+originY: 0 
+originZ: 0 
 hideAtEnd: 1

@@ -21,8 +21,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 
-monitorDimensionsY: 32 
+monitorDimensionsX: 52 # 52
+monitorDimensionsY: 32 # 32
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -42,23 +42,23 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 
 # object
-stimulusType: 1
+stimulusType: 0
 startScaleX: 3
-startScaleY: 400
+startScaleY: 3
 startScaleZ: 3
 endScaleX: 3
-endScaleY: 400
+endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 15
-endAzimuth: 0 
+endElevation: 45.3334 # calculate via equation
+endAzimuth: 87.2495 # calculate via equation
+startDistance: 500 
+endDistance: 7.149
+duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX: 0 
 originY: 0 
 originZ: 0 
-startDistance: 3000
-endDistance: 1.5
-duration: 5
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -70,7 +70,8 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 1
-fixElevation: 1
-minAngularAngle: 11.815
-maxAngularAngle: 18.185  
+fixedAngularSize: 0
+fixElevation: 0 
+minAngularAngle: -15.5
+maxAngularAngle: -14.5
+hideAtEnd: 1
