@@ -1,6 +1,7 @@
+
 # general
-buildDir: ./builds/DualLoom
-frameDataIdCode: [1, 2]
+buildDir: ./builds/MimicExpansionSpeedDualLoom
+frameDataIdCode: [11, 12]
 animalCode: [1, 2] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -14,23 +15,23 @@ syncSquareColourR: 1
 syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1
-syncSquareDisplayNum: 1 
+syncSquareDisplayNum: 1
 displayStimulusCode: 1 
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.864 
-distanceToMonitors: 27 
-monitorDimensionsX: 52 # 52
-monitorDimensionsY: 32 # 32
-frontDisplayNum: 0 
-rightDisplayNum: 1 
+eyeHeight: 2.864
+distanceToMonitors: 27
+monitorDimensionsX: 52
+monitorDimensionsY: 32
+frontDisplayNum: 0
+rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
-darkAdaptTime: 0
 
 # stimuli
 # background
+darkAdaptTime: 0
 aboveHorizonColourR: 0.5
 aboveHorizonColourG: 0.5
 aboveHorizonColourB: 0.5
@@ -39,9 +40,9 @@ belowHorizonColourR: 0.3
 belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
-horizonHeight: 0  
+horizonHeight: 0 
 
-# object 1 (direct loom)
+# object 1 # direct approaching mimicking near miss
 stimulusType1: 0
 startScaleX1: 3
 startScaleY1: 3
@@ -59,7 +60,7 @@ duration1: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [0, 90]
+rotationOffsetY1: [90, 180]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -78,7 +79,21 @@ maxAngularAngle1: -14.5
 numReps1: 0.5
 hideAtEnd1: 1
 
-# object 2 (near miss loom, 7 cm from crab)
+mimicExpansionSpeed1: 1
+mimicExpansionSpeedMethod1: 2
+referenceInitialDistance1: 500
+referenceEndDistance1: 7.149
+referenceSpeed1: 200
+equalDistance1: 500
+referenceDiameter1: 3
+moveTime1: 0
+referenceStartElevation1: 15
+referenceStartAzimuth1: 0
+referenceEndElevation1: 45.3334
+referenceEndAzimuth1: 87.2495
+
+
+# object 2 # near miss mimicking direct 
 stimulusType2: 0
 startScaleX2: 3
 startScaleY2: 3
@@ -96,7 +111,7 @@ duration2: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 90]
+rotationOffsetY2: [90, 180]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
@@ -114,3 +129,16 @@ minAngularAngle2: -15.5
 maxAngularAngle2: -14.5
 numReps2: 0.5
 hideAtEnd2: 1
+
+mimicExpansionSpeed2: 1
+mimicExpansionSpeedMethod2: 2
+referenceInitialDistance2: 500
+referenceEndDistance2: 1.5
+referenceSpeed2: 20
+equalDistance2: 500
+referenceDiameter2: 3
+moveTime2: 0
+referenceStartElevation2: 15
+referenceStartAzimuth2: 0
+referenceEndElevation2: 15
+referenceEndAzimuth2: 0

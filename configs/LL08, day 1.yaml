@@ -59,7 +59,7 @@ duration1: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [0, 90]
+rotationOffsetY1: [90, 180]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -96,7 +96,7 @@ duration2: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 90]
+rotationOffsetY2: [90, 180]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
