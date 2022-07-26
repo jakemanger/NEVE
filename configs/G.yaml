@@ -1,20 +1,6 @@
-# Below are the parameters used to alter a unity experiment with the name
-# Loom
-
-# Controls for the experiment
-# escape - stall Unity, end the experiment and give control to python.
-# F - flicker the stimulus and the sync square to sync unity with the camera
-# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
-# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
-# Space - start movement/reset looming of the stimulus
-# IF manualControl==1,
-# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
-# Scroll the mouse wheel - Make the stimulus larger or smaller
-# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
-
 # general
-buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2]
+buildDir: ./builds/MimicExpansionSpeedLoom/
+frameDataIdCode: [11, 12]
 animalCode: [1, 2] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -56,23 +42,23 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 
 # object
-stimulusType: 1
-startScaleX: 400
+stimulusType: 0
+startScaleX: 3
 startScaleY: 3
 startScaleZ: 3
-endScaleX: 400
+endScaleX: 3
 endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 15
-endAzimuth: 0 
+endElevation: 45.3334 # calculate via equation
+endAzimuth: 87.2495 # calculate via equation
+startDistance: 500 
+endDistance: 7.149
+duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX: 0 
 originY: 0 
 originZ: 0 
-startDistance: 3000
-endDistance: 1.5
-duration: 5
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -84,7 +70,23 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 1
-fixElevation: 0
-minAngularAngle: -3.185
-maxAngularAngle: 3.185
+fixedAngularSize: 0
+fixElevation: 0 
+minAngularAngle: -15.5
+maxAngularAngle: -14.5
+hideAtEnd: 1
+
+
+# expansion speed mimic parameters
+mimicExpansionSpeed: 1
+mimicExpansionSpeedMethod: 2
+referenceInitialDistance: 500
+referenceEndDistance: 1.5
+referenceSpeed: 20
+referenceDiameter: 3
+equalDistance: 500
+moveTime: 0
+referenceStartElevation: 15
+referenceStartAzimuth: 0
+referenceEndElevation: 15
+referenceEndAzimuth: 0

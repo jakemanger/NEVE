@@ -56,6 +56,7 @@ belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0  
+
 # object
 stimulusType: 0
 startScaleX: 1  
@@ -94,7 +95,7 @@ originZ: 0
 
 # expansion speed mimic parameters
 mimicExpansionSpeed: 1
-mimicExpansionSpeedMethod: 0
+mimicExpansionSpeedMethod: 2
 referenceInitialDistance: 10
 referenceEndDistance: 1
 referenceSpeed: 1

@@ -99,7 +99,7 @@ Same as Loom, but with the following additional parameters:
 | Parameter name | Description | Options | Default value |
 | -------------- | ----------- | ------- | ------------- |
 | `mimicExpansionSpeed` | Whether or not to mimic expansion speed using the reference parameters (below) | `0` (false) or `1` (true) | `1` |
-| `mimicExpansionSpeedMethod` | The method to use to mimic the expansion speed. | `0` (match expansionSpeed of directly approaching loom to another direct approaching looming stimuli) or `1` (match a near miss stimulus with the expansion speed of a directly looming stimulus by adjusting the current stimuli's size over time) | `0` |
+| `mimicExpansionSpeedMethod` | The method to use to mimic the expansion speed. | `1` (match expansionSpeed of directly approaching loom to another direct approaching looming stimuli) or `2` (match a near miss stimulus with the expansion speed of a directly looming stimulus or vice versa by adjusting the current stimuli's size over time) | `0` |
 | `referenceInitialDistance` | Initial distance of the reference stimulus | Any number | `1` |
 | `referenceEndDistance` | End distance of the reference stimulus | Any number | `1` |
 | `equalDistance` | ? (Ask Zahra) | Any number | `1` |

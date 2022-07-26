@@ -108,14 +108,13 @@ public class Outline : MonoBehaviour {
   void OnEnable() {
     if (OutlineMode != Mode.WorldSpace) {
         foreach (var renderer in renderers) {
+          // Append outline shaders
+          var materials = renderer.sharedMaterials.ToList();
 
-        // Append outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+          materials.Add(outlineMaskMaterial);
+          materials.Add(outlineFillMaterial);
 
-        materials.Add(outlineMaskMaterial);
-        materials.Add(outlineFillMaterial);
-
-        renderer.materials = materials.ToArray();
+          renderer.materials = materials.ToArray();
         }
     }
     // Apply material properties immediately
@@ -146,13 +145,13 @@ public class Outline : MonoBehaviour {
 
         // Clear cache when baking is disabled or corrupted
         if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
-        bakeKeys.Clear();
-        bakeValues.Clear();
+          bakeKeys.Clear();
+          bakeValues.Clear();
         }
 
         // Generate smooth normals when baking is enabled
         if (precomputeOutline && bakeKeys.Count == 0) {
-        Bake();
+          Bake();
         }
     }
   }
