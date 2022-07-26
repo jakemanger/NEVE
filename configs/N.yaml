@@ -107,6 +107,7 @@ endAzimuth2: 87.2495 # calculate via equation
 startDistance2: 500 
 endDistance2: 7.149
 duration2: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
+rotationOffsetY2: 90 
 originX2: 0 
 originY2: 0 
 originZ2: 0 

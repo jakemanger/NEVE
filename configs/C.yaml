@@ -55,7 +55,7 @@ startAzimuth1: 0
 endElevation1: 59.8711
 endAzimuth1: 0
 startDistance1: 500
-endDistance1: 2.199
+endDistance1: 2.198
 numReps1: 0.5  
 originX1: 0
 originY1: 0
@@ -93,8 +93,8 @@ originY2: 0
 originZ2: 0
 outlineType2: 1
 drawOutline2: 1
-outlineWidth2: 83.33
-delayToApproach2: 5  # delay in seconds before stimulus starts moving (if manual_control=false)
+outlineWidth2: 33.33
+delayToApproach2: 5  
 outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
