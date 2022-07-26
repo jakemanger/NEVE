@@ -57,7 +57,7 @@ startAzimuth1: 0
 endElevation1: 59.8711
 endAzimuth1: 0
 startDistance1: 500.001
-endDistance1: 2.198
+endDistance1: 2.11973
 numReps1: 0.5  
 originX1: 0
 originY1: 0
@@ -88,7 +88,7 @@ startAzimuth2: 0
 endElevation2: 59.8711
 endAzimuth2: 0 
 startDistance2: 500
-endDistance2: 2.197
+endDistance2: 2.11973
 numReps2: 0.5  
 originX2: 0 
 originY2: 0
