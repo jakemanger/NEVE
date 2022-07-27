@@ -104,7 +104,7 @@ endScaleZ2: 3
 startElevation2: 15 
 startAzimuth2: 0  
 endElevation2: [41.06, 45.3334]
-endAzimuth2: [42.3. 87.2495] 
+endAzimuth2: [42.3, 87.2495] 
 startDistance2: 500 
 endDistance2: [2.12, 7.149]
 duration2: 24.925 

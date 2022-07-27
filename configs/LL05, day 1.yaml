@@ -1,8 +1,8 @@
 # general
 buildDir: ./builds/Loom/
 frameDataIdCode: [5, 6]
-animalCode: [12, 12] 
-execution_order: [1, 0]
+animalCode: [5, 5] 
+execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -59,7 +59,7 @@ originZ: 0
 rotationOffsetY: [0, 270]
 startDistance: [3000, 500]
 endDistance: 1.5
-duration: 5
+duration: 24.925 
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -75,3 +75,4 @@ fixedAngularSize: [1, 0]
 fixElevation: 0
 minAngularAngle: -3.185
 maxAngularAngle: 3.185
+hideAtEnd: 1

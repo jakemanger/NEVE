@@ -1,8 +1,8 @@
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2]
-animalCode: [1, 1] 
-execution_order: [0, 1]
+frameDataIdCode: [5, 6]
+animalCode: [12, 12] 
+execution_order: [1, 0]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -19,7 +19,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 1.918 
+eyeHeight: 2.206
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -42,37 +42,37 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 
 # object
-stimulusType: 1
-startScaleX: [3, 2]
-startScaleY: [3, 2]
-startScaleZ: [3, 2]
-endScaleX: [3, 2]
-endScaleY: [3, 2]
-endScaleZ: [3, 2]
+stimulusType: [1, 0]
+startScaleX: [400, 3]
+startScaleY: 3
+startScaleZ: 3
+endScaleX: [400, 3]
+endScaleY: 3
+endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
 endElevation: 15
 endAzimuth: 0 
-startDistance: 500 
-endDistance: 1.5
-duration: 24.925 
 originX: 0 
 originY: 0 
 originZ: 0 
-rotationOffsetY: [0, 90]
+rotationOffsetY: [0, 270]
+startDistance: [3000, 500]
+endDistance: 1.5
+duration: 24.925 
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
 stimulusColourB: 0
 stimulusColourA: 1
-outlineType: 1
-drawOutline: [0, 1]
-outlineWidth: 33.33
+drawOutline: 0
+outlineWidth: 1
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 0
-fixElevation: 0 
-minAngularAngle: -15.5
-maxAngularAngle: -14.5
+fixedAngularSize: [1, 0]
+fixElevation: 0
+minAngularAngle: -3.185
+maxAngularAngle: 3.185
+hideAtEnd: 1
