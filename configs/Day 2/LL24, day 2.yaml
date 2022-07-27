@@ -61,7 +61,7 @@ numReps1: 0.5
 originX1: 0
 originY1: 0
 originZ1: 0
-rotationOffsetY1: [90, 270]
+rotationOffsetY1: [270, 90]
 delayToApproach1: 5 
 stimulusColourR1: 0.5 
 stimulusColourG1: 0.5
@@ -93,7 +93,7 @@ numReps2: 0.5
 originX2: 0 
 originY2: 0
 originZ2: 0
-rotationOffsetY2: [90, 270]
+rotationOffsetY2: [270, 90]
 outlineType2: 1
 drawOutline2: 1
 outlineWidth2: 33.33

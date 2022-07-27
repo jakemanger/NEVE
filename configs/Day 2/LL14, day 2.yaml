@@ -56,7 +56,7 @@ endAzimuth: 87.2495
 startDistance: 500 
 endDistance: 7.149
 duration: 24.925
-rotationOffsetY: [90, 180]
+rotationOffsetY: [90, 270]
 originX: 0 
 originY: 0 
 originZ: 0 

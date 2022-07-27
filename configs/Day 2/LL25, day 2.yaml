@@ -60,7 +60,7 @@ duration1: 24.925
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [180, 0]
+rotationOffsetY1: [0, 180]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -111,7 +111,7 @@ duration2: 24.925
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 180]
+rotationOffsetY2: [180, 0]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
