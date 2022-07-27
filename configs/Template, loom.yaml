@@ -21,8 +21,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 # 52
-monitorDimensionsY: 32 # 32
+monitorDimensionsX: 52 
+monitorDimensionsY: 32 
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -55,7 +55,7 @@ endElevation: 15
 endAzimuth: 0 
 startDistance: 500 
 endDistance: 1.5
-duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
+duration: 24.925 
 originX: 0 
 originY: 0 
 originZ: 0 

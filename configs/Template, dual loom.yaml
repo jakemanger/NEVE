@@ -21,8 +21,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 # 52
-monitorDimensionsY: 32 # 32
+monitorDimensionsX: 52 
+monitorDimensionsY: 32 
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -41,7 +41,7 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0  
 
-# object 1 (direct loom)
+# object 1 direct looms 
 stimulusType1: 0
 startScaleX1: 3
 startScaleY1: 3
@@ -55,7 +55,7 @@ endElevation1: 15
 endAzimuth1: 0 
 startDistance1: 500 
 endDistance1: 1.5
-duration1: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
+duration1: 24.925 
 originX1: 0 
 originY1: 0 
 originZ1: 0 
@@ -78,7 +78,7 @@ maxAngularAngle1: -14.5
 numReps1: 0.5
 hideAtEnd1: 1
 
-# object 2 (near miss loom, 7 cm from crab)
+# object 2 near miss looms 
 stimulusType2: 0
 startScaleX2: 3
 startScaleY2: 3
@@ -88,11 +88,11 @@ endScaleY2: 3
 endScaleZ2: 3
 startElevation2: 15 
 startAzimuth2: 0  
-endElevation2: 45.3334 # calculate via equation
-endAzimuth2: 87.2495 # calculate via equation
+endElevation2: 45.3334
+endAzimuth2: 87.2495
 startDistance2: 500 
 endDistance2: 7.149
-duration2: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
+duration2: 24.925 
 originX2: 0 
 originY2: 0 
 originZ2: 0 
