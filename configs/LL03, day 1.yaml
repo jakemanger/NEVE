@@ -73,5 +73,5 @@ outlineColourB: 0
 outlineColourA: 1
 fixedAngularSize: 1
 fixElevation: [1, 0]
-minAngularAngle: [11.815, -3.185]
-maxAngularAngle: [18.185, 3.185]
+minAngularAngle: [12, -3.185]
+maxAngularAngle: [18, 3.185]
