@@ -2,6 +2,7 @@
 !.gitignore
 !calibration.yaml
 !dual_loom.yaml
+!four_loom.yaml
 !loom.yaml
 !mimic_expansion_speed_dual_loom.yaml
 !mimic_expansion_speed_loom.yaml

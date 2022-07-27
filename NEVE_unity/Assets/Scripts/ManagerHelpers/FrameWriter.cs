@@ -50,6 +50,7 @@ public class FrameWriter : MonoBehaviour
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
         stimControllerLength = stimulusControllers.Length;
 
+        transformsToRecord = new List<Transform>();
   
         // record the transforms of active stimulus controller objects
         for (int i = 0; i < stimControllerLength; i++) {
@@ -101,7 +102,15 @@ public class FrameWriter : MonoBehaviour
             string headers = "unityTime, datetime, stimulusOn";
 
             for (int i = 0; i < transformsToRecord.Count; i++) {
-                headers += ", " +  transformsToRecord[i].name + "_x, " + transformsToRecord[i].name + "_y, " + transformsToRecord[i].name + "_z, " + transformsToRecord[i].name + "_scale_x, " + transformsToRecord[i].name + "_scale_y, " + transformsToRecord[i].name + "_scale_z";
+                string name = transformsToRecord[i].name;
+                if (transformsToRecord[i].parent != null)
+                    name = transformsToRecord[i].parent.name + "." + transformsToRecord[i].name;
+
+                headers += ", " + name  + "_x, " + name + "_y, " + name + "_z, " + name + "_scale_x, " + name + "_scale_y, " + name + "_scale_z";
+            }
+
+            for (int i = 0; i < stimulusControllers.Length; i++) {
+                headers += ", " + stimulusControllers[i].name + "_stimulusState";
             }
 
             _sw.WriteLine(headers);
@@ -115,7 +124,13 @@ public class FrameWriter : MonoBehaviour
     {
         string data = Time.time + ", " + System.DateTime.Now + ", " + syncSquareImg.enabled;
         for (int i = 0; i < transformsToRecord.Count; i++) {
-            data += ", " + transformsToRecord[i].position.x + ", " + transformsToRecord[i].position.y + ", " + transformsToRecord[i].position.z + ", " + transformsToRecord[i].localScale.x + ", " + transformsToRecord[i].localScale.y + ", " + transformsToRecord[i].localScale.z;
+            Vector3 position = transformsToRecord[i].position;
+            Vector3 localScale = transformsToRecord[i].localScale;
+            data += ", " + position.x + ", " + position.y + ", " + position.z + ", " + localScale.x + ", " + localScale.y + ", " + localScale.z;
+        }
+
+        for (int i = 0; i < stimulusControllers.Length; i++) {
+            data += ", " + stimulusControllers[i].stimulusState;
         }
 
         _sw.WriteLine(data);

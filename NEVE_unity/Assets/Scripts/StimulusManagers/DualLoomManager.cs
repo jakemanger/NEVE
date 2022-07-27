@@ -22,6 +22,8 @@ public class DualLoomManager : GenericStimulusManager
     public Vector2 endPolarPosition2 = new Vector2(0f, 0f);
     public Vector3 origin1 = new Vector3(0f, 0f, 0f);
     public Vector3 origin2 = new Vector3(0f, 0f, 0f);
+    public Vector2 rotationOffset1 = Vector2.zero;
+    public Vector2 rotationOffset2 = Vector2.zero;
     public float startDistance1 = 10f;
     public float startDistance2 = 10f;
     public float endDistance1 = 10f;
@@ -32,6 +34,8 @@ public class DualLoomManager : GenericStimulusManager
     public float numReps2 = 2;
     public Color stimulusColour1 = Color.white;
     public Color stimulusColour2 = Color.white;
+    public bool opaqueObject1 = false;
+    public bool opaqueObject2 = false;
     public float stimulusDuration1 = 5f;
     public float stimulusDuration2 = 5f;
     public int stimulusType1 = 0;
@@ -85,6 +89,7 @@ public class DualLoomManager : GenericStimulusManager
         endScale1 = GetVector3FromPython("endScale", endScale1, "1");
         stimulusDuration1 = GetFloatFromPython("duration", stimulusDuration1, "1");
         origin1 = GetVector3FromPython("origin", Vector3.zero, "1");
+        rotationOffset1 = GetVector2FromPython("rotationOffset", Vector2.zero, "1");
         startPolarPosition1.x = -1 * GetFloatFromPython("startElevation", 0f, "1");
         startPolarPosition1.y = GetFloatFromPython("startAzimuth", 0f, "1");
         endPolarPosition1.x = -1 * GetFloatFromPython("endElevation", 0f, "1");
@@ -94,6 +99,7 @@ public class DualLoomManager : GenericStimulusManager
         delayToApproach1 = GetFloatFromPython("delayToApproach", 5f, "1");
         numReps1 = GetFloatFromPython("numReps", 1f, "1");
         stimulusColour1 = GetColorFromPython("stimulusColour", stimulusColour1, "1");
+        opaqueObject1 = GetBoolFromPython("opaqueObject", false, "1");
         stimulusType1 = GetIntFromPython("stimulusType", 0, "1");
         drawOutline1 = GetBoolFromPython("drawOutline", false, "1");
         outlineWidth1 = GetFloatFromPython("outlineWidth", 5f, "1");
@@ -116,6 +122,7 @@ public class DualLoomManager : GenericStimulusManager
         endScale2 = GetVector3FromPython("endScale", endScale2, "2");
         stimulusDuration2 = GetFloatFromPython("duration", 5f, "2");
         origin2 = GetVector3FromPython("origin", Vector3.zero, "2");
+        rotationOffset2 = GetVector2FromPython("rotationOffset", Vector2.zero, "2");
         startPolarPosition2.x = -1 * GetFloatFromPython("startElevation", 0f, "2");
         startPolarPosition2.y = GetFloatFromPython("startAzimuth", 0f, "2");
         endPolarPosition2.x = -1 * GetFloatFromPython("endElevation", 0f, "2");
@@ -125,6 +132,7 @@ public class DualLoomManager : GenericStimulusManager
         delayToApproach2 = GetFloatFromPython("delayToApproach", 5f, "2");
         numReps2 = GetFloatFromPython("numReps", 1f, "2");
         stimulusColour2 = GetColorFromPython("stimulusColour", stimulusColour2, "2");
+        opaqueObject2 = GetBoolFromPython("opaqueObject", false, "2");
         stimulusType2 = GetIntFromPython("stimulusType", 0, "2"); // 0 = icosphere, 1 = unity cube
         drawOutline2 = GetBoolFromPython("drawOutline", false, "2");
         outlineWidth2 = GetFloatFromPython("outlineWidth", 5f, "2");
@@ -158,14 +166,16 @@ public class DualLoomManager : GenericStimulusManager
         // stimulus 1
         stimGenerator1.flickerDuration = flickerDuration;
         stimGenerator1.stimulusColour = stimulusColour1;
+        stimGenerator1.opaqueObject = opaqueObject1;
         stimGenerator1.startScale = startScale1;
         stimGenerator1.endScale = endScale1;
         stimGenerator1.startDistance = startDistance1;
         stimGenerator1.endDistance = endDistance1;
         stimGenerator1.delayToApproach = delayToApproach1;
         stimGenerator1.origin = origin1;
-        stimGenerator1.startPolarPosition = startPolarPosition1;
-        stimGenerator1.endPolarPosition = endPolarPosition1;
+        stimGenerator1.rotationOffset = rotationOffset1;
+        stimGenerator1.startPolarPosition = startPolarPosition1 + rotationOffset1;
+        stimGenerator1.endPolarPosition = endPolarPosition1 + rotationOffset1;
         stimGenerator1.numReps = numReps1;
         stimGenerator1.duration = stimulusDuration1; 
         stimGenerator1.stimulusType = stimulusType1;
@@ -194,14 +204,16 @@ public class DualLoomManager : GenericStimulusManager
             SphericalStimulusGenerator stimGenerator2 = stimGenerators[1];
             stimGenerator2.flickerDuration = flickerDuration;
             stimGenerator2.stimulusColour = stimulusColour2;
+            stimGenerator2.opaqueObject = opaqueObject2;
             stimGenerator2.startScale = startScale2;
             stimGenerator2.endScale = endScale2;
             stimGenerator2.startDistance = startDistance2;
             stimGenerator2.endDistance = endDistance2;
             stimGenerator2.delayToApproach = delayToApproach2;
             stimGenerator2.origin = origin2;
-            stimGenerator2.startPolarPosition = startPolarPosition2;
-            stimGenerator2.endPolarPosition = endPolarPosition2;
+            stimGenerator2.rotationOffset = rotationOffset2;
+            stimGenerator2.startPolarPosition = startPolarPosition2 + rotationOffset2;
+            stimGenerator2.endPolarPosition = endPolarPosition2 + rotationOffset2;
             stimGenerator2.numReps = numReps2;
             stimGenerator2.duration = stimulusDuration2; 
             stimGenerator2.stimulusType = stimulusType2;
