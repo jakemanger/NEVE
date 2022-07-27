@@ -1,7 +1,6 @@
-
 # general
-buildDir: ./builds/MimicExpansionSpeedDualLoom
-frameDataIdCode: [11, 12]
+buildDir: ./builds/DualLoom
+frameDataIdCode: [1, 2]
 animalCode: [1, 2] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -20,18 +19,18 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.864
-distanceToMonitors: 27
-monitorDimensionsX: 52
-monitorDimensionsY: 32
-frontDisplayNum: 0
-rightDisplayNum: 1
+eyeHeight: 2.864 
+distanceToMonitors: 27 
+monitorDimensionsX: 52 # 52
+monitorDimensionsY: 32 # 32
+frontDisplayNum: 0 
+rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
+darkAdaptTime: 0
 
 # stimuli
 # background
-darkAdaptTime: 0
 aboveHorizonColourR: 0.5
 aboveHorizonColourG: 0.5
 aboveHorizonColourB: 0.5
@@ -40,9 +39,9 @@ belowHorizonColourR: 0.3
 belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
-horizonHeight: 0 
+horizonHeight: 0  
 
-# object 1 # direct 
+# object 1 (direct loom)
 stimulusType1: 0
 startScaleX1: 3
 startScaleY1: 3
@@ -78,23 +77,7 @@ maxAngularAngle1: -14.5
 numReps1: 0.5
 hideAtEnd1: 1
 
-# expansion speed mimic parameters
-# mimicExpansionSpeed1: 1
-# mimicExpansionSpeedMethod1: 0
-# referenceInitialDistance1: 10
-# referenceEndDistance1: 1
-# referenceSpeed1: 1
-# equalDistance1: 1
-# referenceDiameter1: 1
-# equalDistance1: 1
-# moveTime1: 1
-# referenceStartElevation1: 0
-# referenceStartAzimuth1: 0
-# referenceEndElevation1: 0
-# referenceEndAzimuth1: 0
-
-
-# object 2 # near miss mimicking direct 
+# object 2 (near miss loom, 7 cm from crab)
 stimulusType2: 0
 startScaleX2: 3
 startScaleY2: 3
@@ -129,17 +112,3 @@ minAngularAngle2: -15.5
 maxAngularAngle2: -14.5
 numReps2: 0.5
 hideAtEnd2: 1
-
-mimicExpansionSpeed2: 1
-mimicExpansionSpeedMethod2: 2
-referenceInitialDistance2: 500
-referenceEndDistance2: 1.5
-referenceSpeed2: 20
-equalDistance2: 500
-referenceDiameter2: 3
-moveTime2: 0
-referenceStartElevation2: 15
-referenceStartAzimuth2: 0
-referenceEndElevation2: 15
-referenceEndAzimuth2: 0
-

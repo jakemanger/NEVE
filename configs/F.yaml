@@ -1,3 +1,4 @@
+
 # general
 buildDir: ./builds/Loom/
 frameDataIdCode: [1, 2]
@@ -51,10 +52,10 @@ endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 45.3334 # calculate via equation
-endAzimuth: 87.2495 # calculate via equation
+endElevation: 15
+endAzimuth: 0 
 startDistance: 500 
-endDistance: 7.149
+endDistance: 1.5
 duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 originX: 0 
 originY: 0 
@@ -74,4 +75,3 @@ fixedAngularSize: 0
 fixElevation: 0 
 minAngularAngle: -15.5
 maxAngularAngle: -14.5
-hideAtEnd: 1

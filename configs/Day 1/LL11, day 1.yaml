@@ -42,7 +42,7 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
 
-# object 1 # direct looms
+# object 1 # direct looms 
 stimulusType1: 0
 startScaleX1: 3
 startScaleY1: 3
@@ -60,7 +60,7 @@ duration1: 24.925
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [270, 180]
+rotationOffsetY1: [180, 270]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -79,7 +79,7 @@ maxAngularAngle1: -14.5
 numReps1: 0.5
 hideAtEnd1: 1
 
-mimicExpansionSpeed1: [1, 0]
+mimicExpansionSpeed1: [0, 1]
 mimicExpansionSpeedMethod1: 2
 referenceInitialDistance1: 500
 referenceEndDistance1: 7.149
@@ -93,7 +93,7 @@ referenceEndElevation1: 45.3334
 referenceEndAzimuth1: 87.2495
 
 
-# object 2 # near miss looms
+# object 2 # near miss looms 
 stimulusType2: 0
 startScaleX2: 3
 startScaleY2: 3
@@ -103,15 +103,15 @@ endScaleY2: 3
 endScaleZ2: 3
 startElevation2: 15 
 startAzimuth2: 0  
-endElevation2: [45.3334, 41.06]
-endAzimuth2: [87.2495, 42.3] 
+endElevation2: 45.3334 
+endAzimuth2: 87.2495 
 startDistance2: 500 
-endDistance2: [7.149, 2.12]
+endDistance2: 7.149
 duration2: 24.925 
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [90, 0]
+rotationOffsetY2: [0, 90]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
@@ -130,7 +130,7 @@ maxAngularAngle2: -14.5
 numReps2: 0.5
 hideAtEnd2: 1
 
-mimicExpansionSpeed2: [1, 0]
+mimicExpansionSpeed2: 1
 mimicExpansionSpeedMethod2: 2
 referenceInitialDistance2: 500
 referenceEndDistance2: 1.5

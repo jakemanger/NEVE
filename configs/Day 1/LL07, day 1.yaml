@@ -1,7 +1,7 @@
 # general
 buildDir: ./builds/MimicExpansionSpeedLoom/
 frameDataIdCode: [7, 8]
-animalCode: [7, 7] 
+animalCode: [7, 7]
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -51,15 +51,15 @@ endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: [45.3334, 41.06] 
-endAzimuth: [87.2495, 42.3] 
+endElevation: 45.3334 
+endAzimuth: 87.2495 
 startDistance: 500 
-endDistance: [7.149, 2.12]
-duration: 24.925 
+endDistance: 7.149
+duration: 24.925
+rotationOffsetY: [90, 180]
 originX: 0 
 originY: 0 
 originZ: 0 
-rotationOffsetY: [180, 270]
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -78,8 +78,9 @@ maxAngularAngle: -14.5
 hideAtEnd: 1
 
 
+
 # expansion speed mimic parameters
-mimicExpansionSpeed: [1, 0]
+mimicExpansionSpeed: [0, 1]
 mimicExpansionSpeedMethod: 2
 referenceInitialDistance: 500
 referenceEndDistance: 1.5

@@ -42,7 +42,7 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
 
-# object 1 # direct approaching mimicking near miss
+# object 1 # direct 
 stimulusType1: 0
 startScaleX1: 3
 startScaleY1: 3
@@ -78,18 +78,20 @@ maxAngularAngle1: -14.5
 numReps1: 0.5
 hideAtEnd1: 1
 
-mimicExpansionSpeed1: 1
-mimicExpansionSpeedMethod1: 2
-referenceInitialDistance1: 500
-referenceEndDistance1: 7.149
-referenceSpeed1: 200
-equalDistance1: 500
-referenceDiameter1: 3
-moveTime1: 0
-referenceStartElevation1: 15
-referenceStartAzimuth1: 0
-referenceEndElevation1: 45.3334
-referenceEndAzimuth1: 87.2495
+# expansion speed mimic parameters
+# mimicExpansionSpeed1: 1
+# mimicExpansionSpeedMethod1: 0
+# referenceInitialDistance1: 10
+# referenceEndDistance1: 1
+# referenceSpeed1: 1
+# equalDistance1: 1
+# referenceDiameter1: 1
+# equalDistance1: 1
+# moveTime1: 1
+# referenceStartElevation1: 0
+# referenceStartAzimuth1: 0
+# referenceEndElevation1: 0
+# referenceEndAzimuth1: 0
 
 
 # object 2 # near miss mimicking direct 
@@ -140,3 +142,4 @@ referenceStartElevation2: 15
 referenceStartAzimuth2: 0
 referenceEndElevation2: 15
 referenceEndAzimuth2: 0
+

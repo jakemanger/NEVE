@@ -66,7 +66,8 @@ stimulusColourG: 0
 stimulusColourB: 0
 stimulusColourA: 1
 drawOutline: 0
-outlineWidth: 1
+outlineType: 1
+outlineWidth: 33.33
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0

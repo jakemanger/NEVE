@@ -1,6 +1,6 @@
 # general
-buildDir: ./builds/MimicExpansionSpeedLoom/
-frameDataIdCode: [11, 12]
+buildDir: ./builds/Loom/
+frameDataIdCode: [1, 2]
 animalCode: [1, 2] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -21,8 +21,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 
-monitorDimensionsY: 32 
+monitorDimensionsX: 52 # 52
+monitorDimensionsY: 32 # 32
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -51,8 +51,8 @@ endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 45.3334 # calculate via equation
-endAzimuth: 87.2495 # calculate via equation
+endElevation: 45.3334 
+endAzimuth: 87.2495 
 startDistance: 500 
 endDistance: 7.149
 duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
@@ -75,18 +75,3 @@ fixElevation: 0
 minAngularAngle: -15.5
 maxAngularAngle: -14.5
 hideAtEnd: 1
-
-
-# expansion speed mimic parameters
-mimicExpansionSpeed: 1
-mimicExpansionSpeedMethod: 2
-referenceInitialDistance: 500
-referenceEndDistance: 1.5
-referenceSpeed: 20
-referenceDiameter: 3
-equalDistance: 500
-moveTime: 0
-referenceStartElevation: 15
-referenceStartAzimuth: 0
-referenceEndElevation: 15
-referenceEndAzimuth: 0

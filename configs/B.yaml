@@ -52,10 +52,10 @@ endScaleY: 2
 endScaleZ: 2
 startElevation: 15
 startAzimuth: 0  
-endElevation: 59.8711
+endElevation: 15
 endAzimuth: 0 
 startDistance: 500
-endDistance: 2.197
+endDistance: 1.5
 duration: 5
 delayToApproach: 5 
 stimulusColourR: 0.5
