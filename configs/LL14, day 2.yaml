@@ -1,7 +1,7 @@
 # general
-buildDir: ./builds/Loom/
-frameDataIdCode: [4, 5]
-animalCode: [26, 26] 
+buildDir: ./builds/MimicExpansionSpeedLoom/
+frameDataIdCode: [7, 8]
+animalCode: [14, 14]
 execution_order: [1, 0]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -19,7 +19,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.132 
+eyeHeight: 2.164
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -42,24 +42,24 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 
 # object
-stimulusType: 1
-startScaleX: [3, 400]
-startScaleY: [400, 3]
+stimulusType: 0
+startScaleX: 3
+startScaleY: 3
 startScaleZ: 3
-endScaleX: [3, 400] 
-endScaleY: [400, 3]
+endScaleX: 3
+endScaleY: 3
 endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
-endElevation: 15
-endAzimuth: 0 
+endElevation: 45.3334 
+endAzimuth: 87.2495 
+startDistance: 500 
+endDistance: 7.149
+duration: 24.925
+rotationOffsetY: [90, 180]
 originX: 0 
 originY: 0 
 originZ: 0 
-rotationOffsetY: [0, 0]
-startDistance: 3000
-endDistance: 1.5
-duration: 5
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -71,7 +71,24 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 1
-fixElevation: [1, 0]
-minAngularAngle: [12, -3.185] 
-maxAngularAngle: [18,  3.185]
+fixedAngularSize: 0
+fixElevation: 0 
+minAngularAngle: -15.5
+maxAngularAngle: -14.5
+hideAtEnd: 1
+
+
+
+# expansion speed mimic parameters
+mimicExpansionSpeed: [0, 1]
+mimicExpansionSpeedMethod: 2
+referenceInitialDistance: 500
+referenceEndDistance: 1.5
+referenceSpeed: 20
+referenceDiameter: 3
+equalDistance: 500
+moveTime: 0
+referenceStartElevation: 15
+referenceStartAzimuth: 0
+referenceEndElevation: 15
+referenceEndAzimuth: 0

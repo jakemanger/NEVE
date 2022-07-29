@@ -59,7 +59,7 @@ originZ: 0
 rotationOffsetY: [0, 0]
 startDistance: 3000
 endDistance: 1.5
-duration: 5
+duration: 24.925
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -75,3 +75,4 @@ fixedAngularSize: 1
 fixElevation: [1, 0]
 minAngularAngle: [12, -3.185] 
 maxAngularAngle: [18,  3.185]
+hideAtEnd: 1

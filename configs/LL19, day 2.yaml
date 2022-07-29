@@ -1,6 +1,6 @@
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [6, 4]
+frameDataIdCode: [6, 7]
 animalCode: [19, 19] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -52,7 +52,7 @@ endScaleZ: 3
 startElevation: 15 
 startAzimuth: 0  
 endElevation: [15, 44.334]
-endAzimuth: [0, 872495] 
+endAzimuth: [0, 87.2495] 
 startDistance: 500 
 endDistance: [1.5, 7.149]
 duration: 24.925 
@@ -76,3 +76,4 @@ fixedAngularSize: 0
 fixElevation: 0 
 minAngularAngle: -15.5
 maxAngularAngle: -14.5
+hideAtEnd: 1

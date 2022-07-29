@@ -1,8 +1,8 @@
 # general
 buildDir: ./builds/DualLoom
 frameDataIdCode: [2, 3]
-animalCode: [24, 24] 
-execution_order: [1, 0]
+animalCode: [15, 15] 
+execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -19,7 +19,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.286
+eyeHeight: 2.315 
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -61,9 +61,9 @@ numReps1: 0.5
 originX1: 0
 originY1: 0
 originZ1: 0
-rotationOffsetY1: [270, 90]
+rotationOffsetY1: [0, 270]
 delayToApproach1: 5 
-stimulusColourR1: 0.5 
+stimulusColourR1: 0.5
 stimulusColourG1: 0.5
 stimulusColourB1: 0.5
 stimulusColourA1: 1
@@ -71,7 +71,7 @@ fixedAngularSize1: 0
 fixElevation1: 0
 minAngularAngle1: -3.185
 maxAngularAngle1: 3.185
-hideAtEnd1: 0
+hideAtEnd1: 1
 opaqueObject1: 1
 
 # object 2
@@ -93,7 +93,7 @@ numReps2: 0.5
 originX2: 0 
 originY2: 0
 originZ2: 0
-rotationOffsetY2: [270, 90]
+rotationOffsetY2: [90, 270]
 outlineType2: 1
 drawOutline2: 1
 outlineWidth2: 33.33
@@ -102,13 +102,13 @@ outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
 outlineColourA2: 1
-stimulusColourR2: 0.5  
-stimulusColourG2: 0.5
-stimulusColourB2: 0.5
+stimulusColourR2: [0.5, 0]
+stimulusColourG2: [0.5, 0]
+stimulusColourB2: [0.5, 0]
 stimulusColourA2: 1
 fixedAngularSize2: 0
 fixElevation2: 0
 minAngularAngle2: -3.185
 maxAngularAngle2: 3.185
-hideAtEnd2: 0
+hideAtEnd2: 1
 opaqueObject2: 0
