@@ -1,0 +1,79 @@
+# general
+buildDir: ./builds/Loom/
+frameDataIdCode: [6, 9]
+animalCode: [7, 7] 
+execution_order: [0, 1]
+experimentDuration: 99999 
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+mouseMoveSpeed: 2 
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 1
+displayStimulusCode: 1 
+fictracFeedback: 0
+
+# perspective
+eyeHeight: 2.139
+distanceToMonitors: 27 
+monitorDimensionsX: 52 
+monitorDimensionsY: 32 
+frontDisplayNum: 0 
+rightDisplayNum: 1 
+backDisplayNum: 2
+leftDisplayNum: 3
+darkAdaptTime: 0
+
+# stimuli
+# background
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0  
+
+# object
+stimulusType: 0
+startScaleX: 3
+startScaleY: 3
+startScaleZ: 3
+endScaleX: 3
+endScaleY: 3
+endScaleZ: 3
+startElevation: 15 
+startAzimuth: 0  
+endElevation: [15, 41.06]
+endAzimuth: [0, 42.3]
+startDistance: 500 
+endDistance: [1.5, 2.12]
+duration: 24.925 
+originX: 0 
+originY: 0 
+originZ: 0 
+rotationOffsetY: [270, 180]
+delayToApproach: 5 
+stimulusColourR: 0
+stimulusColourG: 0
+stimulusColourB: 0
+stimulusColourA: 1
+drawOutline: 0
+outlineType: 1
+outlineWidth: 33.33
+outlineColourR: 0
+outlineColourG: 0
+outlineColourB: 0
+outlineColourA: 1
+fixedAngularSize: 0
+fixElevation: 0 
+minAngularAngle: -15.5
+maxAngularAngle: -14.5
+hideAtEnd: 1

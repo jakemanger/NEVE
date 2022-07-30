@@ -1,0 +1,143 @@
+# general
+buildDir: ./builds/MimicExpansionSpeedDualLoom
+frameDataIdCode: [12, 9]
+animalCode: [4, 4] 
+execution_order: [0, 1]
+experimentDuration: 99999 
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+mouseMoveSpeed: 2 
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 1
+displayStimulusCode: 1 
+fictracFeedback: 0
+
+# perspective
+eyeHeight: 2.009
+distanceToMonitors: 27
+monitorDimensionsX: 52
+monitorDimensionsY: 32
+frontDisplayNum: 0
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+
+# stimuli
+# background
+darkAdaptTime: 0
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0 
+
+# object 1 # direct looms 
+stimulusType1: 0
+startScaleX1: [3, 0]
+startScaleY1: [3, 0]
+startScaleZ1: [3, 0]
+endScaleX1: [3, 0]
+endScaleY1: [3, 0]
+endScaleZ1: [3, 0]
+startElevation1: 15 
+startAzimuth1: 0  
+endElevation1: 15
+endAzimuth1: 0 
+startDistance1: 500 
+endDistance1: 1.5
+duration1: 24.925 
+originX1: 0 
+originY1: 0 
+originZ1: 0 
+rotationOffsetY1: [270, 90]
+delayToApproach1: 5 
+stimulusColourR1: 0
+stimulusColourG1: 0
+stimulusColourB1: 0
+stimulusColourA1: 1
+drawOutline1: 0
+outlineWidth1: 1
+outlineColourR1: 0
+outlineColourG1: 0
+outlineColourB1: 0
+outlineColourA1: 1
+fixedAngularSize1: 0
+fixElevation1: 0 
+minAngularAngle1: -15.5
+maxAngularAngle1: -14.5
+numReps1: 0.5
+hideAtEnd1: 1
+
+mimicExpansionSpeed1: [1, 0]
+mimicExpansionSpeedMethod1: 2
+referenceInitialDistance1: 500
+referenceEndDistance1: 7.149
+referenceSpeed1: 200
+equalDistance1: 500
+referenceDiameter1: 3
+moveTime1: 0
+referenceStartElevation1: 15
+referenceStartAzimuth1: 0
+referenceEndElevation1: 45.3334
+referenceEndAzimuth1: 87.2495
+
+
+# object 2 # near miss looms 
+stimulusType2: 0
+startScaleX2: 3
+startScaleY2: 3
+startScaleZ2: 3
+endScaleX2: 3
+endScaleY2: 3
+endScaleZ2: 3
+startElevation2: 15 
+startAzimuth2: 0  
+endElevation2: [45.3334, 41.06]
+endAzimuth2: [87.2495, 42.3]
+startDistance2: 500 
+endDistance2: [7.149, 2.12]
+duration2: 24.925 
+originX2: 0 
+originY2: 0 
+originZ2: 0 
+rotationOffsetY2: [90, 180]
+delayToApproach2: 5 
+stimulusColourR2: 0
+stimulusColourG2: 0
+stimulusColourB2: 0
+stimulusColourA2: 1
+drawOutline2: 0
+outlineWidth2: 1
+outlineColourR2: 0
+outlineColourG2: 0
+outlineColourB2: 0
+outlineColourA2: 1
+fixedAngularSize2: 0
+fixElevation2: 0 
+minAngularAngle2: -15.5
+maxAngularAngle2: -14.5
+numReps2: 0.5
+hideAtEnd2: 1
+
+mimicExpansionSpeed2: [1, 0]
+mimicExpansionSpeedMethod2: 2
+referenceInitialDistance2: 500
+referenceEndDistance2: 1.5
+referenceSpeed2: 20
+equalDistance2: 500
+referenceDiameter2: 3
+moveTime2: 0
+referenceStartElevation2: 15
+referenceStartAzimuth2: 0
+referenceEndElevation2: 15
+referenceEndAzimuth2: 0
