@@ -76,3 +76,4 @@ fixedAngularSize: [0, 1]
 fixElevation: 1
 minAngularAngle: 12
 maxAngularAngle: 18
+hideAtEnd: 1

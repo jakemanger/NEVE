@@ -59,7 +59,7 @@ duration: 24.925
 originX: 0 
 originY: 0 
 originZ: 0 
-rotationOffsetY: [90, 270]
+rotationOffsetY: [180, 270]
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0

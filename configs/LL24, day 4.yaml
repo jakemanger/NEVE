@@ -72,7 +72,8 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 1
+fixedAngularSize: [1, 0]
 fixElevation: 1
 minAngularAngle: 12
 maxAngularAngle: 18
+hideAtEnd: 1
