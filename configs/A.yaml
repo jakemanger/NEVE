@@ -43,12 +43,12 @@ horizonHeight: 0
 
 # object
 stimulusType: 1
-startScaleX: 3
-startScaleY: 3
-startScaleZ: 3
-endScaleX: 3
-endScaleY: 3
-endScaleZ: 3
+startScaleX: 2
+startScaleY: 2
+startScaleZ: 2
+endScaleX: 2
+endScaleY: 2
+endScaleZ: 2
 startElevation: 15 
 startAzimuth: 0  
 endElevation: 15
@@ -64,8 +64,9 @@ stimulusColourR: 0
 stimulusColourG: 0
 stimulusColourB: 0
 stimulusColourA: 1
-drawOutline: 0
-outlineWidth: 1
+outlineType: 1
+drawOutline: 1
+outlineWidth: 33.33
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
@@ -74,3 +75,4 @@ fixedAngularSize: 0
 fixElevation: 0 
 minAngularAngle: -15.5
 maxAngularAngle: -14.5
+hideAtEnd: 1

@@ -1,7 +1,7 @@
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2]
-animalCode: [1, 2] 
+frameDataIdCode: [1, 4]
+animalCode: [15, 15] 
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -19,7 +19,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.864 
+eyeHeight: 2.315
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -43,36 +43,36 @@ horizonHeight: 0
 
 # object
 stimulusType: 1
-startScaleX: 3
-startScaleY: 3
-startScaleZ: 3
-endScaleX: 3
-endScaleY: 3
-endScaleZ: 3
+startScaleX: [2, 3]
+startScaleY: [2, 400]
+startScaleZ: [2, 3]
+endScaleX: [2, 3]
+endScaleY: [2, 400]
+endScaleZ: [2, 3]
 startElevation: 15 
 startAzimuth: 0  
 endElevation: 15
 endAzimuth: 0 
-startDistance: 500 
+startDistance: [500, 3000] 
 endDistance: 1.5
 duration: 24.925 
 originX: 0 
 originY: 0 
 originZ: 0 
-rotationOffsetY: [0, 90]
+rotationOffsetY: [0, 0]
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
 stimulusColourB: 0
 stimulusColourA: 1
-drawOutline: 0
+drawOutline: [1, 0]
 outlineType: 1
 outlineWidth: 33.33
 outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 0
-fixElevation: 0 
-minAngularAngle: -15.5
-maxAngularAngle: -14.5
+fixedAngularSize: [0, 1]
+fixElevation: 1
+minAngularAngle: 12
+maxAngularAngle: 18
