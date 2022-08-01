@@ -73,7 +73,7 @@ outlineColourG1: 0
 outlineColourB1: 0
 outlineColourA1: 1
 fixedAngularSize1: [1, 0]
-fixElevation1: 0 
+fixElevation1: 1
 minAngularAngle1: 12
 maxAngularAngle1: 18
 numReps1: 0.5
