@@ -42,7 +42,7 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 
 # object
-stimulusType: 1
+stimulusType: [1, 0]
 startScaleX: [2, 3]
 startScaleY: [2, 3]
 startScaleZ: [2, 3]
