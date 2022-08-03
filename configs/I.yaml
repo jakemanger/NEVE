@@ -55,7 +55,7 @@ endElevation: 41.06 # calculate via equation
 endAzimuth: 42.3 # calculate via equation
 startDistance: 500 
 endDistance: 2.12
-duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
+duration: 5 # 24.925 # (to get 200 mm/s with 1.5 cm end dist)
 originX: 0 
 originY: 0 
 originZ: 0 

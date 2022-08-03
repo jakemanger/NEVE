@@ -1,0 +1,113 @@
+# general
+buildDir: ./builds/DualLoom
+frameDataIdCode: [3, 3]
+animalCode: [16, 16] 
+execution_order: [0, 1]
+experimentDuration: 99999 
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+mouseMoveSpeed: 2 
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 1 
+displayStimulusCode: 1 
+fictracFeedback: 0
+
+# perspective
+eyeHeight: 2.213 
+distanceToMonitors: 27 
+monitorDimensionsX: 52 
+monitorDimensionsY: 32 
+frontDisplayNum: 0 
+rightDisplayNum: 1 
+backDisplayNum: 2
+leftDisplayNum: 3
+darkAdaptTime: 0
+
+# stimuli
+# background
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0  
+
+# object 1
+stimulusType1: 1 
+startScaleX1: 50  
+startScaleY1: 2
+startScaleZ1: 2
+endScaleX1: 50
+endScaleY1: 2
+endScaleZ1: 2
+duration1: 24.925 
+startElevation1: 15
+startAzimuth1: 0 
+endElevation1: 15
+endAzimuth1: 0
+startDistance1: 500
+endDistance1: 1.5
+numReps1: 0.5  
+originX1: 0
+originY1: 0
+originZ1: 0
+rotationOffsetY1: [270, 270]
+delayToApproach1: 5  
+stimulusColourR1: 0.5  
+stimulusColourG1: 0.5
+stimulusColourB1: 0.5
+stimulusColourA1: 1
+fixedAngularSize1: 0
+fixElevation1: 0
+minAngularAngle1: -3.185
+maxAngularAngle1: 3.185
+hideAtEnd1: 0
+opaqueObject1: 1
+
+# object 2
+stimulusType2: 1 
+startScaleX2: 2  
+startScaleY2: 2
+startScaleZ2: 2
+endScaleX2: 2
+endScaleY2: 2
+endScaleZ2: 2
+duration2: 24.925 
+startElevation2: 15
+startAzimuth2: 0 
+endElevation2: 15
+endAzimuth2: 0 
+startDistance2: 500
+endDistance2: 1.5
+numReps2: 0.5  
+originX2: 0 
+originY2: 0
+originZ2: 0
+rotationOffsetY2: [270, 270]
+outlineType2: 1
+drawOutline2: 1
+outlineWidth2: 33.33
+delayToApproach2: 5  
+outlineColourR2: 0
+outlineColourG2: 0
+outlineColourB2: 0
+outlineColourA2: 1
+stimulusColourR2: 0.5  
+stimulusColourG2: 0.5
+stimulusColourB2: 0.5
+stimulusColourA2: 1
+fixedAngularSize2: 0
+fixElevation2: 0
+minAngularAngle2: -3.185
+maxAngularAngle2: 3.185
+hideAtEnd2: 0
+opaqueObject2: 0

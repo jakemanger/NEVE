@@ -1,7 +1,7 @@
 # general
 buildDir: ./builds/DualLoom
-frameDataIdCode: [1, 2]
-animalCode: [1, 2] 
+frameDataIdCode: [13, 6]
+animalCode: [16, 16] 
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -19,7 +19,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.864 
+eyeHeight: 2.213
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -59,7 +59,7 @@ duration1: 24.925
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [0, 90]
+rotationOffsetY1: [270, 0]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -80,23 +80,23 @@ hideAtEnd1: 1
 
 # object 2 near miss looms 
 stimulusType2: 0
-startScaleX2: 3
-startScaleY2: 3
-startScaleZ2: 3
-endScaleX2: 3
-endScaleY2: 3
-endScaleZ2: 3
+startScaleX2: [3, 0]
+startScaleY2: [3, 0]
+startScaleZ2: [3, 0]
+endScaleX2: [3, 0]
+endScaleY2: [3, 0]
+endScaleZ2: [3, 0]
 startElevation2: 15 
 startAzimuth2: 0  
-endElevation2: 45.3334
-endAzimuth2: 87.2495
+endElevation2: 41.06
+endAzimuth2: 42.3
 startDistance2: 500 
-endDistance2: 7.149
+endDistance2: 2.12
 duration2: 24.925 
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 90]
+rotationOffsetY2: [90, 90]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
