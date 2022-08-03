@@ -1,8 +1,8 @@
 
 # general
 buildDir: ./builds/MimicExpansionSpeedDualLoom
-frameDataIdCode: [11, 12]
-animalCode: [1, 2] 
+frameDataIdCode: [5, 11]
+animalCode: [8, 8] 
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -20,7 +20,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.864
+eyeHeight: 2.4
 distanceToMonitors: 27
 monitorDimensionsX: 52
 monitorDimensionsY: 32
@@ -43,11 +43,11 @@ belowHorizonColourA: 1
 horizonHeight: 0 
 
 # object 1 # direct looms 
-stimulusType1: 0
-startScaleX1: 3
+stimulusType1: [1, 0]
+startScaleX1: [400, 3]
 startScaleY1: 3
 startScaleZ1: 3
-endScaleX1: 3
+endScaleX1: [400, 3]
 endScaleY1: 3
 endScaleZ1: 3
 startElevation1: 15 
@@ -60,7 +60,7 @@ duration1: 24.925
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [0, 90]
+rotationOffsetY1: [90, 0]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -72,14 +72,14 @@ outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0
 outlineColourA1: 1
-fixedAngularSize1: 0
-fixElevation1: 0 
-minAngularAngle1: -15.5
-maxAngularAngle1: -14.5
+fixedAngularSize1: [1, 0]
+fixElevation1: 0
+minAngularAngle1: -3.185
+maxAngularAngle1: 3.185
 numReps1: 0.5
 hideAtEnd1: 1
 
-mimicExpansionSpeed1: 1
+mimicExpansionSpeed1: 0
 mimicExpansionSpeedMethod1: 2
 referenceInitialDistance1: 500
 referenceEndDistance1: 7.149
@@ -95,12 +95,12 @@ referenceEndAzimuth1: 87.2495
 
 # object 2 # near miss looms 
 stimulusType2: 0
-startScaleX2: 3
-startScaleY2: 3
-startScaleZ2: 3
-endScaleX2: 3
-endScaleY2: 3
-endScaleZ2: 3
+startScaleX2: [0, 3]
+startScaleY2: [0, 3]
+startScaleZ2: [0, 3]
+endScaleX2: [0, 3]
+endScaleY2: [0, 3]
+endScaleZ2: [0, 3]
 startElevation2: 15 
 startAzimuth2: 0  
 endElevation2: 45.3334 
@@ -111,7 +111,7 @@ duration2: 24.925
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 90]
+rotationOffsetY2: [0, 180]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
@@ -130,7 +130,7 @@ maxAngularAngle2: -14.5
 numReps2: 0.5
 hideAtEnd2: 1
 
-mimicExpansionSpeed2: 1
+mimicExpansionSpeed2: [0, 1]
 mimicExpansionSpeedMethod2: 2
 referenceInitialDistance2: 500
 referenceEndDistance2: 1.5
