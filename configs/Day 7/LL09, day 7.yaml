@@ -1,6 +1,6 @@
 # general
 buildDir: ./builds/DualLoom
-frameDataIdCode: [6, 6]
+frameDataIdCode: [6, 13]
 animalCode: [9, 9] 
 execution_order: [0, 1]
 experimentDuration: 99999 
@@ -80,12 +80,12 @@ hideAtEnd1: 1
 
 # object 2 near miss looms 
 stimulusType2: 0
-startScaleX2: [3, 0]
-startScaleY2: [3, 0]
-startScaleZ2: [3, 0]
-endScaleX2: [3, 0]
-endScaleY2: [3, 0]
-endScaleZ2: [3, 0]
+startScaleX2: [0, 3]
+startScaleY2: [0, 3]
+startScaleZ2: [0, 3]
+endScaleX2: [0, 3]
+endScaleY2: [0, 3]
+endScaleZ2: [0, 3]
 startElevation2: 15 
 startAzimuth2: 0  
 endElevation2: 41.06
