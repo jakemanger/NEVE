@@ -97,7 +97,7 @@ duration2: 24.925
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 180]
+rotationOffsetY2: [0, 270]
 delayToApproach2: 5 
 stimulusColourR2: [0.5, 0]
 stimulusColourG2: [0.5, 0]
