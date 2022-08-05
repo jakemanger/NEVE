@@ -53,7 +53,7 @@ startElevation1: 15
 startAzimuth1: 0  
 endElevation1: 15
 endAzimuth1: 0 
-startDistance1: [3000, 500] 
+startDistance1: [500, 3000] 
 endDistance1: 1.5
 duration1: 24.925 
 originX1: 0 
