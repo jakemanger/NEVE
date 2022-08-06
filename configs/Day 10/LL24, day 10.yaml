@@ -3,7 +3,7 @@
 buildDir: ./builds/MimicExpansionSpeedDualLoom
 frameDataIdCode: [7, 11]
 animalCode: [24, 24] 
-execution_order: [0, 1]
+execution_order: [1, 0]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -111,7 +111,7 @@ duration2: 24.925
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [90, 180]
+rotationOffsetY2: [180, 90]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
@@ -130,7 +130,7 @@ maxAngularAngle2: -14.5
 numReps2: 0.5
 hideAtEnd2: 1
 
-mimicExpansionSpeed2: [0, 1]
+mimicExpansionSpeed2: [1, 0]
 mimicExpansionSpeedMethod2: 2
 referenceInitialDistance2: 500
 referenceEndDistance2: 1.5

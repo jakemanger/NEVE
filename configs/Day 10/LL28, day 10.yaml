@@ -68,7 +68,7 @@ stimulusColourB1: [0, 0.5]
 stimulusColourA1: 1
 drawOutline1: [0, 1]
 outlineType1: 1
-outlineWidth1: 1
+outlineWidth1: 33.33
 outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0
@@ -131,7 +131,7 @@ maxAngularAngle2: -14.5
 numReps2: 0.5
 hideAtEnd2: 1
 
-mimicExpansionSpeed2: 1
+mimicExpansionSpeed2: [1, 0]
 mimicExpansionSpeedMethod2: 2
 referenceInitialDistance2: 500
 referenceEndDistance2: 1.5
