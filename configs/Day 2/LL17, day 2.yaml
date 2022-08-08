@@ -1,7 +1,7 @@
 # general
 buildDir: ./builds/Loom/
 frameDataIdCode: [4, 5]
-animalCode: [17, 17] 
+animalCode: [29, 29] 
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -19,7 +19,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.033 
+eyeHeight: 2.5
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 

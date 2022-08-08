@@ -1,8 +1,8 @@
 
 # general
 buildDir: ./builds/MimicExpansionSpeedDualLoom
-frameDataIdCode: [11, 12]
-animalCode: [1, 2] 
+frameDataIdCode: [12, 12]
+animalCode: [5, 5] 
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -20,7 +20,7 @@ displayStimulusCode: 1
 fictracFeedback: 0
 
 # perspective
-eyeHeight: 2.864
+eyeHeight: 2.635
 distanceToMonitors: 27
 monitorDimensionsX: 52
 monitorDimensionsY: 32
@@ -60,7 +60,7 @@ duration1: 24.925
 originX1: 0 
 originY1: 0 
 originZ1: 0 
-rotationOffsetY1: [0, 90]
+rotationOffsetY1: [0, 0]
 delayToApproach1: 5 
 stimulusColourR1: 0
 stimulusColourG1: 0
@@ -111,7 +111,7 @@ duration2: 24.925
 originX2: 0 
 originY2: 0 
 originZ2: 0 
-rotationOffsetY2: [0, 90]
+rotationOffsetY2: [180, 180]
 delayToApproach2: 5 
 stimulusColourR2: 0
 stimulusColourG2: 0
