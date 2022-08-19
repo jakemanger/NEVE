@@ -46,7 +46,7 @@ with the following parameters:
 And with correct configuration, after running:
 (on windows)
 ```
-..\bin\configGui.exe
+..\bin\Release\configGui.exe
 ```
 (on linux)
 ```
