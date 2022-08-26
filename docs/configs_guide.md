@@ -45,16 +45,16 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `startElevation: 0`, `startAzimuth: 0` |
 | `endElevation`, `endAzimuth` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation: 0`, `endAzimuth: 0` |
 | `originX`, `originY`, `originZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
-| `startDistance` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `0` |
-| `endDistance` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `0` |
-| `duration` | The duration of one cycle of the loom in seconds. | `0`-`99999` | `0` |
-| `numReps` | The number of times to repeat the stimulus movement (`0.5` is start-finish, `1` is start-finish-start). | `0`-`99999` | `1` |
+| `startDistance` | The offset of the stimulus from the eye position in cm at the start of the loom. | `0`-a very large number | `50` |
+| `endDistance` | The offset of the stimulus from the eye position in cm at the end of the loom. | `0`-a very large number | `1` |
+| `duration` | The duration of one cycle of the loom in seconds. | `0`-`99999` | `2` |
+| `numReps` | The number of times to repeat the stimulus movement (`0.5` is start-finish, `1` is start-finish-start). | `0`-`99999` | `0.5` |
 | `delayToApproach` | The delay in seconds before the loom starts. | `0`-`99999` | `5` |
 | `delayToAppear` | The delay in seconds before the looming object appears. | `0`-`99999` | `0` |
 | `stimulusColourR`, `stimulusColourG`, `stimulusColourB`, `stimulusColourA` | The RGBA values of the looming object in the stimulus. | `0`-`1` | Grey |
 | `drawOutline` | Whether to draw an outline around the stimulus or not. | `0` (false) or `1` (true) | `0` |
 | `outlineColourR`, `outlineColourG`, `outlineColourB`, `outlineColourA` | The RGBA values of the outline. | `0`-`1` | Black |
-| `outlineWidth` | The width of the outline in pixels. | `0`-`99999` | `1` |
+| `outlineWidth` | The width of the outline. | `0`-`99999` | `5` |
 | `stimulusType` | The type of stimulus to display. Note, square will always face the origin | `0` (sphere), `1` (square) `2` (a sphere with a grating)) | `0` |
 | `gratingNum` | The number of grating cycles to display if `stimulusType` is `2`. | `0`-`99999` | `100` |
 | `gratingIsSquare` | Whether the grating is square (true) or a sinewave (false). | `0` (false) or `1` (true) | `0` |
