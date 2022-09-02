@@ -27,6 +27,8 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public bool directPath = true; // if false, the stimulus will follow the greater circle path according to how elevation and azimuth were changed.
     public bool hideAtEnd = false;
 
+    public bool ignoreKeyboard = false;
+
     // for mimicking expansion speed of another loom
     public bool mimicExpansionSpeed = false;
     public int mimicExpansionSpeedMethod = 0;
@@ -170,7 +172,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && !ignoreKeyboard) {
             PrepareToMove();
 
             if (manualControl) {
@@ -430,7 +432,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         }
     }
 
-    void PrepareToMove() {
+    public void PrepareToMove() {
         if (move || justFinishedMoving) {
             // if currently moving
             move = false;

@@ -72,17 +72,14 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
 
     public virtual void Reset() {
+        blackOutCanvases.SetActive(true);
+
         if (recieveParametersFromPython) {
             GetPropertiesFromPython();
             CheckParameters();
+            SetupStimuli();
         }
-
-
-        blackOutCanvases.SetActive(true);
-
         episodeController.experimentDuration = experimentDuration;
-
-        SetupStimuli();
 
         // Setup cameras and frame writer
         camMon.frontDisplayNum = frontDisplayNum;
