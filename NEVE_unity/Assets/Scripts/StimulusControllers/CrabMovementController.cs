@@ -11,14 +11,17 @@ public class CrabMovementController : GenericStimulusController
     float speed = 0.1f;
 
     bool canPlay = false;
+    public Color burrowColour = Color.grey;
 
     Animation anim;
+    public Renderer  burrowRenderer;
 
     public override void Reset()
     {
-        transform.parent.position = pos;
+        transform.parent.localPosition = pos;
+        burrowRenderer.material.color = burrowColour;
+
         base.Reset();
-        canPlay = true;
     }
 
     void Start()
@@ -27,13 +30,13 @@ public class CrabMovementController : GenericStimulusController
     }
 
     void Update() {
-        if (anim.isPlaying || !canPlay) {
+        if (anim.isPlaying) {
             return;
         }
         print("Starting crab animation");
         // set random rotation and speed
         transform.parent.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
-        transform.parent.localPosition = new Vector3(transform.parent.position.x, -eyeHeight, transform.parent.position.z);
+        transform.parent.parent.parent.position = new Vector3(transform.parent.parent.parent.position.x, -eyeHeight + 0.48f, transform.parent.parent.parent.position.z);
         anim["CrabWalkOutOfBurrow"].speed = Random.Range(0.75f, 1.25f);
         anim.Play("CrabWalkOutOfBurrow");
     }

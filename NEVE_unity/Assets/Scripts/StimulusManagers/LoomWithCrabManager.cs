@@ -14,8 +14,9 @@ public class LoomWithCrabManager : LoomManager
     public override void SetupStimuli() {
         base.SetupStimuli();
 
-        crabController.pos = GetVector3FromPython("crabPos", new Vector3(0, 0, 30f));
+        crabController.pos = GetVector3FromPython("crabPos", new Vector3(0, 0, 60f));
         crabController.eyeHeight = GetFloatFromPython("eyeHeight", 2f);
+        crabController.burrowColour = GetColorFromPython("burrowColour", Color.grey);
 
         crabController.Reset();
     }
