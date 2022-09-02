@@ -76,8 +76,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         if (recieveParametersFromPython) {
             GetPropertiesFromPython();
-            CheckParameters();
             SetupStimuli();
+            CheckParameters();
         }
         episodeController.experimentDuration = experimentDuration;
 
