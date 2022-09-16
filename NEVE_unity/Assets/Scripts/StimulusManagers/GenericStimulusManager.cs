@@ -63,6 +63,9 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public GameObject errorMessageObject;
     Text errorText;
 
+    public float xMultiplier = 1f;
+    public float zMultiplier = 1f;
+
 
     void Start() {
         if (recieveParametersFromPython) {
@@ -106,8 +109,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         SocketMovementController socketMovementController = GameObject.FindObjectOfType<SocketMovementController>();
         socketMovementController.recieveInputFromSocket = recieveInputFromSocket;
-        socketMovementController.xMultiplier = GetFloatFromPython("xMultiplier", 1f);
-        socketMovementController.zMultiplier = GetFloatFromPython("zMultiplier", 1f);
+        socketMovementController.xMultiplier = xMultiplier;
+        socketMovementController.zMultiplier = zMultiplier;
         socketMovementController.Reset();
     }
 
@@ -179,6 +182,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         darkAdaptTime = GetFloatFromPython("darkAdaptTime", 0f);
         recieveInputFromSocket = GetBoolFromPython("fictracFeedback", false);
         mustIncludeEveryParameter = GetBoolFromPython("mustIncludeEveryParameter", false);
+        xMultiplier = GetFloatFromPython("xMultiplier", 1f);
+        zMultiplier = GetFloatFromPython("zMultiplier", 1f);
     }
 
     void Update() {
