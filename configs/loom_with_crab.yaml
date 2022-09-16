@@ -15,7 +15,7 @@
 # an example with three approaching looming stimuli: grey, green, blue
 
 # general
-buildDir: ./builds/LoomWithCrab/
+buildDir: None # ./builds/LoomWithCrab/
 frameDataIdCode: [1, 2, 3, 4, 5, 6]
 animalCode: 1
 execution_order: [0, 1, 2, 3, 4, 5]
@@ -79,10 +79,19 @@ originY: 0
 originZ: 0 
 
 crabPosX: [30, 30, 30, -30, -30, -30]
-crabPosY: 0.95 # fudged TODO: fix this
+crabPosY: 1.05 # fudged TODO: fix this
 crabPosZ: 0
+crabType: 0
+crabSize: 1.9 # carapace size if crabtype is 0, sphere size if crabtype is 1
+crabSphereColourR: 0.3
+crabSphereColourG: 0.3
+crabSphereColourB: 0.3
 
 burrowColourR: 0.3
 burrowColourG: 0.3
 burrowColourB: 0.3
 burrowColourA: 1
+
+cameraRotationX: 0
+cameraRotationY: [0, 90, 180, 270, 0, 90]
+cameraRotationZ: 0

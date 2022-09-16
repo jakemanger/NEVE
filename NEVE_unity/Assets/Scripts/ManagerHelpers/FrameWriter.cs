@@ -149,7 +149,7 @@ public class FrameWriter : MonoBehaviour
         StimulusState stimState = StimulusState.Waiting;
 
         if (stimControllerLength > 0) {
-            stimState = stimulusControllers[0].stimulusState;
+            stimState = stimulusControllers[1].stimulusState;
         } else {
             stimState = StimulusState.Waiting;
         }

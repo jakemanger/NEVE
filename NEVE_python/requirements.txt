@@ -4,3 +4,4 @@ pyserial
 Gooey
 nuitka
 zstandard
+protobuf==3.20
