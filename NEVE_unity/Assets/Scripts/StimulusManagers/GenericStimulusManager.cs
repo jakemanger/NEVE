@@ -106,6 +106,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         SocketMovementController socketMovementController = GameObject.FindObjectOfType<SocketMovementController>();
         socketMovementController.recieveInputFromSocket = recieveInputFromSocket;
+        socketMovementController.xMultiplier = GetFloatFromPython("xMultiplier", 1f);
+        socketMovementController.zMultiplier = GetFloatFromPython("zMultiplier", 1f);
         socketMovementController.Reset();
     }
 

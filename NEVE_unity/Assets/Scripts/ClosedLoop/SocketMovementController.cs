@@ -37,6 +37,9 @@ public class SocketMovementController : MonoBehaviour
     Vector3 positionOffset;
     bool setPositionOffset = false;
 
+    public float xMultiplier = -1f;
+    public float zMultiplier = 1f;
+
     public void Reset()
     {
         Vector3 initialPos = new Vector3(0f, transform.position.y, 0f);
@@ -154,7 +157,7 @@ public class SocketMovementController : MonoBehaviour
         float z = ballRadius * float.Parse(splitInput[20]);
         float x = ballRadius * float.Parse(splitInput[21]);
 
-        targetPosition = new Vector3(x, targetPosition.y, z);
+        targetPosition = new Vector3(x * xMultiplier, targetPosition.y, z * zMultiplier);
 
         if (!setPositionOffset)
         {
