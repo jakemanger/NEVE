@@ -14,11 +14,18 @@
 
 # an example with three approaching looming stimuli: grey, green, blue
 
-# general
-buildDir: None # ./builds/LoomWithCrab/
-frameDataIdCode: [1, 2, 3, 4, 5, 6]
-animalCode: 1
+# params to change
 execution_order: [0, 1, 2, 3, 4, 5]
+rotationOffsetY: [0, 90, 180, 270, 0, 90]
+animalCode: 1
+crabPosX: [30, 30, 30, -30, -30, -30] # -30 = LEFT, 30 = RIGHT
+crabPosY: 1.05 # fudged TODO: fix this
+eyeHeight: 2.864 # CHANGE ME PER CRAB
+
+
+# general
+buildDir: ./builds/LoomWithCrab/
+frameDataIdCode: [1, 2, 3, 4, 5, 6]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -29,11 +36,10 @@ syncSquareColourB: 0
 syncSquareColourA: 1
 syncSquareDisplayNum: 3 
 displayStimulusCode: 1 
-fictracFeedback: 1
+fictracFeedback: [1
 startFictracFromStart: 0
 
 # perspective
-eyeHeight: 2.864 # CHANGE ME PER CRAB
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -79,8 +85,6 @@ originX: 0
 originY: 0 
 originZ: 0 
 
-crabPosX: [30, 30, 30, -30, -30, -30]
-crabPosY: 1.05 # fudged TODO: fix this
 crabPosZ: 0
 crabType: 0
 crabSize: 1.9 # carapace size if crabtype is 0, sphere size if crabtype is 1
@@ -93,6 +97,8 @@ burrowColourG: 0.3
 burrowColourB: 0.3
 burrowColourA: 1
 
+zMultiplier: -1
+xMultiplier: -1
+
 rotationOffsetX: 0
-rotationOffsetY: [0, 90, 180, 270, 0, 90]
 rotationOffsetZ: 0
