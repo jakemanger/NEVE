@@ -37,6 +37,9 @@ public class SocketMovementController : MonoBehaviour
     Vector3 positionOffset;
     bool setPositionOffset = false;
 
+    public bool startFictracFromStart = false;
+    public bool canSetPositionOffset = false;
+
     public float xMultiplier = -1f;
     public float zMultiplier = 1f;
 
@@ -51,7 +54,11 @@ public class SocketMovementController : MonoBehaviour
 
     void Start()
     {
-        targetPosition = transform.position; 
+        targetPosition = transform.position;
+        if (startFictracFromStart)
+        {
+            canSetPositionOffset = true;
+        }
         if (recieveInputFromSocket)
         {
             StartThread();
@@ -71,6 +78,11 @@ public class SocketMovementController : MonoBehaviour
 
     void Update()
     {
+        if (!canSetPositionOffset && Input.GetKeyDown(KeyCode.Space))
+        {
+            setPositionOffset = false;
+            canSetPositionOffset = true;
+        }
         if (recieveInputFromSocket && setPositionOffset)
         {
             if (Vector3.Distance(transform.position, targetPosition) > minMovementDistance)
@@ -159,7 +171,7 @@ public class SocketMovementController : MonoBehaviour
 
         targetPosition = new Vector3(x * xMultiplier, targetPosition.y, z * zMultiplier);
 
-        if (!setPositionOffset)
+        if (!setPositionOffset && canSetPositionOffset)
         {
             positionOffset = targetPosition;
             setPositionOffset = true;

@@ -30,6 +30,7 @@ syncSquareColourA: 1
 syncSquareDisplayNum: 3 
 displayStimulusCode: 1 
 fictracFeedback: 1
+startFictracFromStart: 0
 
 # perspective
 eyeHeight: 2.864 # CHANGE ME PER CRAB
@@ -92,6 +93,6 @@ burrowColourG: 0.3
 burrowColourB: 0.3
 burrowColourA: 1
 
-cameraRotationX: 0
-cameraRotationY: [0, 90, 180, 270, 0, 90]
-cameraRotationZ: 0
+rotationOffsetX: 0
+rotationOffsetY: [0, 90, 180, 270, 0, 90]
+rotationOffsetZ: 0

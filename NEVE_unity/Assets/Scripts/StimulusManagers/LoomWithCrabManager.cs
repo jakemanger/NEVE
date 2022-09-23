@@ -20,6 +20,7 @@ public class LoomWithCrabManager : LoomManager
         crabController.crabType = GetIntFromPython("crabType", 0);
         crabController.crabSize = GetFloatFromPython("crabSize", 1f);
         crabController.sphereColour = GetColorFromPython("crabSphereColour", Color.white);
+        crabController.rotationOffset = GetVector2FromPython("rotationOffset", Vector2.zero);
 
         crabController.Reset();
     }

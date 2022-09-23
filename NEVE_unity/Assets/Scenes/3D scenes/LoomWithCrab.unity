@@ -689,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1431785494
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1108,8 @@ MonoBehaviour:
   - fictracFeedback
   - mustIncludeEveryParameter
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
+  xMultiplier: 1
+  zMultiplier: 1
   stimGenerator: {fileID: 4517113866636580001}
   skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
 --- !u!4 &1851185963

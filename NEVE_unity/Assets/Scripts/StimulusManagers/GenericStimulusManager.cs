@@ -11,6 +11,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public bool recieveParametersFromPython = true;
 
     public bool recieveInputFromSocket = false;
+    public bool startFictracFromStart = false;
+
     public bool mustIncludeEveryParameter = false;
 
     [Header("Generic camera view parameters")]
@@ -109,6 +111,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         SocketMovementController socketMovementController = GameObject.FindObjectOfType<SocketMovementController>();
         socketMovementController.recieveInputFromSocket = recieveInputFromSocket;
+        socketMovementController.startFictracFromStart = startFictracFromStart;
         socketMovementController.xMultiplier = xMultiplier;
         socketMovementController.zMultiplier = zMultiplier;
         socketMovementController.Reset();
@@ -181,6 +184,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         cameraRotation = GetVector3FromPython("cameraRotation", Vector3.zero);
         darkAdaptTime = GetFloatFromPython("darkAdaptTime", 0f);
         recieveInputFromSocket = GetBoolFromPython("fictracFeedback", false);
+        startFictracFromStart = GetBoolFromPython("startFictracFromStart", false);
         mustIncludeEveryParameter = GetBoolFromPython("mustIncludeEveryParameter", false);
         xMultiplier = GetFloatFromPython("xMultiplier", 1f);
         zMultiplier = GetFloatFromPython("zMultiplier", 1f);

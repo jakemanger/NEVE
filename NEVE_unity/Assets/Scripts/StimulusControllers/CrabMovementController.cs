@@ -20,6 +20,8 @@ public class CrabMovementController : GenericStimulusController
     public float crabSize = 1.9f;
     public Color sphereColour = Color.white;
 
+    public Vector2 rotationOffset;
+
     public GameObject[] crabTypes;
 
     public override void Reset()
@@ -61,6 +63,7 @@ public class CrabMovementController : GenericStimulusController
             -eyeHeight,
             transform.parent.parent.parent.position.z
         );
+        transform.parent.parent.parent.eulerAngles = new Vector3(rotationOffset.x, rotationOffset.y, 0);
         anim["CrabWalkOutOfBurrow"].speed = Random.Range(0.75f, 1.25f);
         anim.Play("CrabWalkOutOfBurrow");
     }
