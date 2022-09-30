@@ -38,7 +38,11 @@ public class SocketMovementController : MonoBehaviour
     bool setPositionOffset = false;
 
     public bool startFictracFromStart = false;
-    public bool canSetPositionOffset = false;
+    bool canSetPositionOffset;
+
+    public float waitTimeBeforeStartMovement = 5f;
+    float timeWaited = 0f;
+    bool startCountdown = false;
 
     public float xMultiplier = -1f;
     public float zMultiplier = 1f;
@@ -46,19 +50,23 @@ public class SocketMovementController : MonoBehaviour
     public void Reset()
     {
         Vector3 initialPos = new Vector3(0f, transform.position.y, 0f);
-        positionOffset = targetPosition;
         targetPosition = initialPos;
+        positionOffset = targetPosition;
         transform.position = initialPos;
+        timeWaited = 0f;
+        setPositionOffset = false;
+        canSetPositionOffset = false;
+        startCountdown = false;
+        if (startFictracFromStart)
+        {
+            canSetPositionOffset = true;
+        }
     }
 
 
     void Start()
     {
         targetPosition = transform.position;
-        if (startFictracFromStart)
-        {
-            canSetPositionOffset = true;
-        }
         if (recieveInputFromSocket)
         {
             StartThread();
@@ -80,9 +88,20 @@ public class SocketMovementController : MonoBehaviour
     {
         if (!canSetPositionOffset && Input.GetKeyDown(KeyCode.Space))
         {
-            setPositionOffset = false;
-            canSetPositionOffset = true;
+            startCountdown = true;
         }
+        if (startCountdown)
+        {
+            timeWaited += Time.deltaTime;
+            if (timeWaited > waitTimeBeforeStartMovement)
+            {
+                print("Starting movement");
+                setPositionOffset = false;
+                canSetPositionOffset = true;
+                startCountdown = false;
+            }
+        }
+
         if (recieveInputFromSocket && setPositionOffset)
         {
             if (Vector3.Distance(transform.position, targetPosition) > minMovementDistance)

@@ -626,6 +626,7 @@ MonoBehaviour:
   crabType: 0
   crabSize: 1.9
   sphereColour: {r: 1, g: 1, b: 1, a: 1}
+  rotationOffset: {x: 0, y: 0}
   crabTypes:
   - {fileID: 1597303990}
   - {fileID: 1255344747}
@@ -1043,8 +1044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f5be5100f8740c0810a09ae5d2ae6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
-  recieveInputFromSocket: 0
+  recieveInputFromSocket: 1
+  startFictracFromStart: 1
   mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
@@ -1066,7 +1067,7 @@ MonoBehaviour:
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 523473682}
   syncSquareDisplayNum: 0
-  displayStimulusCode: 0
+  displayStimulusCode: 1
   flickerDuration: 0.1
   camMon: {fileID: 1633350104}
   frameWriter: {fileID: 1851185964}
