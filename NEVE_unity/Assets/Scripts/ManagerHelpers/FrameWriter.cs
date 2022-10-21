@@ -192,6 +192,21 @@ public class FrameWriter : MonoBehaviour
             if (field != null) {
                     string text = field.Name + ": " + field.GetValue(stimulusManager);
                     sw.WriteLine(text);
+                    // also save fields of this field
+                    if (field.FieldType.IsClass) {
+                        FieldInfo[] subFields = field.FieldType.GetFields(
+                            BindingFlags.Instance | 
+                            BindingFlags.Static |
+                            BindingFlags.NonPublic |
+                            BindingFlags.Public
+                        );
+                        foreach(FieldInfo subField in subFields) {
+                            if (subField != null) {
+                                string subText = field.Name + "." + subField.Name + ": " + subField.GetValue(field.GetValue(stimulusManager));
+                                sw.WriteLine(subText);
+                            }
+                        }
+                    }
                     // print(text);
                 }
         }
