@@ -50,23 +50,32 @@ rotationOffsetY2: [0, 90]
 darkAdaptTime: 0
 horizonHeight: 0
 
-aboveHorizonColourR: 0.5
-aboveHorizonColourG: 0.5
-aboveHorizonColourB: 0.5
+aboveHorizonColourR: 1  # intensity-based monitors
+aboveHorizonColourG: 1
+aboveHorizonColourB: 1
 aboveHorizonColourA: 1
 belowHorizonColourR: 0.3
 belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 
-# aboveHorizonColourRFront: 0
-# aboveHorizonColourGFront: 0
-# aboveHorizonColourBFront: 0
-# aboveHorizonColourAFront: 1
-# belowHorizonColourRFront: 0.3
-# belowHorizonColourGFront: 0.3
-# belowHorizonColourBFront: 0.3
-# belowHorizonColourAFront: 1
+# aboveHorizonColourRBack: 0    # 100% polarised background
+# aboveHorizonColourGBack: 0
+# aboveHorizonColourBBack: 0
+# aboveHorizonColourABack: 1
+# belowHorizonColourRBack: 0.3  # 40% polarised
+# belowHorizonColourGBack: 0.3
+# belowHorizonColourBBack: 0.3
+# belowHorizonColourABack: 1
+
+# aboveHorizonColourRRight: 0    # 100% polarised background
+# aboveHorizonColourGRight: 0
+# aboveHorizonColourBRight: 0
+# aboveHorizonColourARight: 1
+# belowHorizonColourRRight: 0.3  # 40% polarised
+# belowHorizonColourGRight: 0.3
+# belowHorizonColourBRight: 0.3
+# belowHorizonColourARight: 1
 
 # object 1
 stimulusType1: 0
@@ -85,9 +94,9 @@ startDistance1: 50
 endDistance1: 5
 numReps1: [0.5, 1] 
 delayToApproach1: [5, 5] 
-stimulusColourR1: 0.3 
-stimulusColourG1: 0.3
-stimulusColourB1: 0.3
+stimulusColourR1: 0.05 # this is the intensity-based stimulus. this one changes to alter the contrast
+stimulusColourG1: 0.05
+stimulusColourB1: 0.05
 stimulusColourA1: 1
 drawOutline1: 0
 outlineType1: 0
@@ -116,9 +125,9 @@ startDistance2: 55
 endDistance2: 6  
 numReps2: [0.5, 1] 
 delayToApproach2: [5, 5]
-stimulusColourR2: 0 
-stimulusColourG2: 0
-stimulusColourB2: 0
+stimulusColourR2: 0.75 # polarisation based stimulus (eg: 200/255)
+stimulusColourG2: 0.75
+stimulusColourB2: 0.75
 stimulusColourA2: 1
 drawOutline2: 0
 outlineType2: 0
