@@ -141,8 +141,8 @@ Material:
     - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _aboveHorizonColour: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
-    - _belowHorizonColour: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+    - _aboveHorizonColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _belowHorizonColour: {r: 0.3, g: 0.3, b: 0.3, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7461417313103214796
 MonoBehaviour:

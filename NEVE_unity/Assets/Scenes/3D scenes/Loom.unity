@@ -562,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -571,12 +572,14 @@ MonoBehaviour:
   leftDisplayNum: 3
   cameraRotation: {x: 0, y: 0, z: 0}
   experimentDuration: 60
-  darkAdaptTime: 5
+  darkAdaptTime: 0
   recordFrameData: 1
   recordEachFrame: 1
   recordingFrequency: 1
   frameDataIdCode: 9999
   animalCode: 1
+  syncSquarePos: {x: -29.84, y: 18.17102}
+  syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 523473682}
   syncSquareDisplayNum: 0
@@ -588,6 +591,8 @@ MonoBehaviour:
   blackOutCanvases: {fileID: 220729435}
   manualControl: 0
   mouseMoveSpeed: 1
+  parametersExpected: []
+  errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
   horizonHeight: 0
   aboveHorizonColour: {r: 1, g: 1, b: 1, a: 1}
@@ -611,24 +616,29 @@ MonoBehaviour:
   endPolarPosition: {x: -10, y: 0}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1, y: 1, z: 1}
-  targetLocationOffset: {x: 0, y: 0, z: 0}
-  startOffset: 50
-  endOffset: 1
+  origin: {x: 0, y: 0, z: 0}
+  startDistance: 100
+  endDistance: 10
   duration: 1
+  numReps: 0.5
   delayToApproach: 5
-  fixedAngularSize: 1
-  fixXAxis: 1
+  fixedAngularSize: 0
+  fixXAxis: 0
   minAngularAngle: -2
   maxAngularAngle: 2
-  stimulusType: 0
+  stimulusType: 1
   stimulusColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   gratingNum: 100
   gratingIsSquare: 0
   gratingMaxIntensity: 0.1
   gratingMinIntensity: 0
-  drawOutline: 0
-  outlineWidth: 5
+  drawOutline: 1
+  outlineWidth: 20
+  outlineType: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  delayToAppear: 0
+  directPath: 1
+  hideAtEnd: 1
   stimGenerator: {fileID: 4517113866636580001}
 --- !u!115 &1905380798
 MonoScript:
@@ -703,6 +713,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d540ffe142b2222809cd559c1576a785, type: 3}
 --- !u!114 &4517113866636580001 stripped
@@ -728,6 +758,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7929488127660487863, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_IsActive
       value: 1

@@ -39,14 +39,14 @@ Also follow instructions on fictrac's github page to ensure your setup is proper
 Make sure you have created an appropriate config file (called `config.txt`)
 with the following parameters:
 - `src_fn`: the image source to your camera index (if running live), or video file (if testing).
-- `vfov`: the vertical field of view (in degrees) of your 
+- `vfov`: the vertical field of view (in degrees) of your camera
 - `sock_host`: the destination IP address for socket data output. Set to `127.0.0.1`.
 - `sock_port`: the destination port for socket data output. Set to `1111`.
 
 And with correct configuration, after running:
 (on windows)
 ```
-..\bin\configGui.exe
+..\bin\Release\configGui.exe
 ```
 (on linux)
 ```
