@@ -14,7 +14,7 @@
 
 # general
 buildDir: ./builds/DualLoom
-frameDataIdCode: [800001, 800002]
+frameDataIdCode: [1, 1]
 animalCode: [1, 2]
 execution_order: [0, 1]
 experimentDuration: [99999, 99999]
@@ -28,7 +28,7 @@ syncSquareColourR: 1
 syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1
-syncSquareDisplayNum: 0
+syncSquareDisplayNum: 1
 displayStimulusCode: 1
 fictracFeedback: 0
 
