@@ -13,7 +13,7 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: None # ./builds/DualLoom
+buildDir: ./builds/DualLoom
 frameDataIdCode: [800001, 800002]
 animalCode: [1, 2]
 execution_order: [0, 1]

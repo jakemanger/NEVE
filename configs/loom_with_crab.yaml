@@ -19,7 +19,6 @@ execution_order: [0, 1, 2, 3, 4, 5]
 rotationOffsetY: [0, 90, 180, 270, 0, 90]
 animalCode: 1
 crabPosX: [30, 30, 30, -30, -30, -30] # -30 = LEFT, 30 = RIGHT
-crabPosY: 1.05 # fudged TODO: fix this
 eyeHeight: 2.864 # CHANGE ME PER CRAB
 
 
@@ -36,7 +35,7 @@ syncSquareColourB: 0
 syncSquareColourA: 1
 syncSquareDisplayNum: 3 
 displayStimulusCode: 1 
-fictracFeedback: [1
+fictracFeedback: 1
 startFictracFromStart: 0
 
 # perspective
@@ -101,4 +100,3 @@ zMultiplier: -1
 xMultiplier: -1
 
 rotationOffsetX: 0
-rotationOffsetZ: 0
