@@ -78,9 +78,9 @@ endScaleY1: 1
 endScaleZ1: 0
 duration1: 5
 startElevation1: 15
-startAzimuth1: 0 
+startAzimuth1: -15 
 endElevation1: 15
-endAzimuth1: 0 
+endAzimuth1: -15
 startDistance1: 50 
 endDistance1: 5
 numReps1: [0.5, 1] 

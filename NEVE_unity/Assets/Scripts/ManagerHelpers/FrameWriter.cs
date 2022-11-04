@@ -149,7 +149,7 @@ public class FrameWriter : MonoBehaviour
         StimulusState stimState = StimulusState.Waiting;
 
         if (stimControllerLength > 0) {
-            stimState = stimulusControllers[0].stimulusState;
+            stimState = stimulusControllers[1].stimulusState;
         } else {
             stimState = StimulusState.Waiting;
         }
@@ -192,6 +192,21 @@ public class FrameWriter : MonoBehaviour
             if (field != null) {
                     string text = field.Name + ": " + field.GetValue(stimulusManager);
                     sw.WriteLine(text);
+                    // also save fields of this field
+                    if (field.FieldType.IsClass) {
+                        FieldInfo[] subFields = field.FieldType.GetFields(
+                            BindingFlags.Instance | 
+                            BindingFlags.Static |
+                            BindingFlags.NonPublic |
+                            BindingFlags.Public
+                        );
+                        foreach(FieldInfo subField in subFields) {
+                            if (subField != null) {
+                                string subText = field.Name + "." + subField.Name + ": " + subField.GetValue(field.GetValue(stimulusManager));
+                                sw.WriteLine(subText);
+                            }
+                        }
+                    }
                     // print(text);
                 }
         }

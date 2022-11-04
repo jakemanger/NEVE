@@ -17,22 +17,23 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://dry_mud_ground\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"1732798526\" type=\"8\" value=\"10,10\" />\n 
-      <presetinput identifier=\"water_level\" uid=\"265862252\" type=\"0\" value=\"0.28\"
-      />\n </sbspreset>\n"
+      identifier=\"$randomseed\" uid=\"809139820\" type=\"4\" value=\"5515\" />\n 
+      <presetinput identifier=\"earth_color\" uid=\"265798285\" type=\"2\" value=\"0.745283,0.57841,0.404281\"
+      />\n  <presetinput identifier=\"crack_size\" uid=\"265783584\" type=\"0\" value=\"0.75\"
+      />\n  <presetinput identifier=\"water_level\" uid=\"265862252\" type=\"0\"
+      value=\"0.106\" />\n </sbspreset>\n"
     shaderName: Universal Render Pipeline/Lit
     materialProperties:
       shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-      shaderKeywords: _GLOSSINESSMAP _HEIGHTMAP _METALLICSPECGLOSSMAP _NA_DIFFUSE
-        _NORMALMAP _OCCLUSIONMAP _ROUGHNESSMAP
+      shaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
       lightmapFlags: 4
       enableInstancingVariants: 0
       doubleSidedGI: 0
-      customRenderQueue: -1
+      customRenderQueue: 2000
       texEnvs:
       - name: _BaseMap
         texture: {fileID: -8202328686861970659, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
-        scale: {x: 100, y: 100}
+        scale: {x: 1000, y: 1000}
         offset: {x: 0, y: 0}
       - name: _BumpMap
         texture: {fileID: -2743341640573561378, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
@@ -56,7 +57,7 @@ ScriptedImporter:
         offset: {x: 0, y: 0}
       - name: _MainTex
         texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
+        scale: {x: 1000, y: 1000}
         offset: {x: 0, y: 0}
       - name: _MetallicGlossMap
         texture: {fileID: -2780914887033882184, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
@@ -319,8 +320,8 @@ ScriptedImporter:
     - label: Default
       bOverride: 0
       bLockRatio: 1
-      textureWidth: 1024
-      textureHeight: 1024
+      textureWidth: 4096
+      textureHeight: 4096
       textureFormatMode: 0
       normalCompressed: 0
       bGenerateOnLoad: 1

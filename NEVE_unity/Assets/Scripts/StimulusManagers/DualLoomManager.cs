@@ -5,10 +5,7 @@ using Unity.MLAgents;
 
 public class DualLoomManager : GenericStimulusManager
 {
-    [Header("Specific background stimulus parameters")]
-    public float horizonHeight = 0f;
-    public Color aboveHorizonColour = Color.grey;
-    public Color belowHorizonColour = Color.white;
+    public Material skyboxMaterial;
 
     [Header("Specific stimulus parameters")]
 
@@ -74,11 +71,6 @@ public class DualLoomManager : GenericStimulusManager
     protected override void GetPropertiesFromPython() {
         // get generic stimulus parameters from python
         base.GetPropertiesFromPython();
-
-        // now get those specific to this stimuli
-        horizonHeight = GetFloatFromPython("horizonHeight", horizonHeight);
-        aboveHorizonColour = GetColorFromPython("aboveHorizonColour", aboveHorizonColour);
-        belowHorizonColour = GetColorFromPython("belowHorizonColour", belowHorizonColour);
 
         gratingNum = GetFloatFromPython("gratingNum", gratingNum);
         gratingIsSquare = GetBoolFromPython("gratingIsSquare", false);
@@ -154,11 +146,30 @@ public class DualLoomManager : GenericStimulusManager
 
     public override void SetupStimuli() {
         // skybox
-        Material mat = RenderSettings.skybox;
-        mat.SetFloat("_horizonHeight", horizonHeight);
-        mat.SetColor("_aboveHorizonColour", aboveHorizonColour);
-        mat.SetColor("_belowHorizonColour", belowHorizonColour);
+        // overall skybox
+        Material mat = new Material(RenderSettings.skybox);
+        mat.SetFloat("_horizonHeight", GetFloatFromPython("horizonHeight", 0f));
+        mat.SetColor("_aboveHorizonColour", GetColorFromPython("aboveHorizonColour", Color.white));
+        mat.SetColor("_belowHorizonColour", GetColorFromPython("belowHorizonColour", Color.grey));
         RenderSettings.skybox = mat;
+
+        // specific overrides for backgrounds on different cameras
+        float[] horizonHeights = new float[4] { -9999f, -9999f, -9999f, -9999f };
+        Color[] aboveHorizonColours = new Color[4] { Color.grey, Color.grey, Color.grey, Color.grey };
+        Color[] belowHorizonColours = new Color[4] { Color.white, Color.white, Color.white, Color.white };
+        string[] sides = new string[] { "Front", "Right", "Back", "Left" };
+        for (int i = 0; i < sides.Length; i++) {
+            string side = sides[i];
+            horizonHeights[i] = GetFloatFromPython("horizonHeight", -9999f, side);
+            aboveHorizonColours[i] = GetColorFromPython("aboveHorizonColour", Color.white, side);
+            belowHorizonColours[i] = GetColorFromPython("belowHorizonColour", Color.grey, side);
+        }
+        // if specified, override the skybox for individual cameras
+        // check if skybox component exists
+        SetSkybox(camMon.frontCam.gameObject, horizonHeights[0], aboveHorizonColours[0], belowHorizonColours[0]);
+        SetSkybox(camMon.rightCam.gameObject, horizonHeights[1], aboveHorizonColours[1], belowHorizonColours[1]);
+        SetSkybox(camMon.backCam.gameObject, horizonHeights[2], aboveHorizonColours[2], belowHorizonColours[2]);
+        SetSkybox(camMon.leftCam.gameObject, horizonHeights[3], aboveHorizonColours[3], belowHorizonColours[3]);
 
         SphericalStimulusGenerator[] stimGenerators = GameObject.FindObjectsOfType<SphericalStimulusGenerator>();
         SphericalStimulusGenerator stimGenerator1 = stimGenerators[0];
@@ -236,6 +247,19 @@ public class DualLoomManager : GenericStimulusManager
             stimGenerator2.hideAtEnd = hideAtEnd2;
 
             stimGenerator2.Reset();
+        }
+    }
+
+    void SetSkybox(GameObject camGameObject, float horizonHeight, Color aboveHorizonColour, Color belowHorizonColour) {
+        if (horizonHeight != -9999f) {
+            if (camGameObject.GetComponent<Skybox>() == null) {
+                camGameObject.AddComponent<Skybox>();
+            }
+            Skybox skybox = camGameObject.GetComponent<Skybox>();
+            skybox.material = new Material(skyboxMaterial);
+            skybox.material.SetFloat("_horizonHeight", horizonHeight);
+            skybox.material.SetColor("_aboveHorizonColour", aboveHorizonColour);
+            skybox.material.SetColor("_belowHorizonColour", belowHorizonColour);
         }
     }
 }

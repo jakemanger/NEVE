@@ -771,8 +771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150ddd4eac8414b1a9ac8f70fe79b8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  startFictracFromStart: 0
   mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
@@ -804,9 +804,9 @@ MonoBehaviour:
   mouseMoveSpeed: 2
   parametersExpected: []
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
-  horizonHeight: 0
-  aboveHorizonColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  belowHorizonColour: {r: 1, g: 1, b: 1, a: 1}
+  xMultiplier: 1
+  zMultiplier: 1
+  skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
   startScale1: {x: 1.5, y: 1.5, z: 1.5}
   endScale1: {x: 1.5, y: 1.5, z: 1.5}
   startScale2: {x: 1, y: 1, z: 1}

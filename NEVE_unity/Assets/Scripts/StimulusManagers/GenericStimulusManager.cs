@@ -8,9 +8,10 @@ public abstract class GenericStimulusManager : MonoBehaviour
 {
     // A generic class for managing stimuli
 
-    public bool recieveParametersFromPython = true;
 
     public bool recieveInputFromSocket = false;
+    public bool startFictracFromStart = false;
+
     public bool mustIncludeEveryParameter = false;
 
     [Header("Generic camera view parameters")]
@@ -63,26 +64,23 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public GameObject errorMessageObject;
     Text errorText;
 
+    public float xMultiplier = 1f;
+    public float zMultiplier = 1f;
+
 
     void Start() {
-        if (recieveParametersFromPython) {
-            print("Recieving parameters from python. If this is not desired (e.g. you are testing in the editor), set recieveParametersFromPython to false on your Stimulus Manager.");
-        }
+        print("Recieving parameters from python.");
     }
 
 
     public virtual void Reset() {
-        if (recieveParametersFromPython) {
-            GetPropertiesFromPython();
-            CheckParameters();
-        }
-
-
         blackOutCanvases.SetActive(true);
 
-        episodeController.experimentDuration = experimentDuration;
-
+        GetPropertiesFromPython();
         SetupStimuli();
+        CheckParameters();
+
+        episodeController.experimentDuration = experimentDuration;
 
         // Setup cameras and frame writer
         camMon.frontDisplayNum = frontDisplayNum;
@@ -109,6 +107,10 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         SocketMovementController socketMovementController = GameObject.FindObjectOfType<SocketMovementController>();
         socketMovementController.recieveInputFromSocket = recieveInputFromSocket;
+        socketMovementController.startFictracFromStart = startFictracFromStart;
+        socketMovementController.waitTimeBeforeStartMovement = GetFloatFromPython("delayToApproach", 5f);
+        socketMovementController.xMultiplier = xMultiplier;
+        socketMovementController.zMultiplier = zMultiplier;
         socketMovementController.Reset();
     }
 
@@ -163,7 +165,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);
-        displayStimulusCode = GetBoolFromPython("displayStimulusCode", false);
+        displayStimulusCode = GetBoolFromPython("displayStimulusCode", true);
         manualControl = GetBoolFromPython("manualControl", false);
         mouseMoveSpeed = GetFloatFromPython("mouseMoveSpeed", 1f);
         experimentDuration = GetFloatFromPython("experimentDuration", 60f);
@@ -178,8 +180,11 @@ public abstract class GenericStimulusManager : MonoBehaviour
         leftDisplayNum = GetIntFromPython("leftDisplayNum", 3);
         cameraRotation = GetVector3FromPython("cameraRotation", Vector3.zero);
         darkAdaptTime = GetFloatFromPython("darkAdaptTime", 0f);
-        recieveInputFromSocket = GetBoolFromPython("fictracFeedback", false);
+        recieveInputFromSocket = GetBoolFromPython("fictracFeedback", true);
+        startFictracFromStart = GetBoolFromPython("startFictracFromStart", false);
         mustIncludeEveryParameter = GetBoolFromPython("mustIncludeEveryParameter", false);
+        xMultiplier = GetFloatFromPython("xMultiplier", 1f);
+        zMultiplier = GetFloatFromPython("zMultiplier", 1f);
     }
 
     void Update() {
