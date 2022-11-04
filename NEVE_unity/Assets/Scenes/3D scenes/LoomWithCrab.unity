@@ -1340,6 +1340,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 1254457337841208642, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: targetPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254457337841208642, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: targetPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

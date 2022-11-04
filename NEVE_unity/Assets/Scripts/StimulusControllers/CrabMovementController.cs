@@ -27,7 +27,7 @@ public class CrabMovementController : GenericStimulusController
 
     public override void Reset()
     {
-        transform.parent.parent.position = pos;
+        transform.parent.parent.localPosition = pos;
         burrowRenderer.material.color = burrowColour;
 
         if (crabType == 0)
