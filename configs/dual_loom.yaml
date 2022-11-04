@@ -13,7 +13,7 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: ./builds/DualLoom
+buildDir: None # ./builds/DualLoom
 frameDataIdCode: [800001, 800002]
 animalCode: [1, 2]
 execution_order: [0, 1]
@@ -55,7 +55,7 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
 # object 1
-stimulusType1: 1
+stimulusType1: 0
 startScaleX1: 1 
 startScaleY1: 1
 startScaleZ1: 1
@@ -64,9 +64,9 @@ endScaleY1: 1
 endScaleZ1: 1
 duration1: 5
 startElevation1: 15
-startAzimuth1: 0 
+startAzimuth1: -15 
 endElevation1: 15
-endAzimuth1: 90 
+endAzimuth1: -15
 startDistance1: 50 
 endDistance1: 5
 numReps1: [0.5, 1] 
@@ -82,15 +82,11 @@ outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0
 outlineColourA1: 1
-fixedAngularSize1: 1
-fixElevation1: 0
-minAngularAngle1: -0.5
-maxAngularAngle1: 0.5
 originX1: [0, 0] 
 originY1: [0, 0]
 originZ1: [0, 0]
 # object 2
-stimulusType2: 1
+stimulusType2: 0
 startScaleX2: 1.5
 startScaleY2: 1.5
 startScaleZ2: 1.5
@@ -117,10 +113,6 @@ outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
 outlineColourA2: 1
-fixedAngularSize2: 1
-fixElevation2: 0
-minAngularAngle2: -0.5
-maxAngularAngle2: 0.5
 originX2: [0, 0]  
 originY2: [0, 0] 
 originZ2: [0, 0]
