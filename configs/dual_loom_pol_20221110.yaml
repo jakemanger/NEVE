@@ -63,80 +63,63 @@ aboveHorizonColourRBack: 0
 aboveHorizonColourGBack: 0
 aboveHorizonColourBBack: 0
 aboveHorizonColourABack: 1
-belowHorizonColourRBack: 0.65
-belowHorizonColourGBack: 0.65
-belowHorizonColourBBack: 0.65
+belowHorizonColourRBack: 0.6549
+belowHorizonColourGBack: 0.6549
+belowHorizonColourBBack: 0.6549
 belowHorizonColourABack: 1
 
 aboveHorizonColourRRight: 0
 aboveHorizonColourGRight: 0
 aboveHorizonColourBRight: 0
 aboveHorizonColourARight: 1
-belowHorizonColourRRight: 0.63
-belowHorizonColourGRight: 0.63
-belowHorizonColourBRight: 0.63
+belowHorizonColourRRight: 0.6314
+belowHorizonColourGRight: 0.6314
+belowHorizonColourBRight: 0.6314
 belowHorizonColourARight: 1
 
 # object 1
 stimulusType1: 0
-startScaleX1: 1 
-startScaleY1: 1
-startScaleZ1: 1
-endScaleX1: 1
-endScaleY1: 1
-endScaleZ1: 0
-duration1: 5
+startScaleX1: 3 
+startScaleY1: 3
+startScaleZ1: 3
+endScaleX1: 3
+endScaleY1: 3
+endScaleZ1: 3
+duration1: 24.925
 startElevation1: 15
-startAzimuth1: -15 
+startAzimuth1: 0
 endElevation1: 15
-endAzimuth1: -15
-startDistance1: 50 
-endDistance1: 5
-numReps1: [0.5, 1] 
-delayToApproach1: [5, 5] 
-stimulusColourR1: 0.3 
-stimulusColourG1: 0.3
-stimulusColourB1: 0.3
+endAzimuth1: 0
+startDistance1: 500 
+endDistance1: 1.5
+numReps1: 0.5 
+delayToApproach1: 5 
+stimulusColourR1: [0.7500, 0.9375, 0.0500, 0.0500, 1.0000, 0.8750, 0.9688, 1.0000, 0.5000, 0.9688, 0.0500, 0.7500, 0.9375, 0.5000, 0.8750, 0.0500, 0.9688, 0.9375, 0.0500, 0.0500, 0.5000, 0.8750, 0.0500, 1.0000, 1.0000, 0.9688, 0.8750, 0.5000]
+stimulusColourG1: [0.7500, 0.9375, 0.0500, 0.0500, 1.0000, 0.8750, 0.9688, 1.0000, 0.5000, 0.9688, 0.0500, 0.7500, 0.9375, 0.5000, 0.8750, 0.0500, 0.9688, 0.9375, 0.0500, 0.0500, 0.5000, 0.8750, 0.0500, 1.0000, 1.0000, 0.9688, 0.8750, 0.5000]
+stimulusColourB1: [0.7500, 0.9375, 0.0500, 0.0500, 1.0000, 0.8750, 0.9688, 1.0000, 0.5000, 0.9688, 0.0500, 0.7500, 0.9375, 0.5000, 0.8750, 0.0500, 0.9688, 0.9375, 0.0500, 0.0500, 0.5000, 0.8750, 0.0500, 1.0000, 1.0000, 0.9688, 0.8750, 0.5000]
 stimulusColourA1: 1
-drawOutline1: 0
-outlineType1: 0
-outlineWidth1: 1
-outlineColourR1: 0
-outlineColourG1: 0
-outlineColourB1: 0
-outlineColourA1: 1
-originX1: [0, 0] 
-originY1: [0, 0]
-originZ1: [0, 0]
+
 
 # object 2
 stimulusType2: 0
-startScaleX2: 1.5
-startScaleY2: 1.5
-startScaleZ2: 1.5
-endScaleX2: 1.5
-endScaleY2: 1.5
-endScaleZ2: 1.5
-duration2: 5
+startScaleX2: 3
+startScaleY2: 3
+startScaleZ2: 3
+endScaleX2: 3
+endScaleY2: 3
+endScaleZ2: 3
+duration2: 24.925
 startElevation2: 15
 startAzimuth2: 180
 endElevation2: 15
 endAzimuth2: 180 
-startDistance2: 55 
-endDistance2: 6  
-numReps2: [0.5, 1] 
-delayToApproach2: [5, 5]
-stimulusColourR2: 0 
-stimulusColourG2: 0
-stimulusColourB2: 0
+startDistance2: 500
+endDistance2: 1.5
+numReps2: 0.5 
+delayToApproach2: 5
+stimulusColourR2: [0.7765, 0.8039, 0.0000, 0.7765, 0.8039, 0.7765, 0.7765, 0.8039, 0.7765, 0.8039, 0.7765, 0.8039, 0.8039, 0.7765, 0.8039, 0.0000, 0.7765, 0.8039, 0.8039, 0.0000, 0.8039, 0.7765, 0.0000, 0.7765, 0.8039, 0.7765, 0.8039, 0.7765] 
+stimulusColourG2: [0.7765, 0.8039, 0.0000, 0.7765, 0.8039, 0.7765, 0.7765, 0.8039, 0.7765, 0.8039, 0.7765, 0.8039, 0.8039, 0.7765, 0.8039, 0.0000, 0.7765, 0.8039, 0.8039, 0.0000, 0.8039, 0.7765, 0.0000, 0.7765, 0.8039, 0.7765, 0.8039, 0.7765]
+stimulusColourB2: [0.7765, 0.8039, 0.0000, 0.7765, 0.8039, 0.7765, 0.7765, 0.8039, 0.7765, 0.8039, 0.7765, 0.8039, 0.8039, 0.7765, 0.8039, 0.0000, 0.7765, 0.8039, 0.8039, 0.0000, 0.8039, 0.7765, 0.0000, 0.7765, 0.8039, 0.7765, 0.8039, 0.7765]
 stimulusColourA2: 1
-drawOutline2: 0
-outlineType2: 0
-outlineWidth2: 1
-outlineColourR2: 0
-outlineColourG2: 0
-outlineColourB2: 0
-outlineColourA2: 1
-originX2: [0, 0]  
-originY2: [0, 0] 
-originZ2: [0, 0]
+
+
