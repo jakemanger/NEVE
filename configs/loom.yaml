@@ -47,15 +47,41 @@ leftDisplayNum: 3
 
 # stimuli
 # background
-aboveHorizonColourR: 0.5
-aboveHorizonColourG: 0.5
-aboveHorizonColourB: 0.5
-aboveHorizonColourA: 1
+aboveHorizonColourRFront: 1
+aboveHorizonColourGFront: 0
+aboveHorizonColourBFront: 0
+aboveHorizonColourAFront: 1
+horizonHeightFront: 0 
+
+aboveHorizonColourRRight: 0
+aboveHorizonColourGRight: 1
+aboveHorizonColourBRight: 0
+aboveHorizonColourARight: 1
 belowHorizonColourR: 0.3
 belowHorizonColourG: 0.3
 belowHorizonColourB: 0.3
 belowHorizonColourA: 1
-horizonHeight: 0  
+horizonHeightRight: 0  
+
+
+aboveHorizonColourRBack: 0
+aboveHorizonColourGBack: 0
+aboveHorizonColourBBack: 1
+aboveHorizonColourABack: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeightBack: 0  
+
+
+aboveHorizonColourRLeft: 1
+aboveHorizonColourGLeft: 1
+aboveHorizonColourBLeft: 1
+aboveHorizonColourALeft: 1
+horizonHeightLeft: 0  
+
+ 
 # object
 stimulusType: 0
 startScaleX: 1  
