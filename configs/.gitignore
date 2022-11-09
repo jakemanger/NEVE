@@ -1,4 +1,3 @@
-*
 !.gitignore
 !calibration.yaml
 !dual_loom.yaml
@@ -10,3 +9,4 @@
 !optomotor.yaml
 !loom_with_crab.yaml
 !dual_loom_pol.yaml
+!dual_loom_pol_20221110.yaml
