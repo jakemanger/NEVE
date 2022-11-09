@@ -50,14 +50,23 @@ rotationOffsetY2: [90, 0, 90, 0, 90, 0, 0, 90, 0, 90, 90, 0, 90, 0, 0, 90, 0, 90
 darkAdaptTime: 0
 horizonHeight: 0
 
-aboveHorizonColourR: 1
-aboveHorizonColourG: 1
-aboveHorizonColourB: 1
-aboveHorizonColourA: 1
-belowHorizonColourR: 0.3
-belowHorizonColourG: 0.3
-belowHorizonColourB: 0.3
-belowHorizonColourA: 1
+aboveHorizonColourRFront: 1
+aboveHorizonColourGFront: 1
+aboveHorizonColourBFront: 1
+aboveHorizonColourAFront: 1
+belowHorizonColourRFront: 0.3
+belowHorizonColourGFront: 0.3
+belowHorizonColourBFront: 0.3
+belowHorizonColourAFront: 1
+
+aboveHorizonColourRLeft: 1
+aboveHorizonColourGLeft: 1
+aboveHorizonColourBLeft: 1
+aboveHorizonColourALeft: 1
+belowHorizonColourRLeft: 0.3
+belowHorizonColourGLeft: 0.3
+belowHorizonColourBLeft: 0.3
+belowHorizonColourALeft: 1
 
 aboveHorizonColourRBack: 0
 aboveHorizonColourGBack: 0
