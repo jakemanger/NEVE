@@ -78,7 +78,6 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         GetPropertiesFromPython();
         SetupStimuli();
-        CheckParameters();
 
         episodeController.experimentDuration = experimentDuration;
 
@@ -111,7 +110,11 @@ public abstract class GenericStimulusManager : MonoBehaviour
         socketMovementController.waitTimeBeforeStartMovement = GetFloatFromPython("delayToApproach", 5f);
         socketMovementController.xMultiplier = xMultiplier;
         socketMovementController.zMultiplier = zMultiplier;
+        socketMovementController.minMovementDistance = GetFloatFromPython("minMovementDistance", 0.1f);
+        socketMovementController.maxDistanceDelta = GetFloatFromPython("maxDistanceDelta", 80f);
         socketMovementController.Reset();
+
+        CheckParameters();
     }
 
     void CheckParameters() {

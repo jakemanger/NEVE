@@ -27,7 +27,7 @@ public class CrabMovementController : GenericStimulusController
 
     public override void Reset()
     {
-        transform.parent.parent.position = pos;
+        transform.parent.parent.localPosition = pos;
         burrowRenderer.material.color = burrowColour;
 
         if (crabType == 0)
@@ -44,6 +44,12 @@ public class CrabMovementController : GenericStimulusController
             crabTypes[1].transform.GetChild(0).GetComponent<Renderer>().material.color = sphereColour;
         }
         burrow.position = new Vector3(burrow.position.x, -1.5f * crabSize, burrow.position.z);
+        // transform.parent.parent.parent.localPosition = new Vector3(
+        //     transform.parent.parent.parent.localPosition.x,
+        //     -eyeHeight,
+        //     transform.parent.parent.parent.localPosition.z
+        // );
+        transform.parent.parent.parent.eulerAngles = new Vector3(rotationOffset.x, rotationOffset.y, 0);
 
         base.Reset();
     }
@@ -60,12 +66,6 @@ public class CrabMovementController : GenericStimulusController
         print("Starting crab animation");
         // set random rotation and speed
         transform.parent.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
-        transform.parent.parent.parent.localPosition = new Vector3(
-            transform.parent.parent.parent.position.x,
-            -eyeHeight,
-            transform.parent.parent.parent.position.z
-        );
-        transform.parent.parent.parent.eulerAngles = new Vector3(rotationOffset.x, rotationOffset.y, 0);
         anim["CrabWalkOutOfBurrow"].speed = Random.Range(0.75f, 1.25f);
         anim.Play("CrabWalkOutOfBurrow");
     }
