@@ -45,10 +45,10 @@ fictracFeedback: 0
 
 
 # perspective
-eyeHeight: 2.864 
-distanceToMonitors: 27 
-monitorDimensionsX: 52 
-monitorDimensionsY: 32 
+eyeHeight: 3.435 
+distanceToMonitors: 7 
+monitorDimensionsX: 12.176
+monitorDimensionsY: 6.87
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
