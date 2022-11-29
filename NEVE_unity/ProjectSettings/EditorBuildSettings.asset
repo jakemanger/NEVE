@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3D scenes/LoomWithCrab.unity
-    guid: 8dbf986f741714931a7bb9b7fce5c47c
+    path: Assets/Scenes/3D scenes/HyperiidTrackLoom.unity
+    guid: 431f28266b4fc404da5ab50a52451b30
   m_configObjects: {}

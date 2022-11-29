@@ -70,11 +70,8 @@ class Nenv:
                 self.env_parameters.set_float_parameter(key, value[0])
             else:
                 self.env_parameters.set_float_parameter(key, value[i])
-                assert len(value) == len(self.execution_order), (
-                    f'the length of {key} must be one or the same as the'
-                    'length of execution_order'
-                )
     
+
     def reset(self):
         """Resets the environment
 

@@ -190,7 +190,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         zMultiplier = GetFloatFromPython("zMultiplier", 1f);
     }
 
-    void Update() {
+    public void Update() {
         if (timeSinceDarkAdaptStart < darkAdaptTime) {
             timeSinceDarkAdaptStart += Time.deltaTime;
         } else {

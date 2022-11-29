@@ -9,10 +9,10 @@
 
 # general
 buildDir: ./builds/Optomotor/
-frameDataIdCode: [100001, 100002] 
-animalCode: [1, 2] 
+frameDataIdCode: [1, 2] 
+animalCode: 1 
 execution_order: [0, 1]
-experimentDuration: [99999, 99999]
+experimentDuration: 99999
 recordFrameData: 1
 recordEachFrame: 1
 recordingFrequency: 1

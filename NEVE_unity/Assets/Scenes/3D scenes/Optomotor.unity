@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24979837, g: 0.24979837, b: 0.24979837, a: 1}
+  m_IndirectSpecularColor: {r: 0.049980618, g: 0.049980618, b: 0.049980618, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1035,6 +1035,10 @@ MonoBehaviour:
   verbose: 0
   displayUPS: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  startFictracFromStart: 0
+  waitTimeBeforeStartMovement: 5
+  xMultiplier: -1
+  zMultiplier: 1
 --- !u!1 &5309253759577624795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1528,7 @@ MonoBehaviour:
   syncSquareImg: {fileID: 69513663}
   experimentId: test_
   outputFilePath: test.csv
+  stimulusControllers: []
   stimulusStateImage: {fileID: 508935453}
   timeText: {fileID: 1574576096}
 --- !u!114 &5309253760061736713
@@ -1612,8 +1617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a470aa9ddb0a41188bd88e2981bf43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  startFictracFromStart: 0
   mustIncludeEveryParameter: 0
   eyeHeight: 2
   distanceToMonitors: 7
@@ -1624,12 +1629,14 @@ MonoBehaviour:
   leftDisplayNum: 3
   cameraRotation: {x: 0, y: 0, z: 0}
   experimentDuration: 60
-  darkAdaptTime: 5
+  darkAdaptTime: 2
   recordFrameData: 1
   recordEachFrame: 1
   recordingFrequency: 1
   frameDataIdCode: 9999
   animalCode: 1
+  syncSquarePos: {x: -29.84, y: 18.17102}
+  syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
   syncSquare: {fileID: 790943268}
   syncSquareDisplayNum: 1
@@ -1643,6 +1650,8 @@ MonoBehaviour:
   mouseMoveSpeed: 2
   parametersExpected: []
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
+  xMultiplier: 1
+  zMultiplier: 1
   density: 500
   offset: 0
   angle: 0
@@ -1650,6 +1659,8 @@ MonoBehaviour:
   square: 0
   minimumVal: 0
   maximumVal: 0.062745094
+  reverseAfterSeconds: 0
+  timeWaitedForReverse: 0
 --- !u!4 &5309253760061736719
 Transform:
   m_ObjectHideFlags: 0

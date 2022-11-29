@@ -29,6 +29,8 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
     public bool ignoreKeyboard = false;
 
+    public bool autoStart = false;
+
     // for mimicking expansion speed of another loom
     public bool mimicExpansionSpeed = false;
     public int mimicExpansionSpeedMethod = 0;
@@ -172,7 +174,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !ignoreKeyboard) {
+        if ((Input.GetKeyDown(KeyCode.Space) && !ignoreKeyboard) || autoStart) {
             PrepareToMove();
 
             if (manualControl) {
@@ -187,6 +189,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
                     startPolarPosition = new Vector2(angles.x, angles.y);
                 }
             } 
+            autoStart = false;
         }
 
 

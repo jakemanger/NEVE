@@ -9,3 +9,6 @@
 !moving_rectangle.yaml
 !optomotor.yaml
 !loom_with_crab.yaml
+!hyperiid_orientation.yaml
+!hyperiid_optomotor.yaml
+!hyperiid_trackloom.yaml

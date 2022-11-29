@@ -34,7 +34,7 @@ public class FrameWriter : MonoBehaviour
 
     // Use SphericalStimulusGenerator or SquareStimulusGenerator
     // in the inspector
-    GenericStimulusController[] stimulusControllers;
+    public GenericStimulusController[] stimulusControllers;
     public Image stimulusStateImage;
     public Text timeText;
 
@@ -148,8 +148,10 @@ public class FrameWriter : MonoBehaviour
 
         StimulusState stimState = StimulusState.Waiting;
 
-        if (stimControllerLength > 0) {
+        if (stimControllerLength > 1) {
             stimState = stimulusControllers[1].stimulusState;
+        } else if (stimControllerLength > 0) {
+            stimState = stimulusControllers[0].stimulusState;
         } else {
             stimState = StimulusState.Waiting;
         }

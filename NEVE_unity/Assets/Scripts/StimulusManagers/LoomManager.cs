@@ -84,6 +84,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.manualControl = manualControl;
         stimGenerator.mouseMoveSpeed = mouseMoveSpeed;
         stimGenerator.Reset();
+        stimGenerator.autoStart = GetBoolFromPython("autoStart", false);
     }
 
     void SetSkybox(GameObject camGameObject, float horizonHeight, Color aboveHorizonColour, Color belowHorizonColour) {

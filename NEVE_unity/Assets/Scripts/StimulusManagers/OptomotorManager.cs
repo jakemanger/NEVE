@@ -14,6 +14,8 @@ public class OptomotorManager : GenericStimulusManager
     public bool square = false;
     public float minimumVal = 0f;
     public float maximumVal = 0.5f;
+    public float reverseAfterSeconds = 0f;
+    public float timeWaitedForReverse = 0f;
 
 
     protected override void GetPropertiesFromPython() {
@@ -28,6 +30,7 @@ public class OptomotorManager : GenericStimulusManager
         square = GetBoolFromPython("square", false);
         minimumVal = GetFloatFromPython("minimumVal", 0f);
         maximumVal = GetFloatFromPython("maximumVal", 0.5f);
+        reverseAfterSeconds = GetFloatFromPython("reverseAfterSeconds", 0f);
     }
 
     public override void SetupStimuli() {
@@ -40,5 +43,19 @@ public class OptomotorManager : GenericStimulusManager
         mat.SetFloat("_Minimum", minimumVal);
         mat.SetFloat("_Maximum", maximumVal);
         RenderSettings.skybox = mat;
+    }
+
+    void Update() {
+        base.Update();
+        if (reverseAfterSeconds > 0f) {
+            timeWaitedForReverse += Time.deltaTime;
+            if (timeWaitedForReverse > reverseAfterSeconds) {
+                timeWaitedForReverse = 0f;
+                speed = -speed;
+                Material mat = RenderSettings.skybox;
+                mat.SetFloat("_Speed", speed);
+                RenderSettings.skybox = mat;
+            }
+        }
     }
 }
