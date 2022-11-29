@@ -48,7 +48,7 @@ class Nenv:
         self.execution_order = self.params['execution_order']
         self.params.pop('execution_order')
 
-    def set_params(self, i):
+    def set_params(self, i, dark_adapt=False):
         """Sets the parameters for the experimental trial
 
         Any change using set_params requires a reset (self.reset()).
@@ -63,6 +63,9 @@ class Nenv:
         print('Setting new environmental parameters...')
         for key, value in self.params.items():
             print('Setting', key, '...')
+
+            if key == 'experimentDuration' and dark_adapt:
+                value = self.params['darkAdaptTime']
 
             if type(value) != list:
                 self.env_parameters.set_float_parameter(key, value)

@@ -67,6 +67,9 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public float xMultiplier = 1f;
     public float zMultiplier = 1f;
 
+    public bool darkAdaptFirstTrialOnly = false;
+    public int trialNumber = 0;
+
 
     void Start() {
         print("Recieving parameters from python.");
@@ -115,6 +118,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         socketMovementController.Reset();
 
         CheckParameters();
+        trialNumber += 1;
     }
 
     void CheckParameters() {
@@ -188,11 +192,22 @@ public abstract class GenericStimulusManager : MonoBehaviour
         mustIncludeEveryParameter = GetBoolFromPython("mustIncludeEveryParameter", false);
         xMultiplier = GetFloatFromPython("xMultiplier", 1f);
         zMultiplier = GetFloatFromPython("zMultiplier", 1f);
+        darkAdaptFirstTrialOnly = GetBoolFromPython("darkAdaptFirstTrialOnly", true);
     }
 
     public void Update() {
-        if (timeSinceDarkAdaptStart < darkAdaptTime) {
-            timeSinceDarkAdaptStart += Time.deltaTime;
+        if (darkAdaptFirstTrialOnly && trialNumber < 2) {
+            if (timeSinceDarkAdaptStart < darkAdaptTime) {
+                timeSinceDarkAdaptStart += Time.deltaTime;
+            } else {
+                blackOutCanvases.SetActive(false);
+            }
+        } else if (!darkAdaptFirstTrialOnly) {
+            if (timeSinceDarkAdaptStart < darkAdaptTime) {
+                timeSinceDarkAdaptStart += Time.deltaTime;
+            } else {
+                blackOutCanvases.SetActive(false);
+            }
         } else {
             blackOutCanvases.SetActive(false);
         }
