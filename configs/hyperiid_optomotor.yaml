@@ -34,7 +34,7 @@ recordingFrequency: 1
 manualControl: 0 
 mouseMoveSpeed: 2 
 flickerDuration: 0.1
-syncSquareColourR: 1
+syncSquareColourR: 0.3
 syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1 
@@ -51,9 +51,13 @@ frontDisplayNum: 0
 rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
+darkAdaptTime: 180
+darkAdaptFirstTrialOnly: 1
 
 # stimuli
-darkAdaptTime: 0
+# change to 4 8 16
+# run a experiment with 8 and 16 at different speeds first up
+# we just want to get something
 density: [3, 6, 12, 24, 48, 96, 192, 384, 768, 1536]
 offset: 0 
 angle: 0

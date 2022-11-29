@@ -39,11 +39,12 @@ recordFrameData: 1
 recordEachFrame: 1
 recordingFrequency: 1 
 manualControl: 0 
-syncSquareColourR: 1
+syncSquareColourR: 0.3
 syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1
-syncSquareDisplayNum: 0 
+syncSquareDisplayNum: 0
+syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
 
@@ -58,12 +59,13 @@ rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
 darkAdaptTime: 0
+darkAdaptFirstTrialOnly: 0
 
 # stimuli
 # background
-aboveHorizonColourR: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
-aboveHorizonColourG: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
-aboveHorizonColourB: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
+aboveHorizonColourR: [0.1, 0.1, 0.1, 0.02, 0.02, 0.02]
+aboveHorizonColourG: [0.1, 0.1, 0.1, 0.02, 0.02, 0.02]
+aboveHorizonColourB: [0.1, 0.1, 0.1, 0.02, 0.02, 0.02]
 aboveHorizonColourA: 1
 belowHorizonColourR: 0
 belowHorizonColourG: 0
