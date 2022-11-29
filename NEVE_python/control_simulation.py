@@ -18,6 +18,11 @@ def start(config_path):
     """
     nenv = Nenv(params=config_path)
 
+    # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in the config file
+    if 'darkAdaptFirstTrialOnly' in nenv.params and nenv.params['darkAdaptFirstTrialOnly'] == 1:
+        nenv.set_params(0, dark_adapt=True)
+        nenv.reset()
+
     print('Running for', len(nenv.execution_order), 'experimental conditions')
     for i in nenv.execution_order:
         nenv.set_params(i)
