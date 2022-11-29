@@ -47,15 +47,18 @@ public class OptomotorManager : GenericStimulusManager
 
     void Update() {
         base.Update();
+        Material mat = RenderSettings.skybox;
         if (reverseAfterSeconds > 0f) {
             timeWaitedForReverse += Time.deltaTime;
             if (timeWaitedForReverse > reverseAfterSeconds) {
                 timeWaitedForReverse = 0f;
                 speed = -speed;
-                Material mat = RenderSettings.skybox;
                 mat.SetFloat("_Speed", speed);
                 RenderSettings.skybox = mat;
             }
         }
+        float progress = mat.GetFloat("_progress");
+        progress += Time.deltaTime * speed;
+        mat.SetFloat("_progress", progress);
     }
 }
