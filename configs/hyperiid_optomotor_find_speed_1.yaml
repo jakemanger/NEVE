@@ -62,7 +62,7 @@ darkAdaptFirstTrialOnly: 1
 density: [4, 4, 4, 8, 8, 8, 16, 16, 16]
 offset: 0 
 angle: 0
-speed: [2.5, 5, 10, 2.5, 5, 10, 2.5, 5, 10] 
+speed: [0.5, 1, 2, 0.5, 1, 2, 0.5, 1, 2] 
 square: 0
 minimumVal: 0 
 maximumVal: 0.02
