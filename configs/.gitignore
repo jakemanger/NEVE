@@ -12,5 +12,6 @@
 !hyperiid_orientation.yaml
 !hyperiid_optomotor.yaml
 !hyperiid_optomotor_find_speed.yaml
-!hyperiid_trackloom.yaml
+!hyperiid_track.yaml
+!hyperiid_track_two_dirs.yaml
 !check_directions.yaml
