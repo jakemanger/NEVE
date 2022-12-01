@@ -33,7 +33,7 @@ execution_order: [0, 1, 2, 3, 4, 5]
 #[4, 1, 2, 1, 5, 2, 0, 3, 1, 5, 0, 3, 2, 4, 3, 4, 5, 0]
 #[1, 3, 2, 5, 1, 3, 0, 0, 0, 4, 2, 2, 5, 3, 5, 1, 4, 4]
 
-cameraRotationZ: [0, 90, 180, 0, 90, 180]
+cameraRotationX: 90
 experimentDuration: 60
 recordFrameData: 1 
 recordEachFrame: 1
@@ -54,18 +54,18 @@ eyeHeight: 3.435
 distanceToMonitors: 7 
 monitorDimensionsX: 12.176
 monitorDimensionsY: 6.87
-frontDisplayNum: 0 
-rightDisplayNum: 1 
-backDisplayNum: 2
-leftDisplayNum: 3
-darkAdaptTime: 0
-darkAdaptFirstTrialOnly: 0
+frontDisplayNum: [0, 1, 2, 0, 1, 2] 
+rightDisplayNum: [1, 2, 3, 1, 2, 2] 
+backDisplayNum: [2, 3, 0, 2, 3, 0]
+leftDisplayNum: [3, 0, 1, 3, 0, 1]
+darkAdaptTime: 10000
+darkAdaptFirstTrialOnly: 1
 
 # stimuli
 # background
-aboveHorizonColourR: [0.1, 0.1, 0.1, 0.02, 0.02, 0.02]
-aboveHorizonColourG: [0.1, 0.1, 0.1, 0.02, 0.02, 0.02]
-aboveHorizonColourB: [0.1, 0.1, 0.1, 0.02, 0.02, 0.02]
+aboveHorizonColourR: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
+aboveHorizonColourG: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
+aboveHorizonColourB: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
 aboveHorizonColourA: 1
 belowHorizonColourR: 0
 belowHorizonColourG: 0

@@ -11,5 +11,6 @@
 !loom_with_crab.yaml
 !hyperiid_orientation.yaml
 !hyperiid_optomotor.yaml
+!hyperiid_optomotor_find_speed.yaml
 !hyperiid_trackloom.yaml
 !check_directions.yaml
