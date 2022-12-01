@@ -42,6 +42,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public Vector2 syncSquarePos = new Vector2(-29.84f, 18.17102f);
     public float syncSquareScalar = 1f;
     public Color syncSquareColor = Color.red;
+    public Color syncSquareTextColor = Color.white;
     public SyncSquare syncSquare;
     public int syncSquareDisplayNum = 0;
     public bool displayStimulusCode = true;
@@ -99,6 +100,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquare.transform.parent.GetComponent<Canvas>().targetDisplay = syncSquareDisplayNum;
         syncSquare.flickerDuration = flickerDuration;
         syncSquare.flickerColor = syncSquareColor;
+        syncSquare.textColor = syncSquareTextColor;
         syncSquare.displayStimulusCode = displayStimulusCode;
         syncSquare.stimulusCode = frameDataIdCode;
         syncSquare.animalCode = animalCode;
@@ -170,6 +172,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         monitorDimensions = GetVector2FromPython("monitorDimensions", new Vector2(12.176f, 6.87f));
         flickerDuration = GetFloatFromPython("flickerDuration", 0.1f);
         syncSquareColor = GetColorFromPython("syncSquareColour", Color.red);
+        syncSquareTextColor = GetColorFromPython("syncSquareTextColour", new Color(0.3f, 0.1f, 0.1f));
         syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);

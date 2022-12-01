@@ -7,6 +7,7 @@ public class SyncSquare : MonoBehaviour
 {
     public float flickerDuration = 0.1f;
     public Color flickerColor = Color.red;
+    public Color textColor = Color.white;
 
     float timeWaited = 0f;
     bool doFlicker = false;
@@ -19,6 +20,7 @@ public class SyncSquare : MonoBehaviour
     public Image flicker;
     public Text experimentId;
     public Text animalId;
+    public Text timeText;
 
 
     public void Reset() {
@@ -36,6 +38,9 @@ public class SyncSquare : MonoBehaviour
         flicker.color = flickerColor;
         experimentId.text = stimulusCode.ToString();
         animalId.text = animalCode.ToString();
+        experimentId.color = textColor;
+        animalId.color = textColor;
+        timeText.color = textColor;
     }
 
     void Update()
