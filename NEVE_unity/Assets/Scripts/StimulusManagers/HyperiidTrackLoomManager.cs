@@ -26,12 +26,12 @@ public class HyperiidTrackLoomManager : LoomManager
         randomMax = GetVector2FromPython("randomRotationOffsetMax", new Vector2(360f, 360f));
 
         if (randomXRot) {
-            float xRot = Random.Range(randomMin.x, randomMax.x);
+            float xRot = Random.Range(0, 4) * 90f;
             base.stimGenerator.startPolarPosition.x += xRot;
             base.stimGenerator.endPolarPosition.x += xRot;
         }
         if (randomYRot) {
-            float yRot = Random.Range(randomMin.y, randomMax.y);
+            float yRot = Random.Range(0, 4) * 90f;
             base.stimGenerator.startPolarPosition.y += yRot;
             base.stimGenerator.endPolarPosition.y += yRot;
         }
