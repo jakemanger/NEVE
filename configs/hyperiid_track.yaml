@@ -66,13 +66,13 @@ darkAdaptFirstTrialOnly: 1
 
 # stimuli
 # background
-aboveHorizonColourR: [0, 0.1, 0, 0.1]
-aboveHorizonColourG: [0, 0.1, 0, 0.1]
-aboveHorizonColourB: [0, 0.1, 0, 0.1]
+aboveHorizonColourR: [0, 0.02, 0, 0.02]
+aboveHorizonColourG: [0, 0.02, 0, 0.02]
+aboveHorizonColourB: [0, 0.02, 0, 0.02]
 aboveHorizonColourA: 1
-belowHorizonColourR: [0, 0.1, 0, 0.1]
-belowHorizonColourG: [0, 0.1, 0, 0.1]
-belowHorizonColourB: [0, 0.1, 0, 0.1]
+belowHorizonColourR: [0, 0.02, 0, 0.02]
+belowHorizonColourG: [0, 0.02, 0, 0.02]
+belowHorizonColourB: [0, 0.02, 0, 0.02]
 belowHorizonColourA: 1
 horizonHeight: 41.5
 
@@ -98,7 +98,7 @@ endDistance: 10
 duration: 5
 numReps: 3
 delayToApproach: 5
-stimulusColourR: [0.1, 0, 0.1, 0]
-stimulusColourG: [0.1, 0, 0.1, 0]
-stimulusColourB: [0.1, 0, 0.1, 0]
+stimulusColourR: [0.02, 0, 0.02, 0]
+stimulusColourG: [0.02, 0, 0.02, 0]
+stimulusColourB: [0.02, 0, 0.02, 0]
 stimulusColourA: 1

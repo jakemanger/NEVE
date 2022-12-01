@@ -23,9 +23,6 @@ buildDir: ./builds/HyperiidTrackLoom/
 frameDataIdCode: [1, 2, 3, 4]
 animalCode: 1 
 execution_order: [3, 0, 3, 2, 0, 2, 1, 2, 0, 3, 3, 2, 3, 1, 3, 2, 3, 0, 2, 2, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 3, 0, 0, 1, 3, 3, 2, 2, 1, 2, 1, 2, 0, 3, 0, 3, 2]
-#[0, 1, 2, 3]
-#
-#
 #[1, 1, 2, 3, 1, 1, 2, 3, 3, 0, 2, 1, 1, 0, 1, 1, 3, 3, 0, 0, 0, 2, 1, 0, 2, 3, 1, 2, 2, 0, 0, 2, 2, 1, 1, 3, 3, 0, 3, 2, 2, 0, 3, 0, 0, 3, 3, 2]
 #[2, 1, 3, 2, 1, 1, 0, 2, 3, 0, 1, 0, 3, 0, 1, 3, 2, 0, 1, 3, 2, 3, 0, 0, 2, 3, 2, 3, 2, 2, 2, 1, 0, 3, 0, 1, 0, 2, 3, 1, 0, 2, 0, 1, 3, 1, 3, 1]
 #[2, 0, 3, 1, 1, 0, 2, 3, 1, 0, 2, 3, 2, 1, 2, 0, 0, 1, 3, 0, 2, 2, 3, 1, 2, 1, 0, 1, 0, 0, 3, 2, 1, 1, 0, 3, 2, 3, 2, 0, 3, 2, 3, 1, 3, 3, 0, 1]
@@ -67,13 +64,13 @@ darkAdaptFirstTrialOnly: 1
 
 # stimuli
 # background
-aboveHorizonColourR: [0, 0.1, 0, 0.1]
-aboveHorizonColourG: [0, 0.1, 0, 0.1]
-aboveHorizonColourB: [0, 0.1, 0, 0.1]
+aboveHorizonColourR: [0, 0.02, 0, 0.02]
+aboveHorizonColourG: [0, 0.02, 0, 0.02]
+aboveHorizonColourB: [0, 0.02, 0, 0.02]
 aboveHorizonColourA: 1
-belowHorizonColourR: [0, 0.1, 0, 0.1]
-belowHorizonColourG: [0, 0.1, 0, 0.1]
-belowHorizonColourB: [0, 0.1, 0, 0.1]
+belowHorizonColourR: [0, 0.02, 0, 0.02]
+belowHorizonColourG: [0, 0.02, 0, 0.02]
+belowHorizonColourB: [0, 0.02, 0, 0.02]
 belowHorizonColourA: 1
 horizonHeight: 41.5
 
@@ -99,7 +96,7 @@ endDistance: 10
 duration: 5
 numReps: 3
 delayToApproach: 5
-stimulusColourR: [0.1, 0, 0.1, 0]
-stimulusColourG: [0.1, 0, 0.1, 0]
-stimulusColourB: [0.1, 0, 0.1, 0]
+stimulusColourR: [0.02, 0, 0.02, 0]
+stimulusColourG: [0.02, 0, 0.02, 0]
+stimulusColourB: [0.02, 0, 0.02, 0]
 stimulusColourA: 1

@@ -61,6 +61,9 @@ class Nenv:
         # only be effective after a step or reset
         # so self.reset() will need to be called to apply the changes.
         print('Setting new environmental parameters...')
+        if dark_adapt:
+            self.env_parameters.set_float_parameter('darkAdaptNow', 1)
+            
         for key, value in self.params.items():
             print('Setting', key, '...')
 
