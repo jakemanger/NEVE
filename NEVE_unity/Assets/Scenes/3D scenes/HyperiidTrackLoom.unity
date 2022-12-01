@@ -494,6 +494,7 @@ MonoBehaviour:
   syncSquarePos: {x: -29.84, y: 18.17102}
   syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquareTextColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   syncSquare: {fileID: 1844270403}
   syncSquareDisplayNum: 0
   displayStimulusCode: 1
@@ -508,6 +509,8 @@ MonoBehaviour:
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   xMultiplier: 1
   zMultiplier: 1
+  darkAdaptNow: 0
+  trialNumber: 0
   stimGenerator: {fileID: 2144851248}
   skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
 --- !u!4 &1851185963
@@ -846,6 +849,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 923594280}
     m_Modifications:
+    - target: {fileID: 7994142557919315045, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 1768751036}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

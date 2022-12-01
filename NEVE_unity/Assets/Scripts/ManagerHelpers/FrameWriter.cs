@@ -159,9 +159,9 @@ public class FrameWriter : MonoBehaviour
         if (stimState == StimulusState.Waiting) {
             stimStateColor = Color.black;
         } else if (stimState == StimulusState.Started) {
-            stimStateColor = Color.white;
+            stimStateColor = new Color(0.7f, 0.2f, 0.2f);
         } else if (stimState == StimulusState.Ended) {
-            stimStateColor = Color.grey;
+            stimStateColor = new Color(0.4f, 0.1f, 0.1f);
         }
 
         stimulusStateImage.color = stimStateColor;
