@@ -14,6 +14,9 @@ public class HyperiidTrackLoomManager : LoomManager
     public override void SetupStimuli() {
         base.SetupStimuli();
 
+        // get different random numbers each time you run the experiment
+        Random.InitState((int)System.DateTime.Now.Ticks);
+
         // override the default loom manager setup
         // if specified as using random in the config file
         randomXRot = GetBoolFromPython("useRandomRotationOffsetX", false);
