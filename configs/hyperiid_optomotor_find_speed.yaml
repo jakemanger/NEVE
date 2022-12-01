@@ -51,8 +51,7 @@ frontDisplayNum: 0
 rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
-darkAdaptTime: 180
-darkAdaptFirstTrialOnly: 1
+darkAdaptTime: 10000
 
 # stimuli
 # change to 4 8 16

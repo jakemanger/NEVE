@@ -51,7 +51,7 @@ frontDisplayNum: 0
 rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
-darkAdaptTime: 180
+darkAdaptTime: 10000
 
 # stimuli
 density: [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
