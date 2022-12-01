@@ -62,7 +62,6 @@ rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
 darkAdaptTime: 10000
-darkAdaptFirstTrialOnly: 1
 
 # stimuli
 # background
