@@ -57,6 +57,11 @@ class Nenv:
             i (int): The index of the trial.
         """
 
+        if dark_adapt:
+            self.params['darkAdaptNow'] = 1.0
+        else:
+            self.params['darkAdaptNow'] = 0.0
+
         # Any change to a Unity SideChannel (self.env_parameters) will
         # only be effective after a step or reset
         # so self.reset() will need to be called to apply the changes.

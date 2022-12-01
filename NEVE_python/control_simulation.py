@@ -19,7 +19,7 @@ def start(config_path):
     nenv = Nenv(params=config_path)
 
     # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in the config file
-    if 'darkAdaptFirstTrialOnly' in nenv.params and nenv.params['darkAdaptFirstTrialOnly'] == 1:
+    if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
         nenv.set_params(0, dark_adapt=True)
         nenv.reset()
 
@@ -28,8 +28,7 @@ def start(config_path):
         nenv.set_params(i)
         nenv.reset()
 
-    # also end with dark adapt so you have time to take out the animal between experiments
-    if 'darkAdaptFirstTrialOnly' in nenv.params and nenv.params['darkAdaptFirstTrialOnly'] == 1:
+    if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
         nenv.set_params(0, dark_adapt=True)
         nenv.reset()
 

@@ -67,7 +67,6 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public float xMultiplier = 1f;
     public float zMultiplier = 1f;
 
-    public bool darkAdaptFirstTrialOnly = false;
     public bool darkAdaptNow = false;
 
     public int trialNumber = 0;
@@ -194,18 +193,11 @@ public abstract class GenericStimulusManager : MonoBehaviour
         mustIncludeEveryParameter = GetBoolFromPython("mustIncludeEveryParameter", false);
         xMultiplier = GetFloatFromPython("xMultiplier", 1f);
         zMultiplier = GetFloatFromPython("zMultiplier", 1f);
-        darkAdaptFirstTrialOnly = GetBoolFromPython("darkAdaptFirstTrialOnly", true);
         darkAdaptNow = GetBoolFromPython("darkAdaptNow", true);
     }
 
     public void Update() {
-        if (darkAdaptFirstTrialOnly && (trialNumber < 2 || darkAdaptNow)) {
-            if (timeSinceDarkAdaptStart < darkAdaptTime) {
-                timeSinceDarkAdaptStart += Time.deltaTime;
-            } else {
-                blackOutCanvases.SetActive(false);
-            }
-        } else if (!darkAdaptFirstTrialOnly && !darkAdaptNow) {
+        if (darkAdaptNow) {
             if (timeSinceDarkAdaptStart < darkAdaptTime) {
                 timeSinceDarkAdaptStart += Time.deltaTime;
             } else {

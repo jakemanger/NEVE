@@ -10,7 +10,7 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 # general
-buildDir: ./builds/Optomotor/
+buildDir: #./builds/Optomotor/
 frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
 animalCode: 1
 execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -52,7 +52,6 @@ rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
 darkAdaptTime: 180
-darkAdaptFirstTrialOnly: 1
 
 # stimuli
 density: [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
