@@ -1,7 +1,7 @@
 # Below are the parameters used to alter a unity experiment with the name
 # Hyperiid orientation experiment
 
-# runs through 6 conditions
+# runs through multiple conditions
 # where snells window appears above, to the right and below at two different intensities
 
 # each experiment should take 18 minutes
@@ -18,62 +18,56 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2, 3, 4, 5, 6]
+buildDir: #./builds/Loom/
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 animalCode: 1
-execution_order: [0, 1, 2, 3, 4, 5]
-#[1, 4, 5, 1, 2, 0, 4, 2, 2, 0, 3, 4, 3, 5, 5, 3, 0, 1]
-#[4, 2, 1, 0, 3, 0, 5, 5, 4, 1, 3, 0, 4, 2, 3, 1, 2, 5]
-#[5, 1, 4, 1, 2, 3, 3, 2, 4, 0, 1, 4, 2, 3, 0, 5, 5, 0]
-#[3, 1, 5, 5, 0, 1, 2, 4, 4, 2, 4, 2, 1, 0, 5, 0, 3, 3]
-#[1, 0, 5, 3, 4, 3, 4, 2, 3, 0, 1, 0, 2, 5, 2, 5, 1, 4]
-#[2, 3, 1, 5, 2, 1, 4, 4, 5, 2, 4, 0, 0, 3, 1, 3, 0, 5]
-#[1, 1, 5, 1, 0, 0, 2, 3, 4, 4, 5, 0, 3, 4, 2, 5, 3, 2]
-#[5, 2, 4, 3, 0, 1, 4, 2, 5, 1, 1, 0, 0, 2, 4, 3, 5, 3]
-#[4, 1, 2, 1, 5, 2, 0, 3, 1, 5, 0, 3, 2, 4, 3, 4, 5, 0]
-#[1, 3, 2, 5, 1, 3, 0, 0, 0, 4, 2, 2, 5, 3, 5, 1, 4, 4]
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
-cameraRotationX: 90
+
+cameraRotationX: [90, 180, 0, 90, 180, 0, 90, 180, 0, 90, 180, 0, 90, 180, 0]
+cameraRotationY: -90
+cameraRotationZ: -90
 experimentDuration: 60
 recordFrameData: 1 
 recordEachFrame: 1
 recordingFrequency: 1 
 manualControl: 0 
-syncSquareColourR: 0.3
+syncSquareColourR: 76
 syncSquareColourG: 0
 syncSquareColourB: 0
-syncSquareColourA: 1
-syncSquareTextColourR: 0.7
-syncSquareTextColourG: 0.4
-syncSquareTextColourB: 0.4
-syncSquareTextColourA: 1
+syncSquareColourA: 255
+syncSquareTextColourR: 178
+syncSquareTextColourG: 102
+syncSquareTextColourB: 102
+syncSquareTextColourA: 255
 syncSquareDisplayNum: 0
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
 
+use32BitColor: 1
 
 # perspective
 eyeHeight: 3.435 
 distanceToMonitors: 7 
 monitorDimensionsX: 12.176
 monitorDimensionsY: 6.87
-frontDisplayNum: [0, 3, 2, 0, 3, 2] 
-rightDisplayNum: [1, 0, 3, 1, 0, 3] 
-backDisplayNum: [2, 1, 0, 2, 1, 0]
-leftDisplayNum: [3, 2, 1, 3, 2, 1]
+frontDisplayNum: 0 
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
 darkAdaptTime: 10000
 
 # stimuli
 # background
-aboveHorizonColourR: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
-aboveHorizonColourG: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
-aboveHorizonColourB: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02]
-aboveHorizonColourA: 1
+aboveHorizonColourR: [1, 1, 1, 2, 2, 2, 4, 4, 4, 8, 8, 8, 16, 16, 16]
+aboveHorizonColourG: [1, 1, 1, 2, 2, 2, 4, 4, 4, 8, 8, 8, 16, 16, 16]
+aboveHorizonColourB: [1, 1, 1, 2, 2, 2, 4, 4, 4, 8, 8, 8, 16, 16, 16]
+aboveHorizonColourA: 255
 belowHorizonColourR: 0
 belowHorizonColourG: 0
 belowHorizonColourB: 0
-belowHorizonColourA: 1
+belowHorizonColourA: 255
 horizonHeight: 41.5
 # object
 stimulusType: 0
@@ -92,7 +86,7 @@ endDistance: 15
 duration: 8 
 numReps: 0.5 
 delayToApproach: 1005 
-stimulusColourR: 0.02
-stimulusColourG: 0.02
-stimulusColourB: 0.02
-stimulusColourA: 1
+stimulusColourR: 0
+stimulusColourG: 0
+stimulusColourB: 0
+stimulusColourA: 255

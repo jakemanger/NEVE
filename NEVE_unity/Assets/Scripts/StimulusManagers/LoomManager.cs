@@ -16,6 +16,9 @@ public class LoomManager : GenericStimulusManager
         mat.SetColor("_belowHorizonColour", GetColorFromPython("belowHorizonColour", Color.grey));
         RenderSettings.skybox = mat;
 
+        print("aboveHorizonColour: " + mat.GetColor("_aboveHorizonColour"));
+        print("belowHorizonColour: " + mat.GetColor("_belowHorizonColour"));
+
         // specific overrides for backgrounds on different cameras
         float[] horizonHeights = new float[4] { -9999f, -9999f, -9999f, -9999f };
         Color[] aboveHorizonColours = new Color[4] { Color.grey, Color.grey, Color.grey, Color.grey };

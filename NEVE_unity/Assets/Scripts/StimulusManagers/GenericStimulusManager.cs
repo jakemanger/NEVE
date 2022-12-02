@@ -267,10 +267,10 @@ public abstract class GenericStimulusManager : MonoBehaviour
 
         if (use32BitColor) {
             return new Color32(
-                floatChannel.GetWithDefault(nameR, defaultValue.r),
-                floatChannel.GetWithDefault(nameG, defaultValue.g),
-                floatChannel.GetWithDefault(nameB, defaultValue.b),
-                floatChannel.GetWithDefault(nameA, defaultValue.a)
+                (byte)floatChannel.GetWithDefault(nameR, defaultValue.r),
+                (byte)floatChannel.GetWithDefault(nameG, defaultValue.g),
+                (byte)floatChannel.GetWithDefault(nameB, defaultValue.b),
+                (byte)floatChannel.GetWithDefault(nameA, defaultValue.a)
             );
         }
 
