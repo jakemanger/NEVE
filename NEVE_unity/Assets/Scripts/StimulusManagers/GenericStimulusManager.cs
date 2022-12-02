@@ -13,6 +13,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public bool startFictracFromStart = false;
 
     public bool mustIncludeEveryParameter = false;
+    public bool use32BitColor = false;
 
     [Header("Generic camera view parameters")]
     public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
@@ -167,6 +168,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         // }
 
         // set properties from python
+        use32BitColor = GetBoolFromPython("use32BitColor", false); // needs to be before any colors are set
         eyeHeight = GetFloatFromPython("eyeHeight", 2f);
         distanceToMonitors = GetFloatFromPython("distanceToMonitors", 7f);
         monitorDimensions = GetVector2FromPython("monitorDimensions", new Vector2(12.176f, 6.87f));
@@ -262,6 +264,16 @@ public abstract class GenericStimulusManager : MonoBehaviour
         parametersExpected.Add(nameG);
         parametersExpected.Add(nameB);
         parametersExpected.Add(nameA);
+
+        if (use32BitColor) {
+            return new Color32(
+                floatChannel.GetWithDefault(nameR, defaultValue.r),
+                floatChannel.GetWithDefault(nameG, defaultValue.g),
+                floatChannel.GetWithDefault(nameB, defaultValue.b),
+                floatChannel.GetWithDefault(nameA, defaultValue.a)
+            );
+        }
+
         return new Color(
             floatChannel.GetWithDefault(nameR, defaultValue.r),
             floatChannel.GetWithDefault(nameG, defaultValue.g),
