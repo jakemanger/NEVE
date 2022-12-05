@@ -438,7 +438,7 @@
 		</data>
 		<key>Resources/Data/globalgamemanagers</key>
 		<data>
-		hjGpVT7KSGwCx9swdSwK/znIaG8=
+		q4pVrs9lpLo5yEmzRLEqbQ8rgAE=
 		</data>
 		<key>Resources/Data/globalgamemanagers.assets</key>
 		<data>
@@ -653,10 +653,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			HWyOifumfKqCIs4D3FN1dlZHh7k=
+			2SQ42G/guZv4cSIqfRXxjnc+Z7Q=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"1d6c8e89fba67caa8222ce03dc537576564787b9"</string>
+			<string>cdhash H"d92438d86fe0b99bf871222a7d15f18e773e67b4"</string>
 		</dict>
 		<key>PlugIns/libgrpc_csharp_ext.x64.bundle</key>
 		<dict>
@@ -1436,7 +1436,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JzAXwdLdlALVTVNGa4rqiXlDUapVDI3/ucacMfKQqoM=
+			cDnDQO8e4YcFxo8wsu/MYCb+Sx99PJTbvV1lZwv/pso=
 			</data>
 		</dict>
 		<key>Resources/Data/globalgamemanagers.assets</key>
