@@ -1,0 +1,95 @@
+# Below are the parameters used to alter a unity experiment with the name
+# Hyperiid testing bioluminenscent stimuli with setup 2
+
+# runs through multiple conditions
+# where snells window appears above, to the right and below at two different intensities
+
+# each experiment should take 60 or so minutes
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset looming of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# general
+buildDir: ./builds/Loom/
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+animalCode: 1
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+autoStart: 1
+
+cameraRotationX: 0
+cameraRotationY: 0
+cameraRotationZ: 0
+experimentDuration: 120
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+syncSquareColourR: 76
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 255
+syncSquareTextColourR: 178
+syncSquareTextColourG: 102
+syncSquareTextColourB: 102
+syncSquareTextColourA: 255
+syncSquareDisplayNum: 0
+syncSquareScalar: 2
+displayStimulusCode: 1 
+fictracFeedback: 0
+
+use32BitColor: 1
+
+# perspective
+eyeHeight: 3.435 
+distanceToMonitors: 13 
+monitorDimensionsX: 12.176
+monitorDimensionsY: 6.87
+frontDisplayNum: 0 
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+darkAdaptTime: 10000
+
+# stimuli
+# background
+directPath: 0
+aboveHorizonColourR: 0
+aboveHorizonColourG: 0
+aboveHorizonColourB: 0
+aboveHorizonColourA: 255
+belowHorizonColourR: 0
+belowHorizonColourG: 0
+belowHorizonColourB: 0
+belowHorizonColourA: 255
+horizonHeight: 41.5
+# object
+stimulusType: 0
+startScaleX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  
+startScaleY: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+startScaleZ: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+endScaleX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+endScaleY: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+endScaleZ: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+startElevation: 0
+startAzimuth: 0
+endElevation: 0
+endAzimuth: 90
+startDistance: 10
+endDistance: 10
+duration: 20
+numReps: 3
+delayToApproach: 0
+stimulusColourR: 7
+stimulusColourB: 7
+stimulusColourG: 7
+stimulusColourA: 255
+hideAtEnd: 1
