@@ -19,9 +19,9 @@
 
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 animalCode: 1
-execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
 autoStart: 1
 
@@ -41,7 +41,7 @@ syncSquareTextColourR: 178
 syncSquareTextColourG: 102
 syncSquareTextColourB: 102
 syncSquareTextColourA: 255
-syncSquareDisplayNum: 0
+syncSquareDisplayNum: 1
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
@@ -73,12 +73,12 @@ belowHorizonColourA: 255
 horizonHeight: 41.5
 # object
 stimulusType: 0
-startScaleX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  
-startScaleY: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-startScaleZ: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-endScaleX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-endScaleY: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-endScaleZ: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+startScaleX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  
+startScaleY: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+startScaleZ: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+endScaleX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+endScaleY: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+endScaleZ: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 startElevation: 0
 startAzimuth: 0
 endElevation: 0
@@ -88,8 +88,8 @@ endDistance: 10
 duration: 20
 numReps: 3
 delayToApproach: 0
-stimulusColourR: 7
-stimulusColourB: 7
-stimulusColourG: 7
+stimulusColourR: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+stimulusColourB: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+stimulusColourG: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
 stimulusColourA: 255
 hideAtEnd: 1
