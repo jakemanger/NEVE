@@ -5,12 +5,16 @@ import sys
 def main(min_num, max_num, num_times, num_repeats, seed=12345):
     random.seed(seed)
 
-    for _ in range(num_times):
-        randomlist = list(range(min_num, max_num))
-        randomlist = randomlist * num_repeats
-        random.shuffle(randomlist) 
 
-        print(randomlist)
+    
+    for _ in range(num_times):
+        sequence = []
+        for i in range(num_repeats):
+            randomlist = list(range(min_num, max_num))
+            random.shuffle(randomlist)
+            sequence += randomlist
+
+        print(sequence)
 
 
 if __name__ == "__main__":
