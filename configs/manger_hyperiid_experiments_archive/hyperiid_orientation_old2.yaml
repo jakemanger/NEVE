@@ -1,0 +1,97 @@
+# Below are the parameters used to alter a unity experiment with the name
+# Hyperiid orientation experiment
+
+# runs through 12 conditions
+# where snells window appears above, to the right and below at two different intensities
+
+# each experiment should take 34 minutes
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset looming of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# general
+buildDir: ./builds/Loom/
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+animalCode: 2
+execution_order: [7, 7, 4, 10, 1, 10, 5, 1, 0, 3, 2, 9, 6, 4, 8, 2, 11, 9, 10, 9, 3, 8, 5, 6, 4, 3, 11, 5, 1, 6, 8, 0, 11, 7, 0, 2]
+#[10, 2, 7, 6, 4, 4, 2, 3, 9, 1, 11, 5, 11, 10, 8, 7, 0, 11, 4, 1, 8, 3, 9, 7, 6, 0, 5, 3, 10, 6, 0, 2, 8, 1, 9, 5]
+#[4, 5, 1, 8, 1, 6, 9, 0, 10, 3, 10, 7, 3, 9, 6, 11, 2, 6, 1, 4, 11, 0, 5, 8, 5, 11, 7, 4, 0, 2, 3, 7, 10, 2, 8, 9]
+#[9, 8, 8, 9, 1, 3, 11, 7, 1, 11, 2, 0, 1, 3, 6, 0, 4, 4, 6, 5, 9, 10, 10, 6, 7, 10, 5, 3, 2, 4, 5, 7, 11, 0, 2, 8]
+#[5, 8, 11, 0, 9, 1, 4, 3, 10, 8, 5, 2, 8, 9, 7, 6, 2, 2, 3, 10, 10, 0, 1, 7, 4, 7, 6, 4, 6, 0, 5, 9, 11, 1, 11, 3]
+#[5, 8, 3, 10, 4, 1, 11, 3, 5, 7, 6, 0, 1, 7, 2, 6, 0, 3, 9, 0, 5, 9, 2, 10, 8, 1, 8, 10, 4, 11, 7, 4, 6, 9, 11, 2]
+#[8, 2, 9, 10, 0, 7, 10, 0, 8, 9, 4, 3, 4, 6, 3, 2, 5, 5, 1, 1, 6, 3, 7, 2, 11, 10, 11, 9, 4, 6, 8, 5, 11, 7, 1, 0]
+#[10, 9, 7, 1, 7, 9, 6, 11, 0, 10, 11, 2, 0, 0, 3, 1, 2, 4, 4, 3, 10, 1, 9, 5, 11, 5, 5, 8, 8, 6, 4, 7, 6, 3, 2, 8]
+#[9, 1, 7, 1, 5, 6, 8, 4, 4, 8, 11, 0, 2, 11, 8, 5, 5, 3, 3, 7, 6, 9, 4, 9, 0, 2, 6, 7, 2, 3, 10, 10, 10, 0, 1, 11]
+#[11, 7, 1, 0, 8, 6, 4, 7, 9, 1, 11, 5, 9, 4, 1, 3, 8, 2, 10, 0, 11, 4, 3, 8, 2, 6, 5, 6, 5, 7, 10, 3, 0, 10, 9, 2]
+
+cameraRotationX: 90
+experimentDuration: 60
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+syncSquareColourR: 0.3
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareTextColourR: 0.7
+syncSquareTextColourG: 0.4
+syncSquareTextColourB: 0.4
+syncSquareTextColourA: 1
+syncSquareDisplayNum: 0
+syncSquareScalar: 2
+displayStimulusCode: 1 
+fictracFeedback: 0
+
+
+# perspective
+eyeHeight: 3.435 
+distanceToMonitors: 7 
+monitorDimensionsX: 12.176
+monitorDimensionsY: 6.87
+frontDisplayNum: [0, 3, 2, 0, 3, 2, 0, 3, 2, 0, 3, 2] 
+rightDisplayNum: [1, 0, 3, 1, 0, 3, 1, 0, 3, 1, 0, 3] 
+backDisplayNum: [2, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0]
+leftDisplayNum: [3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1]
+darkAdaptTime: 10000
+
+# stimuli
+# background
+aboveHorizonColourR: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04]
+aboveHorizonColourG: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04]
+aboveHorizonColourB: [0.01, 0.01, 0.01, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04]
+aboveHorizonColourA: 1
+belowHorizonColourR: 0
+belowHorizonColourG: 0
+belowHorizonColourB: 0
+belowHorizonColourA: 1
+horizonHeight: 41.5
+# object
+stimulusType: 0
+startScaleX: 0  
+startScaleY: 0
+startScaleZ: 0
+endScaleX: 0
+endScaleY: 0
+endScaleZ: 0  
+startElevation: 15 
+startAzimuth: 0  
+endElevation: 15
+endAzimuth: 0 
+startDistance: 15
+endDistance: 15 
+duration: 8 
+numReps: 0.5 
+delayToApproach: 1005 
+stimulusColourR: 0.02
+stimulusColourG: 0.02
+stimulusColourB: 0.02
+stimulusColourA: 1
