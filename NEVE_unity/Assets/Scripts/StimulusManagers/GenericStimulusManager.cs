@@ -197,7 +197,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);
-        flashingSyncSquare = GetBoolFromPython("flashingSyncSquare", true);
+        flashingSyncSquare = GetBoolFromPython("flashingSyncSquare", false);
         flashingSyncSquareEveryNFrames = GetIntFromPython("flashingSyncSquareEveryNFrames", 1);
         displayStimulusCode = GetBoolFromPython("displayStimulusCode", true);
         manualControl = GetBoolFromPython("manualControl", false);
