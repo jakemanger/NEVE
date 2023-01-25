@@ -45,11 +45,16 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public Vector2 syncSquarePos = new Vector2(-29.84f, 18.17102f);
     public float syncSquareScalar = 1f;
     public Color syncSquareColor = Color.red;
+    public Color syncSquareWaitingColor = Color.black;
+    public Color syncSquareStartedColor = new Color(0.7f, 0.2f, 0.2f);
+    public Color syncSquareEndedColor = new Color(0.4f, 0.1f, 0.1f);
     public Color syncSquareTextColor = Color.white;
     public SyncSquare syncSquare;
     public int syncSquareDisplayNum = 0;
     public bool displayStimulusCode = true;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    public bool flashingSyncSquare = false;
+    public int flashingSyncSquareEveryNFrames = 1;
 
     [Header("Generic Components")]
     public CameraMonitorController camMon;
@@ -99,6 +104,13 @@ public abstract class GenericStimulusManager : MonoBehaviour
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
+        // note, flashing sync squares only really make sense if v-sync is on, as unity will otherwise
+        // usually run faster than the monitor refresh rate
+        frameWriter.flashingSyncSquare = flashingSyncSquare;
+        frameWriter.flashingSyncEveryNFrames = flashingSyncSquareEveryNFrames;
+        frameWriter.syncSquareWaitingColor = syncSquareWaitingColor;
+        frameWriter.syncSquareStartedColor = syncSquareStartedColor;
+        frameWriter.syncSquareEndedColor = syncSquareEndedColor;
         frameWriter.Reset();
         syncSquare.transform.parent.GetComponent<Canvas>().targetDisplay = syncSquareDisplayNum;
         syncSquare.flickerDuration = flickerDuration;
@@ -178,10 +190,15 @@ public abstract class GenericStimulusManager : MonoBehaviour
         monitorDimensions = GetVector2FromPython("monitorDimensions", new Vector2(12.176f, 6.87f));
         flickerDuration = GetFloatFromPython("flickerDuration", 0.1f);
         syncSquareColor = GetColorFromPython("syncSquareColour", Color.red);
+        syncSquareWaitingColor = GetColorFromPython("syncSquareWaitingColour", Color.black);
+        syncSquareStartedColor = GetColorFromPython("syncSquareStartedColour", new Color(0.7f, 0.2f, 0.2f));
+        syncSquareEndedColor = GetColorFromPython("syncSquareEndedColour", new Color(0.4f, 0.1f, 0.1f));
         syncSquareTextColor = GetColorFromPython("syncSquareTextColour", new Color(0.3f, 0.1f, 0.1f));
         syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);
+        flashingSyncSquare = GetBoolFromPython("flashingSyncSquare", true);
+        flashingSyncSquareEveryNFrames = GetIntFromPython("flashingSyncSquareEveryNFrames", 1);
         displayStimulusCode = GetBoolFromPython("displayStimulusCode", true);
         manualControl = GetBoolFromPython("manualControl", false);
         mouseMoveSpeed = GetFloatFromPython("mouseMoveSpeed", 1f);
