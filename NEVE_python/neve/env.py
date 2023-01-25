@@ -21,8 +21,8 @@ class Nenv:
         """Initialize the NEVE environment.
 
         Args:
-            params (str): The path to the configuration file with parameters of the Unity
-            stimulus/environment.
+            params (str): The path to the configuration file with parameters of the
+            Unity stimulus/environment.
         """
 
         if not os.path.exists(params):
@@ -37,7 +37,7 @@ class Nenv:
 
         print('Waiting for connection to Unity environment...')
         print('When Unity launches, python will gain control.')
-	
+
         file_name = self._get_built_file_path()
         self.env = UnityEnvironment(
             file_name=file_name,
@@ -68,7 +68,7 @@ class Nenv:
         print('Setting new environmental parameters...')
         if dark_adapt:
             self.env_parameters.set_float_parameter('darkAdaptNow', 1)
-            
+
         for key, value in self.params.items():
             print('Setting', key, '...')
 
@@ -81,7 +81,6 @@ class Nenv:
                 self.env_parameters.set_float_parameter(key, value[0])
             else:
                 self.env_parameters.set_float_parameter(key, value[i])
-    
 
     def reset(self):
         """Resets the environment
@@ -110,10 +109,10 @@ class Nenv:
 
             if not os.path.exists(build_dir):
                 build_dir = os.path.join(os.path.dirname(__file__), '..',
-                        self.params['buildDir'])
+                                         self.params['buildDir'])
                 if not os.path.exists(build_dir):
                     build_dir = os.path.join(os.path.dirname(__file__), '..',
-                            '..', self.params['buildDir'])
+                                             '..', self.params['buildDir'])
 
                     if not os.path.isdir(build_dir):
                         # running as a mac app and need to go up 5 or 6 levels
@@ -122,11 +121,14 @@ class Nenv:
                             '..', '..', '..', '..', self.params['buildDir']
                         )
                         if not os.path.isdir(build_dir):
-                            build_dir = os.path.join(os.path.dirname(__file__),
-                              '..', '..', '..', '..', '..', self.params['buildDir'])
+                            build_dir = os.path.join(
+                                os.path.dirname(__file__),
+                                '..', '..', '..', '..', '..',
+                                self.params['buildDir'])
                             raise FileNotFoundError(
                                 f'Could not find build file at {build_dir}'
-                                'Please check the buildDir parameter in the config file.'
+                                'Please check the buildDir parameter in the'
+                                ' config file.'
                             )
 
             if platform in ['win32', 'cygwin']:
@@ -157,12 +159,12 @@ class Nenv:
     def _get_worker_id(self, filename=".worker_id.dat"):
         """ Workaround for ml-agents socket connection communicator problem
 
-        This changes the worker id if there is one left over from a old unity environment
-        that didn't close its socket connection correctly.
+        This changes the worker id if there is one left over from an old unity
+        environment that didn't close its socket connection correctly.
 
         See https://github.com/Unity-Technologies/ml-agents/issues/1505
         """
-        
+
         with open(filename, 'a+') as f:
             f.seek(0)
             val = int(f.read() or 0) + 1
@@ -170,4 +172,3 @@ class Nenv:
             f.truncate()
             f.write(str(val))
             return val
-
