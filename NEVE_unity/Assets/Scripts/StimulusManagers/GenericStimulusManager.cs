@@ -54,7 +54,9 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public bool displayStimulusCode = true;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
     public bool flashingSyncSquare = false;
-    public int flashingSyncSquareEveryNFrames = 1;
+    public float flashingSyncSquareFrequency = 1;
+    // use milliseconds instead of frames
+    public bool flashingSyncSquareUseMS = true;
 
     [Header("Generic Components")]
     public CameraMonitorController camMon;
@@ -104,10 +106,11 @@ public abstract class GenericStimulusManager : MonoBehaviour
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
-        // note, flashing sync squares only really make sense if v-sync is on, as unity will otherwise
-        // usually run faster than the monitor refresh rate
         frameWriter.flashingSyncSquare = flashingSyncSquare;
-        frameWriter.flashingSyncEveryNFrames = flashingSyncSquareEveryNFrames;
+        frameWriter.flashingSyncFrequency = flashingSyncSquareFrequency;
+        // note, flashing sync squares with frames instead of milliseconds really only make sense if
+        // v-sync is on, as unity will otherwise usually run faster than the monitor refresh rate
+        frameWriter.flashingSyncSquareUseMS = flashingSyncSquareUseMS;
         frameWriter.syncSquareWaitingColor = syncSquareWaitingColor;
         frameWriter.syncSquareStartedColor = syncSquareStartedColor;
         frameWriter.syncSquareEndedColor = syncSquareEndedColor;
@@ -198,7 +201,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);
         flashingSyncSquare = GetBoolFromPython("flashingSyncSquare", false);
-        flashingSyncSquareEveryNFrames = GetIntFromPython("flashingSyncSquareEveryNFrames", 1);
+        flashingSyncSquareFrequency = GetFloatFromPython("flashingSyncSquareFrequency", 100f);
+        flashingSyncSquareUseMS = GetBoolFromPython("flashingSyncSquareUseMS", true);
         displayStimulusCode = GetBoolFromPython("displayStimulusCode", true);
         manualControl = GetBoolFromPython("manualControl", false);
         mouseMoveSpeed = GetFloatFromPython("mouseMoveSpeed", 1f);

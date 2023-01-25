@@ -23,8 +23,10 @@ public class FrameWriter : MonoBehaviour
 
     public Image syncSquareImg;
     public bool flashingSyncSquare = false;
-    public int flashingSyncEveryNFrames = 1;
-    int flashingSyncCounter = 0;
+    public float flashingSyncFrequency = 60f;
+    public bool flashingSyncSquareUseMS = true;
+    public bool flashOn = false;
+    float flashingSyncCounter = 0;
     public Color syncSquareWaitingColor = Color.black;
     public Color syncSquareStartedColor = new Color(0.7f, 0.2f, 0.2f);
     public Color syncSquareEndedColor = new Color(0.4f, 0.1f, 0.1f);
@@ -52,6 +54,9 @@ public class FrameWriter : MonoBehaviour
     public void Reset() {
         startedNewFile = false;
         startNewFile = true;
+
+        flashingSyncCounter = 0f;
+        flashOn = false;
 
         // find all stimulus controllers GenericStimulusController
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
@@ -151,10 +156,8 @@ public class FrameWriter : MonoBehaviour
     }
 
     void setSyncSquareValues() {
-        print("setSyncSquareValues");
-
         StimulusState stimState = StimulusState.Waiting;
-        Color stimStateColor = syncSquareWaitingColor;
+        Color stimStateColor = stimulusStateImage.color;
 
         if (stimControllerLength > 1) {
             stimState = stimulusControllers[1].stimulusState;
@@ -168,14 +171,19 @@ public class FrameWriter : MonoBehaviour
             stimStateColor = syncSquareWaitingColor;
         } else if (stimState == StimulusState.Started) {
             if (flashingSyncSquare) {
-                flashingSyncCounter -= 1;
+                if (flashingSyncSquareUseMS) {
+                    flashingSyncCounter -= Time.deltaTime * 1000;
+                } else {
+                    flashingSyncCounter -= 1.0f;
+                }
                 if (flashingSyncCounter <= 0) {
-                    flashingSyncCounter = flashingSyncEveryNFrames;
-                    if (stimStateColor == syncSquareWaitingColor) {
+                    if (flashOn) {
                         stimStateColor = syncSquareStartedColor;
                     } else {
                         stimStateColor = syncSquareWaitingColor;
                     }
+                    flashingSyncCounter = flashingSyncFrequency;
+                    flashOn = !flashOn;
                 }
             } else {
                 stimStateColor = syncSquareStartedColor;
