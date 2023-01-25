@@ -11,6 +11,7 @@ using System.Reflection;
 // about the simulation each frame
 public class FrameWriter : MonoBehaviour
 {
+
     public bool recordEachFrame = true;
 
     // only used if recordEachFrame is false
@@ -21,6 +22,12 @@ public class FrameWriter : MonoBehaviour
     public Transform stimTrans;
 
     public Image syncSquareImg;
+    public bool flashingSyncSquare = false;
+    public int flashingSyncEveryNFrames = 1;
+    int flashingSyncCounter = 0;
+    public Color syncSquareWaitingColor = Color.black;
+    public Color syncSquareStartedColor = new Color(0.7f, 0.2f, 0.2f);
+    public Color syncSquareEndedColor = new Color(0.4f, 0.1f, 0.1f);
 
     public string experimentId = "test_";
     public string outputFilePath;
@@ -144,9 +151,10 @@ public class FrameWriter : MonoBehaviour
     }
 
     void setSyncSquareValues() {
-        Color stimStateColor = Color.black;
+        print("setSyncSquareValues");
 
         StimulusState stimState = StimulusState.Waiting;
+        Color stimStateColor = syncSquareWaitingColor;
 
         if (stimControllerLength > 1) {
             stimState = stimulusControllers[1].stimulusState;
@@ -157,11 +165,23 @@ public class FrameWriter : MonoBehaviour
         }
         
         if (stimState == StimulusState.Waiting) {
-            stimStateColor = Color.black;
+            stimStateColor = syncSquareWaitingColor;
         } else if (stimState == StimulusState.Started) {
-            stimStateColor = new Color(0.7f, 0.2f, 0.2f);
+            if (flashingSyncSquare) {
+                flashingSyncCounter -= 1;
+                if (flashingSyncCounter <= 0) {
+                    flashingSyncCounter = flashingSyncEveryNFrames;
+                    if (stimStateColor == syncSquareWaitingColor) {
+                        stimStateColor = syncSquareStartedColor;
+                    } else {
+                        stimStateColor = syncSquareWaitingColor;
+                    }
+                }
+            } else {
+                stimStateColor = syncSquareStartedColor;
+            }
         } else if (stimState == StimulusState.Ended) {
-            stimStateColor = new Color(0.4f, 0.1f, 0.1f);
+            stimStateColor = syncSquareEndedColor;
         }
 
         stimulusStateImage.color = stimStateColor;
