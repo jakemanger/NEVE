@@ -26,11 +26,11 @@ public class OptomotorManager : GenericStimulusManager
         density = GetFloatFromPython("density", 5f);
         offset = GetFloatFromPython("offset", 0f);
         angle = GetFloatFromPython("angle", 0f);
-        speed = GetFloatFromPython("speed", 2f);
+        speed = GetFloatFromPython("speed", 0.02f);
         square = GetBoolFromPython("square", false);
         minimumVal = GetFloatFromPython("minimumVal", 0f);
         maximumVal = GetFloatFromPython("maximumVal", 0.5f);
-        reverseAfterSeconds = GetFloatFromPython("reverseAfterSeconds", 0f);
+        reverseAfterSeconds = GetFloatFromPython("reverseAfterSeconds", 6f);
     }
 
     public override void SetupStimuli() {
@@ -48,7 +48,7 @@ public class OptomotorManager : GenericStimulusManager
     void Update() {
         base.Update();
         Material mat = RenderSettings.skybox;
-        if (reverseAfterSeconds >= 0f) {
+        if (reverseAfterSeconds > 0f) {
             timeWaitedForReverse += Time.deltaTime;
             if (timeWaitedForReverse > reverseAfterSeconds) {
                 timeWaitedForReverse = 0f;

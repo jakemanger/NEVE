@@ -110,6 +110,13 @@ public class SphericalStimulusGenerator : GenericStimulusController
         move = false;
         justFinishedMoving = false;
 
+        // find stimuli
+        stimuli = new GameObject[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            stimuli[i] = transform.GetChild(i).gameObject;
+        }
+
         // disable all stimuli 
         for (int i = 0; i < stimuli.Length; i++)
         {

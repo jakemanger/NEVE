@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -564,6 +564,7 @@ MonoBehaviour:
   recieveInputFromSocket: 0
   startFictracFromStart: 0
   mustIncludeEveryParameter: 0
+  use32BitColor: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -622,8 +623,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1254457336323470430, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254457337275033357, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1254457337793107896, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254457337793107898, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_RenderPostProcessing
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1254457337841208640, guid: d540ffe142b2222809cd559c1576a785, type: 3}
@@ -674,6 +687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 1254457338100167227, guid: d540ffe142b2222809cd559c1576a785, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3678399222900886726, guid: d540ffe142b2222809cd559c1576a785, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -719,22 +736,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1714695058810179, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365995398333186577, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378620570340882552, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: outlineMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7929488127660487863, guid: d319d80fdec324757bfc471df46f6090, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7929488128777664784, guid: d319d80fdec324757bfc471df46f6090, type: 3}
       propertyPath: m_Name
       value: SphericalStimulusGenerator

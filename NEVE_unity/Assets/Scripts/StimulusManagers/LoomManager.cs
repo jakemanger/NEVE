@@ -59,7 +59,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.rotationOffset = rotationOffset;
         stimGenerator.flickerDuration = base.flickerDuration;
         stimGenerator.numReps = GetFloatFromPython("numReps", 0.5f);
-        stimGenerator.stimulusType = (int)GetFloatFromPython("stimulusType", 0);
+        stimGenerator.stimulusType = (int)GetFloatFromPython("stimulusType", 3);
         stimGenerator.drawOutline = GetBoolFromPython("drawOutline", false);
         stimGenerator.outlineWidth = GetFloatFromPython("outlineWidth", 5f);
         stimGenerator.outlineColor = GetColorFromPython("outlineColour", Color.black);

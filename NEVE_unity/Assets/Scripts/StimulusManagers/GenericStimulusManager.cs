@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public abstract class GenericStimulusManager : MonoBehaviour
 {
@@ -120,6 +122,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         socketMovementController.minMovementDistance = GetFloatFromPython("minMovementDistance", 0.1f);
         socketMovementController.maxDistanceDelta = GetFloatFromPython("maxDistanceDelta", 80f);
         socketMovementController.Reset();
+
+        // SetLUT("test_lut.png");
 
         CheckParameters();
         trialNumber += 1;
@@ -286,5 +290,23 @@ public abstract class GenericStimulusManager : MonoBehaviour
         string name = parameterName + extraSuffix;
         parametersExpected.Add(name);
         return floatChannel.GetWithDefault(name, defaultValue ? 1f : 0f) != 0f;
+    }
+
+    public void SetLUT(string LUTPath) {
+        if (LUTPath == "") {
+            return;
+        }
+        // print("Loading LUT");
+        // Texture2D LUT = Resources.Load<Texture2D>(LUTPath);
+        // if (LUT == null) {
+        //     return;
+        // }
+        UnityEngine.Rendering.VolumeProfile volumeProfile = GetComponent<UnityEngine.Rendering.Volume>()?.profile;
+        if(!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
+        print("Setting LUT");
+
+        UnityEngine.Rendering.Universal.ColorAdjustments colorAdjustments;
+
+        print(volumeProfile.TryGet(out colorAdjustments));
     }
 }

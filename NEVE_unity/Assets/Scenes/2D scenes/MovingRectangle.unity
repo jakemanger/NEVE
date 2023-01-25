@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
+  m_IndirectSpecularColor: {r: 0.37188724, g: 0.37188724, b: 0.37188724, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,6 +209,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5309253759404683788}
     m_Modifications:
+    - target: {fileID: 7994142557919315045, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 1574576096}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -350,8 +354,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 217.16, y: 250.6501}
+  m_AnchoredPosition: {x: -77.079, y: 501.5}
+  m_SizeDelta: {x: 154.1575, y: 1003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151860300
 MonoBehaviour:
@@ -1191,6 +1195,10 @@ MonoBehaviour:
   verbose: 0
   displayUPS: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  startFictracFromStart: 0
+  waitTimeBeforeStartMovement: 5
+  xMultiplier: -1
+  zMultiplier: 1
 --- !u!1 &5309253759577624795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1688,7 @@ MonoBehaviour:
   syncSquareImg: {fileID: 69513663}
   experimentId: test_
   outputFilePath: test.csv
+  stimulusControllers: []
   stimulusStateImage: {fileID: 508935453}
   timeText: {fileID: 1574576096}
 --- !u!114 &5309253760061736713
@@ -1768,9 +1777,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecead51e159c4affa653ac3d938a6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recieveParametersFromPython: 1
   recieveInputFromSocket: 0
+  startFictracFromStart: 0
   mustIncludeEveryParameter: 0
+  use32BitColor: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -1786,7 +1796,10 @@ MonoBehaviour:
   recordingFrequency: 1
   frameDataIdCode: 9999
   animalCode: 1
+  syncSquarePos: {x: -29.84, y: 18.17102}
+  syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquareTextColor: {r: 1, g: 1, b: 1, a: 1}
   syncSquare: {fileID: 790943268}
   syncSquareDisplayNum: 0
   displayStimulusCode: 1
@@ -1799,6 +1812,10 @@ MonoBehaviour:
   mouseMoveSpeed: 2
   parametersExpected: []
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
+  xMultiplier: 1
+  zMultiplier: 1
+  darkAdaptNow: 0
+  trialNumber: 0
   horizonHeight: 0
   aboveHorizonColour: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   belowHorizonColour: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
