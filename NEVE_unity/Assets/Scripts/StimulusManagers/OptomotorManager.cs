@@ -17,6 +17,8 @@ public class OptomotorManager : GenericStimulusManager
     public float reverseAfterSeconds = 0f;
     public float timeWaitedForReverse = 0f;
 
+    public bool onlyShowOneHalfCycle = false;
+
 
     protected override void GetPropertiesFromPython() {
         // get generic stimulus parameters from python
@@ -26,22 +28,27 @@ public class OptomotorManager : GenericStimulusManager
         density = GetFloatFromPython("density", 5f);
         offset = GetFloatFromPython("offset", 0f);
         angle = GetFloatFromPython("angle", 0f);
-        speed = GetFloatFromPython("speed", 0.02f);
+        speed = GetFloatFromPython("speed", -1f);
         square = GetBoolFromPython("square", false);
         minimumVal = GetFloatFromPython("minimumVal", 0f);
         maximumVal = GetFloatFromPython("maximumVal", 0.5f);
         reverseAfterSeconds = GetFloatFromPython("reverseAfterSeconds", 6f);
+        onlyShowOneHalfCycle = GetBoolFromPython("onlyShowOneHalfCycle", false);
     }
 
     public override void SetupStimuli() {
         Material mat = RenderSettings.skybox;
         mat.SetFloat("_Density", density);
-        mat.SetFloat("_Offset", offset);
+        if (offset < 0f) {
+            offset += 10000f;
+        }
+        mat.SetFloat("_Offset", offset / 360);
         mat.SetFloat("_Angle", angle);
         mat.SetFloat("_Speed", speed);
         mat.SetInt("_Square", square ? 1 : 0);
         mat.SetFloat("_Minimum", minimumVal);
         mat.SetFloat("_Maximum", maximumVal);
+        mat.SetInt("_OnlyShowOneHalfCycle", onlyShowOneHalfCycle ? 1 : 0);
         RenderSettings.skybox = mat;
     }
 
@@ -59,6 +66,10 @@ public class OptomotorManager : GenericStimulusManager
         }
         float progress = mat.GetFloat("_progress");
         progress += Time.deltaTime * speed;
+        // keep progress in safe range where all calculations of shader are valid
+        if (progress < 0f) {
+            progress += 1000f;
+        }
         mat.SetFloat("_progress", progress);
     }
 }
