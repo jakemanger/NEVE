@@ -18,7 +18,8 @@ def start(config_path):
     """
     nenv = Nenv(params=config_path)
 
-    # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in the config file
+    # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in
+    # the config file
     if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
         nenv.set_params(0, dark_adapt=True)
         nenv.reset()
@@ -57,8 +58,10 @@ def main():
                 '..', '..', '..', 'configs'
             )
             if not os.path.isdir(configs_dir):
-                configs_dir = os.path.join(os.path.dirname(__file__),
-                  '..', '..', '..', '..', 'configs')
+                configs_dir = os.path.join(
+                    os.path.dirname(__file__),
+                    '..', '..', '..', '..', 'configs'
+                )
                 raise FileNotFoundError(
                     f'Could not find configs directory at {configs_dir}'
                 )
@@ -83,6 +86,7 @@ def main():
     args = parser.parse_args()
 
     start(os.path.join(configs_dir, args.config_path))
+
 
 if __name__ == '__main__':
     main()

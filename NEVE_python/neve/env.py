@@ -6,9 +6,11 @@ from mlagents_envs.side_channel.engine_configuration_channel import (
     EngineConfigurationChannel
 )
 import yaml
+import time
 from yaml.loader import SafeLoader
 import os
 from sys import platform
+import shutil
 
 
 class Nenv:
@@ -31,9 +33,37 @@ class Nenv:
         with open(params, 'r') as f:
             self.params = yaml.load(f, Loader=SafeLoader)
 
+        # loop through the parameters and find any that are python code
+        # and evaluate them
+        for key, value in self.params.items():
+            python_code_prefix = 'python:'
+            if type(value) == str and value.startswith(python_code_prefix):
+                self.params[key] = eval(
+                    str.strip(value[len(python_code_prefix):]),
+                )
+
         # Create the side channels to communicate with unity
         self.env_parameters = EnvironmentParametersChannel()
         self.eng_config = EngineConfigurationChannel()
+
+        self.config_log_path = './config_logs/'
+        if not os.path.exists(self.config_log_path):
+            os.makedirs(self.config_log_path)
+
+        # copy file saved at params to config_log_path
+        self.stripped_name = os.path.basename(params)
+        shutil.copyfile(
+            params,
+            f'{self.config_log_path}'
+            f'{self.stripped_name}_started_at_{time.time()}.yaml'
+        )
+
+        with open(
+            f'{self.config_log_path}'
+            f'evaluated_{self.stripped_name}_started_at_{time.time()}.yaml',
+            'w'
+        ) as f:
+            yaml.dump(self.params, f)
 
         print('Waiting for connection to Unity environment...')
         print('When Unity launches, python will gain control.')
@@ -69,18 +99,35 @@ class Nenv:
         if dark_adapt:
             self.env_parameters.set_float_parameter('darkAdaptNow', 1)
 
-        for key, value in self.params.items():
-            print('Setting', key, '...')
+        used_params = {}
 
+        for key, value in self.params.items():
             if key == 'experimentDuration' and dark_adapt:
                 value = self.params['darkAdaptTime']
 
             if type(value) != list:
-                self.env_parameters.set_float_parameter(key, value)
+                val = value
             elif len(value) == 1:
-                self.env_parameters.set_float_parameter(key, value[0])
+                val = value[0]
             else:
-                self.env_parameters.set_float_parameter(key, value[i])
+                val = value[i]
+
+            # ensure that the value is a float
+            val = float(val)
+
+            print('Setting', key, 'to', val)
+            used_params[key] = val
+
+            self.env_parameters.set_float_parameter(key, val)
+
+        # save the parameters used for this trial to a new yaml file
+        # with the current time
+        with open(
+            f'{self.config_log_path}{self.stripped_name}_params'
+            f'_used_at_{time.time()}.yaml',
+            'w'
+        ) as f:
+            yaml.dump(used_params, f)
 
     def reset(self):
         """Resets the environment
@@ -103,7 +150,7 @@ class Nenv:
         """Returns the path to the built Unity executable"""
         file_name = None
         if str(self.params['buildDir']).lower() not in (
-                '', 'none', 'null', 'na', 'nan'
+            '', 'none', 'null', 'na', 'nan'
         ):
             build_dir = self.params['buildDir']
 
