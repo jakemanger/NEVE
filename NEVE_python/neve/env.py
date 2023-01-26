@@ -33,14 +33,25 @@ class Nenv:
         with open(params, 'r') as f:
             self.params = yaml.load(f, Loader=SafeLoader)
 
+        # run python setup code
+        if 'python_setup' in self.params:
+            exec(self.params['python_setup'])
+
         # loop through the parameters and find any that are python code
         # and evaluate them
         for key, value in self.params.items():
             python_code_prefix = 'python:'
             if type(value) == str and value.startswith(python_code_prefix):
-                self.params[key] = eval(
-                    str.strip(value[len(python_code_prefix):]),
-                )
+                try:
+                    self.params[key] = eval(
+                        str.strip(value[len(python_code_prefix):]),
+                    )
+                except Exception as e:
+                    raise Exception(
+                        'Could not evaluate the python code for '
+                        f'parameter: {key}. The error was: '
+                        f'{e}'
+                    )
 
         # Create the side channels to communicate with unity
         self.env_parameters = EnvironmentParametersChannel()
@@ -77,6 +88,7 @@ class Nenv:
         )
         self.execution_order = self.params['execution_order']
         self.params.pop('execution_order')
+        self.params.pop('python_setup')
 
     def set_params(self, i, dark_adapt=False):
         """Sets the parameters for the experimental trial
@@ -95,7 +107,7 @@ class Nenv:
         # Any change to a Unity SideChannel (self.env_parameters) will
         # only be effective after a step or reset
         # so self.reset() will need to be called to apply the changes.
-        print('Setting new environmental parameters...')
+        print(f'Setting new environmental parameters for condition {i}...')
         if dark_adapt:
             self.env_parameters.set_float_parameter('darkAdaptNow', 1)
 
@@ -105,7 +117,7 @@ class Nenv:
             if key == 'experimentDuration' and dark_adapt:
                 value = self.params['darkAdaptTime']
 
-            if type(value) != list:
+            if type(value) != list and type(value) != range:
                 val = value
             elif len(value) == 1:
                 val = value[0]
