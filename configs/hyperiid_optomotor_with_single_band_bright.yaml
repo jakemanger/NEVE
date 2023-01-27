@@ -21,7 +21,7 @@ python_setup: >
   frequency_per_360 = [round(s * 360) for s, t in product(spatial_freqs, temporal_freqs)] * 2;
   p = product(spatial_freqs, temporal_freqs);
   velocities = [t / s for s, t in product(spatial_freqs, temporal_freqs)] * 2;
-buildDir: None #./builds/Optomotor/
+buildDir: ./builds/Optomotor/
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
 animalCode: 50
 execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
