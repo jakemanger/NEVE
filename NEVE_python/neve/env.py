@@ -88,7 +88,8 @@ class Nenv:
         )
         self.execution_order = self.params['execution_order']
         self.params.pop('execution_order')
-        self.params.pop('python_setup')
+        if 'python_setup' in self.params:
+            self.params.pop('python_setup')
 
         # do some checks
         max_list_size = 0
