@@ -31,6 +31,10 @@ public class FrameWriter : MonoBehaviour
     public Color syncSquareStartedColor = new Color(0.7f, 0.2f, 0.2f);
     public Color syncSquareEndedColor = new Color(0.4f, 0.1f, 0.1f);
 
+    // add custom values to write in list (can be added by other classes)
+    // these should be modified each time step
+    public Dictionary<string, float> floatsToWrite = new Dictionary<string, float>();
+
     public string experimentId = "test_";
     public string outputFilePath;
     StreamWriter _sw;
@@ -57,6 +61,7 @@ public class FrameWriter : MonoBehaviour
 
         flashingSyncCounter = 0f;
         flashOn = false;
+        floatsToWrite = new Dictionary<string, float>();
 
         // find all stimulus controllers GenericStimulusController
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
@@ -125,6 +130,12 @@ public class FrameWriter : MonoBehaviour
                 headers += ", " + stimulusControllers[i].name + "_stimulusState";
             }
 
+            // add headers of float dictionary
+            foreach( KeyValuePair<string, float> kvp in floatsToWrite )
+            {
+                headers += ", " + kvp.Key;
+            }
+
             _sw.WriteLine(headers);
 
             startNewFile = false;
@@ -143,6 +154,11 @@ public class FrameWriter : MonoBehaviour
 
         for (int i = 0; i < stimulusControllers.Length; i++) {
             data += ", " + stimulusControllers[i].stimulusState;
+        }
+
+        foreach( KeyValuePair<string, float> kvp in floatsToWrite )
+        {
+            data += ", " + kvp.Value;
         }
 
         _sw.WriteLine(data);

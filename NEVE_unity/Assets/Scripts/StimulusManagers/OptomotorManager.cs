@@ -76,5 +76,8 @@ public class OptomotorManager : GenericStimulusManager
         // keep progress in safe range where all calculations of shader are valid
         progress = Modulus(progress, 360f);
         mat.SetFloat("_progress", progress);
+        base.frameWriter.floatsToWrite["optomotorProgress"] = progress;
+        base.frameWriter.floatsToWrite["optomotorSpeed"] = speed;
+        base.frameWriter.floatsToWrite["optomotorOffset"] = offset;
     }
 }
