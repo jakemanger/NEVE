@@ -39,10 +39,9 @@ public class OptomotorManager : GenericStimulusManager
     public override void SetupStimuli() {
         Material mat = RenderSettings.skybox;
         mat.SetFloat("_Density", density);
-        if (offset < 0f) {
-            offset += 10000f;
-        }
-        mat.SetFloat("_Offset", offset / 360);
+        offset = Modulus(offset, 360f);
+        mat.SetFloat("_Offset", offset);
+        mat.SetFloat("_progress", 0f);
         mat.SetFloat("_Angle", angle);
         mat.SetFloat("_Speed", speed);
         mat.SetInt("_Square", square ? 1 : 0);
@@ -50,6 +49,10 @@ public class OptomotorManager : GenericStimulusManager
         mat.SetFloat("_Maximum", maximumVal);
         mat.SetInt("_OnlyShowOneHalfCycle", onlyShowOneHalfCycle ? 1 : 0);
         RenderSettings.skybox = mat;
+    }
+
+    float Modulus(float x, float m) {
+        return ((x % m) + m) % m;
     }
 
     void Update() {
@@ -67,9 +70,7 @@ public class OptomotorManager : GenericStimulusManager
         float progress = mat.GetFloat("_progress");
         progress += Time.deltaTime * speed;
         // keep progress in safe range where all calculations of shader are valid
-        if (progress < 0f) {
-            progress += 1000f;
-        }
+        progress = Modulus(progress, 360f);
         mat.SetFloat("_progress", progress);
     }
 }

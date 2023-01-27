@@ -1,7 +1,7 @@
 # Below are the parameters used to alter a unity experiment with the name
 # Optomotor
 
-# each experiment should take around 18 minutes
+# each experiment should take around 36 minutes
 
 # Controls for the experiment
 # escape - stall Unity, end the experiment and give control to python.
@@ -10,10 +10,21 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 # general
+python_setup: >
+  import random;
+  from datetime import datetime;
+  from itertools import product;
+  random.seed(datetime.now().timestamp());
+  n_conditions = 18;
+  spatial_freqs = [0.01, 0.1, 1];
+  temporal_freqs = [0.1, 1, 10];
+  frequency_per_360 = [round(s * 360) for s, t in product(spatial_freqs, temporal_freqs)] * 2;
+  p = product(spatial_freqs, temporal_freqs);
+  velocities = [t / s for s, t in product(spatial_freqs, temporal_freqs)] * 2;
 buildDir: ./builds/Optomotor/
-frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48] 
-animalCode: 22
-execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
+animalCode: 50
+execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
 experimentDuration: 180
 reverseAfterSeconds: 30
 
@@ -34,6 +45,7 @@ syncSquareTextColourA: 1
 syncSquareDisplayNum: 3
 syncSquareScalar: 2
 displayStimulusCode: 1
+use32BitColor: 1
 
 # perspective
 eyeHeight: 3.435 
@@ -47,13 +59,10 @@ leftDisplayNum: 3
 darkAdaptTime: 10000
 
 # stimuli
-# change to 4 8 16
-# run a experiment with 8 and 16 at different speeds first up
-# we just want to get something
-density: [4, 4, 4, 4, 4, 4, 8, 8, 8, 8, 8, 8, 16, 16, 16, 16, 16, 16, 32, 32, 32, 32, 32, 32, 4, 4, 4, 4, 4, 4, 8, 8, 8, 8, 8, 8, 16, 16, 16, 16, 16, 16, 32, 32, 32, 32, 32, 32]
-offset: 0 
-angle: 0
-speed: [0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4, 0.125, 0.25, 0.5, 1, 2, 4] 
+density: 'python: frequency_per_360' # cycles per degree converted to frequency per 360 degrees
+offset: 'python: random.choices([0, 90, 180, 270], k=n_conditions)'
+speed: 'python: velocities' # in degrees per second
 square: 1
 minimumVal: 0 
-maximumVal: 0.005
+maximumVal: 7
+onlyShowOneHalfCycle: 'python: [0] * 9 + [1] * 9'

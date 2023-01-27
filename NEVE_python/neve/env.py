@@ -90,6 +90,36 @@ class Nenv:
         self.params.pop('execution_order')
         self.params.pop('python_setup')
 
+        # do some checks
+        max_list_size = 0
+        min_list_size = float('inf')
+        min_list_key = None
+        for key, value in self.params.items():
+            if type(value) == list:
+                if len(value) > max_list_size:
+                    max_list_size = len(value)
+                if len(value) < min_list_size:
+                    min_list_size = len(value)
+                    min_list_key = key
+        assert max_list_size == len(self.params['frameDataIdCode']), (
+            'The number of frameDataIdCode values must be equal to the '
+            'number of values in the longest list of parameters.'
+        )
+
+        assert min_list_size == len(self.params['frameDataIdCode']), (
+            'The number of each parameter must be equal to the '
+            'number of frameDataIdCode values. The parameter with the '
+            f'shortest list is {min_list_key} with {min_list_size}.'
+        )
+        assert(
+            max(self.execution_order) < len(self.params['frameDataIdCode'])
+        ), 'An execution order value is greater than the number of frame id codes!'
+        assert(
+            len(set(self.params['frameDataIdCode'])) == len(
+                self.params['frameDataIdCode']
+            )
+        ), 'There are duplicate frame id codes!'
+
     def set_params(self, i, dark_adapt=False):
         """Sets the parameters for the experimental trial
 
