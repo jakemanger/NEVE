@@ -40,7 +40,7 @@ syncSquareTextColourR: 108
 syncSquareTextColourG: 52
 syncSquareTextColourB: 52
 syncSquareTextColourA: 255
-syncSquareDisplayNum: 1
+syncSquareDisplayNum: 3
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
