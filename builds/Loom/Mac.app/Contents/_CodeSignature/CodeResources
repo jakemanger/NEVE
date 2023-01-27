@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Data/Managed/Assembly-CSharp.dll</key>
 		<data>
-		HF4P88F6eu5pQwKBWRPIq5/pxNE=
+		rMnUp0v1JtHD0dDgamKQI3DrzA4=
 		</data>
 		<key>Resources/Data/Managed/Google.Protobuf.dll</key>
 		<data>
@@ -438,11 +438,11 @@
 		</data>
 		<key>Resources/Data/globalgamemanagers</key>
 		<data>
-		obQqiHTeRbQnIxWJmByb5IRSDk8=
+		BeY631gOkvfvJgiHcuq5d7qceGo=
 		</data>
 		<key>Resources/Data/globalgamemanagers.assets</key>
 		<data>
-		QWSM9TC9a0SbyGoIeVxBZXWbATM=
+		J37HlQ6znXyFbTmK+2EYNRerIdQ=
 		</data>
 		<key>Resources/Data/globalgamemanagers.assets.resS</key>
 		<data>
@@ -462,7 +462,7 @@
 		</data>
 		<key>Resources/Data/sharedassets0.assets</key>
 		<data>
-		NXNbj0JVmVgQOcVEVXVcjBOL6As=
+		oAXBbxY1G2HdjPoIGckPUmekQwI=
 		</data>
 		<key>Resources/Data/sharedassets0.assets.resS</key>
 		<data>
@@ -653,10 +653,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			4vh9XDC1DLLTy+iubGFMFVdhmng=
+			+o7P2r9kPGSHxo3W8Y6D3C3zxpU=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"e2f87d5c30b50cb2d3cbe8ae6c614c1557619a78"</string>
+			<string>cdhash H"fa8ecfdabf643c6487c68dd6f18e83dc2df3c695"</string>
 		</dict>
 		<key>PlugIns/libgrpc_csharp_ext.x64.bundle</key>
 		<dict>
@@ -680,7 +680,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2KCIseYd/8oFP9q3Rr3d0qdTDsp2TfQquXH3SoK6f5A=
+			WIn9+Xyc4jaqZqNdCEFqwMtqlm3HMLN8rDvSBc3kW14=
 			</data>
 		</dict>
 		<key>Resources/Data/Managed/Google.Protobuf.dll</key>
@@ -1436,14 +1436,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+6JEsEy2Ofy+N5nS2V3fRDY0Juw/nU+EmXYbrtOyWMg=
+			puuTmbhsbhofMc9WepPMIth4K0vcVorN7yPixc/Hy24=
 			</data>
 		</dict>
 		<key>Resources/Data/globalgamemanagers.assets</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q3ha0pRrOYpKt3mDnZHy4EYxVe01a5zTvBjd6S8QVc0=
+			93xIZH5OhDkCyQ7bZv5Im9uma3C37W8wbxr/8BqWdco=
 			</data>
 		</dict>
 		<key>Resources/Data/globalgamemanagers.assets.resS</key>
@@ -1478,7 +1478,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xFDIsZJLHE/B+rJxdTnACkgD3z6iOlxv4ahDlLv6pYw=
+			oXVzfBI8YW0dQyBspAcu6+Br26/meBloZswJzW/w1eM=
 			</data>
 		</dict>
 		<key>Resources/Data/sharedassets0.assets.resS</key>

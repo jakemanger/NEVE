@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15420328, g: 0.15420328, b: 0.15420328, a: 1}
+  m_IndirectSpecularColor: {r: 0.06535862, g: 0.06535862, b: 0.06535862, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,6 +156,10 @@ PrefabInstance:
       propertyPath: timeText
       value: 
       objectReference: {fileID: 1574576096}
+    - target: {fileID: 7994142557919315045, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -257,7 +261,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 589230900}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606d1060e835b45ac96de10722928c28, type: 3}
   m_Name: 
@@ -1578,6 +1582,13 @@ MonoBehaviour:
   recordingFrequency: 1
   stimTrans: {fileID: 0}
   syncSquareImg: {fileID: 69513663}
+  flashingSyncSquare: 0
+  flashingSyncFrequency: 60
+  flashingSyncSquareUseMS: 1
+  flashOn: 0
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   experimentId: test_
   outputFilePath: test.csv
   stimulusControllers: []
@@ -1691,11 +1702,17 @@ MonoBehaviour:
   syncSquarePos: {x: -29.84, y: 18.17102}
   syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   syncSquareTextColor: {r: 1, g: 1, b: 1, a: 1}
   syncSquare: {fileID: 790943268}
   syncSquareDisplayNum: 1
   displayStimulusCode: 0
   flickerDuration: 0.1
+  flashingSyncSquare: 0
+  flashingSyncSquareFrequency: 1
+  flashingSyncSquareUseMS: 1
   camMon: {fileID: 7767219509833157209}
   frameWriter: {fileID: 5309253760061736712}
   episodeController: {fileID: 5309253760061736713}
@@ -1717,6 +1734,7 @@ MonoBehaviour:
   maximumVal: 0.062745094
   reverseAfterSeconds: 0
   timeWaitedForReverse: 0
+  onlyShowOneHalfCycle: 0
 --- !u!4 &5309253760061736719
 Transform:
   m_ObjectHideFlags: 0
