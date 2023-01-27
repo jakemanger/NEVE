@@ -40,7 +40,7 @@ syncSquareTextColourR: 108
 syncSquareTextColourG: 52
 syncSquareTextColourB: 52
 syncSquareTextColourA: 255
-syncSquareDisplayNum: 3
+syncSquareDisplayNum: 1
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
@@ -53,9 +53,9 @@ distanceToMonitors: 7
 monitorDimensionsX: 12.176
 monitorDimensionsY: 6.87
 frontDisplayNum: 0 
-rightDisplayNum: 1
+rightDisplayNum: 3
 backDisplayNum: 2
-leftDisplayNum: 3
+leftDisplayNum: 1
 darkAdaptTime: 10000
 
 # stimuli

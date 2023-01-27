@@ -92,7 +92,7 @@ class Nenv:
             self.params.pop('python_setup')
 
         # do some checks
-        max_list_size = 0
+        max_list_size = 1
         min_list_size = float('inf')
         min_list_key = None
         for key, value in self.params.items():
@@ -102,24 +102,32 @@ class Nenv:
                 if len(value) < min_list_size:
                     min_list_size = len(value)
                     min_list_key = key
-        assert max_list_size == len(self.params['frameDataIdCode']), (
+            else:
+                min_list_size = 1
+                min_list_key = key
+        if type(self.params['frameDataIdCode']) == list or type(self.params['frameDataIdCode']) == range:
+            length_to_check = len(self.params['frameDataIdCode'])
+        else:
+            length_to_check = 1
+
+        assert max_list_size == length_to_check, (
             'The number of frameDataIdCode values must be equal to the '
             'number of values in the longest list of parameters.'
+            f'Min list parameter is {min_list_key} with value {min_list_size}.'
         )
 
-        assert min_list_size == len(self.params['frameDataIdCode']), (
+        assert min_list_size == length_to_check or min_list_size == 1, (
             'The number of each parameter must be equal to the '
-            'number of frameDataIdCode values. The parameter with the '
+            'number of frameDataIdCode values or 1. The parameter with the '
             f'shortest list is {min_list_key} with {min_list_size}.'
         )
         assert(
-            max(self.execution_order) < len(self.params['frameDataIdCode'])
+            max(self.execution_order) < length_to_check
         ), 'An execution order value is greater than the number of frame id codes!'
-        assert(
-            len(set(self.params['frameDataIdCode'])) == len(
-                self.params['frameDataIdCode']
-            )
-        ), 'There are duplicate frame id codes!'
+        if type(self.params['frameDataIdCode']) == list:
+            assert(
+                len(set(self.params['frameDataIdCode'])) == length_to_check
+            ), 'There are duplicate frame id codes!'
 
     def set_params(self, i, dark_adapt=False):
         """Sets the parameters for the experimental trial

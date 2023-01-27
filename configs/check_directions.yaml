@@ -40,9 +40,9 @@ distanceToMonitors: 27
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
 frontDisplayNum: 0 
-rightDisplayNum: 1 
+rightDisplayNum: 3 
 backDisplayNum: 2
-leftDisplayNum: 3
+leftDisplayNum: 1
 darkAdaptTime: 0
 
 # stimuli
