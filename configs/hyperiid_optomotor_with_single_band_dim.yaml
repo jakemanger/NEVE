@@ -34,16 +34,17 @@ recordingFrequency: 1
 manualControl: 0 
 mouseMoveSpeed: 2 
 flickerDuration: 0.1
-syncSquareColourR: 0.3
+syncSquareColourR: 77
 syncSquareColourG: 0
 syncSquareColourB: 0
-syncSquareColourA: 1 
-syncSquareTextColourR: 0.7
-syncSquareTextColourG: 0.4
-syncSquareTextColourB: 0.4
-syncSquareTextColourA: 1
-syncSquareDisplayNum: 3
+syncSquareColourA: 255 
+syncSquareTextColourR: 179
+syncSquareTextColourG: 102
+syncSquareTextColourB: 102
+syncSquareTextColourA: 255
+syncSquareDisplayNum: 2
 syncSquareScalar: 2
+syncSquarePosY: 500
 displayStimulusCode: 1
 use32BitColor: 1
 
