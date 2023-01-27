@@ -32,6 +32,10 @@ public class OptomotorManager : GenericStimulusManager
         square = GetBoolFromPython("square", false);
         minimumVal = GetFloatFromPython("minimumVal", 0f);
         maximumVal = GetFloatFromPython("maximumVal", 0.5f);
+        if (base.use32BitColor) {
+            minimumVal = minimumVal / 255f;
+            maximumVal = maximumVal / 255f;
+        }
         reverseAfterSeconds = GetFloatFromPython("reverseAfterSeconds", 6f);
         onlyShowOneHalfCycle = GetBoolFromPython("onlyShowOneHalfCycle", false);
     }

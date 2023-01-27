@@ -1,41 +1,93 @@
 # Below are the parameters used to alter a unity experiment with the name
-# ReceptiveField
+# Loom
 
 # Controls for the experiment
 # escape - stall Unity, end the experiment and give control to python.
 # F - flicker the stimulus and the sync square to sync unity with the camera
 # IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset looming of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# an example with three approaching looming stimuli: grey, green, blue
 
 # general
-buildDir: ./builds/ReceptiveField/
-frameDataIdCode: [1, 2] 
-animalCode: 1 
-execution_order: [0, 1]
-experimentDuration: 99999
-recordFrameData: 1
+buildDir: ./builds/Loom/
+frameDataIdCode: [11, 12, 13]
+animalCode: [1, 2, 3] 
+execution_order: [0, 1, 2]
+experimentDuration: 99999 
+recordFrameData: 1 
 recordEachFrame: 1
-recordingFrequency: 1
+recordingFrequency: 1 
 manualControl: 0 
 mouseMoveSpeed: 2 
 flickerDuration: 0.1
 syncSquareColourR: 1
 syncSquareColourG: 0
 syncSquareColourB: 0
-syncSquareColourA: 1 
-syncSquareDisplayNum: 1
-displayStimulusCode: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 0 
+displayStimulusCode: 1 
+fictracFeedback: 0
 
 # perspective
-eyeHeight: 3.435 
-distanceToMonitors: 7 
-monitorDimensionsX: 12.176
-monitorDimensionsY: 6.87
+eyeHeight: 16
+distanceToMonitors: 27 
+monitorDimensionsX: 52 
+monitorDimensionsY: 32 
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
+darkAdaptTime: 0
 
 # stimuli
-darkAdaptTime: 0
-speed: [30, 300]
+# background
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0  
+# object
+stimulusType: 3
+startScaleX: 1  
+startScaleY: 1
+startScaleZ: 1
+endScaleX: 1
+endScaleY: 1
+endScaleZ: 1  
+startElevation: 15 
+startAzimuth: 0  
+endElevation: 15
+endAzimuth: 0 
+startDistance: 100 
+endDistance: 5 
+duration: 8 
+numReps: 0.5 
+delayToApproach: 5 
+stimulusColourR: 0.3
+stimulusColourG: 0.3
+stimulusColourB: 0.3
+stimulusColourA: 1
+drawOutline: 0
+outlineType: 0
+outlineWidth: 1
+outlineColourR: 0
+outlineColourG: 0
+outlineColourB: 0
+outlineColourA: 1
+fixedAngularSize: 1
+fixElevation: 0
+minAngularAngle: -0.5
+maxAngularAngle: 0.5
+originX: 0 
+originY: 0 
+originZ: 0 
