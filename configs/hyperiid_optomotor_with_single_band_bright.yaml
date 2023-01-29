@@ -37,13 +37,14 @@ flickerDuration: 0.1
 syncSquareColourR: 77
 syncSquareColourG: 0
 syncSquareColourB: 0
-syncSquareColourA: 255
-syncSquareTextColourR: 178
+syncSquareColourA: 255 
+syncSquareTextColourR: 179
 syncSquareTextColourG: 102
 syncSquareTextColourB: 102
 syncSquareTextColourA: 255
-syncSquareDisplayNum: 3
+syncSquareDisplayNum: 2
 syncSquareScalar: 2
+syncSquarePosY: 480
 displayStimulusCode: 1
 use32BitColor: 1
 
