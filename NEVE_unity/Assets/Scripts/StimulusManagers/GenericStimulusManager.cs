@@ -5,6 +5,7 @@ using Unity.MLAgents;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using System.IO;
 
 public abstract class GenericStimulusManager : MonoBehaviour
 {
@@ -83,11 +84,6 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public int trialNumber = 0;
 
 
-    void Start() {
-        print("Recieving parameters from python.");
-    }
-
-
     public virtual void Reset() {
         blackOutCanvases.SetActive(true);
 
@@ -138,7 +134,23 @@ public abstract class GenericStimulusManager : MonoBehaviour
         socketMovementController.maxDistanceDelta = GetFloatFromPython("maxDistanceDelta", 80f);
         socketMovementController.Reset();
 
-        // SetLUT("test_lut.png");
+        string lutPath = "LUTs/lut.png";
+        int attempts = 0;
+        while (true)
+        {
+            // search for the lut directory (changes depending on platform or if in editor)
+            print("Searching for lut path at: " + lutPath);
+            if (File.Exists(lutPath)) {
+                SetLUT(lutPath);
+                break;
+            }
+            lutPath = "../" + lutPath;
+            attempts += 1;
+            if (attempts > 10) {
+                RaiseError("Could not find the lookup texture (LUT). Place this texture at the following path: LUTs/lut.png");
+                break;
+            }
+        }
 
         CheckParameters();
         trialNumber += 1;
@@ -164,15 +176,19 @@ public abstract class GenericStimulusManager : MonoBehaviour
             }
         }
         if (errorMessage != "") {
-            if (errorMessageObject != null) {
-                errorMessageObject = Instantiate(errorMessageObject, Vector3.zero, Quaternion.identity);
-                errorMessageObject.SetActive(true);
-                errorText = errorMessageObject.transform.GetChild(0).GetChild(1).GetComponent<Text>();
-                errorText.text = errorBeg + errorMessage + errorEnd;
-            } else {
-                print("Could not find errorMessageObject, so printing error to the console.");
-                print(errorMessage);
-            }
+            RaiseError(errorBeg + errorMessage + errorEnd);
+        }
+    }
+
+    public void RaiseError(string text) {
+        if (errorMessageObject != null) {
+            errorMessageObject = Instantiate(errorMessageObject, Vector3.zero, Quaternion.identity);
+            errorMessageObject.SetActive(true);
+            errorText = errorMessageObject.transform.GetChild(0).GetChild(1).GetComponent<Text>();
+            errorText.text = text;
+        } else {
+            print("Could not find errorMessageObject, so printing error to the console.");
+            print(text);
         }
     }
 
@@ -313,21 +329,22 @@ public abstract class GenericStimulusManager : MonoBehaviour
         return floatChannel.GetWithDefault(name, defaultValue ? 1f : 0f) != 0f;
     }
 
-    public void SetLUT(string LUTPath) {
-        if (LUTPath == "") {
-            return;
-        }
-        // print("Loading LUT");
-        // Texture2D LUT = Resources.Load<Texture2D>(LUTPath);
-        // if (LUT == null) {
-        //     return;
-        // }
-        UnityEngine.Rendering.VolumeProfile volumeProfile = GetComponent<UnityEngine.Rendering.Volume>()?.profile;
+    public void SetLUT(string lutPath) {
+        // set the lut of the color lookup on lutVolume
+        UnityEngine.Rendering.VolumeProfile volumeProfile = transform.GetChild(0).GetComponent<UnityEngine.Rendering.Volume>()?.profile;
         if(!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
-        print("Setting LUT");
+        
+        // You can leave this variable out of your function, so you can reuse it throughout your class.
+        UnityEngine.Rendering.Universal.ColorLookup colorLookup;
+        
+        if(!volumeProfile.TryGet(out colorLookup)) throw new System.NullReferenceException(nameof(colorLookup));
 
-        UnityEngine.Rendering.Universal.ColorAdjustments colorAdjustments;
+        // create a RGB8 Unorm texture from the LUT file
+        Texture2D texture = new Texture2D(1024, 32, TextureFormat.RGBA32, false, true);
+        texture.wrapMode = TextureWrapMode.Clamp;
 
-        print(volumeProfile.TryGet(out colorAdjustments));
+        texture.LoadImage(File.ReadAllBytes(lutPath));
+        
+        colorLookup.texture.Override(texture);
     }
 }

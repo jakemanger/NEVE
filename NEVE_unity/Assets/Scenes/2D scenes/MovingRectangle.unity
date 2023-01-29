@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37188724, g: 0.37188724, b: 0.37188724, a: 1}
+  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -478,6 +478,68 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6741271191976976395, guid: f1abe5699e8d142d1a52c4033374f10a, type: 3}
   m_PrefabInstance: {fileID: 1369575004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1408178185
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5309253760061736719}
+    m_Modifications:
+    - target: {fileID: 7074247469661396488, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_Name
+      value: Global Volume (for LUT)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8406925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48326874
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18714905
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+--- !u!4 &1408178186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+  m_PrefabInstance: {fileID: 1408178185}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1574576096 stripped
 MonoBehaviour:
@@ -1686,6 +1748,13 @@ MonoBehaviour:
   recordingFrequency: 1
   stimTrans: {fileID: 1151860299}
   syncSquareImg: {fileID: 69513663}
+  flashingSyncSquare: 0
+  flashingSyncFrequency: 60
+  flashingSyncSquareUseMS: 1
+  flashOn: 0
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   experimentId: test_
   outputFilePath: test.csv
   stimulusControllers: []
@@ -1799,11 +1868,17 @@ MonoBehaviour:
   syncSquarePos: {x: -29.84, y: 18.17102}
   syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   syncSquareTextColor: {r: 1, g: 1, b: 1, a: 1}
   syncSquare: {fileID: 790943268}
   syncSquareDisplayNum: 0
   displayStimulusCode: 1
   flickerDuration: 0.1
+  flashingSyncSquare: 0
+  flashingSyncSquareFrequency: 1
+  flashingSyncSquareUseMS: 1
   camMon: {fileID: 7767219509833157209}
   frameWriter: {fileID: 5309253760061736712}
   episodeController: {fileID: 5309253760061736713}
@@ -1838,7 +1913,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1408178186}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

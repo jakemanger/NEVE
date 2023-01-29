@@ -364,6 +364,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1254033862
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1851185963}
+    m_Modifications:
+    - target: {fileID: 7074247469661396488, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_Name
+      value: Global Volume (for LUT)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8406925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48326874
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18714905
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+--- !u!4 &1254033863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+  m_PrefabInstance: {fileID: 1254033862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1412505978
 GameObject:
   m_ObjectHideFlags: 1
@@ -471,7 +533,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1254033863}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -491,6 +554,13 @@ MonoBehaviour:
   recordingFrequency: 1
   stimTrans: {fileID: 4517113867649947908}
   syncSquareImg: {fileID: 1110731330}
+  flashingSyncSquare: 0
+  flashingSyncFrequency: 60
+  flashingSyncSquareUseMS: 1
+  flashOn: 0
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   experimentId: test_
   outputFilePath: test.csv
   stimulusControllers: []
@@ -583,11 +653,17 @@ MonoBehaviour:
   syncSquarePos: {x: -29.84, y: 18.17102}
   syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   syncSquareTextColor: {r: 1, g: 1, b: 1, a: 1}
   syncSquare: {fileID: 523473682}
   syncSquareDisplayNum: 0
   displayStimulusCode: 1
   flickerDuration: 0.1
+  flashingSyncSquare: 0
+  flashingSyncSquareFrequency: 1
+  flashingSyncSquareUseMS: 1
   camMon: {fileID: 1633350104}
   frameWriter: {fileID: 1851185964}
   episodeController: {fileID: 1851185965}
