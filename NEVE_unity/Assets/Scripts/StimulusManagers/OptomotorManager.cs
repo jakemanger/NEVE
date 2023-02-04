@@ -18,6 +18,7 @@ public class OptomotorManager : GenericStimulusManager
     public float timeWaitedForReverse = 0f;
 
     public bool onlyShowOneHalfCycle = false;
+    public float verticalAngleVisible = 180f;
 
 
     protected override void GetPropertiesFromPython() {
@@ -38,6 +39,7 @@ public class OptomotorManager : GenericStimulusManager
         }
         reverseAfterSeconds = GetFloatFromPython("reverseAfterSeconds", 6f);
         onlyShowOneHalfCycle = GetBoolFromPython("onlyShowOneHalfCycle", false);
+        verticalAngleVisible = GetFloatFromPython("verticalAngleVisible", 180f);
     }
 
     public override void SetupStimuli() {
@@ -52,6 +54,7 @@ public class OptomotorManager : GenericStimulusManager
         mat.SetFloat("_Minimum", minimumVal);
         mat.SetFloat("_Maximum", maximumVal);
         mat.SetInt("_OnlyShowOneHalfCycle", onlyShowOneHalfCycle ? 1 : 0);
+        mat.SetFloat("_VerticalAngleVisible", verticalAngleVisible);
         RenderSettings.skybox = mat;
     }
 
