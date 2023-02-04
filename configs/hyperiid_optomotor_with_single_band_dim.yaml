@@ -26,9 +26,9 @@ python_setup: >
   vertical_angles = [max_vertical_angle, 45, 4, 1.5];
   intensity_scalers = [7, 8, 22, 36];
   intensities = [7] * 9 + [intensity_scalers[0]] * 9 + [intensity_scalers[1]] * 9 + [intensity_scalers[2]] * 9 + [intensity_scalers[3]] * 9;
-buildDir: #./builds/Optomotor/
+buildDir: ./builds/Optomotor/
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
-animalCode: 50
+animalCode: 201
 execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
 experimentDuration: 60
 reverseAfterSeconds: 10
