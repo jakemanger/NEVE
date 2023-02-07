@@ -21,9 +21,9 @@
 python_setup: 'n_conditions = 73; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
 buildDir: ./builds/Loom/
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
-animalCode: 1
+animalCode: 52
 # randomise the order of the conditions and repeat the experiment twice
-execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
+execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
 cameraRotationX: [270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270, 90, 0, 270]
 cameraRotationY: -90
 cameraRotationZ: -90
