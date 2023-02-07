@@ -7,11 +7,11 @@
     <key>CFBundleExecutable</key>
     <string>NEVE_unity_urp</string>
     <key>CFBundleGetInfoString</key>
-    <string>Unity Player version 2020.3.3f1 (76626098c1c4). (c) 2021 Unity Technologies ApS. All rights reserved.</string>
+    <string>Unity Player version 2020.3.36f1 (71f96b79b9f0). (c) 2022 Unity Technologies ApS. All rights reserved.</string>
     <key>CFBundleIconFile</key>
     <string>PlayerIcon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.DefaultCompany.NEVEunityurp</string>
+    <string>com.DefaultCompany.NEVE-unity-urp</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -40,6 +40,6 @@
     <key>NSPrincipalClass</key>
     <string>PlayerApplication</string>
     <key>UnityBuildNumber</key>
-    <string>76626098c1c4</string>
+    <string>71f96b79b9f0</string>
   </dict>
 </plist>

@@ -15,18 +15,23 @@ python_setup: >
   from datetime import datetime;
   from itertools import product;
   random.seed(datetime.now().timestamp());
-  n_conditions = 18;
-  spatial_freqs = [0.01, 0.1, 1];
+  n_conditions = 45;
+  spatial_freqs = [0.01, 0.1, 0.333333];
   temporal_freqs = [0.1, 1, 10];
-  frequency_per_360 = [round(s * 360) for s, t in product(spatial_freqs, temporal_freqs)] * 2;
+  frequency_per_360 = [round(s * 360) for s, t in product(spatial_freqs, temporal_freqs)] * 5;
   p = product(spatial_freqs, temporal_freqs);
-  velocities = [t / s for s, t in product(spatial_freqs, temporal_freqs)] * 2;
+  velocities = [t / s for s, t in product(spatial_freqs, temporal_freqs)] * 5;
+
+  max_vertical_angle = 52.27569302;
+  vertical_angles = [max_vertical_angle, 45, 4, 1.5];
+  intensity_scalers = [7, 8, 22, 36];
+  intensities = [7] * 9 + [intensity_scalers[0]] * 9 + [intensity_scalers[1]] * 9 + [intensity_scalers[2]] * 9 + [intensity_scalers[3]] * 9;
 buildDir: ./builds/Optomotor/
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
-animalCode: 50
+animalCode: 201
 execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
-experimentDuration: 180
-reverseAfterSeconds: 30
+experimentDuration: 60
+reverseAfterSeconds: 10
 
 recordFrameData: 1
 recordEachFrame: 1
@@ -34,16 +39,17 @@ recordingFrequency: 1
 manualControl: 0 
 mouseMoveSpeed: 2 
 flickerDuration: 0.1
-syncSquareColourR: 0.3
+syncSquareColourR: 77
 syncSquareColourG: 0
 syncSquareColourB: 0
-syncSquareColourA: 1 
-syncSquareTextColourR: 0.7
-syncSquareTextColourG: 0.4
-syncSquareTextColourB: 0.4
-syncSquareTextColourA: 1
-syncSquareDisplayNum: 3
+syncSquareColourA: 255 
+syncSquareTextColourR: 179
+syncSquareTextColourG: 102
+syncSquareTextColourB: 102
+syncSquareTextColourA: 255
+syncSquareDisplayNum: 2
 syncSquareScalar: 2
+syncSquarePosY: 480
 displayStimulusCode: 1
 use32BitColor: 1
 
@@ -64,5 +70,7 @@ offset: 'python: random.choices([0, 90, 180, 270], k=n_conditions)'
 speed: 'python: velocities' # in degrees per second
 square: 1
 minimumVal: 0 
-maximumVal: 7
-onlyShowOneHalfCycle: 'python: [0] * 9 + [1] * 9'
+maximumVal: 'python: intensities'
+onlyShowOneHalfCycle: 'python: [0] * 9 + [1] * 36'
+verticalAngleVisible: 'python: [180] * 9 + [vertical_angles[0]] * 9 + [vertical_angles[1]] * 9 + [vertical_angles[2]] * 9 + [vertical_angles[3]] * 9'
+
