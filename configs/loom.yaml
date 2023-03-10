@@ -16,9 +16,9 @@
 
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [11, 12, 13]
-animalCode: [1, 2, 3] 
-execution_order: [0, 1, 2]
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+animalCode: 1 
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -41,67 +41,77 @@ distanceToMonitors: 27
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
 frontDisplayNum: 0 
-rightDisplayNum: 1 
+rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
 
 # stimuli
 # background
-aboveHorizonColourRFront: 1
-aboveHorizonColourGFront: 0
-aboveHorizonColourBFront: 0
+darkAdaptTime: 0
+horizonHeight: 0
+
+aboveHorizonColourRFront: 0.0001
+aboveHorizonColourGFront: 0.0001
+aboveHorizonColourBFront: 0.0001
 aboveHorizonColourAFront: 1
-horizonHeightFront: 0 
+belowHorizonColourRFront: 0.6549
+belowHorizonColourGFront: 0.6549
+belowHorizonColourBFront: 0.6549
+belowHorizonColourAFront: 1
+horizonHeightFront: 0.0001
 
-aboveHorizonColourRRight: 0
-aboveHorizonColourGRight: 1
-aboveHorizonColourBRight: 0
+aboveHorizonColourRRight: 0.0001
+aboveHorizonColourGRight: 0.0001
+aboveHorizonColourBRight: 0.0001
 aboveHorizonColourARight: 1
-belowHorizonColourR: 0.3
-belowHorizonColourG: 0.3
-belowHorizonColourB: 0.3
-belowHorizonColourA: 1
-horizonHeightRight: 0  
+belowHorizonColourRRight: 0.6549
+belowHorizonColourGRight: 0.6549
+belowHorizonColourBRight: 0.6549
+belowHorizonColourARight: 1
+horizonHeightRight: 0.0001 
 
-
-aboveHorizonColourRBack: 0
-aboveHorizonColourGBack: 0
-aboveHorizonColourBBack: 1
+aboveHorizonColourRBack: 0.0001
+aboveHorizonColourGBack: 0.0001
+aboveHorizonColourBBack: 0.0001
 aboveHorizonColourABack: 1
-belowHorizonColourR: 0.3
-belowHorizonColourG: 0.3
-belowHorizonColourB: 0.3
-belowHorizonColourA: 1
-horizonHeightBack: 0  
+belowHorizonColourRBack: 0.6549
+belowHorizonColourGBack: 0.6549
+belowHorizonColourBBack: 0.6549
+belowHorizonColourABack: 1
+horizonHeightBack: 0.0001
 
-
-aboveHorizonColourRLeft: 1
-aboveHorizonColourGLeft: 1
-aboveHorizonColourBLeft: 1
+aboveHorizonColourRLeft: 0.0001
+aboveHorizonColourGLeft: 0.0001
+aboveHorizonColourBLeft: 0.0001
 aboveHorizonColourALeft: 1
-horizonHeightLeft: 0  
+belowHorizonColourRLeft: 0.6314
+belowHorizonColourGLeft: 0.6314
+belowHorizonColourBLeft: 0.6314
+belowHorizonColourALeft: 1
+horizonHeightLeft: 0.0001
+
 
  
 # object
 stimulusType: 0
-startScaleX: 1  
-startScaleY: 1
-startScaleZ: 1
-endScaleX: 1
-endScaleY: 1
-endScaleZ: 1  
-startElevation: 15 
-startAzimuth: 0  
+startScaleX: 3 
+startScaleY: 3
+startScaleZ: 3
+endScaleX: 3
+endScaleY: 3
+endScaleZ: 3
+duration: 24.925
+startElevation: 15
+startAzimuth: 0
 endElevation: 15
-endAzimuth: 0 
-startDistance: 100 
-endDistance: 5 
-duration: 8 
+endAzimuth: 0
+startDistance: 500 
+endDistance: 1.5
 numReps: 0.5 
 delayToApproach: 5 
-stimulusColourR: [0.3, 0, 0]
-stimulusColourG: [0.3, 1, 0]
-stimulusColourB: [0.3, 0, 1]
+stimulusColourR: 0.8
+stimulusColourG: 0.8
+stimulusColourB: 0.8
 stimulusColourA: 1
 drawOutline: 0
 
@@ -112,7 +122,7 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 1
+fixedAngularSize: 0
 fixElevation: 0
 minAngularAngle: -0.5
 maxAngularAngle: 0.5
