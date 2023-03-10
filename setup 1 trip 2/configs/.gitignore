@@ -1,0 +1,17 @@
+
+!.gitignore
+!calibration.yaml
+!dual_loom.yaml
+!four_loom.yaml
+!loom.yaml
+!mimic_expansion_speed_dual_loom.yaml
+!mimic_expansion_speed_loom.yaml
+!moving_rectangle.yaml
+!optomotor.yaml
+!loom_with_crab.yaml
+!hyperiid_orientation.yaml
+!hyperiid_optomotor.yaml
+!hyperiid_optomotor_find_speed.yaml
+!hyperiid_track.yaml
+!hyperiid_track_two_dirs.yaml
+!check_directions.yaml
