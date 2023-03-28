@@ -16,9 +16,21 @@
 
 # general
 buildDir: ./builds/Loom/
+<<<<<<< Updated upstream
 frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 animalCode: 1 
 execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+=======
+<<<<<<< HEAD
+frameDataIdCode: [11, 12, 13, 14]
+animalCode: [1, 2, 3, 4] 
+execution_order: [0, 1, 2, 3]
+=======
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+animalCode: 1 
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+>>>>>>> 24761bc15aca50902aa611715031e0640e889f0d
+>>>>>>> Stashed changes
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -47,12 +59,24 @@ leftDisplayNum: 3
 
 # stimuli
 # background
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+aboveHorizonColourRFront: 1
+aboveHorizonColourGFront: 1
+aboveHorizonColourBFront: 1
+=======
+>>>>>>> Stashed changes
 darkAdaptTime: 0
 horizonHeight: 0
 
 aboveHorizonColourRFront: 0.0001
 aboveHorizonColourGFront: 0.0001
 aboveHorizonColourBFront: 0.0001
+<<<<<<< Updated upstream
+=======
+>>>>>>> 24761bc15aca50902aa611715031e0640e889f0d
+>>>>>>> Stashed changes
 aboveHorizonColourAFront: 1
 belowHorizonColourRFront: 0.6549
 belowHorizonColourGFront: 0.6549
@@ -60,19 +84,45 @@ belowHorizonColourBFront: 0.6549
 belowHorizonColourAFront: 1
 horizonHeightFront: 0.0001
 
+<<<<<<< Updated upstream
 aboveHorizonColourRRight: 0.0001
 aboveHorizonColourGRight: 0.0001
 aboveHorizonColourBRight: 0.0001
+=======
+<<<<<<< HEAD
+aboveHorizonColourRRight: 1
+aboveHorizonColourGRight: 1
+aboveHorizonColourBRight: 1
+=======
+aboveHorizonColourRRight: 0.0001
+aboveHorizonColourGRight: 0.0001
+aboveHorizonColourBRight: 0.0001
+>>>>>>> 24761bc15aca50902aa611715031e0640e889f0d
+>>>>>>> Stashed changes
 aboveHorizonColourARight: 1
 belowHorizonColourRRight: 0.6549
 belowHorizonColourGRight: 0.6549
 belowHorizonColourBRight: 0.6549
 belowHorizonColourARight: 1
 horizonHeightRight: 0.0001 
+<<<<<<< Updated upstream
 
 aboveHorizonColourRBack: 0.0001
 aboveHorizonColourGBack: 0.0001
 aboveHorizonColourBBack: 0.0001
+=======
+
+<<<<<<< HEAD
+
+aboveHorizonColourRBack: 1
+aboveHorizonColourGBack: 1
+aboveHorizonColourBBack: 1
+=======
+aboveHorizonColourRBack: 0.0001
+aboveHorizonColourGBack: 0.0001
+aboveHorizonColourBBack: 0.0001
+>>>>>>> 24761bc15aca50902aa611715031e0640e889f0d
+>>>>>>> Stashed changes
 aboveHorizonColourABack: 1
 belowHorizonColourRBack: 0.6549
 belowHorizonColourGBack: 0.6549
@@ -94,6 +144,19 @@ horizonHeightLeft: 0.0001
  
 # object
 stimulusType: 0
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+startScaleX: 1  
+startScaleY: 1
+startScaleZ: 1
+endScaleX: 1
+endScaleY: 1
+endScaleZ: 1  
+startElevation: 15 
+startAzimuth: [0, 90, 180, 270]  
+=======
+>>>>>>> Stashed changes
 startScaleX: 3 
 startScaleY: 3
 startScaleZ: 3
@@ -103,15 +166,31 @@ endScaleZ: 3
 duration: 24.925
 startElevation: 15
 startAzimuth: 0
+<<<<<<< Updated upstream
+=======
+>>>>>>> 24761bc15aca50902aa611715031e0640e889f0d
+>>>>>>> Stashed changes
 endElevation: 15
 endAzimuth: 0
 startDistance: 500 
 endDistance: 1.5
 numReps: 0.5 
 delayToApproach: 5 
+<<<<<<< Updated upstream
 stimulusColourR: 0.8
 stimulusColourG: 0.8
 stimulusColourB: 0.8
+=======
+<<<<<<< HEAD
+stimulusColourR: [0, 0, 0, 0]
+stimulusColourG: [0, 0, 0, 0]
+stimulusColourB: [0, 0, 0, 0]
+=======
+stimulusColourR: 0.8
+stimulusColourG: 0.8
+stimulusColourB: 0.8
+>>>>>>> 24761bc15aca50902aa611715031e0640e889f0d
+>>>>>>> Stashed changes
 stimulusColourA: 1
 drawOutline: 0
 
