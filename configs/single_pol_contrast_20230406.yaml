@@ -16,8 +16,8 @@
 
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [4, 1, 3, 5, 1, 2, 7, 3]
-animalCode: [3, 3, 3, 3, 4, 4, 4, 4]
+frameDataIdCode: [1, 2, 7, 3, 1, 6, 4, 3, 2, 3, 8, 1]
+animalCode: [4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6]
 execution_order: [0, 1, 2, 3, 4, 5, 6, 7]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -36,7 +36,7 @@ fictracFeedback: 0
 darkAdaptTime: 0
 
 # perspective
-eyeHeight: [1.78, 1.78, 1.78, 1.78, 1.91, 1.91, 1.91, 1.91]
+eyeHeight: [2.26, 2.26, 2.26, 2.26, 2.26, 2.26, 2.26, 2.26, 1.68, 1.68, 1.68, 1.68]
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -45,7 +45,7 @@ rightDisplayNum: 1
 backDisplayNum: 2
 leftDisplayNum: 3
 
-rotationOffsetY: [90, 0, 90, 0, 0, 90, 90, 0]
+rotationOffsetY: [90, 0, 0, 90, 90, 0, 90, 0, 90, 0, 90, 0]
 
 # stimuli
 # background
@@ -72,9 +72,9 @@ belowHorizonColourBRight: 0.3
 belowHorizonColourARight: 1
 horizonHeightRight: 0.0001 
 
-aboveHorizonColourRBack: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
-aboveHorizonColourGBack: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
-aboveHorizonColourBBack: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
+aboveHorizonColourRBack: [0.0001, 0.0001, 0.7961, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
+aboveHorizonColourGBack: [0.0001, 0.0001, 0.7961, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
+aboveHorizonColourBBack: [0.0001, 0.0001, 0.7961, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
 aboveHorizonColourABack: 1
 belowHorizonColourRBack: 0.651
 belowHorizonColourGBack: 0.651
@@ -82,9 +82,9 @@ belowHorizonColourBBack: 0.651
 belowHorizonColourABack: 1
 horizonHeightBack: 0.0001
 
-aboveHorizonColourRLeft: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
-aboveHorizonColourGLeft: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
-aboveHorizonColourBLeft: [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
+aboveHorizonColourRLeft: [0.0001, 0.0001, 0.7961, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
+aboveHorizonColourGLeft: [0.0001, 0.0001, 0.7961, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
+aboveHorizonColourBLeft: [0.0001, 0.0001, 0.7961, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.7765, 0.0001]
 aboveHorizonColourALeft: 1
 belowHorizonColourRLeft: 0.6314
 belowHorizonColourGLeft: 0.6314
@@ -111,9 +111,9 @@ startDistance: 500
 endDistance: 1.5
 numReps: 0.5 
 delayToApproach: 5 
-stimulusColourR: [0.2863, 0.7961, 0.3451, 0.2314, 0.7961, 0.4431, 0.6745, 0.3490]
-stimulusColourG: [0.2863, 0.7961, 0.3451, 0.2314, 0.7961, 0.4431, 0.6745, 0.3490]
-stimulusColourB: [0.2863, 0.7961, 0.3451, 0.2314, 0.7961, 0.4431, 0.6745, 0.3490]
+stimulusColourR: [0.7686, 0.4510, 0.6980, 0.3451, 0.7686, 0.0001, 0.2863, 0.3490, 0.4431, 0.3490, 0.0001, 0.7961]
+stimulusColourG: [0.7686, 0.4510, 0.6980, 0.3451, 0.7686, 0.0001, 0.2863, 0.3490, 0.4431, 0.3490, 0.0001, 0.7961]
+stimulusColourB: [0.7686, 0.4510, 0.6980, 0.3451, 0.7686, 0.0001, 0.2863, 0.3490, 0.4431, 0.3490, 0.0001, 0.7961]
 stimulusColourA: 1
 drawOutline: 0
 hideAtEnd: 1
