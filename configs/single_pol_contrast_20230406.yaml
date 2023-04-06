@@ -18,7 +18,7 @@
 buildDir: ./builds/Loom/
 frameDataIdCode: [1, 2, 7, 3, 1, 6, 4, 3, 2, 3, 8, 1]
 animalCode: [4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6]
-execution_order: [0, 1, 2, 3, 4, 5, 6, 7]
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
