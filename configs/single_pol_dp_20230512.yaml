@@ -36,7 +36,7 @@ fictracFeedback: 0
 darkAdaptTime: 0
 
 # perspective
-eyeHeight: [2.24, 2.24, 1.89, 1.89, 1.82, 1.82, 2.05, 2.05, 2.25, 2.25, 2.11, 2.11, 1.89, 1.89, 2.00, 2.00, 2.18, 2.18, 2.48, 2.48]
+eyeHeight: [2.24, 2.24, 1.86, 1.86, 1.82, 1.82, 2.05, 2.05, 2.25, 2.25, 2.11, 2.11, 1.89, 1.89, 2.00, 2.00, 2.18, 2.18, 2.48, 2.48]
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
