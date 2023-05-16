@@ -1,0 +1,134 @@
+# Below are the parameters used to alter a unity experiment with the name
+# Loom
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset looming of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# an example with three approaching looming stimuli: grey, green, blue
+
+# general
+buildDir: ./builds/Loom/
+frameDataIdCode: [4]
+animalCode: [35]
+execution_order: [0]
+experimentDuration: 99999 
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+mouseMoveSpeed: 2 
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 1 
+displayStimulusCode: 1 
+fictracFeedback: 0
+darkAdaptTime: 0
+
+# perspective
+eyeHeight: [2.25]
+distanceToMonitors: 27 
+monitorDimensionsX: 52 
+monitorDimensionsY: 32 
+frontDisplayNum: 0 
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+
+rotationOffsetY: [0]
+
+# stimuli
+# background
+darkAdaptTime: 0
+horizonHeight: 0
+
+aboveHorizonColourRFront: 1
+aboveHorizonColourGFront: 1
+aboveHorizonColourBFront: 1
+aboveHorizonColourAFront: 1
+belowHorizonColourRFront: 0.3
+belowHorizonColourGFront: 0.3
+belowHorizonColourBFront: 0.3
+belowHorizonColourAFront: 1
+horizonHeightFront: 0.0001
+
+aboveHorizonColourRRight: 1
+aboveHorizonColourGRight: 1
+aboveHorizonColourBRight: 1
+aboveHorizonColourARight: 1
+belowHorizonColourRRight: 0.3
+belowHorizonColourGRight: 0.3
+belowHorizonColourBRight: 0.3
+belowHorizonColourARight: 1
+horizonHeightRight: 0.0001 
+
+aboveHorizonColourRBack: 0.0001
+aboveHorizonColourGBack: 0.0001
+aboveHorizonColourBBack: 0.0001
+aboveHorizonColourABack: 1
+belowHorizonColourRBack: 0.651
+belowHorizonColourGBack: 0.651
+belowHorizonColourBBack: 0.651
+belowHorizonColourABack: 1
+horizonHeightBack: 0.0001
+
+aboveHorizonColourRLeft: 0.0001
+aboveHorizonColourGLeft: 0.0001
+aboveHorizonColourBLeft: 0.0001
+aboveHorizonColourALeft: 1
+belowHorizonColourRLeft: 0.6314
+belowHorizonColourGLeft: 0.6314
+belowHorizonColourBLeft: 0.6314
+belowHorizonColourALeft: 1
+horizonHeightLeft: 0.0001
+
+
+ 
+# object
+stimulusType: 0
+startScaleX: [3.0]
+startScaleY: [3.0]
+startScaleZ: [3.0]
+endScaleX: [3.0]
+endScaleY: [3.0]
+endScaleZ: [3.0]
+duration: [49.8500]
+startElevation: 15
+startAzimuth: 180
+endElevation: 15
+endAzimuth: 180
+startDistance: 500 
+endDistance: [1.5000]
+numReps: 0.5 
+delayToApproach: 5 
+stimulusColourR: [0.7961]
+stimulusColourG: [0.7961]
+stimulusColourB: [0.7961]
+stimulusColourA: 1
+drawOutline: 0
+hideAtEnd: 1
+
+outlineType: 0
+
+outlineWidth: 1
+outlineColourR: 0
+outlineColourG: 0
+outlineColourB: 0
+outlineColourA: 1
+fixedAngularSize: 0
+fixElevation: 0
+minAngularAngle: -0.5
+maxAngularAngle: 0.5
+originX: 0 
+originY: 0 
+originZ: 0 
