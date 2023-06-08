@@ -118,14 +118,14 @@ public class OptomotorManager : GenericStimulusManager
 }
 ```
 
-You can modify this file however you would like. For example, you could modify the reversing implementation.
+You can modify this file however you would like. For example, you could modify the reversing implementation. If you would like to modify this stimulus manager, it would be advisable to first duplicate the file in the "Project Window" and then rename it. Make sure when you rename a .cs file, that you change the Class name in the file to match that of the filename, otherwise you will get an error in the console. You will also need to delete the old .cs file used by the corresponding object and drag and drop this new one onto the object in the scene (found with the "Hierarchy Window" and "Inspector Window") to make your modified file used in the scene.
 
 For more complex experiments, you will also need to modify the stimulus controller. In the Loom experiment, this is the SphericalStimulusGenerator.
 Like other GenericStimulusGenerators, these have two main functions:
 - `Reset()` This is called by the stimulus manager and is used to reset parts of the scene whenever the experiments conditions change and
 - `Update()` This is called once per frame and is used to update objects in the scene.
 
-If you would like to modify this stimulus generator, it would be advisable to first duplicate the file in the "Project Window" and then rename it. Make sure when you rename a .cs file, that you change the Class name in the file to match that of the filename, otherwise you will get an error in the console.
+If you would like to modify this stimulus controller, it would be advisable to first duplicate the file in the "Project Window" and then rename it. Make sure when you rename a .cs file, that you change the Class name in the file to match that of the filename, otherwise you will get an error in the console. You will also need to delete the old .cs file used by the corresponding object and drag and drop this new one onto the object in the scene (found with the "Hierarchy Window" and "Inspector Window") to make your modified file used in the scene.
 
 
 ## Create a new experiment from scratch
