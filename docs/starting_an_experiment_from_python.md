@@ -76,7 +76,7 @@ Ensure you have an activated virtual environment (Install step 3 above).
 Start the stimulus, specifying the configuration file to use:
 
 ```
-python control_simulation.py --ignore-gooey ./configs/optomotor.yaml
+python control_simulation.py --ignore-gooey optomotor.yaml
 ```
 
 and follow the prompts. You should see control-related messages in the terminal and the
@@ -88,7 +88,7 @@ Expected terminal output:
 
 ![Expected output from a successful setup](./successful_setup.png)
 
-Expected stimulus with `./configs/optomotor.yaml`
+Expected stimulus with `optomotor.yaml`
 
 ![Optomotor experiment](./optomotor_experiment.gif)
 
