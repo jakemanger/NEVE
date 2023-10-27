@@ -7,7 +7,7 @@ If you are not a fan of GUIs or are doing some developement. You can use NEVE wi
 
 If you are unfamiliar with python and python virtual environments, see https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240
 
-1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
+1. Install python 3.10, following installation instructions at [https://www.python.org/](https://www.python.org/).
 
 *For the special case when you want to access the GUI and are using MacOS, you
 will have to use your system installation of python and cannot use a python virtual
