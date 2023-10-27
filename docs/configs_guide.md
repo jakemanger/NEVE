@@ -60,7 +60,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `gratingIsSquare` | Whether the grating is square (true) or a sinewave (false). | `0` (false) or `1` (true) | `0` |
 | `gratingMaxIntensity` | The maximum intensity of the grating. | `0`-`1` | `1` |
 | `gratingMinIntensity` | The minimum intensity of the grating. | `0`-`1` | `0` |
-| `fixedAngularSize` | Whether to use a fixed angular size or not. Adjust `fixElevation`, `minAngularAngle`, maxAngularAngle if you use this. | `0` (false) or `1` (true) | `0` |
+| `fixedAngularSize` | Whether to use a fixed angular size or not. Adjust `fixElevation`, `minAngularAngle`, `maxAngularAngle` if you use this. | `0` (false) or `1` (true) | `0` |
 | `fixElevation` | Whether to fix the elevation (up and down) if true or the azimuth if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `hideAtEnd` | Whether to hide the stimulus at the end of the loom. | `0` (false) or `1` (true) | `0` |
 | `directPath` | Whether to loom with a direct path from the start to end polar coordinates. If false, then will use the greater circle distance. | `0` (false) or `1` (true) | `1` |
