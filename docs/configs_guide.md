@@ -40,8 +40,8 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `aboveHorizonColourRFront`, `aboveHorizonColourGFront`, `aboveHorizonColourBFront`, `aboveHorizonColourAFront` | An override of the RGBA values of the above horizon colour for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `0`-`1` | *Ignored* |
 | `belowHorizonColourRFront`, `belowHorizonColourGFront`, `belowHorizonColourBFront`, `belowHorizonColourAFront` | An override of the RGBA values of the below horizon colour for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `0`-`1` | *Ignored* |
 | `horizonHeightFront` | An override of the height of the horizon in degrees for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `-90`-`90` | *Ignored* |
-| `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
-| `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
+| `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. A scale of 1 is 1cm in Unity. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
+| `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. A scale of 1 is 1cm in Unity.  | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
 | `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `startElevation: 0`, `startAzimuth: 0` |
 | `endElevation`, `endAzimuth` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation: 0`, `endAzimuth: 0` |
 | `originX`, `originY`, `originZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
@@ -60,7 +60,7 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `gratingIsSquare` | Whether the grating is square (true) or a sinewave (false). | `0` (false) or `1` (true) | `0` |
 | `gratingMaxIntensity` | The maximum intensity of the grating. | `0`-`1` | `1` |
 | `gratingMinIntensity` | The minimum intensity of the grating. | `0`-`1` | `0` |
-| `fixedAngularSize` | Whether to use a fixed angular size or not. | `0` (false) or `1` (true) | `0` |
+| `fixedAngularSize` | Whether to use a fixed angular size or not. Adjust `fixElevation`, `minAngularAngle`, `maxAngularAngle` if you use this. | `0` (false) or `1` (true) | `0` |
 | `fixElevation` | Whether to fix the elevation (up and down) if true or the azimuth if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `hideAtEnd` | Whether to hide the stimulus at the end of the loom. | `0` (false) or `1` (true) | `0` |
 | `directPath` | Whether to loom with a direct path from the start to end polar coordinates. If false, then will use the greater circle distance. | `0` (false) or `1` (true) | `1` |
