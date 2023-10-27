@@ -7,26 +7,6 @@ using UnityEditor.OSXStandalone;
 
 public class BuildScript
 {
-
-    [MenuItem("File/Build All")]
-    static void BuildAll()
-    {
-        var scenes = EditorBuildSettings.scenes;
-        // log the scenes to be built
-        Debug.Log("Scenes to be built (that were found in the build settings):");
-        foreach (var scene in scenes)
-        {
-            Debug.Log(scene.path);
-        }
-        Debug.Log("If you want to change the scenes to be built, open the scene you want to add, go to File > Build Settings > Add Open Scene, and then click File > Build All again. If you want to remove a scene, right click it and click Remove selection.");
-
-        Build(scenes, "../builds/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
-        Build(scenes, "../builds/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
-        // set use Intel 64-bit architecture
-        UserBuildSettings.architecture = MacOSArchitecture.x64;
-        Build(scenes, "../builds/", BuildTarget.StandaloneOSX, "Mac.app");
-    }
-
     [MenuItem("File/Build Current Scene")]
     static void BuildCurrentScene()
     {
