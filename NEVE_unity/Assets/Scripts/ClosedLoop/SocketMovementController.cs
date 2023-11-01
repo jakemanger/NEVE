@@ -17,7 +17,7 @@ public class SocketMovementController : MonoBehaviour
     public bool recieveInputFromSocket = true;
     public int port = 1111;
 
-    public float ballRadius = 60f;
+    public float ballRadius = 6f;
 
     // a minimum distance for the movement to be registered
     public float minMovementDistance = 0f;

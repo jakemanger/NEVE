@@ -33,6 +33,7 @@ git clone git@github.com:jakemanger/NEVE.git
 
 Or alternatively use [Github desktop](https://desktop.github.com/) to clone this project into your desired folder.
 
+*Make sure you extract to a disk on your local computer. Do not extract this folder to a network drive. These tend to slow things down and can cause permissions issues.*
 
 ### Start NEVE
 

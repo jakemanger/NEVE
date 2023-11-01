@@ -7,7 +7,7 @@ If you are not a fan of GUIs or are doing some developement. You can use NEVE wi
 
 If you are unfamiliar with python and python virtual environments, see https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240
 
-1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
+1. Install python 3.10, following installation instructions at [https://www.python.org/](https://www.python.org/).
 
 *For the special case when you want to access the GUI and are using MacOS, you
 will have to use your system installation of python and cannot use a python virtual
@@ -76,7 +76,7 @@ Ensure you have an activated virtual environment (Install step 3 above).
 Start the stimulus, specifying the configuration file to use:
 
 ```
-python control_simulation.py --ignore-gooey ./configs/optomotor.yaml
+python control_simulation.py --ignore-gooey optomotor.yaml
 ```
 
 and follow the prompts. You should see control-related messages in the terminal and the
@@ -88,7 +88,7 @@ Expected terminal output:
 
 ![Expected output from a successful setup](./successful_setup.png)
 
-Expected stimulus with `./configs/optomotor.yaml`
+Expected stimulus with `optomotor.yaml`
 
 ![Optomotor experiment](./optomotor_experiment.gif)
 
