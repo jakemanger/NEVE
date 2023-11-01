@@ -127,6 +127,27 @@ Like other GenericStimulusGenerators, these have two main functions:
 
 If you would like to modify this stimulus controller, it would be advisable to first duplicate the file in the "Project Window" and then rename it. Make sure when you rename a .cs file, that you change the Class name in the file to match that of the filename, otherwise you will get an error in the console. You will also need to delete the old .cs file used by the corresponding object and drag and drop this new one onto the object in the scene (found with the "Hierarchy Window" and "Inspector Window") to make your modified file used in the scene.
 
+### Building the executable
+
+Once you are happy with how your new scene works, you can build it into an executable. This let's you run the experiment in a performant
+way and on your target displays. You can also send it to other machines and run it with the NEVE GUI executable.
+
+To build a scene, open the scene you would like to build.
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/428fdb13-17b8-4855-b2cf-13790225425d)
+
+Then, select File > Build Current Scene
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/5fe4b28f-b1fe-4684-adcb-2a670ed9befc)
+
+Then, wait for the process to complete. Your new executable will be found in the `NEVE/builds/` directory with the name of the build
+folder being the name of your scene. This will build the executable for Mac, Windows and Linux.
+
+To use this build file, update the `buildDir` field in your config file to the path of your build directory. For example, if your
+scene was called `LoomWithCrab`, this will be `./builds/LoomWithCrab/`.
+```
+buildDir: ./builds/LoomWithCrab/
+```
 
 ## Create a new experiment from scratch
 
