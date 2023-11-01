@@ -136,13 +136,27 @@ If you would like to modify this stimulus controller, it would be advisable to f
 Once you are happy with how your new scene works, you can build it into an executable. This let's you run the experiment in a performant
 way and on your target displays. You can also send it to other machines and run it with the NEVE GUI executable.
 
-To build a scene, open the scene you would like to build.
+To build a scene, open the scene in Unity
 
-![image](https://github.com/jakemanger/NEVE/assets/52495554/428fdb13-17b8-4855-b2cf-13790225425d)
+![image](https://github.com/jakemanger/NEVE/assets/52495554/81bec8f5-02ca-4269-bc82-0e2db1713fc9)
 
-Then, select File > Build Current Scene
+select Build Settings
 
-![image](https://github.com/jakemanger/NEVE/assets/52495554/5fe4b28f-b1fe-4684-adcb-2a670ed9befc)
+![image](https://github.com/jakemanger/NEVE/assets/52495554/68359a04-2634-41fd-ae71-6ce5c0460d1d)
+
+and make sure your scene is in the Scenes to Build list by clicking Add Open Scenes.
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/c7d04421-77f9-42ba-9231-347651de9b71)
+
+Then, close that window and select File > Build Current Scene
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/6b4328d3-892e-4010-81f7-54a1fa5c869f)
+
+Note, if you want to Rebuild all the scenes found in the Scenes to Build list, you can instead use
+File > Build All Scenes. This will, however, take additional time.
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/99eac642-ce24-453a-808c-70899ed9fe47)
+
 
 Then, wait for the process to complete. Your new executable will be found in the `NEVE/builds/` directory with the name of the build
 folder being the name of your scene. This will build the executable for Mac, Windows and Linux.
