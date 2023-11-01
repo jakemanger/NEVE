@@ -141,6 +141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 201717202923611797}
     m_Modifications:
+    - target: {fileID: 7994142557919315045, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 1461069946}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -885,6 +889,7 @@ MonoBehaviour:
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   xMultiplier: 1
   zMultiplier: 1
+  darkAdaptFirstTrialOnly: 0
   darkAdaptNow: 0
   trialNumber: 0
   skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}

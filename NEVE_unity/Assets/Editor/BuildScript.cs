@@ -25,8 +25,8 @@ public class BuildScript
 
         Build(currentSceneList.ToArray(), "../builds/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
         Build(currentSceneList.ToArray(), "../builds/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
-        // set use Intel 64-bit architecture
-        UserBuildSettings.architecture = MacOSArchitecture.x64;
+        // set use Intel 64-bit or ARM64 architecture (universal). This is undocumented but see https://forum.unity.com/threads/cannot-build-unity-2020-projects-using-command-line-on-macos-with-xcode-10-or-11.1084085/
+        UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
         Build(currentSceneList.ToArray(), "../builds/", BuildTarget.StandaloneOSX, "Mac.app");
     } 
 
