@@ -16,16 +16,16 @@
 execution_order: [0, 1, 2, 3, 4, 5, 6, 7]
 frameDataIdCode: [0, 1, 2, 3, 4, 5, 6, 7]
 
-rotationOffsetY: [270, 270, 180, 0, 0, 0, 180, 270]
-crabPosX: [30, -30, -30, -30, 30, 30, -30, -30] # -30 = LEFT, 30 = RIGHT
-fictracFeedback: [1, 1, 1, 0, 0, 1, 0, 0] # 1 = closed loop, 0 = open loop
-startAzimuth: [-15, 0, 0, 15, 0, 15, 0, 0]
-endAzimuth: [15, 0, 0,-15, 0, -15, 0, 0]
-endDistance: [200, 200, 200, 200, 200, 200, 1.5, 200]
+rotationOffsetY: [0, 180, 270, 270, 180, 90, 90, 270]
+crabPosX: [30, -30, -30, 30, -30, 30, 30, -30] # -30 = LEFT, 30 = RIGHT
+fictracFeedback: [0, 0, 0, 0, 0, 0, 1, 1] # 1 = closed loop, 0 = open loop
+startAzimuth: [0, 0, 0, -15, -15, 0, 0, -15]
+endAzimuth: [0, 0, 0, 15, 15, 0, 0, 15]
+endDistance: [1.5, 200, 200, 200, 200, 1.5, 1.5, 200]
 
-animalCode: [3, 3, 4, 4, 5, 5, 6, 6]
+animalCode: [1, 1, 2, 2, 3, 3, 4, 4] 
 eyeHeight: 2.864 # CHANGE ME PER CRAB
-crabPosY: 1.05 # fudged TODO: fix this
+crabPosY: 1.05
 crabSize: 1.9 # carapace size if crabtype is 0, sphere size if crabtype is 1
 
 
@@ -75,7 +75,7 @@ startElevation: 15
 
 endElevation: 15
 startDistance: 200
-directPath: 1  # should direct path be 0 for the second and 5th trial?
+directPath: 1  
 duration: 10 
 numReps: 0.5 
 delayToApproach: 5 
