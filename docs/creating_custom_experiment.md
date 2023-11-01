@@ -162,9 +162,9 @@ Then, wait for the process to complete. Your new executable will be found in the
 folder being the name of your scene. This will build the executable for Mac, Windows and Linux.
 
 To use this build file, update the `buildDir` field in your config file to the path of your build directory. For example, if your
-scene was called `LoomWithCrab`, this will be `./builds/LoomWithCrab/`.
+scene was called `Optomotor`, this will be `./builds/Optomotor/`.
 ```
-buildDir: ./builds/LoomWithCrab/
+buildDir: ./builds/Optomotor/
 ```
 
 ## Create a new experiment from scratch
@@ -172,5 +172,3 @@ buildDir: ./builds/LoomWithCrab/
 This process is a bit more advanced. You will likely need to be experienced with C# and Unity.
 
 TODO
-
-This ca
