@@ -148,3 +148,11 @@ scene was called `LoomWithCrab`, this will be `./builds/LoomWithCrab/`.
 ```
 buildDir: ./builds/LoomWithCrab/
 ```
+
+## Create a new experiment from scratch
+
+This process is a bit more advanced. You will likely need to be experienced with C# and Unity.
+
+TODO
+
+This ca
