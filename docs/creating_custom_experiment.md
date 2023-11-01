@@ -17,7 +17,7 @@ We will go through both scenarios below.
 
 3. Once open in Unity, in the "Project Window" navigate to Scenes > 3d Scenes and select a scene (an experiment) that you would like to modify. You can copy and paste this scene before you open it and rename it to make a new scene.
 
-4. Setup python and the NEVE_python project for development by following:
+4. OPTIONALLY, setup python and the NEVE_python project for development by following:
 [Starting an experiment from python](starting_an_experiment_from_python.md)
 
 5. Make sure you have opened a config file in step 4 that matches the scene you opened in Unity. Update the `buildDir` field in this config file to `None`.
@@ -27,11 +27,15 @@ buildDir: None
 ```
 This will let the python part of NEVE know that you are interacting with the Unity editor.
 
-6. To test your setup, start up the python part of NEVE, specifying your config file:
+6. To test your setup, start up NEVE
+If you want to use the GUI, start it up (see the main README), press Start and then follow the instructions.
+
+If you want to use python and the command line, specify your config file:
 e.g.
 ```
 python control_simulation.py --ignore-gooey optomotor.yaml
 ```
+
 and then press the big play button in the Unity editor.
 
 You should now be able to test the scene, just like when it is built.
