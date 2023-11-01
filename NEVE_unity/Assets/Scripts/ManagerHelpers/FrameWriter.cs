@@ -145,7 +145,7 @@ public class FrameWriter : MonoBehaviour
 
     public void WriteData()
     {
-        string data = Time.time + ", " + System.DateTime.Now + ", " + syncSquareImg.enabled;
+        string data = Time.time + ", " + System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + ", " + syncSquareImg.enabled;
         for (int i = 0; i < transformsToRecord.Count; i++) {
             Vector3 position = transformsToRecord[i].position;
             Vector3 localScale = transformsToRecord[i].localScale;
