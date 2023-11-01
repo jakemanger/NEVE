@@ -148,7 +148,3 @@ scene was called `LoomWithCrab`, this will be `./builds/LoomWithCrab/`.
 ```
 buildDir: ./builds/LoomWithCrab/
 ```
-
-## Create a new experiment from scratch
-
-TODO
