@@ -11,9 +11,9 @@ cd NEVE_python/
 
 ## On Mac
 
-If you are on MacOS, ensure `python3` is your system installation of python, as
+*If you are on MacOS, ensure `python3` is your system installation of python, as
 the GUI framework will complain that you are not using a "Framework" version of
-python. 
+python.*
 
 Install the required dependencies
 ```
