@@ -15,10 +15,14 @@ The following pre-built stimuli are provided:
 | Stimulus | Description | Status |
 | -------- | ----------- | ------ |
 | Optomotor | Moving gratings that rotate around the viewer, used to identify the innate orienting behaviour caused by whole-field visual motion, known as an optomotor response. | Usable |
-| Loom | Moving spheres or rectangles that approach a target or more around a target, used to trigger escape responses. | Usable |
-| Dual loom | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
+| Loom | Moving spheres or cubes that approach a target or more around a target, used to trigger escape responses. | Usable |
+| LoomWithCrab | A closed-loop virtual-reality like stimulus where movement of the crab on a treadmill recorded by machine vision (fictrac) also moves the animals avatar, changing how objects are seen perspectively in the scene. Moving spheres or cubes approach the target animal or move around the animal target to trigger escape responses. A virtual crab is also displayed on the screen that moves around a burrow. | Usable |
 | Moving rectangle | A simple 2D moving rectangle stimulus used to trigger responses from movement detector neurons in electrophysiology experiments. | Usable |
-
+| Dual loom | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
+| Four loom | Similar to Dual loom, but with four looming objects. | Usable |
+| MimicExpansionSpeedLoom | A moving sphere or cube that approach a target or more around a target, used to trigger escape responses but with a modification that alters the expansion speed of the loom to mimic a stimulus with a different approach. | Experimental |
+| MimicExpansionSpeedDualLoom | Similar to MimicExpansionSpeedLoom, but with two looming objects. | Experimental |
+| HyperiidTrackLoom | Moving spheres or cubes that approach a target or more around a target with some visual modifications for the Looming stimulus, used to trigger tracking or escaping responses. | Experimental |
 
 ## Pre-built experiment example
 
