@@ -1,10 +1,22 @@
-# Below are the parameters used to alter a unity experiment with the name
-# Hyperiid orientation experiment
+# Below are the parameters used to alter a unity experiment where still objects
+# where snells window and bioluminenscent objects or silhouttes appears above, 
+# to the right and below at multiple light intensities.
 
-# runs through multiple conditions
-# where snells window and bioluminenscent appears above, to the right and below at two different intensities
+# Each experiment should take 73 * 40 seconds = 49 minutes (with 2 repeats).
+# The first and last displayed screens are completely black (for dark adaptation).
+# Once you are ready to start the experiment, press escape and make sure to hide the mouse
+# in the corner of the screen (it can sometimes appear when you press escape).
+# You will see the sync square in the bottom of one of the screens indicating what condition
+# is being displayed and the animal id you set in this file.
+# For the first 20 seconds, a new background will be set, with a ball covering the animals
+# view in all directions. Then, the ball will dissapear revealing a snells window, bioluminenscent object
+# or silhoutte. After another 20 seconds, the next condition will be displayed.
+# The order of experiment are randomised with the python part of the configuration file for you.
+# Just enter the stimulus conditions you wish to use and make sure to update the n_conditions parameter in
+# python_setup.
 
-# each experiment should take 58 minutes (with 2 repeats)
+# logs will be saved in the trial_logs/ directory with the parameters used and positional information
+# each frame from unity.
 
 # Controls for the experiment
 # escape - stall Unity, end the experiment and give control to python.
@@ -48,7 +60,7 @@ syncSquareEndedColourR: 102
 syncSquareEndedColourG: 26
 syncSquareEndedColourB: 26
 syncSquareEndedColourA: 255
-syncSquareDisplayNum: 3
+syncSquareDisplayNum: 0
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
@@ -79,7 +91,7 @@ belowHorizonColourA: 255
 horizonHeight: [41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5, 87.0, 87.0, 87.0, 84.0, 84.0, 84.0, 41.5, 41.5, 41.5]
 
 # object - here we use it to hide the still object, by putting the animal inside
-# this object for 20 seconds then hiding it to reveal the sill object. this has
+# this object for 20 seconds then hiding it to reveal the still object. this has
 # the same brightness as the background
 autoStart: 1
 stimulusType: 0
