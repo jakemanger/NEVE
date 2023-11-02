@@ -113,7 +113,6 @@ Below is an explanation of the parameters available for each experiment yaml fil
 | `fixElevation` | Whether to fix the elevation (up and down) if true or the azimuth if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `hideAtEnd` | Whether to hide the stimulus at the end of the loom. | `0` (false) or `1` (true) | `0` |
 | `directPath` | Whether to loom with a direct path from the start to end polar coordinates. If false, then will use the greater circle distance. | `0` (false) or `1` (true) | `1` |
-| `` | Whether to fix the X axis (up and down) if true or the Y axis if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `minAngularAngle`, `maxAngularAngle` | The minimum and maximum angular degrees to allow the stimulus object to be displayed in if `fixedAngularSize` is true. If the object is outside this range, then it will become partly or wholely invisible (will not be rendered). 0 is forwards, -ve is up/left and +ve is down/right | `-180`-`180` | `minAngularSize: -30`, `maxAngularSize: 30` |
 
 ## DualLoom specific
