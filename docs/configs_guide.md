@@ -1,6 +1,54 @@
 # Configs guide
 
-This document provides an explanation of NEVE's configuration parameters. See Generic parameters (parameters used in every stimulus) and specific parameters for your experiment, below.
+This document provides an explanation of NEVE's configuration parameters that you can alter in your experiment `configs/YOUR_EXPERIMENT.yaml` files.
+
+## How to use config parameters
+
+### Single number or list of numbers
+
+Parameters can be set in config files with a single value or a list. For example, in an optomotor experiment, we could set the grating density in the `configs/optomotor.yaml` file (or a copy of it) to be 800 in the first trial and 50 in the second trial using a **list**, like so:
+```yaml
+... LINE 48
+# stimuli
+density: [800, 50] 
+...
+```
+
+We could also set the speed to be 5 in all trials using a **single number**, like so:
+```yaml
+... LINE 48
+# stimuli
+density: [800, 50]
+speed: 5
+```
+
+### Python
+
+Another way to set experimental conditions in a config file is to use python.
+
+You can write python code in the `python_setup: ` parameter and then use that to set a parameter in your argument of choice by prefixing python code with `'python: ...your_code...'`.
+For example, if you wanted the order of your experimental conditions to be randomised each time you use a config file, you can:
+
+1. Write some python setup code to get all the variables needed to calculate the `execution_order` in `python_setup`:
+```
+python_setup: 'n_conditions = 73; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
+```
+*Note, calculating this requires knowledge of the number of conditions in the experiment.*
+
+2. Setting the `execution_order` parameter with python by using the `'python: ...your_code...'` prefix:
+```
+execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
+```
+
+An example of this used can be found in the `hyperiid_still_objects.yaml` configuration file.
+
+Note, parameters calculated with python can be found in the `config_logs/` and (if saved by the unity executable), the `trial_logs/` directory.
+
+
+## Parameter explanations
+
+Below is an explanation of the parameters available for each experiment yaml file found in the `configs/` directory. See Generic parameters (parameters used in every stimulus) and specific parameters for your experiment, below. Please let me know with a github [issue](https://github.com/jakemanger/NEVE/issues/new) or fill in the blanks yourself by [editting this guide](https://github.com/jakemanger/NEVE/edit/hyperiid_experiments/docs/configs_guide.md) if you discover missing parameters. 
+
 
 ## Generic 
 *Parameters used in every stimulus*
