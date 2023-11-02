@@ -9,8 +9,9 @@ To build a new executable, change directory to the `NEVE_python` directory
 cd NEVE_python/
 ```
 
-## On Mac
-
+<details>
+  <summary> On Mac </summary>
+  
 *If you are on MacOS, ensure `python3` is your system installation of python, as
 the GUI framework will complain that you are not using a "Framework" version of
 python.*
@@ -25,9 +26,12 @@ and run the following command:
 ```
 python3 -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle --assume-yes-for-downloads --remove-output control_simulation.py
 ```
+</details>
 
-## On Linux
-*If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.*
+<details>
+  <summary> On Linux </summary>
+
+  *If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.*
 
 Create your virtual environment
 ```
@@ -50,9 +54,12 @@ and run the following command:
 ```
 python -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle --assume-yes-for-downloads --remove-output control_simulation.py
 ```
+</details>
 
-## On Windows
-*If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.*
+<details>
+  <summary> On Windows </summary>
+
+  *If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.*
 
 Create your virtual environment
 ```
@@ -75,6 +82,7 @@ and run the following command:
 ```
 python -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle --assume-yes-for-downloads --remove-output control_simulation.py
 ```
+</details>
 
 
 This will save the executable in the `NEVE_python` directory. Move it into the
