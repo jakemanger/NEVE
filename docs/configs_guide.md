@@ -49,7 +49,7 @@ Note, parameters calculated with python can be found in the `config_logs/` and (
 
 Below is an explanation of the parameters available for each experiment yaml file found in the `configs/` directory. See Generic parameters (parameters used in every stimulus) and specific parameters for your experiment, below. Please let me know with a github [issue](https://github.com/jakemanger/NEVE/issues/new) or fill in the blanks yourself by [editting this guide](https://github.com/jakemanger/NEVE/edit/hyperiid_experiments/docs/configs_guide.md) if you discover missing parameters. 
 
-*If you ever want to know whether you are missing any parameters or if you want to check all the available parameters for the experiment, set the `mustIncludeEveryParameter` parameter to `1`. This will cause a red screen to appear and all the non-set parameters to be listed on screen. Parameters are also set on unity's side in the [StimulusManager `.cs` files](../NEVE_unity/Assets/Scripts/StimulusManagers/)
+*If you ever want to know whether you are missing any parameters or if you want to check all the available parameters for the experiment, set the `mustIncludeEveryParameter` parameter to `1`. This will cause a red screen to appear and all the non-set parameters to be listed on screen. Parameters are also set on unity's side in the [StimulusManager `.cs` files](../NEVE_unity/Assets/Scripts/StimulusManagers/)*
 
 ## Generic 
 *Parameters used in every stimulus*
