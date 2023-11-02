@@ -2,7 +2,7 @@
 
 *tested using python3.9*
 
-If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.
+
 
 To build a new executable, change directory to the `NEVE_python` directory 
 ```
@@ -27,12 +27,18 @@ python3 -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle -
 ```
 
 ## On Linux
+*If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.*
 
 Create your virtual environment
 ```
 python3.9 -m venv venv
 ```
 *Replace python3.9 with your installed version of python.* On Windows, this is sometimes called `py` or `py3`.*
+
+activate the virtual environment
+```
+source venv/bin/activate
+```
 
 install the required dependencies
 ```
@@ -46,6 +52,7 @@ python -m nuitka --standalone --enable-plugin=numpy --macos-create-app-bundle --
 ```
 
 ## On Windows
+*If you are on Windows or linux, you will need to use a virtual environment. See [here](https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240) for how to use a virtual environment.*
 
 Create your virtual environment
 ```
