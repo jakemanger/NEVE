@@ -1,4 +1,4 @@
-# Build a new NEVE executable
+# Build a new NEVE GUI executable
 
 *tested using python3.9*
 
@@ -29,3 +29,6 @@ MacOS. Double click it to ensure it runs correctly.
 
 See https://nuitka.net/doc/user-manual.html for more information on building
 executables with python and debugging.
+
+*If you get an error at the last step about no python-config. It may be that you need the python3.9-dev (the
+development version of python*
