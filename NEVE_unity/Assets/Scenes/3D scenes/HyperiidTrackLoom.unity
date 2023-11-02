@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.60699433, g: 0.60699433, b: 0.60699433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -194,6 +194,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &741840304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1851185963}
+    m_Modifications:
+    - target: {fileID: 7074247469661396488, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_Name
+      value: Global Volume (for LUT)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8406925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48326874
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18714905
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+--- !u!4 &741840305 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7074247469661396490, guid: 37248b13f20324108a54c4543a3c5597, type: 3}
+  m_PrefabInstance: {fileID: 741840304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &923594276
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +538,7 @@ MonoBehaviour:
   recieveInputFromSocket: 0
   startFictracFromStart: 0
   mustIncludeEveryParameter: 0
+  use32BitColor: 0
   eyeHeight: 2
   distanceToMonitors: 7
   monitorDimensions: {x: 12.176, y: 6.87}
@@ -494,10 +557,17 @@ MonoBehaviour:
   syncSquarePos: {x: -29.84, y: 18.17102}
   syncSquareScalar: 1
   syncSquareColor: {r: 1, g: 0, b: 0, a: 1}
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
+  syncSquareTextColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   syncSquare: {fileID: 1844270403}
   syncSquareDisplayNum: 0
   displayStimulusCode: 1
   flickerDuration: 0.1
+  flashingSyncSquare: 0
+  flashingSyncSquareFrequency: 1
+  flashingSyncSquareUseMS: 1
   camMon: {fileID: 1670985994}
   frameWriter: {fileID: 1851185964}
   episodeController: {fileID: 1851185965}
@@ -508,6 +578,9 @@ MonoBehaviour:
   errorMessageObject: {fileID: 6560696380796135686, guid: c75dbb9b7733a2a209506e92cb3733d7, type: 3}
   xMultiplier: 1
   zMultiplier: 1
+  darkAdaptFirstTrialOnly: 0
+  darkAdaptNow: 0
+  trialNumber: 0
   stimGenerator: {fileID: 2144851248}
   skyboxMaterial: {fileID: 2100000, guid: f99ab7194e3e146a3b9169ea8f5ace91, type: 2}
 --- !u!4 &1851185963
@@ -520,7 +593,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 741840305}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -540,6 +614,13 @@ MonoBehaviour:
   recordingFrequency: 1
   stimTrans: {fileID: 4517113867649947908}
   syncSquareImg: {fileID: 1110731330}
+  flashingSyncSquare: 0
+  flashingSyncFrequency: 60
+  flashingSyncSquareUseMS: 1
+  flashOn: 0
+  syncSquareWaitingColor: {r: 0, g: 0, b: 0, a: 1}
+  syncSquareStartedColor: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+  syncSquareEndedColor: {r: 0.4, g: 0.1, b: 0.1, a: 1}
   experimentId: test_
   outputFilePath: test.csv
   stimulusControllers: []
@@ -577,15 +658,21 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 1
     NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 0
+      BranchSizes: 01000000
     VectorActionSize: 01000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
   TeamId: 0
   m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!114 &1851185967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 923594280}
     m_Modifications:
+    - target: {fileID: 7994142557919315045, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 1768751036}
     - target: {fileID: 7994142557919315046, guid: cba49f8e4cab34818b963aafed9c576b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

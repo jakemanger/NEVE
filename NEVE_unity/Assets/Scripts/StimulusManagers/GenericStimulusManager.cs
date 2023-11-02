@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using System.IO;
 
 public abstract class GenericStimulusManager : MonoBehaviour
 {
@@ -13,6 +16,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public bool startFictracFromStart = false;
 
     public bool mustIncludeEveryParameter = false;
+    public bool use32BitColor = false;
 
     [Header("Generic camera view parameters")]
     public float eyeHeight = 2f; // cm vertically relative to bottom of front facing monitors
@@ -42,10 +46,18 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public Vector2 syncSquarePos = new Vector2(-29.84f, 18.17102f);
     public float syncSquareScalar = 1f;
     public Color syncSquareColor = Color.red;
+    public Color syncSquareWaitingColor = Color.black;
+    public Color syncSquareStartedColor = new Color(0.7f, 0.2f, 0.2f);
+    public Color syncSquareEndedColor = new Color(0.4f, 0.1f, 0.1f);
+    public Color syncSquareTextColor = Color.white;
     public SyncSquare syncSquare;
     public int syncSquareDisplayNum = 0;
     public bool displayStimulusCode = true;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
+    public bool flashingSyncSquare = false;
+    public float flashingSyncSquareFrequency = 1;
+    // use milliseconds instead of frames
+    public bool flashingSyncSquareUseMS = true;
 
     [Header("Generic Components")]
     public CameraMonitorController camMon;
@@ -72,11 +84,6 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public int trialNumber = 0;
 
 
-    void Start() {
-        print("Recieving parameters from python.");
-    }
-
-
     public virtual void Reset() {
         blackOutCanvases.SetActive(true);
 
@@ -95,10 +102,19 @@ public abstract class GenericStimulusManager : MonoBehaviour
         frameWriter.recordEachFrame = recordFrameData;
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
+        frameWriter.flashingSyncSquare = flashingSyncSquare;
+        frameWriter.flashingSyncFrequency = flashingSyncSquareFrequency;
+        // note, flashing sync squares with frames instead of milliseconds really only make sense if
+        // v-sync is on, as unity will otherwise usually run faster than the monitor refresh rate
+        frameWriter.flashingSyncSquareUseMS = flashingSyncSquareUseMS;
+        frameWriter.syncSquareWaitingColor = syncSquareWaitingColor;
+        frameWriter.syncSquareStartedColor = syncSquareStartedColor;
+        frameWriter.syncSquareEndedColor = syncSquareEndedColor;
         frameWriter.Reset();
         syncSquare.transform.parent.GetComponent<Canvas>().targetDisplay = syncSquareDisplayNum;
         syncSquare.flickerDuration = flickerDuration;
         syncSquare.flickerColor = syncSquareColor;
+        syncSquare.textColor = syncSquareTextColor;
         syncSquare.displayStimulusCode = displayStimulusCode;
         syncSquare.stimulusCode = frameDataIdCode;
         syncSquare.animalCode = animalCode;
@@ -117,6 +133,24 @@ public abstract class GenericStimulusManager : MonoBehaviour
         socketMovementController.minMovementDistance = GetFloatFromPython("minMovementDistance", 0.1f);
         socketMovementController.maxDistanceDelta = GetFloatFromPython("maxDistanceDelta", 80f);
         socketMovementController.Reset();
+
+        string lutPath = "LUTs/lut.png";
+        int attempts = 0;
+        while (true)
+        {
+            // search for the lut directory (changes depending on platform or if in editor)
+            print("Searching for lut path at: " + lutPath);
+            if (File.Exists(lutPath)) {
+                SetLUT(lutPath);
+                break;
+            }
+            lutPath = "../" + lutPath;
+            attempts += 1;
+            if (attempts > 10) {
+                RaiseError("Could not find the lookup texture (LUT). Place this texture at the following path: LUTs/lut.png");
+                break;
+            }
+        }
 
         CheckParameters();
         trialNumber += 1;
@@ -142,15 +176,19 @@ public abstract class GenericStimulusManager : MonoBehaviour
             }
         }
         if (errorMessage != "") {
-            if (errorMessageObject != null) {
-                errorMessageObject = Instantiate(errorMessageObject, Vector3.zero, Quaternion.identity);
-                errorMessageObject.SetActive(true);
-                errorText = errorMessageObject.transform.GetChild(0).GetChild(1).GetComponent<Text>();
-                errorText.text = errorBeg + errorMessage + errorEnd;
-            } else {
-                print("Could not find errorMessageObject, so printing error to the console.");
-                print(errorMessage);
-            }
+            RaiseError(errorBeg + errorMessage + errorEnd);
+        }
+    }
+
+    public void RaiseError(string text) {
+        if (errorMessageObject != null) {
+            errorMessageObject = Instantiate(errorMessageObject, Vector3.zero, Quaternion.identity);
+            errorMessageObject.SetActive(true);
+            errorText = errorMessageObject.transform.GetChild(0).GetChild(1).GetComponent<Text>();
+            errorText.text = text;
+        } else {
+            print("Could not find errorMessageObject, so printing error to the console.");
+            print(text);
         }
     }
 
@@ -165,14 +203,22 @@ public abstract class GenericStimulusManager : MonoBehaviour
         // }
 
         // set properties from python
+        use32BitColor = GetBoolFromPython("use32BitColor", false); // needs to be before any colors are set
         eyeHeight = GetFloatFromPython("eyeHeight", 2f);
         distanceToMonitors = GetFloatFromPython("distanceToMonitors", 7f);
         monitorDimensions = GetVector2FromPython("monitorDimensions", new Vector2(12.176f, 6.87f));
         flickerDuration = GetFloatFromPython("flickerDuration", 0.1f);
         syncSquareColor = GetColorFromPython("syncSquareColour", Color.red);
+        syncSquareWaitingColor = GetColorFromPython("syncSquareWaitingColour", Color.black);
+        syncSquareStartedColor = GetColorFromPython("syncSquareStartedColour", new Color(0.7f, 0.2f, 0.2f));
+        syncSquareEndedColor = GetColorFromPython("syncSquareEndedColour", new Color(0.4f, 0.1f, 0.1f));
+        syncSquareTextColor = GetColorFromPython("syncSquareTextColour", new Color(0.3f, 0.1f, 0.1f));
         syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);
+        flashingSyncSquare = GetBoolFromPython("flashingSyncSquare", false);
+        flashingSyncSquareFrequency = GetFloatFromPython("flashingSyncSquareFrequency", 100f);
+        flashingSyncSquareUseMS = GetBoolFromPython("flashingSyncSquareUseMS", true);
         displayStimulusCode = GetBoolFromPython("displayStimulusCode", true);
         manualControl = GetBoolFromPython("manualControl", false);
         mouseMoveSpeed = GetFloatFromPython("mouseMoveSpeed", 1f);
@@ -266,6 +312,16 @@ public abstract class GenericStimulusManager : MonoBehaviour
         parametersExpected.Add(nameG);
         parametersExpected.Add(nameB);
         parametersExpected.Add(nameA);
+
+        if (use32BitColor) {
+            return new Color32(
+                (byte)floatChannel.GetWithDefault(nameR, defaultValue.r * 255f),
+                (byte)floatChannel.GetWithDefault(nameG, defaultValue.g * 255f),
+                (byte)floatChannel.GetWithDefault(nameB, defaultValue.b * 255f),
+                (byte)floatChannel.GetWithDefault(nameA, defaultValue.a * 255f)
+            );
+        }
+
         return new Color(
             floatChannel.GetWithDefault(nameR, defaultValue.r),
             floatChannel.GetWithDefault(nameG, defaultValue.g),
@@ -278,5 +334,24 @@ public abstract class GenericStimulusManager : MonoBehaviour
         string name = parameterName + extraSuffix;
         parametersExpected.Add(name);
         return floatChannel.GetWithDefault(name, defaultValue ? 1f : 0f) != 0f;
+    }
+
+    public void SetLUT(string lutPath) {
+        // set the lut of the color lookup on lutVolume
+        UnityEngine.Rendering.VolumeProfile volumeProfile = transform.GetChild(0).GetComponent<UnityEngine.Rendering.Volume>()?.profile;
+        if(!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
+        
+        // You can leave this variable out of your function, so you can reuse it throughout your class.
+        UnityEngine.Rendering.Universal.ColorLookup colorLookup;
+        
+        if(!volumeProfile.TryGet(out colorLookup)) throw new System.NullReferenceException(nameof(colorLookup));
+
+        // create a RGB8 Unorm texture from the LUT file
+        Texture2D texture = new Texture2D(1024, 32, TextureFormat.RGBA32, false, true);
+        texture.wrapMode = TextureWrapMode.Clamp;
+
+        texture.LoadImage(File.ReadAllBytes(lutPath));
+        
+        colorLookup.texture.Override(texture);
     }
 }

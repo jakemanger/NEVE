@@ -11,6 +11,7 @@ using System.Reflection;
 // about the simulation each frame
 public class FrameWriter : MonoBehaviour
 {
+
     public bool recordEachFrame = true;
 
     // only used if recordEachFrame is false
@@ -21,6 +22,18 @@ public class FrameWriter : MonoBehaviour
     public Transform stimTrans;
 
     public Image syncSquareImg;
+    public bool flashingSyncSquare = false;
+    public float flashingSyncFrequency = 60f;
+    public bool flashingSyncSquareUseMS = true;
+    public bool flashOn = false;
+    float flashingSyncCounter = 0;
+    public Color syncSquareWaitingColor = Color.black;
+    public Color syncSquareStartedColor = new Color(0.7f, 0.2f, 0.2f);
+    public Color syncSquareEndedColor = new Color(0.4f, 0.1f, 0.1f);
+
+    // add custom values to write in list (can be added by other classes)
+    // these should be modified each time step
+    public Dictionary<string, float> floatsToWrite = new Dictionary<string, float>();
 
     public string experimentId = "test_";
     public string outputFilePath;
@@ -45,6 +58,10 @@ public class FrameWriter : MonoBehaviour
     public void Reset() {
         startedNewFile = false;
         startNewFile = true;
+
+        flashingSyncCounter = 0f;
+        flashOn = false;
+        floatsToWrite = new Dictionary<string, float>();
 
         // find all stimulus controllers GenericStimulusController
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
@@ -113,6 +130,12 @@ public class FrameWriter : MonoBehaviour
                 headers += ", " + stimulusControllers[i].name + "_stimulusState";
             }
 
+            // add headers of float dictionary
+            foreach( KeyValuePair<string, float> kvp in floatsToWrite )
+            {
+                headers += ", " + kvp.Key;
+            }
+
             _sw.WriteLine(headers);
 
             startNewFile = false;
@@ -122,7 +145,7 @@ public class FrameWriter : MonoBehaviour
 
     public void WriteData()
     {
-        string data = Time.time + ", " + System.DateTime.Now + ", " + syncSquareImg.enabled;
+        string data = Time.time + ", " + System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + ", " + syncSquareImg.enabled;
         for (int i = 0; i < transformsToRecord.Count; i++) {
             Vector3 position = transformsToRecord[i].position;
             Vector3 localScale = transformsToRecord[i].localScale;
@@ -131,6 +154,11 @@ public class FrameWriter : MonoBehaviour
 
         for (int i = 0; i < stimulusControllers.Length; i++) {
             data += ", " + stimulusControllers[i].stimulusState;
+        }
+
+        foreach( KeyValuePair<string, float> kvp in floatsToWrite )
+        {
+            data += ", " + kvp.Value;
         }
 
         _sw.WriteLine(data);
@@ -144,9 +172,8 @@ public class FrameWriter : MonoBehaviour
     }
 
     void setSyncSquareValues() {
-        Color stimStateColor = Color.black;
-
         StimulusState stimState = StimulusState.Waiting;
+        Color stimStateColor = stimulusStateImage.color;
 
         if (stimControllerLength > 1) {
             stimState = stimulusControllers[1].stimulusState;
@@ -157,11 +184,28 @@ public class FrameWriter : MonoBehaviour
         }
         
         if (stimState == StimulusState.Waiting) {
-            stimStateColor = Color.black;
+            stimStateColor = syncSquareWaitingColor;
         } else if (stimState == StimulusState.Started) {
-            stimStateColor = Color.white;
+            if (flashingSyncSquare) {
+                if (flashingSyncSquareUseMS) {
+                    flashingSyncCounter -= Time.deltaTime * 1000;
+                } else {
+                    flashingSyncCounter -= 1.0f;
+                }
+                if (flashingSyncCounter <= 0) {
+                    if (flashOn) {
+                        stimStateColor = syncSquareStartedColor;
+                    } else {
+                        stimStateColor = syncSquareWaitingColor;
+                    }
+                    flashingSyncCounter = flashingSyncFrequency;
+                    flashOn = !flashOn;
+                }
+            } else {
+                stimStateColor = syncSquareStartedColor;
+            }
         } else if (stimState == StimulusState.Ended) {
-            stimStateColor = Color.grey;
+            stimStateColor = syncSquareEndedColor;
         }
 
         stimulusStateImage.color = stimStateColor;

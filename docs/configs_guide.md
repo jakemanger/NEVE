@@ -1,6 +1,55 @@
 # Configs guide
 
-This document provides an explanation of NEVE's configuration parameters. See Generic parameters (parameters used in every stimulus) and specific parameters for your experiment, below.
+This document provides an explanation of NEVE's configuration parameters that you can alter in your experiment `configs/YOUR_EXPERIMENT.yaml` files.
+
+## How to use config parameters
+
+### Single number or list of numbers
+
+Parameters can be set in config files with a single value or a list. For example, in an optomotor experiment, we could set the grating density in the `configs/optomotor.yaml` file (or a copy of it) to be 800 in the first trial and 50 in the second trial using a **list**, like so:
+```yaml
+... LINE 48
+# stimuli
+density: [800, 50] 
+...
+```
+
+We could also set the speed to be 5 in all trials using a **single number**, like so:
+```yaml
+... LINE 48
+# stimuli
+density: [800, 50]
+speed: 5
+```
+
+### Python
+
+Another way to set experimental conditions in a config file is to use python.
+
+You can write python code in the `python_setup: ` parameter and then use that to set a parameter in your argument of choice by prefixing python code with `'python: ...your_code...'`.
+For example, if you wanted the order of your experimental conditions to be randomised each time you use a config file, you can:
+
+1. Write some python setup code to get all the variables needed to calculate the `execution_order` in `python_setup`:
+```
+python_setup: 'n_conditions = 73; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
+```
+*Note, calculating this requires knowledge of the number of conditions in the experiment.*
+
+2. Setting the `execution_order` parameter with python by using the `'python: ...your_code...'` prefix:
+```
+execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
+```
+
+An example of this used can be found in the `hyperiid_still_objects.yaml` configuration file.
+
+Note, parameters calculated with python can be found in the `config_logs/` and (if saved by the unity executable), the `trial_logs/` directory.
+
+
+## Parameter explanations
+
+Below is an explanation of the parameters available for each experiment yaml file found in the `configs/` directory. See Generic parameters (parameters used in every stimulus) and specific parameters for your experiment, below. Please let me know with a github [issue](https://github.com/jakemanger/NEVE/issues/new) or fill in the blanks yourself by [editting this guide](https://github.com/jakemanger/NEVE/edit/hyperiid_experiments/docs/configs_guide.md) if you discover missing parameters. 
+
+*If you ever want to know whether you are missing any parameters or if you want to check all the available parameters for the experiment, set the `mustIncludeEveryParameter` parameter to `1`. This will cause a red screen to appear and all the non-set parameters to be listed on screen. Parameters are also set on unity's side in the [StimulusManager `.cs` files](../NEVE_unity/Assets/Scripts/StimulusManagers/)*
 
 ## Generic 
 *Parameters used in every stimulus*
@@ -40,8 +89,8 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `aboveHorizonColourRFront`, `aboveHorizonColourGFront`, `aboveHorizonColourBFront`, `aboveHorizonColourAFront` | An override of the RGBA values of the above horizon colour for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `0`-`1` | *Ignored* |
 | `belowHorizonColourRFront`, `belowHorizonColourGFront`, `belowHorizonColourBFront`, `belowHorizonColourAFront` | An override of the RGBA values of the below horizon colour for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `0`-`1` | *Ignored* |
 | `horizonHeightFront` | An override of the height of the horizon in degrees for the front display. Can also override `Right`, `Left` and `Back` displays by substituting them in for `Front` in the parameter name. | `-90`-`90` | *Ignored* |
-| `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
-| `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
+| `startScaleX`, `startScaleY`, `startScaleZ` | The scale of the stimulus at the start of the loom. A scale of 1 is 1cm in Unity. | `0`-a very large number | `startScaleX: 1`, `startScaleY: 1`, `startScaleZ: 1` |
+| `endScaleX`, `endScaleY`, `endScaleZ` | The scale of the stimulus at the end of the loom. A scale of 1 is 1cm in Unity.  | `0`-a very large number | `endScaleX: 1`, `endScaleY: 1`, `endScaleZ: 1` |
 | `startElevation`, `startAzimuth` | The stimulus polar position at the start of the loom. | startElevation: `-90`-`90`, startAzimuth: `-180`-`180` | `startElevation: 0`, `startAzimuth: 0` |
 | `endElevation`, `endAzimuth` | The stimulus polar position at the end of the loom. Note, X and Y are rotational axes, so X is up and down, Y is left and right. X is the equivalent of negative elevation, Y is the equivalent of azimuth. | X: `-90`-`90`, Y: `-180`-`180` | `endElevation: 0`, `endAzimuth: 0` |
 | `originX`, `originY`, `originZ` | The offset of the target location from the eye position in cartesian coordinates and cm. | `0`-a very large number | `0` |
@@ -60,11 +109,10 @@ This document provides an explanation of NEVE's configuration parameters. See Ge
 | `gratingIsSquare` | Whether the grating is square (true) or a sinewave (false). | `0` (false) or `1` (true) | `0` |
 | `gratingMaxIntensity` | The maximum intensity of the grating. | `0`-`1` | `1` |
 | `gratingMinIntensity` | The minimum intensity of the grating. | `0`-`1` | `0` |
-| `fixedAngularSize` | Whether to use a fixed angular size or not. | `0` (false) or `1` (true) | `0` |
+| `fixedAngularSize` | Whether to use a fixed angular size or not. Adjust `fixElevation`, `minAngularAngle`, `maxAngularAngle` if you use this. | `0` (false) or `1` (true) | `0` |
 | `fixElevation` | Whether to fix the elevation (up and down) if true or the azimuth if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `hideAtEnd` | Whether to hide the stimulus at the end of the loom. | `0` (false) or `1` (true) | `0` |
 | `directPath` | Whether to loom with a direct path from the start to end polar coordinates. If false, then will use the greater circle distance. | `0` (false) or `1` (true) | `1` |
-| `` | Whether to fix the X axis (up and down) if true or the Y axis if false (right and left). | `0` (false) or `1` (true) | `0` |
 | `minAngularAngle`, `maxAngularAngle` | The minimum and maximum angular degrees to allow the stimulus object to be displayed in if `fixedAngularSize` is true. If the object is outside this range, then it will become partly or wholely invisible (will not be rendered). 0 is forwards, -ve is up/left and +ve is down/right | `-180`-`180` | `minAngularSize: -30`, `maxAngularSize: 30` |
 
 ## DualLoom specific

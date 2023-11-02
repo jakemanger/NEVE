@@ -10,7 +10,7 @@
 
 # saving, control and syncing
 buildDir: ./builds/MovingRectangle
-frameDataIdCode: [1, 2, 3, 4, 5, 6]  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
+frameDataIdCode: 'python: list(range(1, 7))'  # a id code representing the experiment id. used to identify which frame save data is for what experiment.
 animalCode: 1  # a id code representing the animal
 execution_order: [0, 1, 2, 3, 4, 5]  # 0 = first, 1 = second
 experimentDuration: 2  # total duration of the experiment (seconds). after this time (or if escape is pressed), unity will stall and give control back to python

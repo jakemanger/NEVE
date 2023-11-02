@@ -16,6 +16,9 @@ public class LoomManager : GenericStimulusManager
         mat.SetColor("_belowHorizonColour", GetColorFromPython("belowHorizonColour", Color.grey));
         RenderSettings.skybox = mat;
 
+        print("aboveHorizonColour: " + mat.GetColor("_aboveHorizonColour"));
+        print("belowHorizonColour: " + mat.GetColor("_belowHorizonColour"));
+
         // specific overrides for backgrounds on different cameras
         float[] horizonHeights = new float[4] { -9999f, -9999f, -9999f, -9999f };
         Color[] aboveHorizonColours = new Color[4] { Color.grey, Color.grey, Color.grey, Color.grey };
@@ -56,7 +59,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.rotationOffset = rotationOffset;
         stimGenerator.flickerDuration = base.flickerDuration;
         stimGenerator.numReps = GetFloatFromPython("numReps", 0.5f);
-        stimGenerator.stimulusType = (int)GetFloatFromPython("stimulusType", 0);
+        stimGenerator.stimulusType = (int)GetFloatFromPython("stimulusType", 3);
         stimGenerator.drawOutline = GetBoolFromPython("drawOutline", false);
         stimGenerator.outlineWidth = GetFloatFromPython("outlineWidth", 5f);
         stimGenerator.outlineColor = GetColorFromPython("outlineColour", Color.black);

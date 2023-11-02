@@ -17,7 +17,7 @@ We will go through both scenarios below.
 
 3. Once open in Unity, in the "Project Window" navigate to Scenes > 3d Scenes and select a scene (an experiment) that you would like to modify. You can copy and paste this scene before you open it and rename it to make a new scene.
 
-4. Setup python and the NEVE_python project for development by following:
+4. OPTIONALLY, setup python and the NEVE_python project for development by following:
 [Starting an experiment from python](starting_an_experiment_from_python.md)
 
 5. Make sure you have opened a config file in step 4 that matches the scene you opened in Unity. Update the `buildDir` field in this config file to `None`.
@@ -27,11 +27,15 @@ buildDir: None
 ```
 This will let the python part of NEVE know that you are interacting with the Unity editor.
 
-6. To test your setup, start up the python part of NEVE, specifying your config file:
+6. To test your setup, start up NEVE
+If you want to use the GUI, start it up (see the main README), press Start and then follow the instructions.
+
+If you want to use python and the command line, specify your config file:
 e.g.
 ```
 python control_simulation.py --ignore-gooey optomotor.yaml
 ```
+
 and then press the big play button in the Unity editor.
 
 You should now be able to test the scene, just like when it is built.
@@ -127,7 +131,44 @@ Like other GenericStimulusGenerators, these have two main functions:
 
 If you would like to modify this stimulus controller, it would be advisable to first duplicate the file in the "Project Window" and then rename it. Make sure when you rename a .cs file, that you change the Class name in the file to match that of the filename, otherwise you will get an error in the console. You will also need to delete the old .cs file used by the corresponding object and drag and drop this new one onto the object in the scene (found with the "Hierarchy Window" and "Inspector Window") to make your modified file used in the scene.
 
+### Building the executable
+
+Once you are happy with how your new scene works, you can build it into an executable. This let's you run the experiment in a performant
+way and on your target displays. You can also send it to other machines and run it with the NEVE GUI executable.
+
+To build a scene, open the scene in Unity
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/81bec8f5-02ca-4269-bc82-0e2db1713fc9)
+
+select Build Settings
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/68359a04-2634-41fd-ae71-6ce5c0460d1d)
+
+and make sure your scene is in the Scenes to Build list by clicking Add Open Scenes.
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/c7d04421-77f9-42ba-9231-347651de9b71)
+
+Then, close that window and select File > Build Current Scene
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/6b4328d3-892e-4010-81f7-54a1fa5c869f)
+
+Note, if you want to Rebuild all the scenes found in the Scenes to Build list, you can instead use
+File > Build All Scenes. This will, however, take additional time.
+
+![image](https://github.com/jakemanger/NEVE/assets/52495554/99eac642-ce24-453a-808c-70899ed9fe47)
+
+
+Then, wait for the process to complete. Your new executable will be found in the `NEVE/builds/` directory with the name of the build
+folder being the name of your scene. This will build the executable for Mac, Windows and Linux.
+
+To use this build file, update the `buildDir` field in your config file to the path of your build directory. For example, if your
+scene was called `Optomotor`, this will be `./builds/Optomotor/`.
+```
+buildDir: ./builds/Optomotor/
+```
 
 ## Create a new experiment from scratch
+
+This process is a bit more advanced. You will likely need to be experienced with C# and Unity.
 
 TODO

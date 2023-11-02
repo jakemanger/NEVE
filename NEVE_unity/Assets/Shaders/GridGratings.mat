@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GridGratings
-  m_Shader: {fileID: -6465566751694194690, guid: 0664293e8400d405e8adea9b97f02d38, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: dc4884771e0c84a59beea2f61168c2e7, type: 3}
   m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -82,6 +82,7 @@ Material:
     m_Floats:
     - Boolean_268bcc140e1b4653870e53ebdb1388b4: 0
     - Boolean_465f31f349ec4b2f994015d60b5bc8da: 1
+    - Boolean_df0c3b4302e740ee88cac2fde1034685: 0
     - Boolean_e41e2089c9bc463abcd1f44d32a54567: 0
     - Vector1_00c1749edf9f464d9a577b6b3ff85c96: 22.25
     - Vector1_1: 0
@@ -108,27 +109,29 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Maximum: 0.02
+    - _Maximum: 0.08627451
     - _Metallic: 0
     - _Minimum: 0
     - _OcclusionStrength: 1
-    - _Offset: 0
+    - _Offset: 180
+    - _OnlyShowOneHalfCycle: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 5
-    - _Square: 0
+    - _Speed: -10
+    - _Square: 1
     - _SrcBlend: 1
     - _SunDisk: 2
     - _SunSize: 0.04
     - _SunSizeConvergence: 5
     - _Surface: 0
+    - _VerticalAngleVisible: 4
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _progress: 46.580166
+    - _progress: 284.47806
     m_Colors:
     - Color_10a2bf8483b2471d83ed3dba372b61cd: {r: 1, g: 1, b: 1, a: 0}
     - Color_3342a62d66ab43b1a382470c7937a8b8: {r: 0, g: 0, b: 0, a: 0}

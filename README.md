@@ -15,10 +15,16 @@ The following pre-built stimuli are provided:
 | Stimulus | Description | Status |
 | -------- | ----------- | ------ |
 | Optomotor | Moving gratings that rotate around the viewer, used to identify the innate orienting behaviour caused by whole-field visual motion, known as an optomotor response. | Usable |
-| Loom | Moving spheres or rectangles that approach a target or more around a target, used to trigger escape responses. | Usable |
-| Dual loom | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
+| Loom | Moving spheres or cubes that approach a target or more around a target, used to trigger escape responses. | Usable |
+| Loom With Crab | A closed-loop virtual-reality like stimulus where movement of the crab on a treadmill recorded by machine vision (fictrac) also moves the animals avatar, changing how objects are seen perspectively in the scene. Moving spheres or cubes approach the target animal or move around the animal target to trigger escape responses. A virtual crab is also displayed on the screen that moves around a burrow. | Usable |
 | Moving rectangle | A simple 2D moving rectangle stimulus used to trigger responses from movement detector neurons in electrophysiology experiments. | Usable |
+| Dual Loom | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
+| Four Loom | Similar to Dual loom, but with four looming objects. | Usable |
+| Mimic Expansion Speed Loom | A moving sphere or cube that approach a target or move around a target, used to trigger escape responses but with a modification that alters the expansion speed of the loom to mimic a stimulus with a different approach. | Experimental |
+| Mimic Expansion Speed Dual Loom | Similar to MimicExpansionSpeedLoom, but with two looming objects. | Experimental |
+| Hyperiid Still Objects | Still objects simulating Snell's window, bioluminescence or silhouttes appears above, to the right and below the animal at multiple light intensities. This was used to trigger attraction and escape responses in hyperiid amphipods in aquaria in low-light conditions. | Experimental |
 
+*If you create a new stimulus, please consider sharing it with the community by [making a pull request](https://github.com/jakemanger/NEVE/pulls).*
 
 ## Pre-built experiment example
 
