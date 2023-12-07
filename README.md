@@ -1,26 +1,13 @@
-# NEVE toolkit
+# Closed loop fiddler crab experiments
 
-<p align="center">
-  <img src="docs/loom_experiment.gif" />
-  <img src="docs/readme_gif.gif" />
-</p>
+The below instructions are a guide on how to run closed loop fiddler crab experiments in X.
 
+The experiment uses a pre-built executable from unity that is controlled via python. It uses a distinct approach to building and controlling an experiment to CAVE, presented in X, although both use closed-loop experiments with Unity and machine vision. This variation stems from a multi-laboratory collaboration from two teams. 
 
-Neuroecology virtual environments (NEVE) is a simple toolkit to build and run stimuli for behavioural and physiological experiments or reinforcement learning modelling.
-NEVE uses the [Unity](https://unity.com/) engine to create and display perspectively correct stimuli at high-frame rates and in real time. Users can modify a set of
-commonly-used pre-built experiments for their purposes with configuration files and control experiments from a simple app, via the command-line or python.
+If you intend to build your own experiment, please see the complete and well-documented CAVE interface at Y published along side the results of this experiment.
 
-The following pre-built stimuli are provided:
+This project comes with a skeleton of another toolkit for building Unity experiments for neurecological research, called NEVE. NEVE is a part of the ongoing Thesis of Jake Manger at the University of Western Australia and is not yet complete.
 
-| Stimulus | Description | Status |
-| -------- | ----------- | ------ |
-| Optomotor | Moving gratings that rotate around the viewer, used to identify the innate orienting behaviour caused by whole-field visual motion, known as an optomotor response. | Usable |
-| Loom | Moving spheres or rectangles that approach a target or more around a target, used to trigger escape responses. | Usable |
-| Dual loom | Similar to looming, however, up to two stimuli can be displayed and also rotate around the viewer. Can be used for selective attention experiments with either looming or translating objects. This is useful to observe tracking or escape behaviours and preference. | Usable |
-| Moving rectangle | A simple 2D moving rectangle stimulus used to trigger responses from movement detector neurons in electrophysiology experiments. | Usable |
-
-
-## Pre-built experiment example
 
 ### Install
 
@@ -34,82 +21,110 @@ git clone git@github.com:jakemanger/NEVE.git
 Or alternatively use [Github desktop](https://desktop.github.com/) to clone this project into your desired folder.
 
 
-### Start NEVE
+#### Install python and dependencies
 
-Depending on what operating system (OS) you are using, do the following to start NEVE (with a graphical user interface):
+If you are unfamiliar with python and python virtual environments, see https://towardsdatascience.com/getting-started-with-python-virtual-environments-252a6bd2240
 
-*Note, if you get errors or something isn't working on your OS, you can build an executable for your specific OS by
-following [this guide](docs/building_executables.md) or you can use python to run NEVE by following
-the [using with python guide](docs/starting_an_experiment_from_python.md).*
+1. Install python 3.6 or greater, following installation instructions at [https://www.python.org/](https://www.python.org/).
 
-#### Linux (tested on Ubuntu 20.04.3)
+*For the special case when you want to access the GUI and are using MacOS, you
+will have to use your system installation of python and cannot use a python virtual
+environment (as `wxpython` requires a Framework build of python to function), so skip
+to step 4 and swap out `python` and `pip` for your main installation of python 3, e.g. 
+`python3` and `pip3` in all steps.*
 
-From the terminal, extract the executable
+2. Create a virtual environment in the NEVE_python directory
 
-```
-tar -xf NEVE_linux.tar.xz
-```
-
-and start NEVE
-
-```
-./NEVE_linux/control_simulation
+```bash
+python3 -m venv venv
 ```
 
-#### Mac
+3. Activate your virtual environment
 
-Double click on `NEVE_mac.app.zip` to extract the app to the `NEVE` directory.
+(on mac or linux)
 
-Double click on `NEVE_mac.app` to start NEVE.
+```bash
+source venv/bin/activate
+```
 
-#### Windows
+(on windows)
 
-Double click on `NEVE_windows.zip` and copy `NEVE_windows` to the `./NEVE` directory to extract.
+```
+venv\Scripts\Activate
+```
 
-Double click on `NEVE_windows/control_simulation.exe` to start NEVE.
+4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 
-### Run
+## Setting up fictrac
 
-Pick a desired stimulus to use from the drop down menu. In this example, we will use the stimulus for an optomotor experiment (`configs/optomotor.yaml`).
+This setup involves retrieving movement data from a program called `fictrac` and sending
+that to a NEVE environment via a socket.
 
-![NEVE GUI](docs/NEVE_gui.png)
+Because fictrac requires the use of the command line, you will need to open a terminal
+or cmd app on Windows or Linux.
 
-Click Start
+To get fictrac, follow installation and build instructions found at https://github.com/rjdmoore/fictrac.
 
-and follow the prompts. You should see control-related messages in the status window and the
-stimulus displayed on your designated screen (specified by your config file).
+To ensure everything is working, make sure the sample runs without error via:
 
-Expected status window output:
+(on windows)
+```
+cd fictrac\sample
+..\bin\Release\fictrac.exe 
+```
 
-![NEVE GUI after clicking start](docs/NEVE_gui2.png)
+(on linux)
+```
+cd fictrac/sample
+../bin/fictrac 
+```
 
-Expected stimulus with `./configs/optomotor.yaml`
+Make your own directory with your output from fictrac and logs (inside the fictrac directory in this example)
+```
+cd ..
+mkdir output
+cd output
+```
 
-![Optomotor experiment](docs/optomotor_experiment.gif)
+Also follow instructions on fictrac's github page to ensure your setup is properly configured, see
+ https://github.com/rjdmoore/fictrac#configuration.
+Make sure you have created an appropriate config file (called `config.txt`)
+with the following parameters:
+- `src_fn`: the image source to your camera index (if running live), or video file (if testing).
+- `vfov`: the vertical field of view (in degrees) of your camera
+- `sock_host`: the destination IP address for socket data output. Set to `127.0.0.1`.
+- `sock_port`: the destination port for socket data output. Set to `1111`.
 
-Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
-be continuously written and saved in the directory of the experiment i.e.
-`trial_logs` as a csv file.
+And with correct configuration, after running:
+(on windows)
+```
+..\bin\Release\configGui.exe
+```
+(on linux)
+```
+../bin/configGui
+```
 
-To view the frame rate reported from unity,
-look at the difference in time (column t) in the csv output. Other data may also be present,
-such as the timing of when a flash on the sync square was made (with a press of the F key)
-or the position of a moving stimulus.
+*Note, I have fixed sock_host and sock_port in this example, as NEVE has been setup to use these for input from fictrac.
+If changing these values is required, please create a Github issue and I can add some customisation to this.*
 
-Instructions for using a stimulus is found in its corresponding config file.
 
-### Modify a stimulus
+### Setup NEVE running with Unity
 
-If you want to modify how a stimulus behaves, make changes to the stimulus's configuration file (found in the `configs` directory).
-It's a good idea to copy and paste from an existing example configuration file if you are creating a new stimulus. If you do this, make sure the new configuration file
-is inside the `configs` directory, or NEVE will not know how to find it.
+Pick a desired experiment to use. In this example, we will use one of the loom_with_crab.yaml experiments.
+
+Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
 
 *For an optomotor experiment, we could change the grating density in the
-`configs/optomotor.yaml` file (or a copy of it) to be 800 in the first trial and 50 in the second
+`configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
 trial with speeds of 5 and 10 degrees per second, like so*:
 
-```yaml
+```python
 ... LINE 48
 # stimuli
 density: [800, 50] # CHANGED FROM [400, 200]
@@ -127,74 +142,35 @@ or a single value to indicate it is fixed for all trials. For example, if you wa
 with different density parameters but the same square parameter, supply an array the size of your
 number of trials `density: [400, 200]` and a single value `square: 0`.*
 
-## Config parameters
+### Run
 
-**A guide to the config parameters for each stimulus is found [here](docs/configs_guide.md)**
+Ensure you have an activated virtual environment (Install step 3 above).
 
+Start the stimulus, specifying the configuration file to use:
 
-## Run NEVE with python
-
-NEVE can be run and controlled by python. This is useful for combining your experiments with machine learning models or some other custom setup.
-To do this, follow [this guide](docs/starting_an_experiment_from_python.md).
-
-
-## Run NEVE from the command line
-
-NEVE can be run from the command line. This may be useful for some custom setups.
-Specify the `--ignore-gooey` flag if you don't want to use a graphical user interface,
-however this requires you to specify a config file (`optomotor.yaml` in this case).
-
-(on linux)
 ```
-./NEVE_linux/control_simulation optomotor.yaml --ignore-gooey
-```
-(on windows)
-```
-NEVE_windows\control_simulation.exe optomotor.yaml --ignore-gooey
-```
-(on mac)
-```
-./NEVE_mac.app optomotor.yaml --ignore-gooey
+python control_simulation.py --ignore-gooey ./configs/optomotor.yaml
 ```
 
-Use the `-h` flag to get help, e.g. for linux:
-```
-./NEVE_linux/control_simulation -h
-```
+and follow the prompts. You should see control-related messages in the terminal and the
+stimulus displayed on your designated screen (specified by your config file).
+Note, the `--ignore-gooey` flag removes the GUI from the program. Exclude this
+from the command if you want to see a GUI.
 
-## Running a closed-loop experiment
+Expected terminal output:
 
-Because stimuli are generated in real-time with Unity, movement input from the animal can be used to update the environment it sees.
-This is known as closing the loop, or a closed-loop experiment.
-All stimuli are setup to work in a closed-loop fashion with `fictrac`, a software that reconstructs the fictive path of an animal
-walking on a patterned sphere. See [this guide](docs/closed_loop_example.md) for instructions on how to use NEVE with fictrac.
+![Expected output from a successful setup](./successful_setup.png)
 
+Expected stimulus with `./configs/optomotor.yaml`
 
-## Creating your own custom experiment
-
-Users can also use a set of Unity prebuilt objects (prefabs) and environments (scenes) to rapidly
-build an entirely new experiment. Sharing of custom built experiments is highly encouraged. See
-the following guide for [creating a custom experiment](docs/creating_custom_experiment.md).
+![Optomotor experiment](./optomotor_experiment.gif)
 
 
-## Placing a reinforcement learning model in experiments
+Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
+be continuously written and saved in the directory of the experiment i.e.
+`NEVE_python/trial_logs` as a csv file.
 
-A big motivation to create NEVE was to allow machine learning models to see the same stimuli as
-animals and react in the scene. By integrating the 
-[Unity Python API](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md)
-and [Unity Machine Learning Agents Toolkit](https://github.com/Unity-Technologies/ml-agents), this
-allows NEVE to performantly add inputs and outputs from machine learning models to the environment,
-allowing a model to be trained to do the same task as an animal. This should then allow estimates 
-of how animals process visual information to produce behaviours or recorded electrophysiogical responses.
-
-To view the work in progress guide, see
-[running a pre-built experiment for reinforcement learning](docs/running_experiment_for_reinforcement_learning.md).
-
-
-## Calibrating screen parameters
-
-You will commonly want to calibrate what stimulus's parameter translate to in the real
-world (i.e., displayed from the screen). For example, you may want to identify what
-parameters provide what intensity, so you can accurately control contrast in your
-experiments. To do this, follow the work in progress guide at
-[calibration](docs/calibration.md)
+To view the frame rate reported from unity,
+look at the difference in time (column t) in the csv output. Other data may also be present,
+such as the timing of when a flash on the sync square was made (with a press of the F key)
+or the position of a moving stimulus.
