@@ -1,12 +1,17 @@
-# Closed loop fiddler crab experiments
+# Fiddler crab virtual reality experiments
 
-The below instructions are a guide on how to run closed loop fiddler crab experiments in X.
+![Screen Recording 2023-12-19 at 2 03 27 pm](https://github.com/jakemanger/NEVE/assets/52495554/d00b24bb-34d4-4b8e-8501-f4b0cf9d4761)
 
-The experiment uses a pre-built executable from unity that is controlled via python. It uses a distinct approach to building and controlling an experiment to CAVE, presented in X, although both use closed-loop experiments with Unity and machine vision. This variation stems from a multi-laboratory collaboration from two teams. 
 
-If you intend to build your own experiment, please see the complete and well-documented CAVE interface at Y published along side the results of this experiment.
+The below instructions are a guide on how to run the fiddler crab virtual reality experiments in Ogawa et al. (2024).
 
-This project comes with a skeleton of another toolkit for building Unity experiments for neurecological research, called NEVE. NEVE is a part of the ongoing Thesis of Jake Manger at the University of Western Australia and is not yet complete.
+If you intend to build your own experiment, please see the complete and well-documented CAVE interface published along side the results of this experiment.
+
+## How it works
+
+The experiment uses a pre-built executable from unity that is controlled via python. It uses a slightly different approach to building and controlling an experiment to CAVE, presented in Ogawa et al. (2024), although both use closed-loop experiments with Unity and machine vision. This variation stems from a multi-laboratory collaboration from two teams. 
+
+This project comes with a skeleton of another toolkit for building Unity experiments for neurecological research, called NEVE. NEVE is a part of the ongoing Thesis of Jake Manger at the University of Western Australia. If you face any problems, please submit an issue, [here](https://github.com/jakemanger/fiddlercrab_VR/issues).
 
 
 ### Install
@@ -120,20 +125,15 @@ Pick a desired experiment to use. In this example, we will use one of the loom_w
 
 Make desired changes to the experiment's configuration file in the `NEVE_python/configs` directory.
 
-*For an optomotor experiment, we could change the grating density in the
-`configs/optomotor.yaml` file to be 800 in the first trial and 50 in the second
-trial with speeds of 5 and 10 degrees per second, like so*:
+*For loom_with_crab experiment, we could change rotationOffsetY (rotation of objects along the Y-axis)
+`configs/loom_with_crab.yaml` file to be 0 in the first trial and 90 in the second
+trial with the first trial being open loop and the second trial being closed loop, like so*:
 
 ```python
-... LINE 48
-# stimuli
-density: [800, 50] # CHANGED FROM [400, 200]
-offset: 0
-angle: 0
-speed: [5, 10] # CHANGED FROM 5 (FOR ALL TRIALS)
-square: 0
-minimumVal: [0, 0]
-maximumVal: [0.1, 0.5]
+... LINE 18
+rotationOffsetY: [0, 90]
+crabPosX: [30, -30] # -30 = LEFT, 30 = RIGHT
+fictracFeedback: [0, 1] # 1 = closed loop, 0 = open loop
 ...
 ```
 
@@ -146,24 +146,23 @@ number of trials `density: [400, 200]` and a single value `square: 0`.*
 
 Ensure you have an activated virtual environment (Install step 3 above).
 
-Start the stimulus, specifying the configuration file to use:
+Start the GUI for controlling the experiment and select the "loom_with_crab.yaml" config file from the drop down menu.
 
 ```
-python control_simulation.py --ignore-gooey ./configs/optomotor.yaml
+python control_simulation.py
 ```
 
-and follow the prompts. You should see control-related messages in the terminal and the
+<img width="616" alt="image" src="https://github.com/jakemanger/NEVE/assets/52495554/e7618ff2-71b9-496d-a3da-0f902c108c9e">
+
+
+Click Start to start the stimulus. You should see control-related messages in the console and the
 stimulus displayed on your designated screen (specified by your config file).
-Note, the `--ignore-gooey` flag removes the GUI from the program. Exclude this
-from the command if you want to see a GUI.
 
-Expected terminal output:
+Expected output on GUI:
 
-![Expected output from a successful setup](./successful_setup.png)
+<img width="618" alt="image" src="https://github.com/jakemanger/NEVE/assets/52495554/1daea4b5-75bb-4f1b-8a8e-49dc474ccc41">
 
-Expected stimulus with `./configs/optomotor.yaml`
-
-![Optomotor experiment](./optomotor_experiment.gif)
+Expected stimulus with `./configs/loom_with_crab.yaml`
 
 
 Logs from each trial in the experiment (parameters of stimuli and timing of frames) will 
