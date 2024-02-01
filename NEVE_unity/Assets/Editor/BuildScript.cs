@@ -49,10 +49,10 @@ public class BuildScript
         }
 
         // Call the Build function once for each platform with all scenes
-        Build(allScenes, "../builds/All", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
-        Build(allScenes, "../builds/All", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
+        Build(allScenes, "../builds/All/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
+        Build(allScenes, "../builds/All/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
         UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
-        Build(allScenes, "../builds/All", BuildTarget.StandaloneOSX, "Mac.app");
+        Build(allScenes, "../builds/All/", BuildTarget.StandaloneOSX, "Mac.app");
     }
 
     static void Build(string[] scenes, string buildDir, BuildTarget target, string targetName)

@@ -8,7 +8,8 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 # general
-buildDir: ./builds/MovingRectangle
+buildDir: ./builds/All
+scene: 3
 frameDataIdCode: [100001, 100002] 
 animalCode: [1, 2] 
 execution_order: [0, 1]

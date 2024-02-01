@@ -180,14 +180,14 @@ public abstract class GenericStimulusManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneError = (
             "<b>If these variables do not match those defined for this experiment, ensure you have the correct scene parameter.</b>\n"
-            + "The current selected scene is " + currentScene.buildIndex + ": " + currentScene.name + "\n"
+            + "The current scene parameter is " + currentScene.buildIndex + ": " + currentScene.name + "\n"
             + "Scene parameter options are: "
         );
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            sceneError = sceneError + ", " + i + ": " + SceneManager.GetSceneAt(i).name;
+            sceneError = sceneError + ", " + i + ": " + SceneUtility.GetScenePathByBuildIndex(i);
         }
-        sceneError = sceneError + "\n";
+        sceneError += "\n";
 
         if (errorMessage != "") {
             RaiseError(errorBeg + errorMessage + sceneError + errorEnd);
@@ -362,10 +362,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         // set the lut of the color lookup on lutVolume
         UnityEngine.Rendering.VolumeProfile volumeProfile = transform.GetChild(0).GetComponent<UnityEngine.Rendering.Volume>()?.profile;
         if(!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
-        
-        // You can leave this variable out of your function, so you can reuse it throughout your class.
+
         UnityEngine.Rendering.Universal.ColorLookup colorLookup;
-        
         if(!volumeProfile.TryGet(out colorLookup)) throw new System.NullReferenceException(nameof(colorLookup));
 
         // create a RGB8 Unorm texture from the LUT file
