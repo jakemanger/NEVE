@@ -10,64 +10,62 @@ public class BuildScript
     [MenuItem("File/Build Current Scene")]
     static void BuildCurrentScene()
     {
-        var scenes = EditorBuildSettings.scenes;
-        var currentScene = EditorSceneManager.GetActiveScene();
+        var currentScene = EditorSceneManager.GetActiveScene().path;
 
-        // get the scene
-        List<EditorBuildSettingsScene> currentSceneList = new List<EditorBuildSettingsScene>();
+        // Build only the current scene
+        Build(new[] { currentScene }, "../builds/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
+        Build(new[] { currentScene }, "../builds/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
+        UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
+        Build(new[] { currentScene }, "../builds/", BuildTarget.StandaloneOSX, "Mac.app");
+    }
+
+    [MenuItem("File/Build All Scenes Separately")]
+    static void BuildAllScenesSeparately()
+    {
+        var scenes = EditorBuildSettings.scenes;
+
         foreach (var scene in scenes)
         {
-            if (scene.path == currentScene.path)
-            {
-                currentSceneList.Add(scene);
-            }
-        }
+            string[] sceneToBuild = { scene.path };
 
-        Build(currentSceneList.ToArray(), "../builds/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
-        Build(currentSceneList.ToArray(), "../builds/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
-        // set use Intel 64-bit or ARM64 architecture (universal). This is undocumented but see https://forum.unity.com/threads/cannot-build-unity-2020-projects-using-command-line-on-macos-with-xcode-10-or-11.1084085/
-        UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
-        Build(currentSceneList.ToArray(), "../builds/", BuildTarget.StandaloneOSX, "Mac.app");
+            // Build each scene separately
+            Build(sceneToBuild, "../builds/" + System.IO.Path.GetFileNameWithoutExtension(scene.path) + "/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
+            Build(sceneToBuild, "../builds/" + System.IO.Path.GetFileNameWithoutExtension(scene.path) + "/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
+            UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
+            Build(sceneToBuild, "../builds/" + System.IO.Path.GetFileNameWithoutExtension(scene.path) + "/", BuildTarget.StandaloneOSX, "Mac.app");
+        }
     }
 
     [MenuItem("File/Build All Scenes")]
     static void BuildAllScenes()
     {
         var scenes = EditorBuildSettings.scenes;
-        var currentScene = EditorSceneManager.GetActiveScene();
 
-        // get the scene
-        List<EditorBuildSettingsScene> currentSceneList = new List<EditorBuildSettingsScene>();
-        foreach (var scene in scenes)
-        {
-            EditorBuildSettingsScene[] sceneToBuild = { scene };
-
-            Build(sceneToBuild, "../builds/", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
-            Build(sceneToBuild, "../builds/", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
-            // set use Intel 64-bit or ARM64 architecture (universal). This is undocumented but see https://forum.unity.com/threads/cannot-build-unity-2020-projects-using-command-line-on-macos-with-xcode-10-or-11.1084085/
-            UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
-            Build(sceneToBuild, "../builds/", BuildTarget.StandaloneOSX, "Mac.app");
-        }
-    } 
-
-
-    static void Build(EditorBuildSettingsScene[] scenes, string buildDir, BuildTarget target, string targetName)
-    {
-        // build each scene as a seperate file
+        // Convert all scenes to a format that BuildPipeline.BuildPlayer can understand
+        string[] allScenes = new string[scenes.Length];
         for (int i = 0; i < scenes.Length; i++)
         {
-            var scene = scenes[i];
-            string sceneName = System.IO.Path.GetFileNameWithoutExtension(scene.path);
-            Debug.Log(scene);
-            var report = BuildPipeline.BuildPlayer(new[] { scene }, buildDir + sceneName + "/" + targetName, target, BuildOptions.None);
-            if (report.summary.result == BuildResult.Succeeded)
-            {
-                Debug.Log("Build succeeded: " + report.summary.totalSize + " bytes");
-            }
-            if (report.summary.result == BuildResult.Failed)
-            {
-                Debug.Log("Build failed");
-            }
+            allScenes[i] = scenes[i].path;
+        }
+
+        // Call the Build function once for each platform with all scenes
+        Build(allScenes, "../builds/All", BuildTarget.StandaloneWindows, "Windows/NEVE_unity_urp.exe");
+        Build(allScenes, "../builds/All", BuildTarget.StandaloneLinux64, "Linux/Linux.x86_64");
+        UserBuildSettings.architecture = MacOSArchitecture.x64ARM64;
+        Build(allScenes, "../builds/All", BuildTarget.StandaloneOSX, "Mac.app");
+    }
+
+    static void Build(string[] scenes, string buildDir, BuildTarget target, string targetName)
+    {
+        // Build all scenes into one executable
+        var report = BuildPipeline.BuildPlayer(scenes, buildDir + targetName, target, BuildOptions.None);
+        if (report.summary.result == BuildResult.Succeeded)
+        {
+            Debug.Log("Build succeeded: " + report.summary.totalSize + " bytes");
+        }
+        if (report.summary.result == BuildResult.Failed)
+        {
+            Debug.Log("Build failed");
         }
     }
 

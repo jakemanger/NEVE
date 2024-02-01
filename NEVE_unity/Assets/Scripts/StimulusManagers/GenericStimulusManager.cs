@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public abstract class GenericStimulusManager : MonoBehaviour
 {
@@ -175,8 +176,21 @@ public abstract class GenericStimulusManager : MonoBehaviour
                 }
             }
         }
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneError = (
+            "<b>If these variables do not match those defined for this experiment, ensure you have the correct scene parameter.</b>\n"
+            + "The current selected scene is " + currentScene.buildIndex + ": " + currentScene.name + "\n"
+            + "Scene parameter options are: "
+        );
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            sceneError = sceneError + ", " + i + ": " + SceneManager.GetSceneAt(i).name;
+        }
+        sceneError = sceneError + "\n";
+
         if (errorMessage != "") {
-            RaiseError(errorBeg + errorMessage + errorEnd);
+            RaiseError(errorBeg + errorMessage + sceneError + errorEnd);
         }
     }
 
@@ -195,6 +209,14 @@ public abstract class GenericStimulusManager : MonoBehaviour
     protected virtual void GetPropertiesFromPython() {
         // load properties from python
         floatChannel = Academy.Instance.EnvironmentParameters;
+
+        // if we need to switch scenes, switch now
+        int scene = GetIntFromPython("scene", 0);
+        Scene currentScene = SceneManager.GetActiveScene();
+        int currentSceneIndex = currentScene.buildIndex;
+        if (scene != currentSceneIndex) {
+            SceneManager.LoadScene(scene);
+        }
 
         // print("Recieved " + floatChannel.Keys().Count + " properties from python:");
         // foreach (string key in floatChannel.Keys()) {
