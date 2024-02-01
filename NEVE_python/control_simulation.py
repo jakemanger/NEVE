@@ -11,82 +11,103 @@ if "__compiled__" in globals():
     target = sys.argv[0]
 
 
-def start(config_path):
+def start(config_paths):
     """ Main function for looping through all experimental conditions
 
-    Experimental conditions are specified by the `config_path` argument
+    Experimental conditions are specified by the `config_paths` argument
     """
-    nenv = Nenv(params=config_path)
+    print(config_paths)
+    for i, config_path in enumerate(config_paths):
+        print(f'Starting {config_path}')
 
-    # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in
-    # the config file
-    if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
-        nenv.set_params(0, dark_adapt=True)
-        nenv.reset()
+        if i == 0:
+            # first initialise and connect to unity (starting it)
+            nenv = Nenv(params=config_path)
+        else:
+            # then just initialise parameters and keep existing connection to unity
+            nenv.__init__(params=config_path, connect_to_unity=False)
 
-    print('Running for', len(nenv.execution_order), 'experimental conditions')
-    for i in nenv.execution_order:
-        nenv.set_params(i)
-        nenv.reset()
+        # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in
+        # the config file
+        if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
+            nenv.set_params(0, dark_adapt=True)
+            nenv.reset()
 
-    if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
-        nenv.set_params(0, dark_adapt=True)
-        nenv.reset()
+        print('Running for', len(nenv.execution_order), 'experimental conditions')
+        for i in nenv.execution_order:
+            nenv.set_params(i)
+            nenv.reset()
 
+        if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
+            nenv.set_params(0, dark_adapt=True)
+            nenv.reset()
+
+    # finally close unity
     nenv.close()
+
+
+def determine_configs_dir():
+    """
+    Determine the directory where the configuration files are stored.
+    Tries different relative paths to find the existing 'configs' directory.
+    """
+
+    # Start by checking the directory of the script file (__file__)
+    base_dir = os.path.dirname(__file__)
+
+    # List of potential relative paths where the 'configs' directory might be located
+    potential_paths = [
+        'configs',                  # Directly in the script's directory
+        os.path.join('..', 'configs'),             # One level up
+        os.path.join('..', '..', '..', 'configs'), # Three levels up (common in a Mac app)
+        os.path.join('..', '..', '..', '..', 'configs') # Four levels up
+    ]
+
+    # Check each path and return the first one that exists
+    for path in potential_paths:
+        config_dir = os.path.join(base_dir, path)
+        if os.path.isdir(config_dir):
+            return config_dir
+
+    # If no valid path is found, raise an error
+    raise FileNotFoundError("Could not find the 'configs' directory. Please ensure it exists.")
+
+
+def ordinal(n):
+    ''' cunction to convert an integer to its ordinal representation '''
+    return "%d%s" % (n, "tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 
 
 @Gooey(target=target, program_name='NEVE stimulus controller', use_cmd_args=True)
 def main():
-    parser = GooeyParser(
-        description='''
-        Start Unity and loop through all stimuli specified by a
-        configuration file at `config_path`.
-        '''
-    )
+    parser = GooeyParser()
+    
+    # maximum number of config files you want to allow
+    max_configs = 6
 
-    # find possible config files in the configs/ directory
-    configs_dir = os.path.join(os.path.dirname(__file__), 'configs')
+    configs_dir = determine_configs_dir()
 
-    if not os.path.isdir(configs_dir):
-        configs_dir = os.path.join(os.path.dirname(__file__), '..', 'configs')
-
-        if not os.path.isdir(configs_dir):
-            # running as a mac app and need to go up 4 or 5 levels
-            configs_dir = os.path.join(
-                os.path.dirname(__file__),
-                '..', '..', '..', 'configs'
-            )
-            if not os.path.isdir(configs_dir):
-                configs_dir = os.path.join(
-                    os.path.dirname(__file__),
-                    '..', '..', '..', '..', 'configs'
-                )
-                raise FileNotFoundError(
-                    f'Could not find configs directory at {configs_dir}'
-                )
-
-    if os.path.exists(configs_dir):
-        config_files = [f for f in os.listdir(configs_dir)]
-    else:
-        raise Exception(
-            f'Could not find the configs directory in {configs_dir}.'
-            f'The current working directory is {os.getcwd()}.'
-            ' Store your config files in the configs/ directory'
+    # create optional file chooser for each config
+    for i in range(max_configs):
+        parser.add_argument(
+            f'--config_path_{i + 1}',  # use named argument instead of positional
+            metavar=f'Config File {i + 1}',
+            widget='FileChooser',
+            help=f'Select your {ordinal(i + 1)} stimulus configuration file (optional)',
+            gooey_options={
+                'wildcard': "Configuration files (*.cfg;*.json;*.yaml)|*.cfg;*.json;*.yaml|All files (*.*)|*.*",
+                'full_width': True,
+                'default_dir': configs_dir  # set the default directory here
+            },
+            required=False
         )
 
-    parser.add_argument(
-        'config_path',
-        type=str,
-        help='''
-        Select your stimulus configuration file.
-        ''',
-        choices=config_files
-    )
     args = parser.parse_args()
 
-    start(os.path.join(configs_dir, args.config_path))
+    # collect all non-empty config paths
+    config_paths = [getattr(args, f'config_path_{i + 1}') for i in range(max_configs) if getattr(args, f'config_path_{i + 1}', None)]
 
+    start(config_paths)
 
 if __name__ == '__main__':
     main()

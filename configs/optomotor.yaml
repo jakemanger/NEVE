@@ -8,7 +8,8 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 # general
-buildDir: ./builds/Optomotor/
+buildDir: None #./builds/All
+scene: 2
 frameDataIdCode: [1, 2] 
 animalCode: 1 
 execution_order: [0, 1]

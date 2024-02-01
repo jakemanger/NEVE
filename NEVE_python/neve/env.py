@@ -19,7 +19,7 @@ class Nenv:
     A user-friendly wrapper around the UnityEnvironment class.
     """
 
-    def __init__(self, params):
+    def __init__(self, params, connect_to_unity=True):
         """Initialize the NEVE environment.
 
         Args:
@@ -53,9 +53,10 @@ class Nenv:
                         f'{e}'
                     )
 
-        # Create the side channels to communicate with unity
-        self.env_parameters = EnvironmentParametersChannel()
-        self.eng_config = EngineConfigurationChannel()
+        if connect_to_unity:
+            # Create the side channels to communicate with unity
+            self.env_parameters = EnvironmentParametersChannel()
+            self.eng_config = EngineConfigurationChannel()
 
         self.config_log_path = './config_logs/'
         if not os.path.exists(self.config_log_path):
@@ -80,12 +81,19 @@ class Nenv:
         print('When Unity launches, python will gain control.')
 
         file_name = self._get_built_file_path()
-        self.env = UnityEnvironment(
-            file_name=file_name,
-            side_channels=[self.env_parameters, self.eng_config],
-            timeout_wait=999999,
-            worker_id=0 if file_name is None else self._get_worker_id()
-        )
+
+        if hasattr(self, 'file_name'):
+            assert self.file_name == file_name, '`buildDir` parameters must match when using multiple `config_path` variables'
+        else:
+            self.file_name = file_name
+
+        if connect_to_unity:
+            self.env = UnityEnvironment(
+                file_name=file_name,
+                side_channels=[self.env_parameters, self.eng_config],
+                timeout_wait=999999,
+                worker_id=0 if file_name is None else self._get_worker_id()
+            )
         self.execution_order = self.params['execution_order']
         self.params.pop('execution_order')
         if 'python_setup' in self.params:
@@ -137,6 +145,8 @@ class Nenv:
         Args:
             i (int): The index of the trial.
         """
+        # clear the previous env_parameters set, so they don't override any new ones
+        # needed for switching scenes
 
         if dark_adapt:
             self.params['darkAdaptNow'] = 1.0

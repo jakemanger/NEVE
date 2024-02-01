@@ -15,7 +15,7 @@
 # an example with three approaching looming stimuli: grey, green, blue
 
 # general
-buildDir: ./builds/All
+buildDir: None # ./builds/All
 scene: 0
 frameDataIdCode: [11, 12, 13]
 animalCode: [1, 2, 3] 

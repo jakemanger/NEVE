@@ -164,11 +164,11 @@ public abstract class GenericStimulusManager : MonoBehaviour
         string errorMessage = "";
         string errorEnd = "\n<b>Update your config file!\nSee github.com/jakemanger/NEVE/docs/configs_guide.md\nfor a guide on how to write config files.</b>\n";
 
-        foreach (string parameter in parametersReceived) {
-            if (!parametersExpected.Contains(parameter)) {
-                errorMessage = errorMessage + "Unknown parameter: " + parameter + "\n";
-            }
-        }
+        // foreach (string parameter in parametersReceived) {
+        //     if (!parametersExpected.Contains(parameter)) {
+        //         errorMessage = errorMessage + "Unknown parameter: " + parameter + "\n";
+        //     }
+        // }
         if (mustIncludeEveryParameter) {
             foreach (string parameter in parametersExpected) {
                 if (!parametersReceived.Contains(parameter)) {
@@ -211,12 +211,16 @@ public abstract class GenericStimulusManager : MonoBehaviour
         floatChannel = Academy.Instance.EnvironmentParameters;
 
         // if we need to switch scenes, switch now
-        int scene = GetIntFromPython("scene", 0);
-        Scene currentScene = SceneManager.GetActiveScene();
-        int currentSceneIndex = currentScene.buildIndex;
-        if (scene != currentSceneIndex) {
-            SceneManager.LoadScene(scene);
-        }
+        // int scene = GetIntFromPython("scene", 0);
+        // Scene currentScene = SceneManager.GetActiveScene();
+        // print("Requested scene: " + scene);
+        // int currentSceneIndex = currentScene.buildIndex;
+        // print("Current scene: " + currentSceneIndex);
+        // if (scene != currentSceneIndex) {
+        //     print("Changing scene!");
+        //     SceneManager.LoadScene(scene);
+        // }
+        int scene = GetIntFromPython("scene", 0);  // just check that it is there
 
         // print("Recieved " + floatChannel.Keys().Count + " properties from python:");
         // foreach (string key in floatChannel.Keys()) {
