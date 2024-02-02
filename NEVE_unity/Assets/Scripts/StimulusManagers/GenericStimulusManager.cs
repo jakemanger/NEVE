@@ -169,6 +169,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         //         errorMessage = errorMessage + "Unknown parameter: " + parameter + "\n";
         //     }
         // }
+
         if (mustIncludeEveryParameter) {
             foreach (string parameter in parametersExpected) {
                 if (!parametersReceived.Contains(parameter)) {
@@ -210,23 +211,13 @@ public abstract class GenericStimulusManager : MonoBehaviour
         // load properties from python
         floatChannel = Academy.Instance.EnvironmentParameters;
 
-        // if we need to switch scenes, switch now
-        // int scene = GetIntFromPython("scene", 0);
-        // Scene currentScene = SceneManager.GetActiveScene();
-        // print("Requested scene: " + scene);
-        // int currentSceneIndex = currentScene.buildIndex;
-        // print("Current scene: " + currentSceneIndex);
-        // if (scene != currentSceneIndex) {
-        //     print("Changing scene!");
-        //     SceneManager.LoadScene(scene);
-        // }
         int scene = GetIntFromPython("scene", 0);  // just check that it is there
 
-        // print("Recieved " + floatChannel.Keys().Count + " properties from python:");
-        // foreach (string key in floatChannel.Keys()) {
-        //     float value = floatChannel.GetWithDefault(key, 0f);
-        //     print(key + ": " + value);
-        // }
+        print("Recieved " + floatChannel.Keys().Count + " properties from python:");
+        foreach (string key in floatChannel.Keys()) {
+            float value = floatChannel.GetWithDefault(key, 0f);
+            print(key + ": " + value);
+        }
 
         // set properties from python
         use32BitColor = GetBoolFromPython("use32BitColor", false); // needs to be before any colors are set
