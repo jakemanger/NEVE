@@ -100,7 +100,8 @@ public class FrameWriter : MonoBehaviour
         }
 
         if (startNewFile) {
-            outputFilePath = logsDir + System.DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + experimentId + ".csv";
+            outputFilePath = logsDir + System.DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + experimentId + ".csv";
+
             if (outputFilePath == null || outputFilePath == "") {
                 Debug.LogError("FrameWriter outputFilePath was not specified.");
             }

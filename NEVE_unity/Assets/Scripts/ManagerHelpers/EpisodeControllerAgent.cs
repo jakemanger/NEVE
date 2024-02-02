@@ -14,25 +14,26 @@ public class EpisodeControllerAgent : Agent {
 
     public EnvironmentParameters floatChannel;
 
+
     public override void OnEpisodeBegin() {
+        // used for initialising and resetting the environment
+        timeSinceStimulusStart = 0f;
+
         // check if a new scene needs to be loaded
         floatChannel = Academy.Instance.EnvironmentParameters;
-
+        Academy.Instance.AutomaticSteppingEnabled = false; // manually control steps as there appears to be a mlagents bug that sometimes causes steps to be called twice when switching scenes
         // if we need to switch scenes, switch now
         int scene = GetIntFromPython("scene", 0);
         Scene currentScene = SceneManager.GetActiveScene();
-        print("Requested scene: " + scene);
         int currentSceneIndex = currentScene.buildIndex;
-        print("Current scene: " + currentSceneIndex);
-        if (scene != currentSceneIndex) {
-            print("Changing scene!");
-            SceneManager.LoadScene(scene);
-            Academy.Instance.EnvironmentStep();
+        if ((int)scene != (int)currentSceneIndex) {
+            print("Changing scene");
+            SceneManager.LoadSceneAsync(scene);
             return;
         }
+        Cursor.visible = false;
 
-        // used for initialising and resetting the environment
-        timeSinceStimulusStart = 0f;
+        print("Running reset");
         GetComponent<GenericStimulusManager>().Reset();
         Cursor.visible = false;
     }
@@ -41,8 +42,8 @@ public class EpisodeControllerAgent : Agent {
         timeSinceStimulusStart += Time.deltaTime;
         if (timeSinceStimulusStart >= experimentDuration || Input.GetKeyDown(KeyCode.Escape)) {
             RequestDecision(); // gives control back to python until env.step() or env.reset() is called
+            Academy.Instance.EnvironmentStep(); // manually control steps as there appears to be a mlagents bug that sometimes causes steps to be called twice when switching scenes
             EndEpisode();
-            Cursor.visible = false;
         }
     }
 

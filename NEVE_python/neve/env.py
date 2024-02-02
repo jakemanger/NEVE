@@ -77,17 +77,20 @@ class Nenv:
         ) as f:
             yaml.dump(self.params, f)
 
-        print('Waiting for connection to Unity environment...')
-        print('When Unity launches, python will gain control.')
 
         file_name = self._get_built_file_path()
 
         if hasattr(self, 'file_name'):
-            assert self.file_name == file_name, '`buildDir` parameters must match when using multiple `config_path` variables'
+            assert self.file_name == file_name, (
+                '`buildDir` parameters must match when using multiple `config_path` variables\n'
+                f'Got {file_name}\nafter previous buildDir of {self.file_name}'
+            )
         else:
             self.file_name = file_name
 
         if connect_to_unity:
+            print('Waiting for connection to Unity environment...')
+            print('When Unity launches, python will gain control.')
             self.env = UnityEnvironment(
                 file_name=file_name,
                 side_channels=[self.env_parameters, self.eng_config],
@@ -156,7 +159,7 @@ class Nenv:
         # Any change to a Unity SideChannel (self.env_parameters) will
         # only be effective after a step or reset
         # so self.reset() will need to be called to apply the changes.
-        print(f'Setting new environmental parameters for condition {i}...')
+        # print(f'Setting new environmental parameters for condition {i}...')
         if dark_adapt:
             self.env_parameters.set_float_parameter('darkAdaptNow', 1)
 
@@ -176,7 +179,7 @@ class Nenv:
             # ensure that the value is a float
             val = float(val)
 
-            print('Setting', key, 'to', val)
+            # print('Setting', key, 'to', val)
             used_params[key] = val
 
             self.env_parameters.set_float_parameter(key, val)

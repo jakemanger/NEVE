@@ -19,6 +19,7 @@ def start(config_paths):
     print(config_paths)
     for i, config_path in enumerate(config_paths):
         print(f'Starting {config_path}')
+        print(f'i is {i}')
 
         if i == 0:
             # first initialise and connect to unity (starting it)
@@ -34,8 +35,8 @@ def start(config_paths):
             nenv.reset()
 
         print('Running for', len(nenv.execution_order), 'experimental conditions')
-        for i in nenv.execution_order:
-            nenv.set_params(i)
+        for j in nenv.execution_order:
+            nenv.set_params(j)
             nenv.reset()
 
         if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
