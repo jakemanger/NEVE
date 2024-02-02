@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Data/Managed/Assembly-CSharp.dll</key>
 		<data>
-		nbIDkZX41Yec2YE+B0wDtwqOlf8=
+		2+AQ0ZnKuTXoNHB7GeonPRWABZg=
 		</data>
 		<key>Resources/Data/Managed/Google.Protobuf.dll</key>
 		<data>
@@ -458,7 +458,7 @@
 		</data>
 		<key>Resources/Data/globalgamemanagers</key>
 		<data>
-		p/CHINCwtAvEt2DC51oXDX49qQg=
+		QRIaikALUjZbToUKZ98vFliNABA=
 		</data>
 		<key>Resources/Data/globalgamemanagers.assets</key>
 		<data>
@@ -482,7 +482,7 @@
 		</data>
 		<key>Resources/Data/sharedassets0.assets</key>
 		<data>
-		HyqMp4/+a9LxQfc6jgdutz7vKVo=
+		MSncOnR2zVzRq9KVt2kt1gdtlBs=
 		</data>
 		<key>Resources/Data/sharedassets0.assets.resS</key>
 		<data>
@@ -664,10 +664,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			cysjN0M2QbJoE2y98ya79MgvnFc=
+			xH6I5xuJEpIgbDtvFUvdLtEWefU=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"732b2337433641b268136cbdf326bbf4c82f9c57" or cdhash H"9caaec3c8378dca475a70ec3a5f0d0935a00c6b1"</string>
+			<string>cdhash H"c47e88e71b891292206c3b6f154bdd2ed11679f5" or cdhash H"a67c31ad6083c2b6cc0ac8799f1b464e3d7976c9"</string>
 		</dict>
 		<key>PlugIns/libgrpc_csharp_ext.x64.bundle</key>
 		<dict>
@@ -682,7 +682,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			HSAZkdryLXKIq1kT8sEQf8lWCggwPkbPzNrh0/G2oKo=
+			Po6e0uRwzJ9oDfnM3M6UlEEjyMDlnY+u5wL6+xhJ3YQ=
 			</data>
 		</dict>
 		<key>Resources/Data/Managed/Google.Protobuf.dll</key>
@@ -1473,7 +1473,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RWN9R9XeuiSUz3WesTVOERbcbGb5Jvn+AQVgHdDkPwc=
+			qOpBAFjdoRoJrMxxGJdDV6bPOBpSJHJOuXK/NFE5p5s=
 			</data>
 		</dict>
 		<key>Resources/Data/globalgamemanagers.assets</key>
@@ -1515,7 +1515,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1qjHELSsKYoj8Vl7Zg/dMdxphRYSzfGqhaplUSIyfYA=
+			ekls3q442+CLTmffHw5SmxSQec235RkPsoSTX+ZU4Vc=
 			</data>
 		</dict>
 		<key>Resources/Data/sharedassets0.assets.resS</key>
