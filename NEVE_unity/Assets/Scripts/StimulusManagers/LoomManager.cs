@@ -38,7 +38,7 @@ public class LoomManager : GenericStimulusManager
         SetSkybox(camMon.leftCam.gameObject, horizonHeights[3], aboveHorizonColours[3], belowHorizonColours[3]);
 
         // sphere
-        stimGenerator.stimulusColour = GetColorFromPython("stimulusColour", Color.black);
+        stimGenerator.stimulusColour = GetColorFromPython("stimulusColour", Color.grey);
         stimGenerator.opaqueObject = GetBoolFromPython("opaqueObject", false);
         stimGenerator.startScale = GetVector3FromPython("startScale", Vector3.one);
         stimGenerator.endScale = GetVector3FromPython("endScale", Vector3.one);
