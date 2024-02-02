@@ -8,7 +8,7 @@
 # tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
 
 # general
-buildDir: None #./builds/All
+buildDir: ./builds/All
 scene: 2
 frameDataIdCode: [1, 2] 
 animalCode: 1 
@@ -38,6 +38,7 @@ backDisplayNum: 2
 leftDisplayNum: 3
 
 # stimuli
+reverseAfterSeconds: 15
 darkAdaptTime: 0
 density: [400, 20]
 offset: 0 

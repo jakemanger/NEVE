@@ -56,6 +56,7 @@ Below is an explanation of the parameters available for each experiment yaml fil
 | Parameter name | Description | Options | Default value |
 | -------------- | ----------- | ------- | ------------- |
 | `buildDir` | The local path to the directory containing the Unity executable. Set this to `None` if you want to test inside the Unity Editor (note, the Unity Editor must be running with the relevant experiment Playing for this to work). | Any directory found in `./builds` | *Stimulus dependent* e.g., `./builds/Loom/` |
+| `scene` | The scene to run in the unity build. If using a scene other than `./builds/All` that only has one scene, this should be left as 0. If using a build with multiple scenes (e.g. `./builds/All`), then set this to the correct scene number. This can be determined by testing. If incorrect parameters are provided to a scene, then an error message will appear showing the available scenes and their corresponding numbers. | `0`-your number of scenes | `0` |
 | `frameDataIdCode` | The experiment ID used when saving log files and displayed on the syncSquare | Any integer | `1` |
 | `animalCode` | The animal code used when saving log files and displayed on the syncSquare | Any integer | `1` |
 | `experimentDuration` | The duration of each trial in an experiment in seconds. After this time (or if escape is pressed), unity will stall and give control back to python. | `0`-`99999` | `99999` |
@@ -188,6 +189,7 @@ Same as DualLoom with additional MimicExpansionSpeedLoom parameters that are mod
 | `offset` | The offset of the bars from the 0 degrees. | `-180`-`180` | `0` |
 | `angle` | The angle of the bars in degrees. | `-180`-`180` | `0` |
 | `speed` | The speed of the bars in degrees per second. Negative speed means the bars move in the opposite direction. | `-a very large number`-`a very large number` | `5` |
+| `reverseAfterSeconds` | The number of seconds to reverse the direction of movement of the gratings | `0`-a very large number | `15` |
 | `square` | Whether to draw square waves (true) or sinewaves (false). | `0` (false) or `1` (true) | `0` |
 | `minimumVal` | The minimum intensity of the bars. | `0`-`1` | `0` |
 | `maximumVal` | The maximum intensity of the bars. | `0`-`1` | `1` |
