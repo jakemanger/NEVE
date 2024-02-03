@@ -31,7 +31,8 @@
 
 # general
 python_setup: 'n_conditions = 73; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
-buildDir: ./builds/Loom/
+buildDir: ./builds/All
+scene: 0
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
 animalCode: 1
 # randomise the order of the conditions and repeat the experiment twice

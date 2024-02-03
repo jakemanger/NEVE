@@ -19,7 +19,7 @@ class Nenv:
     A user-friendly wrapper around the UnityEnvironment class.
     """
 
-    def __init__(self, params):
+    def __init__(self, params, connect_to_unity=True):
         """Initialize the NEVE environment.
 
         Args:
@@ -53,9 +53,10 @@ class Nenv:
                         f'{e}'
                     )
 
-        # Create the side channels to communicate with unity
-        self.env_parameters = EnvironmentParametersChannel()
-        self.eng_config = EngineConfigurationChannel()
+        if connect_to_unity:
+            # Create the side channels to communicate with unity
+            self.env_parameters = EnvironmentParametersChannel()
+            self.eng_config = EngineConfigurationChannel()
 
         self.config_log_path = './config_logs/'
         if not os.path.exists(self.config_log_path):
@@ -76,16 +77,26 @@ class Nenv:
         ) as f:
             yaml.dump(self.params, f)
 
-        print('Waiting for connection to Unity environment...')
-        print('When Unity launches, python will gain control.')
 
         file_name = self._get_built_file_path()
-        self.env = UnityEnvironment(
-            file_name=file_name,
-            side_channels=[self.env_parameters, self.eng_config],
-            timeout_wait=999999,
-            worker_id=0 if file_name is None else self._get_worker_id()
-        )
+
+        if hasattr(self, 'file_name'):
+            assert self.file_name == file_name, (
+                '`buildDir` parameters must match when using multiple `config_path` variables\n'
+                f'Got {file_name}\nafter previous buildDir of {self.file_name}'
+            )
+        else:
+            self.file_name = file_name
+
+        if connect_to_unity:
+            print('Waiting for connection to Unity environment...')
+            print('When Unity launches, python will gain control.')
+            self.env = UnityEnvironment(
+                file_name=file_name,
+                side_channels=[self.env_parameters, self.eng_config],
+                timeout_wait=999999,
+                worker_id=0 if file_name is None else self._get_worker_id()
+            )
         self.execution_order = self.params['execution_order']
         self.params.pop('execution_order')
         if 'python_setup' in self.params:
@@ -137,6 +148,8 @@ class Nenv:
         Args:
             i (int): The index of the trial.
         """
+        # clear the previous env_parameters set, so they don't override any new ones
+        # needed for switching scenes
 
         if dark_adapt:
             self.params['darkAdaptNow'] = 1.0
@@ -146,7 +159,7 @@ class Nenv:
         # Any change to a Unity SideChannel (self.env_parameters) will
         # only be effective after a step or reset
         # so self.reset() will need to be called to apply the changes.
-        print(f'Setting new environmental parameters for condition {i}...')
+        # print(f'Setting new environmental parameters for condition {i}...')
         if dark_adapt:
             self.env_parameters.set_float_parameter('darkAdaptNow', 1)
 
@@ -166,7 +179,7 @@ class Nenv:
             # ensure that the value is a float
             val = float(val)
 
-            print('Setting', key, 'to', val)
+            # print('Setting', key, 'to', val)
             used_params[key] = val
 
             self.env_parameters.set_float_parameter(key, val)

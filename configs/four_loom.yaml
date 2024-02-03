@@ -13,7 +13,8 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: ./builds/FourLoom
+buildDir: ./builds/All
+scene: 5
 frameDataIdCode: [900001, 900002]
 animalCode: [1, 2]
 execution_order: [0, 1]

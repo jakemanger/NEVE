@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public abstract class GenericStimulusManager : MonoBehaviour
 {
@@ -163,11 +164,12 @@ public abstract class GenericStimulusManager : MonoBehaviour
         string errorMessage = "";
         string errorEnd = "\n<b>Update your config file!\nSee github.com/jakemanger/NEVE/docs/configs_guide.md\nfor a guide on how to write config files.</b>\n";
 
-        foreach (string parameter in parametersReceived) {
-            if (!parametersExpected.Contains(parameter)) {
-                errorMessage = errorMessage + "Unknown parameter: " + parameter + "\n";
-            }
-        }
+        // foreach (string parameter in parametersReceived) {
+        //     if (!parametersExpected.Contains(parameter)) {
+        //         errorMessage = errorMessage + "Unknown parameter: " + parameter + "\n";
+        //     }
+        // }
+
         if (mustIncludeEveryParameter) {
             foreach (string parameter in parametersExpected) {
                 if (!parametersReceived.Contains(parameter)) {
@@ -175,8 +177,21 @@ public abstract class GenericStimulusManager : MonoBehaviour
                 }
             }
         }
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneError = (
+            "<b>If these variables do not match those defined for this experiment, ensure you have the correct scene parameter.</b>\n"
+            + "The current scene parameter is " + currentScene.buildIndex + ": " + currentScene.name + "\n"
+            + "Scene parameter options are: "
+        );
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            sceneError = sceneError + ", " + i + ": " + SceneUtility.GetScenePathByBuildIndex(i);
+        }
+        sceneError += "\n";
+
         if (errorMessage != "") {
-            RaiseError(errorBeg + errorMessage + errorEnd);
+            RaiseError(errorBeg + errorMessage + sceneError + errorEnd);
         }
     }
 
@@ -196,11 +211,13 @@ public abstract class GenericStimulusManager : MonoBehaviour
         // load properties from python
         floatChannel = Academy.Instance.EnvironmentParameters;
 
-        // print("Recieved " + floatChannel.Keys().Count + " properties from python:");
-        // foreach (string key in floatChannel.Keys()) {
-        //     float value = floatChannel.GetWithDefault(key, 0f);
-        //     print(key + ": " + value);
-        // }
+        int scene = GetIntFromPython("scene", 0);  // just check that it is there
+
+        print("Recieved " + floatChannel.Keys().Count + " properties from python:");
+        foreach (string key in floatChannel.Keys()) {
+            float value = floatChannel.GetWithDefault(key, 0f);
+            print(key + ": " + value);
+        }
 
         // set properties from python
         use32BitColor = GetBoolFromPython("use32BitColor", false); // needs to be before any colors are set
@@ -340,10 +357,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         // set the lut of the color lookup on lutVolume
         UnityEngine.Rendering.VolumeProfile volumeProfile = transform.GetChild(0).GetComponent<UnityEngine.Rendering.Volume>()?.profile;
         if(!volumeProfile) throw new System.NullReferenceException(nameof(UnityEngine.Rendering.VolumeProfile));
-        
-        // You can leave this variable out of your function, so you can reuse it throughout your class.
+
         UnityEngine.Rendering.Universal.ColorLookup colorLookup;
-        
         if(!volumeProfile.TryGet(out colorLookup)) throw new System.NullReferenceException(nameof(colorLookup));
 
         // create a RGB8 Unorm texture from the LUT file

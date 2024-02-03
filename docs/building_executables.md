@@ -1,6 +1,6 @@
 # Build a new NEVE GUI executable
 
-*tested using python3.9*
+*tested using python3.9 on mac and linux and python3.8 on windows*
 
 
 

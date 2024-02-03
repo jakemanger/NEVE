@@ -140,30 +140,38 @@ To build a scene, open the scene in Unity
 
 ![image](https://github.com/jakemanger/NEVE/assets/52495554/81bec8f5-02ca-4269-bc82-0e2db1713fc9)
 
-select Build Settings
+select File > Build Settings
 
 ![image](https://github.com/jakemanger/NEVE/assets/52495554/68359a04-2634-41fd-ae71-6ce5c0460d1d)
 
-and make sure your scene is in the Scenes to Build list by clicking Add Open Scenes.
+and make sure your scene is in the Scenes in Build list by clicking Add Open Scenes.
 
 ![image](https://github.com/jakemanger/NEVE/assets/52495554/c7d04421-77f9-42ba-9231-347651de9b71)
 
-Then, close that window and select File > Build Current Scene
+Then click File > Build All Scenes.
+![image](https://github.com/jakemanger/NEVE/assets/52495554/99eac642-ce24-453a-808c-70899ed9fe47)
 
-![image](https://github.com/jakemanger/NEVE/assets/52495554/6b4328d3-892e-4010-81f7-54a1fa5c869f)
+This will save all the scenes in the "Scenes in Build" list to the executable in the `NEVE/builds/All/`
+directory. This will build the executable for Mac, Windows and Linux.
 
-Note, if you want to Rebuild all the scenes found in the Scenes to Build list, you can instead use
-File > Build All Scenes. This will, however, take additional time.
+Note, if you want to save the scenes seperately (if you do you won't be able to switch between
+scenes during the experiment), you can instead use File > Build All Scenes Seperately or File > Build Current Scene.
 
 ![image](https://github.com/jakemanger/NEVE/assets/52495554/99eac642-ce24-453a-808c-70899ed9fe47)
 
+To use this build file, update the `buildDir` field in your config file to the path of your build directory. 
 
-Then, wait for the process to complete. Your new executable will be found in the `NEVE/builds/` directory with the name of the build
-folder being the name of your scene. This will build the executable for Mac, Windows and Linux.
-
-To use this build file, update the `buildDir` field in your config file to the path of your build directory. For example, if your
-scene was called `Optomotor`, this will be `./builds/Optomotor/`.
+If you went with the "Build All Scenes" approach, then this build directory will be `./builds/All/`
+You will then need to supply the scene number for the relevant scene (which can be found on the right of  the "Scenes in Build" list at File > Build Settings).
+```yaml
+buildDir: ./builds/All/
+scene: 0  # found at File > Build Settings > Scenes in Build
 ```
+*Note, if you get the scene number wrong, an error message should appear telling you the currently selected scene along with the available scenes to choose from.*
+
+If you went for the File > Build All Scenes Seperately or File > Build Current Scene approach, then if your
+scene was called `Optomotor`, this will be `./builds/Optomotor/`.
+```yaml
 buildDir: ./builds/Optomotor/
 ```
 
