@@ -84,7 +84,7 @@ def main():
     parser = GooeyParser()
     
     # maximum number of config files you want to allow
-    max_configs = 6
+    max_configs = 30
 
     configs_dir = determine_configs_dir()
 

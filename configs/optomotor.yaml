@@ -13,7 +13,7 @@ scene: 2
 frameDataIdCode: [1, 2] 
 animalCode: 1 
 execution_order: [0, 1]
-experimentDuration: 99999
+experimentDuration: 50
 recordFrameData: 1
 recordEachFrame: 1
 recordingFrequency: 1
@@ -39,7 +39,7 @@ leftDisplayNum: 3
 
 # stimuli
 reverseAfterSeconds: 15
-darkAdaptTime: 0
+darkAdaptTime: 5
 density: [400, 20]
 offset: 0 
 angle: 0

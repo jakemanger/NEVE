@@ -20,7 +20,7 @@ scene: 0
 frameDataIdCode: [11]
 animalCode: [1] 
 execution_order: [0]
-experimentDuration: 99999 
+experimentDuration: 50 
 recordFrameData: 1 
 recordEachFrame: 1
 recordingFrequency: 1 
@@ -44,7 +44,7 @@ frontDisplayNum: 0
 rightDisplayNum: 1 
 backDisplayNum: 2
 leftDisplayNum: 3
-darkAdaptTime: 0
+darkAdaptTime: 5
 
 # stimuli
 # background
@@ -76,6 +76,7 @@ numReps: 1
 delayToAppear: 1
 directPath: 0
 hideAtEnd: 1
+autoStart: 1
 delayToApproach: 5 
 stimulusColourR: 0.3
 stimulusColourG: 0.3 
