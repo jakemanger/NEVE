@@ -12,8 +12,8 @@ public class LoomManager : GenericStimulusManager
         // overall skybox
         Material mat = new Material(RenderSettings.skybox);
         mat.SetFloat("_horizonHeight", GetFloatFromPython("horizonHeight", 0f));
-        mat.SetColor("_aboveHorizonColour", GetColorFromPython("aboveHorizonColour", Color.white));
-        mat.SetColor("_belowHorizonColour", GetColorFromPython("belowHorizonColour", Color.grey));
+        mat.SetColor("_aboveHorizonColour", GetColorFromPython("aboveHorizonColour", Color.black));
+        mat.SetColor("_belowHorizonColour", GetColorFromPython("belowHorizonColour", Color.black));
         RenderSettings.skybox = mat;
 
         print("aboveHorizonColour: " + mat.GetColor("_aboveHorizonColour"));
@@ -21,14 +21,14 @@ public class LoomManager : GenericStimulusManager
 
         // specific overrides for backgrounds on different cameras
         float[] horizonHeights = new float[4] { -9999f, -9999f, -9999f, -9999f };
-        Color[] aboveHorizonColours = new Color[4] { Color.grey, Color.grey, Color.grey, Color.grey };
-        Color[] belowHorizonColours = new Color[4] { Color.white, Color.white, Color.white, Color.white };
+        Color[] aboveHorizonColours = new Color[4] { Color.black, Color.black, Color.black, Color.black };
+        Color[] belowHorizonColours = new Color[4] { Color.black, Color.black, Color.black, Color.black };
         string[] sides = new string[] { "Front", "Right", "Back", "Left" };
         for (int i = 0; i < sides.Length; i++) {
             string side = sides[i];
             horizonHeights[i] = GetFloatFromPython("horizonHeight", -9999f, side);
-            aboveHorizonColours[i] = GetColorFromPython("aboveHorizonColour", Color.white, side);
-            belowHorizonColours[i] = GetColorFromPython("belowHorizonColour", Color.grey, side);
+            aboveHorizonColours[i] = GetColorFromPython("aboveHorizonColour", Color.black, side);
+            belowHorizonColours[i] = GetColorFromPython("belowHorizonColour", Color.black, side);
         }
         // if specified, override the skybox for individual cameras
         // check if skybox component exists
@@ -38,7 +38,7 @@ public class LoomManager : GenericStimulusManager
         SetSkybox(camMon.leftCam.gameObject, horizonHeights[3], aboveHorizonColours[3], belowHorizonColours[3]);
 
         // sphere
-        stimGenerator.stimulusColour = GetColorFromPython("stimulusColour", Color.grey);
+        stimGenerator.stimulusColour = GetColorFromPython("stimulusColour", Color.black);
         stimGenerator.opaqueObject = GetBoolFromPython("opaqueObject", false);
         stimGenerator.startScale = GetVector3FromPython("startScale", Vector3.one);
         stimGenerator.endScale = GetVector3FromPython("endScale", Vector3.one);

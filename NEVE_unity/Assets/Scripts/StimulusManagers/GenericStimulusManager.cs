@@ -225,7 +225,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         distanceToMonitors = GetFloatFromPython("distanceToMonitors", 7f);
         monitorDimensions = GetVector2FromPython("monitorDimensions", new Vector2(12.176f, 6.87f));
         flickerDuration = GetFloatFromPython("flickerDuration", 0.1f);
-        syncSquareColor = GetColorFromPython("syncSquareColour", Color.red);
+        syncSquareColor = GetColorFromPython("syncSquareColour", new Color(0.5f, 0f, 0f));
         syncSquareWaitingColor = GetColorFromPython("syncSquareWaitingColour", Color.black);
         syncSquareStartedColor = GetColorFromPython("syncSquareStartedColour", new Color(0.7f, 0.2f, 0.2f));
         syncSquareEndedColor = GetColorFromPython("syncSquareEndedColour", new Color(0.4f, 0.1f, 0.1f));

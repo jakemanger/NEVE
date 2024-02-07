@@ -32,7 +32,7 @@ public class OptomotorManager : GenericStimulusManager
         speed = GetFloatFromPython("speed", -1f);
         square = GetBoolFromPython("square", false);
         minimumVal = GetFloatFromPython("minimumVal", 0f);
-        maximumVal = GetFloatFromPython("maximumVal", 0.5f);
+        maximumVal = GetFloatFromPython("maximumVal", 0f);
         if (base.use32BitColor) {
             minimumVal = minimumVal / 255f;
             maximumVal = maximumVal / 255f;
