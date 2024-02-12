@@ -1,0 +1,74 @@
+# Below are the parameters used to alter a unity experiment with the name
+# Optomotor
+
+# each experiment should take around 36 minutes
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+
+# general
+python_setup: >
+  import random;
+  from datetime import datetime;
+  from itertools import product;
+  random.seed(datetime.now().timestamp());
+  n_conditions = 18;
+  spatial_freqs = [0.01, 0.1, 1];
+  temporal_freqs = [0.1, 1, 10];
+  frequency_per_360 = [round(s * 360) for s, t in product(spatial_freqs, temporal_freqs)] * 2;
+  p = product(spatial_freqs, temporal_freqs);
+  velocities = [t / s for s, t in product(spatial_freqs, temporal_freqs)] * 2;
+buildDir: ./builds/All/
+scene: 2
+frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
+animalCode: 1
+execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'
+experimentDuration: 180 #seconds
+reverseAfterSeconds: 30 #seconds
+
+recordFrameData: 1 #0= false, 1= true
+recordEachFrame: 1 # 0= false, 1= true
+recordingFrequency: 1 #seconds, i.e. frequency to record frame data
+manualControl: 0 # 0= false, 1= true
+mouseMoveSpeed: 2 # Speed at which mouse moves objects in the experiment
+flickerDuration: 0.1 # Duration of a flicker on the sync square in seconds when 'F' key is pressed
+
+# Set parameters of sync square
+syncSquareColourR: 77
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 255 
+syncSquareTextColourR: 179
+syncSquareTextColourG: 102
+syncSquareTextColourB: 102
+syncSquareTextColourA: 255
+syncSquareDisplayNum: 0
+syncSquareScalar: 2
+#syncSquarePosY: 480
+displayStimulusCode: 1
+use32BitColor: 1
+
+# perspective
+eyeHeight: 7.1 # half of monitorDimensionsY
+distanceToMonitors: 12.4 # The distance from the center of the eye to all monitors (cm).
+monitorDimensionsX: 22.6
+monitorDimensionsY: 14.2
+backDisplayNum: 0  #top
+leftDisplayNum: 2
+frontDisplayNum: 3 
+rightDisplayNum: 4
+darkAdaptTime: 0 # seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
+
+# stimuli
+density: 'python: frequency_per_360' ## cycles per degree converted to frequency per 360 degrees 
+  # OR specific, e.g. [800, 50] is 800 in first trial, 50 in second
+offset: 'python: random.choices([0, 90, 180, 270], k=n_conditions)'
+speed: 5 ## in degrees per second ## 'python: velocities' 
+  # OR specific: e.g. [5,10] is 5 degrees per second in first trial, 10 in second
+square: 1
+minimumVal: 0 
+maximumVal: 20
+onlyShowOneHalfCycle: 'python: [0] * 9 + [1] * 9'

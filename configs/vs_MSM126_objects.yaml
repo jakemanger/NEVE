@@ -1,0 +1,177 @@
+# Below are the parameters used to alter a unity experiment where still objects,
+  # snells window and bioluminenscent objects or silhouttes appears above, 
+  # to the right and below at multiple light intensities.
+
+# Each experiment should take 73 * 40 seconds = 49 minutes (with 2 repeats).
+# The first and last displayed screens are completely black (for dark adaptation).
+# Once you are ready to start the experiment, press escape and make sure to hide the mouse
+  # in the corner of the screen (it can sometimes appear when you press escape).
+# You will see the sync square in the bottom of one of the screens indicating what condition
+  # is being displayed and the animal id you set in this file.
+# For the first 20 seconds, a new background will be set, with a ball covering the animals
+  # view in all directions. Then, the ball will dissapear revealing a snells window, bioluminenscent object
+  # or silhoutte. After another 20 seconds, the next condition will be displayed.
+# The order of experiment are randomised with the python part of the configuration file for you.
+# Just enter the stimulus conditions you wish to use and make sure to update the n_conditions parameter in
+  # python_setup.
+
+# logs will be saved in the trial_logs/ directory with the parameters used and positional information
+# each frame from unity.
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset looming of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# GENERAL
+  ## Call python setup to randomize stimulus conditions
+  ## set n_conditions based on stimulus conditions used
+python_setup: 'n_conditions = 8; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
+buildDir: ./builds/All
+scene: 0
+frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
+animalCode: 1
+# Randomise the order of the conditions and repeat the experiment twice
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7] #'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)' # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ] #
+cameraRotationX: [0, 90, 270, 0, 90, 270, 0, 90] 
+cameraRotationY: -90
+cameraRotationZ: -90 
+experimentDuration: 40 # seconds
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+
+# Set parameters of sync square
+syncSquareColourR: 76
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 255
+syncSquareTextColourR: 108
+syncSquareTextColourG: 52
+syncSquareTextColourB: 52
+syncSquareTextColourA: 255
+
+syncSquareStartedColourR: 179 
+syncSquareStartedColourG: 51
+syncSquareStartedColourB: 51
+syncSquareStartedColourA: 255
+syncSquareEndedColourR: 102 
+syncSquareEndedColourG: 26
+syncSquareEndedColourB: 26
+syncSquareEndedColourA: 255
+syncSquareDisplayNum: 0 
+syncSquareScalar: 2
+displayStimulusCode: 1 
+fictracFeedback: 0
+
+use32BitColor: 1
+
+# perspective
+eyeHeight: 7.1 # half of monitorDimensionsY
+distanceToMonitors: 12.4 # The distance from the center of the eye to all monitors (cm).
+monitorDimensionsX: 22.6
+monitorDimensionsY: 14.2
+backDisplayNum: 0  #top
+leftDisplayNum: 2
+frontDisplayNum: 3 
+rightDisplayNum: 4
+darkAdaptTime: 0 # seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
+
+#### STIMULI ####
+## background
+#aboveHorizonColourR: [255] 
+#aboveHorizonColourG: [0]
+#aboveHorizonColourB: [0]
+#aboveHorizonColourA: 255
+#belowHorizonColourR: [0]
+#belowHorizonColourG: [255]
+#belowHorizonColourB: [0]
+#belowHorizonColourA: 255
+
+# Set colours for each display (back, left, front and right), overriding default aboveHorizonColour commands above
+  # Above horizon
+  # (for now with trial colours)
+aboveHorizonColourRBack: [255] #top
+aboveHorizonColourGBack: [0]
+aboveHorizonColourBBack: [0]
+aboveHorizonColourABack: 1
+
+aboveHorizonColourRLeft: [0]
+aboveHorizonColourGLeft: [255]
+aboveHorizonColourBLeft: [0]
+aboveHorizonColourALeft: 1
+
+aboveHorizonColourRFront: [0]
+aboveHorizonColourGFront: [0]
+aboveHorizonColourBFront: [255]
+aboveHorizonColourAFront: 1
+
+aboveHorizonColourRRight: [0]
+aboveHorizonColourGRight: [255]
+aboveHorizonColourBRight: [0]
+aboveHorizonColourARight: 1
+
+# Below horizon
+belowHorizonColourRBack: [255] #top
+belowHorizonColourGBack: [0]
+belowHorizonColourBBack: [0]
+belowHorizonColourABack: 1
+
+belowHorizonColourRLeft: [0]
+belowHorizonColourGLeft: [255]
+belowHorizonColourBLeft: [0]
+belowHorizonColourALeft: 1
+
+belowHorizonColourRFront: [0]
+belowHorizonColourGFront: [0]
+belowHorizonColourBFront: [255]
+belowHorizonColourAFront: 1
+
+belowHorizonColourRRight: [0]
+belowHorizonColourGRight: [255]
+belowHorizonColourBRight: [0]
+belowHorizonColourARight: 1
+
+horizonHeight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+
+# OBJECT - here you can use a still object to hide the stimuli object, by putting the animal inside
+  # use 'duration' to set the duration of the still object. The still object has the same brightness as the background.
+autoStart: 1
+stimulusType: 0 # 0 = sphere, 1 =square, 2= sphere with grating
+  ## The scale of the stimulus at the start of the stimulus
+startScaleX: 3 #cm
+startScaleY: 3 #cm
+startScaleZ: 3 #cm
+  ## The scale of the stimulus at the end
+endScaleX: 3 #cm
+endScaleY: 3 #cm
+endScaleZ: 3 #cm
+  ## Stimulus polar position at start of stimulus
+   # X (elevation) and Y (azimuth) are rotational axes, so X is up and down, Y is left and right. 
+   # X is the equivalent of negative elevation, Y is the equivalent of azimuth.
+startElevation: -40 # Default = 0 ## Can be -90 to 90
+startAzimuth: 90  # Default = 0 ## Can be -180 to 180
+  ## Stimulus polar position at end of stimulus
+endElevation: 40
+endAzimuth: 90
+  ## The offset of the stimulus from the eye position in cm at the start of the loom
+startDistance: 12.4 # Can be zero to 'infinity'
+  ## The offset of the stimulus from the eye position in cm at the end of the loom
+endDistance: 12.4 
+duration: 10 # seconds
+numReps: 1 # The number of times to repeat the stimulus movement (0.5 is start-finish, 1 is start-finish-start).
+delayToAppear: 0 # The delay in seconds before the stimulus object appears.
+delayToApproach: 10 # The delay in seconds before the stimulus starts
+hideAtEnd: 1 # 0= false, 1= true
+stimulusColourR: [0, 16, 36, 64, 100, 144, 196, 255]
+stimulusColourG: [0, 16, 36, 64, 100, 144, 196, 255]
+stimulusColourB: [0, 16, 36, 64, 100, 144, 196, 255]
+stimulusColourA: 255
+directPath: 0 # 0= false, 1= true
