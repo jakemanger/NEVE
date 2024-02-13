@@ -38,11 +38,12 @@ scene: 0
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
 animalCode: 1
 # Randomise the order of the conditions and repeat the experiment twice
-execution_order: [0, 1, 2, 3, 4, 5, 6, 7] #'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)' # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ] #
-cameraRotationX: [0, 90, 270, 0, 90, 270, 0, 90] 
+execution_order:  'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)' # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ] #
+  # [0, 1, 2, 3, 4, 5, 6, 7]
+cameraRotationX: [180, 90, 0, 180, 90, 0, 180, 90] 
 cameraRotationY: -90
 cameraRotationZ: -90 
-experimentDuration: 40 # seconds
+experimentDuration: 120 # seconds
 recordFrameData: 1 
 recordEachFrame: 1
 recordingFrequency: 1 
@@ -66,7 +67,7 @@ syncSquareEndedColourR: 102
 syncSquareEndedColourG: 26
 syncSquareEndedColourB: 26
 syncSquareEndedColourA: 255
-syncSquareDisplayNum: 0 
+syncSquareDisplayNum: 3 #set what display shows sync square
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
@@ -78,10 +79,12 @@ eyeHeight: 7.1 # half of monitorDimensionsY
 distanceToMonitors: 12.4 # The distance from the center of the eye to all monitors (cm).
 monitorDimensionsX: 22.6
 monitorDimensionsY: 14.2
-backDisplayNum: 0  #top
-leftDisplayNum: 2
-frontDisplayNum: 3 
-rightDisplayNum: 4
+backDisplayNum: 1  #= display nr 2 = top    
+leftDisplayNum: 2 #= display nr 3
+frontDisplayNum: 3 #= display nr 4 = bottom NB frontDisplay does not show stimuli in current scene
+rightDisplayNum: 4 #= display nr 5
+
+#### Display nr 0 is local display
 darkAdaptTime: 0 # seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
 
 #### STIMULI ####
@@ -98,48 +101,55 @@ darkAdaptTime: 0 # seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
 # Set colours for each display (back, left, front and right), overriding default aboveHorizonColour commands above
   # Above horizon
   # (for now with trial colours)
-aboveHorizonColourRBack: [255] #top
-aboveHorizonColourGBack: [0]
-aboveHorizonColourBBack: [0]
-aboveHorizonColourABack: 1
-
-aboveHorizonColourRLeft: [0]
-aboveHorizonColourGLeft: [255]
-aboveHorizonColourBLeft: [0]
-aboveHorizonColourALeft: 1
-
-aboveHorizonColourRFront: [0]
-aboveHorizonColourGFront: [0]
-aboveHorizonColourBFront: [255]
+aboveHorizonColourRFront: [12, 6, 0, 12, 6, 0, 12, 6, 0] #bottom
+aboveHorizonColourGFront: [12, 6, 0, 12, 6, 0, 12, 6, 0]
+aboveHorizonColourBFront: [12, 6, 0, 12, 6, 0, 12, 6, 0]
 aboveHorizonColourAFront: 1
 
-aboveHorizonColourRRight: [0]
-aboveHorizonColourGRight: [255]
-aboveHorizonColourBRight: [0]
+aboveHorizonColourRRight: [6, 12, 6, 6, 12, 6, 6, 12, 6]
+aboveHorizonColourGRight: [6, 12, 6, 6, 12, 6, 6, 12, 6]
+aboveHorizonColourBRight: [6, 12, 6, 6, 12, 6, 6, 12, 6]
 aboveHorizonColourARight: 1
 
+aboveHorizonColourRBack: [0, 6, 12, 0, 6, 12, 0, 6, 12] #top
+aboveHorizonColourGBack: [0, 6, 12, 0, 6, 12, 0, 6, 12]
+aboveHorizonColourBBack: [0, 6, 12, 0, 6, 12, 0, 6, 12]
+aboveHorizonColourABack: 1
+
+aboveHorizonColourRLeft: [6, 0, 6, 6, 0, 6, 6, 0, 6]
+aboveHorizonColourGLeft: [6, 0, 6, 6, 0, 6, 6, 0, 6]
+aboveHorizonColourBLeft: [6, 0, 6, 6, 0, 6, 6, 0, 6]
+aboveHorizonColourALeft: 1
+
+
 # Below horizon
-belowHorizonColourRBack: [255] #top
-belowHorizonColourGBack: [0]
-belowHorizonColourBBack: [0]
-belowHorizonColourABack: 1
-
-belowHorizonColourRLeft: [0]
-belowHorizonColourGLeft: [255]
-belowHorizonColourBLeft: [0]
-belowHorizonColourALeft: 1
-
-belowHorizonColourRFront: [0]
-belowHorizonColourGFront: [0]
-belowHorizonColourBFront: [255]
+belowHorizonColourRFront: [12, 6, 0, 12, 6, 0, 12, 6, 0] #bottom
+belowHorizonColourGFront: [12, 6, 0, 12, 6, 0, 12, 6, 0]
+belowHorizonColourBFront: [12, 6, 0, 12, 6, 0, 12, 6, 0]
 belowHorizonColourAFront: 1
 
-belowHorizonColourRRight: [0]
-belowHorizonColourGRight: [255]
-belowHorizonColourBRight: [0]
+belowHorizonColourRRight: [6, 12, 6, 6, 12, 6, 6, 12, 6]
+belowHorizonColourGRight: [6, 12, 6, 6, 12, 6, 6, 12, 6]
+belowHorizonColourBRight: [6, 12, 6, 6, 12, 6, 6, 12, 6]
 belowHorizonColourARight: 1
 
+belowHorizonColourRBack: [0, 6, 12, 0, 6, 12, 0, 6, 12] #top
+belowHorizonColourGBack: [0, 6, 12, 0, 6, 12, 0, 6, 12]
+belowHorizonColourBBack: [0, 6, 12, 0, 6, 12, 0, 6, 12]
+belowHorizonColourABack: 1
+
+belowHorizonColourRLeft: [6, 0, 6, 6, 0, 6, 6, 0, 6]
+belowHorizonColourGLeft: [6, 0, 6, 6, 0, 6, 6, 0, 6]
+belowHorizonColourBLeft: [6, 0, 6, 6, 0, 6, 6, 0, 6]
+belowHorizonColourALeft: 1
+
 horizonHeight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+# NB For HorizonColourRGBA-Back/Left/Front/Right to work, set horizonHeight-Back/Left/Front/Right
+horizonHeightFront: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightLeft: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightBack: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightRight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+
 
 # OBJECT - here you can use a still object to hide the stimuli object, by putting the animal inside
   # use 'duration' to set the duration of the still object. The still object has the same brightness as the background.

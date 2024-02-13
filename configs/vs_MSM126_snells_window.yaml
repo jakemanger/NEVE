@@ -32,7 +32,7 @@
 #### GENERAL ####
   ## Call python setup to randomize stimulus conditions
   ## set n_conditions based on stimulus conditions used
-python_setup: 'n_conditions = 3; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
+python_setup: 'n_conditions = 4; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
 buildDir: ./builds/All
 scene: 0
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
@@ -40,11 +40,10 @@ animalCode: 1
 
 # Randomise the order of the conditions and repeat the experiment twice
 execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)' 
-
-cameraRotationX: [0, 90, 270] 
+cameraRotationX: [0, 90, 270, 0] 
 cameraRotationY: -90
 cameraRotationZ: -90 
-experimentDuration: 60 # seconds
+experimentDuration: 120 # seconds
 recordFrameData: 1 
 recordEachFrame: 1
 recordingFrequency: 1 
@@ -70,9 +69,9 @@ syncSquareEndedColourG: 26
 syncSquareEndedColourB: 26
 syncSquareEndedColourA: 255
 
-syncSquareDisplayNum: 0 
+syncSquareDisplayNum: 3 #set on what display the Sync square is shown
 syncSquareScalar: 2
-displayStimulusCode: 1 
+displayStimulusCode: 1 #0= false,1=true
 fictracFeedback: 0
 
 use32BitColor: 1
@@ -82,65 +81,71 @@ eyeHeight: 7.1 # half of monitorDimensionsY
 distanceToMonitors: 12.4 # The distance from the center of the eye to all monitors (cm).
 monitorDimensionsX: 22.6
 monitorDimensionsY: 14.2
-backDisplayNum: 0  #top
-leftDisplayNum: 2
-frontDisplayNum: 3 
-rightDisplayNum: 4
+backDisplayNum: 1  #= display nr 2 = top    
+leftDisplayNum: 2 #= display nr 3
+frontDisplayNum: 3 #= display nr 4 = bottom
+rightDisplayNum: 4 #= display nr 5
+#### Display nr 0 is local display
 darkAdaptTime: 0 # seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
 
 #### STIMULI ####
 ## background
-#aboveHorizonColourR: [255] 
-#aboveHorizonColourG: [0]
-#aboveHorizonColourB: [0]
-#aboveHorizonColourA: 255
-#belowHorizonColourR: [0]
-#belowHorizonColourG: [255]
-#belowHorizonColourB: [0]
-#belowHorizonColourA: 255
+aboveHorizonColourR: [255] 
+aboveHorizonColourG: [0]
+aboveHorizonColourB: [0]
+aboveHorizonColourA: 255
+belowHorizonColourR: [0]
+belowHorizonColourG: [255]
+belowHorizonColourB: [0]
+belowHorizonColourA: 255
 
 # Set colours for each display (back, left, front and right), overriding default aboveHorizonColour commands above
   # Above horizon
-  # (for now with trial colours)
-aboveHorizonColourRBack: [255] #top
-aboveHorizonColourGBack: [0]
-aboveHorizonColourBBack: [0]
+aboveHorizonColourRBack: [0, 6, 12] #top
+aboveHorizonColourGBack: [0, 6, 12] 
+aboveHorizonColourBBack: [0, 6, 12]
 aboveHorizonColourABack: 1
 
-aboveHorizonColourRLeft: [0]
-aboveHorizonColourGLeft: [255]
-aboveHorizonColourBLeft: [0]
-aboveHorizonColourALeft: 1
+aboveHorizonColourRLeft: [6, 12, 6]
+aboveHorizonColourGLeft: [6, 12, 6]
+aboveHorizonColourBLeft: [6, 12, 6]
+aboveHorizonColourALeft: 255
 
-aboveHorizonColourRFront: [0]
-aboveHorizonColourGFront: [0]
-aboveHorizonColourBFront: [255]
-aboveHorizonColourAFront: 1
+aboveHorizonColourRFront: [12, 6, 0]
+aboveHorizonColourGFront: [12, 6, 0]
+aboveHorizonColourBFront: [12, 6, 0]
+aboveHorizonColourAFront: 255
 
-aboveHorizonColourRRight: [0]
-aboveHorizonColourGRight: [255]
-aboveHorizonColourBRight: [0]
-aboveHorizonColourARight: 1
+aboveHorizonColourRRight: [6, 0, 6]
+aboveHorizonColourGRight: [6, 0, 6]
+aboveHorizonColourBRight: [6, 0, 6]
+aboveHorizonColourARight: 255
 
 # Below horizon
-belowHorizonColourRBack: [255] #top
-belowHorizonColourGBack: [0]
-belowHorizonColourBBack: [0]
-belowHorizonColourABack: 1
+belowHorizonColourRBack: [0, 6, 12] #top
+belowHorizonColourGBack: [0, 6, 12]
+belowHorizonColourBBack: [0, 6, 12]
+belowHorizonColourABack: 255
 
-belowHorizonColourRLeft: [0]
-belowHorizonColourGLeft: [255]
-belowHorizonColourBLeft: [0]
-belowHorizonColourALeft: 1
+belowHorizonColourRLeft: [6, 12, 6]
+belowHorizonColourGLeft: [6, 12, 6]
+belowHorizonColourBLeft: [6, 12, 6]
+belowHorizonColourALeft: 255
 
-belowHorizonColourRFront: [0]
-belowHorizonColourGFront: [0]
-belowHorizonColourBFront: [255]
-belowHorizonColourAFront: 1
+belowHorizonColourRFront: [12, 6, 0]
+belowHorizonColourGFront: [12, 6, 0]
+belowHorizonColourBFront: [12, 6, 0]
+belowHorizonColourAFront: 255
 
-belowHorizonColourRRight: [0]
-belowHorizonColourGRight: [255]
-belowHorizonColourBRight: [0]
-belowHorizonColourARight: 1
+belowHorizonColourRRight: [6, 0, 6]
+belowHorizonColourGRight: [6, 0, 6]
+belowHorizonColourBRight: [6, 0, 6]
+belowHorizonColourARight: 255
 
 horizonHeight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+
+# NB For HorizonColourRGBA-Back/Left/Front/Right to work, set horizonHeight-Back/Left/Front/Right
+horizonHeightFront: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightLeft: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightBack: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightRight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
