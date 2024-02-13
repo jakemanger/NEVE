@@ -460,9 +460,9 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
     void WaitToMove() {
         delayTimeElapsed += Time.deltaTime;
-        if (hideAtEnd) {
-            stimulusRenderer.enabled = true;
-        }
+        // if (hideAtEnd) {
+        //     // stimulusRenderer.enabled = true;
+        // }
         if (!move && delayTimeElapsed >= delayToApproach) {
             move = true;
             wantToMove = false;
