@@ -1,3 +1,12 @@
+#-----------------------------------------------------------------------------------#
+#### HYPERIID BEHAVIOR OPTOMOTER                                                 ####
+#-----------------------------------------------------------------------------------#
+# Code by Jake Manger
+# adapted by Vanessa Stenvers for MSM126
+#-----------------------------------------------------------------------------------#
+# Tank nr: 1 -----------------------------------------------------------------------#
+
+
 # Below are the parameters used to alter a unity experiment with the name
 # Optomotor
 
@@ -45,7 +54,7 @@ syncSquareTextColourR: 179
 syncSquareTextColourG: 102
 syncSquareTextColourB: 102
 syncSquareTextColourA: 255
-syncSquareDisplayNum: 3 # set what display shows sync square
+syncSquareDisplayNum: 1 # set what display shows sync square
 syncSquareScalar: 2
 #syncSquarePosY: 480
 displayStimulusCode: 1 #0= false, 1=true
@@ -56,10 +65,10 @@ eyeHeight: 7.1 # half of monitorDimensionsY
 distanceToMonitors: 12.4 # The distance from the center of the eye to all monitors (cm).
 monitorDimensionsX: 22.6
 monitorDimensionsY: 14.2
-backDisplayNum: 1  #= display nr 2 = top    
+backDisplayNum: 1  #= display nr 2 = bottom    
 leftDisplayNum: 2 #= display nr 3
-frontDisplayNum: 3 #= display nr 4 = bottom
-rightDisplayNum: 4 #= display nr 5
+frontDisplayNum: 3 #= display nr 4 = top
+rightDisplayNum: 4 #= display nr 5 
 #### Display nr 0 is local display
 darkAdaptTime: 0 # seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
 
