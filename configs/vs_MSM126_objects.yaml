@@ -7,8 +7,11 @@
   # intensities = 0, 7, 14, 21, 28, 35, 49, 63, 100 - randomized with MATLAB
 # 2 speeds (5 and 10 seconds) - randomized with MATLAB
 # 1 Background color = 3 (dark)
+# Total time individual stimulus = 50 seconds
 #-----------------------------------------------------------------------------------#
 # Tank nr: 1 -----------------------------------------------------------------------#
+# Give each run an unique identifier:
+animalCode: 1
 
 #### RANDOMIZATION MATLAB ####
 # rng seed = 163653
@@ -22,7 +25,10 @@ duration: [10,10,10,5,5,5,5,5,10,5,5,10,10,10,5,10,5,5,10,10,10,10,10,10,5,10,5,
 
 #### PARAMETERS TO SET ####
 darkAdaptTime: 0 # Dark adaptation in seconds --> 100 = ~2 min, 1000 = ~ 17 minutes
-experimentDuration: 120 # Duration single stimuli in seconds = 2 min
+experimentDuration: 50 # Duration single stimuli in seconds = 2 min
+# stimulus:
+delayToAppear: 10 # The delay from start in seconds before the stimulus object appears.
+delayToApproach: 20 # The delay from start in seconds before the stimulus starts moving
 
 #### SCREEN PERSPECTIVES ####
 eyeHeight: 7.1 # half of monitorDimensionsY
@@ -35,6 +41,7 @@ frontDisplayNum: 3 #= display nr 4 = top
 rightDisplayNum: 4 #= display nr 5 
 #### Display nr 0 is local display
 
+
 # GENERAL
 # Can python setup to randomize stimulus conditions, but not needed here since done with MATLAB (copy+pasted above)
   ## set n_conditions based on stimulus conditions used
@@ -42,7 +49,6 @@ rightDisplayNum: 4 #= display nr 5
 buildDir: ./builds/All
 scene: 0
 frameDataIdCode: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
-animalCode: 1
 cameraRotationY: -90
 cameraRotationZ: -90 
 recordFrameData: 1 
@@ -71,8 +77,8 @@ syncSquareDisplayNum: 1 #set what display shows sync square
 syncSquareScalar: 2
 displayStimulusCode: 1 
 fictracFeedback: 0
-#syncSquarePosX: 11.3 # half of x dimension monitor
-#syncSquarePosY: 1 #towards camera
+syncSquarePosX: 11.3 
+syncSquarePosY: 775 #label hight 2-
 
 use32BitColor: 1
 
@@ -120,8 +126,6 @@ startDistance: 12.4 # Can be zero to 'infinity'
   ## The offset of the stimulus from the eye position in cm at the end of the loom
 endDistance: 12.4 
 numReps: 1 # The number of times to repeat the stimulus movement (0.5 is start-finish, 1 is start-finish-start).
-delayToAppear: 0 # The delay in seconds before the stimulus object appears.
-delayToApproach: 10 # The delay in seconds before the stimulus starts
 hideAtEnd: 1 # 0= false, 1= true
 directPath: 0 # 0= false, 1= true
 
