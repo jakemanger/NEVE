@@ -16,21 +16,27 @@ public class EpisodeControllerAgent : Agent {
 
     public EnvironmentParameters floatChannel;
 
+    // void Awake() {
+    // }
 
     public override void OnEpisodeBegin() {
+        print("Calling OnEpisodeBegin");
         // used for initialising and resetting the environment
         timeSinceStimulusStart = 0f;
 
         // check if a new scene needs to be loaded
         floatChannel = Academy.Instance.EnvironmentParameters;
-        Academy.Instance.AutomaticSteppingEnabled = false; // manually control steps as there appears to be a mlagents bug that sometimes causes steps to be called twice when switching scenes
         // if we need to switch scenes, switch now
         int scene = GetIntFromPython("scene", 0);
         Scene currentScene = SceneManager.GetActiveScene();
         int currentSceneIndex = currentScene.buildIndex;
+        print("Current scene is " + currentSceneIndex);
+        print("Desired scene is " + scene);
+        print("Number of available scenes are " + SceneManager.sceneCount);
         if ((int)scene != (int)currentSceneIndex) {
             print("Changing scene");
-            SceneManager.LoadSceneAsync(scene);
+            GetComponent<GenericStimulusManager>().ClearCameras();
+            SceneManager.LoadScene(scene, LoadSceneMode.Single);
             return;
         }
         Cursor.visible = false;
@@ -45,8 +51,9 @@ public class EpisodeControllerAgent : Agent {
         if (timeSinceStimulusStart >= experimentDuration || Input.GetKeyDown(KeyCode.Escape)) {
             ClearEnvironmentParameters();
             RequestDecision(); // gives control back to python until env.step() or env.reset() is called
-            Academy.Instance.EnvironmentStep(); // manually control steps as there appears to be a mlagents bug that sometimes causes steps to be called twice when switching scenes
-            EndEpisode();
+            // Academy.Instance.EnvironmentStep(); // manually control steps as there appears to be a mlagents bug that sometimes causes steps to be called twice when switching scenes
+            // EndEpisode();
+            print("Stepping to next experiment condition");
         }
     }
 

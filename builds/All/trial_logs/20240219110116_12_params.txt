@@ -1,0 +1,242 @@
+density: 4
+offset: 0
+angle: 0
+speed: 5
+square: True
+minimumVal: 0
+maximumVal: 0.07843138
+reverseAfterSeconds: 30
+timeWaitedForReverse: 8.567875
+onlyShowOneHalfCycle: True
+verticalAngleVisible: 180
+recieveInputFromSocket: False
+startFictracFromStart: False
+mustIncludeEveryParameter: False
+use32BitColor: True
+eyeHeight: 7.1
+distanceToMonitors: 12.4
+monitorDimensions: (22.6, 14.2)
+frontDisplayNum: 3
+rightDisplayNum: 4
+backDisplayNum: 1
+leftDisplayNum: 2
+cameraRotation: (0.0, 0.0, 0.0)
+experimentDuration: 180
+darkAdaptTime: 0
+recordFrameData: True
+recordEachFrame: True
+recordingFrequency: 1
+frameDataIdCode: 12
+animalCode: 1
+syncSquarePos: (-29.8, 615.0)
+syncSquareScalar: 2.5
+syncSquareColor: RGBA(0.302, 0.000, 0.000, 1.000)
+syncSquareWaitingColor: RGBA(0.000, 0.000, 0.000, 1.000)
+syncSquareStartedColor: RGBA(0.698, 0.200, 0.200, 1.000)
+syncSquareEndedColor: RGBA(0.400, 0.098, 0.098, 1.000)
+syncSquareTextColor: RGBA(0.702, 0.400, 0.400, 1.000)
+syncSquare: SyncSquare (SyncSquare)
+syncSquare.flickerDuration: 0.1
+syncSquare.flickerColor: RGBA(0.302, 0.000, 0.000, 1.000)
+syncSquare.textColor: RGBA(0.702, 0.400, 0.400, 1.000)
+syncSquare.timeWaited: 0
+syncSquare.doFlicker: False
+syncSquare.displayStimulusCode: True
+syncSquare.stimulusCode: 11
+syncSquare.animalCode: 1
+syncSquare.additionalInfo: AdditionalInfo (UnityEngine.GameObject)
+syncSquare.flicker: Flicker (UnityEngine.UI.Image)
+syncSquare.experimentId: ExperimentId (UnityEngine.UI.Text)
+syncSquare.animalId: AnimalId (UnityEngine.UI.Text)
+syncSquare.timeText: Time (UnityEngine.UI.Text)
+syncSquareDisplayNum: 1
+displayStimulusCode: True
+flickerDuration: 0.1
+flashingSyncSquare: False
+flashingSyncSquareFrequency: 100
+flashingSyncSquareUseMS: True
+camMon: Eyes (CameraMonitorController)
+camMon.frontDisplayNum: 3
+camMon.rightDisplayNum: 4
+camMon.backDisplayNum: 1
+camMon.leftDisplayNum: 2
+camMon.frontCam: FrontMonitor (AsymFrustum)
+camMon.rightCam: RightMonitor (AsymFrustum)
+camMon.backCam: BackMonitor (AsymFrustum)
+camMon.leftCam: LeftMonitor (AsymFrustum)
+camMon.upCam: 
+camMon.downCam: 
+frameWriter: SimulationManager (FrameWriter)
+frameWriter.recordEachFrame: True
+frameWriter.recordingFrequency: 1
+frameWriter.logsDir: trial_logs/
+frameWriter.stimTrans: 
+frameWriter.syncSquareImg: Flicker (UnityEngine.UI.Image)
+frameWriter.flashingSyncSquare: False
+frameWriter.flashingSyncFrequency: 100
+frameWriter.flashingSyncSquareUseMS: True
+frameWriter.flashOn: False
+frameWriter.flashingSyncCounter: 0
+frameWriter.syncSquareWaitingColor: RGBA(0.000, 0.000, 0.000, 1.000)
+frameWriter.syncSquareStartedColor: RGBA(0.698, 0.200, 0.200, 1.000)
+frameWriter.syncSquareEndedColor: RGBA(0.400, 0.098, 0.098, 1.000)
+frameWriter.floatsToWrite: System.Collections.Generic.Dictionary`2[System.String,System.Single]
+frameWriter.experimentId: 12
+frameWriter.outputFilePath: trial_logs/20240219110116327_11.csv
+frameWriter._sw: System.IO.StreamWriter
+frameWriter.startNewFile: True
+frameWriter.startedNewFile: False
+frameWriter.stimulusControllers: GenericStimulusController[]
+frameWriter.stimulusStateImage: StimulusState (UnityEngine.UI.Image)
+frameWriter.timeText: Time (UnityEngine.UI.Text)
+frameWriter.stimControllerLength: 0
+frameWriter.transformsToRecord: System.Collections.Generic.List`1[UnityEngine.Transform]
+episodeController: SimulationManager (EpisodeControllerAgent)
+episodeController.experimentDuration: 180
+episodeController.timeSinceStimulusStart: 0
+episodeController.floatChannel: Unity.MLAgents.EnvironmentParameters
+episodeController.agentParameters: Unity.MLAgents.Agent+AgentParameters
+episodeController.hasUpgradedFromAgentParameters: True
+episodeController.MaxStep: 0
+episodeController.DemonstrationWriters: System.Collections.Generic.HashSet`1[Unity.MLAgents.Demonstrations.DemonstrationWriter]
+episodeController.sensors: System.Collections.Generic.List`1[Unity.MLAgents.Sensors.ISensor]
+episodeController.collectObservationsSensor: Unity.MLAgents.Sensors.VectorSensor
+blackOutCanvases: BlackOutCanvases (UnityEngine.GameObject)
+manualControl: False
+mouseMoveSpeed: 2
+floatChannel: Unity.MLAgents.EnvironmentParameters
+floatChannel.m_Channel: Unity.MLAgents.SideChannels.EnvironmentParametersChannel
+parametersExpected: System.Collections.Generic.List`1[System.String]
+parametersExpected._defaultCapacity: 4
+parametersExpected._items: System.String[]
+parametersExpected._size: 991
+parametersExpected._version: 991
+parametersExpected._syncRoot: 
+parametersExpected._emptyArray: System.String[]
+errorMessageObject: ErrorMessageCanvas (UnityEngine.GameObject)
+xMultiplier: 1
+zMultiplier: 1
+darkAdaptFirstTrialOnly: True
+darkAdaptNow: False
+trialNumber: 13
+density: 4
+offset: 0
+angle: 0
+speed: 5
+square: True
+minimumVal: 0
+maximumVal: 0.07843138
+reverseAfterSeconds: 30
+timeWaitedForReverse: 8.567875
+onlyShowOneHalfCycle: True
+verticalAngleVisible: 180
+recieveInputFromSocket: False
+startFictracFromStart: False
+mustIncludeEveryParameter: False
+use32BitColor: True
+eyeHeight: 7.1
+distanceToMonitors: 12.4
+monitorDimensions: (22.6, 14.2)
+frontDisplayNum: 3
+rightDisplayNum: 4
+backDisplayNum: 1
+leftDisplayNum: 2
+cameraRotation: (0.0, 0.0, 0.0)
+experimentDuration: 180
+darkAdaptTime: 0
+recordFrameData: True
+recordEachFrame: True
+recordingFrequency: 1
+frameDataIdCode: 12
+animalCode: 1
+syncSquarePos: (-29.8, 615.0)
+syncSquareScalar: 2.5
+syncSquareColor: RGBA(0.302, 0.000, 0.000, 1.000)
+syncSquareWaitingColor: RGBA(0.000, 0.000, 0.000, 1.000)
+syncSquareStartedColor: RGBA(0.698, 0.200, 0.200, 1.000)
+syncSquareEndedColor: RGBA(0.400, 0.098, 0.098, 1.000)
+syncSquareTextColor: RGBA(0.702, 0.400, 0.400, 1.000)
+syncSquare: SyncSquare (SyncSquare)
+syncSquare.flickerDuration: 0.1
+syncSquare.flickerColor: RGBA(0.302, 0.000, 0.000, 1.000)
+syncSquare.textColor: RGBA(0.702, 0.400, 0.400, 1.000)
+syncSquare.timeWaited: 0
+syncSquare.doFlicker: False
+syncSquare.displayStimulusCode: True
+syncSquare.stimulusCode: 12
+syncSquare.animalCode: 1
+syncSquare.additionalInfo: AdditionalInfo (UnityEngine.GameObject)
+syncSquare.flicker: Flicker (UnityEngine.UI.Image)
+syncSquare.experimentId: ExperimentId (UnityEngine.UI.Text)
+syncSquare.animalId: AnimalId (UnityEngine.UI.Text)
+syncSquare.timeText: Time (UnityEngine.UI.Text)
+syncSquareDisplayNum: 1
+displayStimulusCode: True
+flickerDuration: 0.1
+flashingSyncSquare: False
+flashingSyncSquareFrequency: 100
+flashingSyncSquareUseMS: True
+camMon: Eyes (CameraMonitorController)
+camMon.frontDisplayNum: 3
+camMon.rightDisplayNum: 4
+camMon.backDisplayNum: 1
+camMon.leftDisplayNum: 2
+camMon.frontCam: FrontMonitor (AsymFrustum)
+camMon.rightCam: RightMonitor (AsymFrustum)
+camMon.backCam: BackMonitor (AsymFrustum)
+camMon.leftCam: LeftMonitor (AsymFrustum)
+camMon.upCam: 
+camMon.downCam: 
+frameWriter: SimulationManager (FrameWriter)
+frameWriter.recordEachFrame: True
+frameWriter.recordingFrequency: 1
+frameWriter.logsDir: trial_logs/
+frameWriter.stimTrans: 
+frameWriter.syncSquareImg: Flicker (UnityEngine.UI.Image)
+frameWriter.flashingSyncSquare: False
+frameWriter.flashingSyncFrequency: 100
+frameWriter.flashingSyncSquareUseMS: True
+frameWriter.flashOn: False
+frameWriter.flashingSyncCounter: 0
+frameWriter.syncSquareWaitingColor: RGBA(0.000, 0.000, 0.000, 1.000)
+frameWriter.syncSquareStartedColor: RGBA(0.698, 0.200, 0.200, 1.000)
+frameWriter.syncSquareEndedColor: RGBA(0.400, 0.098, 0.098, 1.000)
+frameWriter.floatsToWrite: System.Collections.Generic.Dictionary`2[System.String,System.Single]
+frameWriter.experimentId: 12
+frameWriter.outputFilePath: trial_logs/20240219110116327_11.csv
+frameWriter._sw: System.IO.StreamWriter
+frameWriter.startNewFile: True
+frameWriter.startedNewFile: False
+frameWriter.stimulusControllers: GenericStimulusController[]
+frameWriter.stimulusStateImage: StimulusState (UnityEngine.UI.Image)
+frameWriter.timeText: Time (UnityEngine.UI.Text)
+frameWriter.stimControllerLength: 0
+frameWriter.transformsToRecord: System.Collections.Generic.List`1[UnityEngine.Transform]
+episodeController: SimulationManager (EpisodeControllerAgent)
+episodeController.experimentDuration: 180
+episodeController.timeSinceStimulusStart: 0
+episodeController.floatChannel: Unity.MLAgents.EnvironmentParameters
+episodeController.agentParameters: Unity.MLAgents.Agent+AgentParameters
+episodeController.hasUpgradedFromAgentParameters: True
+episodeController.MaxStep: 0
+episodeController.DemonstrationWriters: System.Collections.Generic.HashSet`1[Unity.MLAgents.Demonstrations.DemonstrationWriter]
+episodeController.sensors: System.Collections.Generic.List`1[Unity.MLAgents.Sensors.ISensor]
+episodeController.collectObservationsSensor: Unity.MLAgents.Sensors.VectorSensor
+blackOutCanvases: BlackOutCanvases (UnityEngine.GameObject)
+manualControl: False
+mouseMoveSpeed: 2
+floatChannel: Unity.MLAgents.EnvironmentParameters
+floatChannel.m_Channel: Unity.MLAgents.SideChannels.EnvironmentParametersChannel
+parametersExpected: System.Collections.Generic.List`1[System.String]
+parametersExpected._defaultCapacity: 4
+parametersExpected._items: System.String[]
+parametersExpected._size: 1062
+parametersExpected._version: 1062
+parametersExpected._syncRoot: 
+parametersExpected._emptyArray: System.String[]
+errorMessageObject: ErrorMessageCanvas (UnityEngine.GameObject)
+xMultiplier: 1
+zMultiplier: 1
+darkAdaptFirstTrialOnly: True
+darkAdaptNow: False
+trialNumber: 14

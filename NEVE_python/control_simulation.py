@@ -17,6 +17,7 @@ def start(config_paths):
     Experimental conditions are specified by the `config_paths` argument
     """
     print(config_paths)
+    last_scene = 0
     for i, config_path in enumerate(config_paths):
         print(f'Starting {config_path}')
         print(f'i is {i}')
@@ -31,12 +32,28 @@ def start(config_paths):
         # add an extra dark adaptation condition if "darkAdaptFirstTrialOnly" is in
         # the config file
         if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:
+            if nenv.params['scene'] != last_scene:
+                print('Changing scene')
+                nenv.set_params(0)
+                nenv.reset()
+                last_scene = nenv.params['scene']
             nenv.set_params(0, dark_adapt=True)
             nenv.reset()
 
         print('Running for', len(nenv.execution_order), 'experimental conditions')
         for j in nenv.execution_order:
+            if j == nenv.execution_order[0] and nenv.params['scene'] != last_scene:
+                print('Changing scene')
+                nenv.set_params(j)
+                nenv.reset()
+                last_scene = nenv.params['scene']
+
+            print(f'j is {j}')
             nenv.set_params(j)
+            print('Resetting environment')
+            nenv.reset()
+
+        if j == nenv.execution_order[-1] and i == len(config_paths):
             nenv.reset()
 
         if 'darkAdaptTime' in nenv.params and nenv.params['darkAdaptTime'] > 0:

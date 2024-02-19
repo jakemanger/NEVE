@@ -4,9 +4,11 @@ using System.Collections;
 public class ActivateAllDisplays : MonoBehaviour {
     public int nDisplaysWanted = 4;
     void Start () {
-        Debug.Log ("displays connected: " + Display.displays.Length);
+        // Debug.Log ("displays connected: " + Display.displays.Length);
     
         // for (int i = 1; i < Display.displays.Length; i++)
+        print("NUMBER OF DISPLAYS AVAILABLE: " + Display.displays.Length);
+        print("NUMBER OF DISPLAYS WANTED" + nDisplaysWanted);
         int nDisplays = Mathf.Min(nDisplaysWanted, Display.displays.Length);
         Debug.Log ("displays connected: " + Display.displays.Length);
         for (int i = 1; i < nDisplays; i++) {
