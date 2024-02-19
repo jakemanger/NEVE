@@ -14,7 +14,7 @@ using System.Threading;
 /// </summary>
 public class SocketMovementController : MonoBehaviour
 {
-    public bool recieveInputFromSocket = true;
+    public bool recieveInputFromSocket = false;
     public int port = 1111;
 
     public float ballRadius = 6f;
@@ -158,6 +158,7 @@ public class SocketMovementController : MonoBehaviour
             catch(Exception e)
             {
                 Debug.LogWarning("Not using Closed Loop Input as Exception thrown: \n" + e.Message + "\n" + e.StackTrace);
+                break;
             }
         }
     }

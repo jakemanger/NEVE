@@ -84,6 +84,17 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public bool darkAdaptNow = false;
     public int trialNumber = 0;
 
+    public void ClearCameras() {
+        camMon.frontCam.gameObject.SetActive(false);
+        camMon.rightCam.gameObject.SetActive(false);
+        camMon.backCam.gameObject.SetActive(false);
+        camMon.leftCam.gameObject.SetActive(false);
+        if (camMon.upCam)
+            camMon.upCam.gameObject.SetActive(false);
+        if (camMon.downCam)
+            camMon.downCam.gameObject.SetActive(false);
+    }
+
 
     public virtual void Reset() {
         blackOutCanvases.SetActive(true);
@@ -216,7 +227,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         print("Recieved " + floatChannel.Keys().Count + " properties from python:");
         foreach (string key in floatChannel.Keys()) {
             float value = floatChannel.GetWithDefault(key, 0f);
-            print(key + ": " + value);
+            // print(key + ": " + value);
         }
 
         // set properties from python
@@ -251,7 +262,7 @@ public abstract class GenericStimulusManager : MonoBehaviour
         leftDisplayNum = GetIntFromPython("leftDisplayNum", 3);
         cameraRotation = GetVector3FromPython("cameraRotation", Vector3.zero);
         darkAdaptTime = GetFloatFromPython("darkAdaptTime", 0f);
-        recieveInputFromSocket = GetBoolFromPython("fictracFeedback", true);
+        recieveInputFromSocket = GetBoolFromPython("fictracFeedback", false);
         startFictracFromStart = GetBoolFromPython("startFictracFromStart", false);
         mustIncludeEveryParameter = GetBoolFromPython("mustIncludeEveryParameter", false);
         xMultiplier = GetFloatFromPython("xMultiplier", 1f);

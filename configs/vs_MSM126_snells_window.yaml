@@ -1,0 +1,159 @@
+#-----------------------------------------------------------------------------------#
+#### HYPERIID BEHAVIOR SNELL's WINDOW                                            ####
+#-----------------------------------------------------------------------------------#
+# Code by Jake Manger
+# adapted by Vanessa Stenvers for MSM126
+# 8 background intensities (displayed on 1 screen only, others black)
+  # intensities: 0, 3, 7, 14, 21, 35, 49, 63 - randomized across Top, Left and Bottom screens with MATLAB
+# Total time each Snell's window = 2 min
+#-----------------------------------------------------------------------------------#
+# Tank nr: 1 -----------------------------------------------------------------------#
+# Give each run an unique identifier: (displayed in syncSquare)
+animalCode: 1
+
+#### DARK ADAPTATION ####
+darkAdaptTime: 0 # seconds --> 100 = ~2 min, 600= 10 min, 1000 = ~ 17 minutes
+
+#### RANDOMIZATION MATLAB ####
+# Set colours for each display (back, left, front and right), overriding default above/belowHorizonColour commands above
+# Set execution order 
+# rng seed = 1747
+execution_order: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+aboveHorizonColourRFront: [0,3,0,0,0,7,0,14,0,0,0,0,21,0,35,0,49,0,0,63,0,0]
+aboveHorizonColourGFront: [0,3,0,0,0,7,0,14,0,0,0,0,21,0,35,0,49,0,0,63,0,0]
+aboveHorizonColourBFront: [0,3,0,0,0,7,0,14,0,0,0,0,21,0,35,0,49,0,0,63,0,0]
+aboveHorizonColourAFront: 255
+aboveHorizonColourRLeft: [0,0,3,0,7,0,0,0,0,14,21,0,0,0,0,35,0,0,49,0,0,63]
+aboveHorizonColourGLeft: [0,0,3,0,7,0,0,0,0,14,21,0,0,0,0,35,0,0,49,0,0,63]
+aboveHorizonColourBLeft: [0,0,3,0,7,0,0,0,0,14,21,0,0,0,0,35,0,0,49,0,0,63]
+aboveHorizonColourALeft: 255
+aboveHorizonColourRBack: [0,0,0,3,0,0,7,0,14,0,0,21,0,35,0,0,0,49,0,0,63,0]
+aboveHorizonColourGBack: [0,0,0,3,0,0,7,0,14,0,0,21,0,35,0,0,0,49,0,0,63,0]
+aboveHorizonColourBBack: [0,0,0,3,0,0,7,0,14,0,0,21,0,35,0,0,0,49,0,0,63,0]
+aboveHorizonColourABack: 255
+aboveHorizonColourRRight: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+aboveHorizonColourGRight: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+aboveHorizonColourBRight: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+aboveHorizonColourARight: 255
+belowHorizonColourRFront: [0,3,0,0,0,7,0,14,0,0,0,0,21,0,35,0,49,0,0,63,0,0]
+belowHorizonColourGFront: [0,3,0,0,0,7,0,14,0,0,0,0,21,0,35,0,49,0,0,63,0,0]
+belowHorizonColourBFront: [0,3,0,0,0,7,0,14,0,0,0,0,21,0,35,0,49,0,0,63,0,0]
+belowHorizonColourAFront: 255
+belowHorizonColourRLeft: [0,0,3,0,7,0,0,0,0,14,21,0,0,0,0,35,0,0,49,0,0,63]
+belowHorizonColourGLeft: [0,0,3,0,7,0,0,0,0,14,21,0,0,0,0,35,0,0,49,0,0,63]
+belowHorizonColourBLeft: [0,0,3,0,7,0,0,0,0,14,21,0,0,0,0,35,0,0,49,0,0,63]
+belowHorizonColourALeft: 255
+belowHorizonColourRBack: [0,0,0,3,0,0,7,0,14,0,0,21,0,35,0,0,0,49,0,0,63,0]
+belowHorizonColourGBack: [0,0,0,3,0,0,7,0,14,0,0,21,0,35,0,0,0,49,0,0,63,0]
+belowHorizonColourBBack: [0,0,0,3,0,0,7,0,14,0,0,21,0,35,0,0,0,49,0,0,63,0]
+belowHorizonColourABack: 255
+belowHorizonColourRRight: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+belowHorizonColourGRight: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+belowHorizonColourBRight: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+belowHorizonColourARight: 255
+
+
+#### PERSPECTIVE ####
+eyeHeight: 7.1 # half of monitorDimensionsY
+distanceToMonitors: 12.4 # The distance from the center of the eye to all monitors (cm).
+monitorDimensionsX: 22.6
+monitorDimensionsY: 14.2
+backDisplayNum: 1  #= display nr 2 = bottom    
+leftDisplayNum: 2 #= display nr 3
+frontDisplayNum: 3 #= display nr 4 = top
+rightDisplayNum: 4 #= display nr 5 
+#### Display nr 0 is local display
+
+#### GENERAL ####
+  ## Call python setup to randomize stimulus conditions
+  ## set n_conditions based on stimulus conditions used
+#python_setup: 'n_conditions = 24; import random; from datetime import datetime; random.seed(datetime.now().timestamp())'
+buildDir: ./builds/All
+scene: 0
+frameDataIdCode: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+
+# Execute light intensities in increasing increments to not loose dark adaptation
+#execution_order: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23] #'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)' 
+#cameraRotationX: [180, 90, 0,  180, 90, 0,  180, 90, 0,  180, 90, 0,  180, 90, 0,  180, 90, 0,  180, 90, 0,  180, 90, 0] 
+    # Don't need camera rotation since background colours are set per screen
+    # NB randomize screens
+cameraRotationY: -90
+cameraRotationZ: -90 
+experimentDuration: 120 # seconds
+recordFrameData: 1 
+recordEachFrame: 1
+recordingFrequency: 1 
+manualControl: 0 
+
+syncSquareColourR: 76
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 255
+ 
+syncSquareTextColourR: 108
+syncSquareTextColourG: 52
+syncSquareTextColourB: 52
+syncSquareTextColourA: 255
+
+syncSquareStartedColourR: 179 
+syncSquareStartedColourG: 51
+syncSquareStartedColourB: 51
+syncSquareStartedColourA: 255
+
+syncSquareEndedColourR: 102 
+syncSquareEndedColourG: 26
+syncSquareEndedColourB: 26
+syncSquareEndedColourA: 255
+
+syncSquareDisplayNum: 1 #set on what display the Sync square is shown
+syncSquareScalar: 2.5
+displayStimulusCode: 1 #0= false,1=true
+fictracFeedback: 0
+syncSquarePosX: 11.3 
+syncSquarePosY: 615 #505 if scalar = 3 #770 if scalar = 2 #label hight =25
+
+use32BitColor: 1  
+
+#### STIMULI ####
+## background
+horizonHeight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+
+# NB For HorizonColourRGBA-Back/Left/Front/Right to work, set horizonHeight-Back/Left/Front/Right
+horizonHeightFront: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightLeft: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightBack: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+horizonHeightRight: [0] ## The height of the horizon in degrees (0 is exactly horizontal relative to the eye position).
+
+#### DOCUMENTATION ####
+
+# Below are the parameters used to alter a unity experiment where still objects,
+  # snells window and bioluminenscent objects or silhouttes appear above, 
+  # to the right and below at multiple light intensities.
+
+# Time single run = 24 (n_conditions) * 120 seconds = 16 minutes (with 2 repeats).
+# Darkadaptation = 17 minutes
+# Once you are ready to start the experiment, press escape and make sure to hide the mouse
+  # in the corner of the screen (it can sometimes appear when you press escape).
+# You will see the sync square in the bottom of one of the screens indicating what condition
+  # is being displayed and the animal id you set in this file.
+# For the first 20 seconds, a new background will be set, with a ball covering the animals
+  # view in all directions. Then, the ball will dissapear revealing a snells window, bioluminenscent object
+  # or silhoutte. After another 20 seconds, the next condition will be displayed.
+# The order of experiment are randomised with the python part of the configuration file for you.
+# Just enter the stimulus conditions you wish to use and make sure to update the n_conditions parameter in
+  # python_setup.
+
+# logs will be saved in the trial_logs/ directory with the parameters used and positional information
+# each frame from unity.
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset looming of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+

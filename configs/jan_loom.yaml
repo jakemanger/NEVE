@@ -17,9 +17,9 @@
 # general
 buildDir: ./builds/All
 scene: 0
-frameDataIdCode: [11]
+frameDataIdCode: [1, 2, 3]
 animalCode: [1] 
-execution_order: [0]
+execution_order: [0, 1, 2]
 experimentDuration: 50 
 recordFrameData: 1 
 recordEachFrame: 1
