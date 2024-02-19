@@ -39,7 +39,7 @@ python_setup: >
   print(n_conditions);
   print(frequency_per_360);
   print(velocities);
-buildDir: #./builds/All/
+buildDir: ./builds/All
 scene: 2
 frameDataIdCode: 'python: list(range(1, n_conditions + 1))'
 execution_order: 'python: random.sample(list(range(0, n_conditions)), n_conditions) + random.sample(list(range(0, n_conditions)), n_conditions)'

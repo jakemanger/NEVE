@@ -109,7 +109,7 @@ syncSquareDisplayNum: 1 #set on what display the Sync square is shown
 syncSquareScalar: 2.5
 displayStimulusCode: 1 #0= false,1=true
 fictracFeedback: 0
-#syncSquarePosX: 11.3 
+syncSquarePosX: 11.3 
 syncSquarePosY: 615 #505 if scalar = 3 #770 if scalar = 2 #label hight =25
 
 use32BitColor: 1  
