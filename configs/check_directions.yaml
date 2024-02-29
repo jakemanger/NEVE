@@ -69,6 +69,7 @@ horizonHeightFront: -90
 horizonHeightRight: -90
 horizonHeightBack: -90
 horizonHeightLeft: -90
+
 # object
 stimulusType: 0
 startScaleX: 0  

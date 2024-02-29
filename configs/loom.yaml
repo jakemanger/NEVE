@@ -34,6 +34,9 @@ syncSquareColourA: 1
 syncSquareDisplayNum: 0 
 displayStimulusCode: 1 
 fictracFeedback: 0
+syncSquareTextColourR: 1
+syncSquareTextColourB: 1
+syncSquareTextColourG: 1
 
 # perspective
 eyeHeight: 2.864 
