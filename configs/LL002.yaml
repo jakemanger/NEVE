@@ -1,8 +1,8 @@
 # general
 buildDir: ./builds/Loom/
 scene: 0
-frameDataIdCode: [3, 2]
-animalCode: [4] 
+frameDataIdCode: [2, 3]
+animalCode: [2] 
 execution_order: [0, 1]
 experimentDuration: 99999 
 recordFrameData: 1 
@@ -15,7 +15,7 @@ syncSquareColourR: 1
 syncSquareColourG: 0
 syncSquareColourB: 0
 syncSquareColourA: 1
-syncSquareDisplayNum: 0 
+syncSquareDisplayNum: 1
 displayStimulusCode: 1 
 fictracFeedback: 0
 syncSquareTextColourR: 1
@@ -23,7 +23,7 @@ syncSquareTextColourB: 1
 syncSquareTextColourG: 1
 
 # perspective
-eyeHeight: 2
+eyeHeight: 1.93
 distanceToMonitors: 27 
 monitorDimensionsX: 52 
 monitorDimensionsY: 32 
@@ -47,22 +47,22 @@ horizonHeight: 0
 
 # object
 stimulusType: 1
-startScaleX: [400, 3]
-startScaleY: [3, 400]
+startScaleX: 3
+startScaleY: 400
 startScaleZ: 3
-endScaleX: [400, 3]
-endScaleY: [3, 400]
+endScaleX: 3
+endScaleY: 400
 endScaleZ: 3
 startElevation: 15 
-startAzimuth: 0  
+startAzimuth: 270 
 endElevation: 15
-endAzimuth: 0 
+endAzimuth: 270
 originX: 0 
 originY: 0 
 originZ: 0 
 startDistance: 500
 endDistance: 1.5
-duration: 5 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
+duration: 24.925 # 24.925 (to get 200 mm/s with 1.5 cm end dist)
 delayToApproach: 5 
 stimulusColourR: 0
 stimulusColourG: 0
@@ -75,6 +75,6 @@ outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
 fixedAngularSize: 1
-fixElevation: [0, 1]
-minAngularAngle: [-3.185, 12]
-maxAngularAngle: [3.185, 18]
+fixElevation: 1
+minAngularAngle: 12 
+maxAngularAngle: 18 
