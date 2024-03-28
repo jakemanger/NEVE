@@ -85,6 +85,27 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.mouseMoveSpeed = mouseMoveSpeed;
         stimGenerator.Reset();
         stimGenerator.autoStart = GetBoolFromPython("autoStart", false);
+
+        // for brigtness and static flickering
+        stimGenerator.flickerFrequency = GetFloatFromPython("flickeringFrequency", 4f);
+        stimGenerator.flickeringLoom = GetBoolFromPython("flickeringLoom", false);
+        stimGenerator.flickeringOnRed = GetFloatFromPython("flickeringOnRed", 0f);
+        stimGenerator.flickeringOnGreen = GetFloatFromPython("flickeringOnGreen", 0f);
+        stimGenerator.flickeringOnBlue = GetFloatFromPython("flickeringOnBlue", 0f);
+        stimGenerator.flickeringOffRed = GetFloatFromPython("flickeringOffRed", 0f);
+        stimGenerator.flickeringOffGreen = GetFloatFromPython("flickeringOffGreen", 0f);
+        stimGenerator.flickeringOffBlue = GetFloatFromPython("flickeringOffBlue", 0f);
+        stimGenerator.flickeringOnAlpha = GetFloatFromPython("flickeringOnAlpha", 1f);
+        stimGenerator.flickeringOffAlpha = GetFloatFromPython("flickeringOffAlpha", 0f);
+        stimGenerator.staticFlickering = GetBoolFromPython("staticFlickering", false);
+        stimGenerator.staticFlickeringFrequency = GetFloatFromPython("staticFlickeringFrequency", 4f);
+        stimGenerator.delayForStartFlickering = GetFloatFromPython("delayForStartFlickering", 0f);
+        stimGenerator.delayForStartStaticFlickering = GetFloatFromPython("delayForStartStaticFlickering", 0f);
+        
+
+        //for controling the time that the stimuli is frozen at its final size before disapearing from screen.
+        stimGenerator.timeAfterMovement = GetFloatFromPython("timeAfterMovement", 10f);
+        
     }
 
     void SetSkybox(GameObject camGameObject, float horizonHeight, Color aboveHorizonColour, Color belowHorizonColour) {

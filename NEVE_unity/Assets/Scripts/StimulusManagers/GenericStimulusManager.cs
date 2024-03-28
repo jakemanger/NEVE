@@ -42,8 +42,10 @@ public abstract class GenericStimulusManager : MonoBehaviour
     public Vector2 syncSquarePos = new Vector2(-29.84f, 18.17102f);
     public float syncSquareScalar = 1f;
     public Color syncSquareColor = Color.red;
-    public SyncSquare syncSquare;
+    public SyncSquareManager syncSquare;
     public int syncSquareDisplayNum = 0;
+    public int secondSyncSquareDisplayNum = 1;
+    public bool displaySecondSyncSquare = false;
     public bool displayStimulusCode = true;
     public float flickerDuration = 0.1f; // time sphere renderer is off in seconds
 
@@ -96,15 +98,16 @@ public abstract class GenericStimulusManager : MonoBehaviour
         frameWriter.recordingFrequency = recordingFrequency;
         frameWriter.experimentId = frameDataIdCode.ToString();
         frameWriter.Reset();
-        syncSquare.transform.parent.GetComponent<Canvas>().targetDisplay = syncSquareDisplayNum;
+        syncSquare.displayNum = syncSquareDisplayNum;
+        syncSquare.secondDisplayNum = secondSyncSquareDisplayNum;
+        syncSquare.displaySecondSyncSquare = displaySecondSyncSquare;
         syncSquare.flickerDuration = flickerDuration;
         syncSquare.flickerColor = syncSquareColor;
         syncSquare.displayStimulusCode = displayStimulusCode;
         syncSquare.stimulusCode = frameDataIdCode;
         syncSquare.animalCode = animalCode;
-        RectTransform syncSquareRect = syncSquare.GetComponent<RectTransform>();
-        syncSquareRect.anchoredPosition = syncSquarePos;
-        syncSquare.transform.parent.GetComponent<CanvasScaler>().scaleFactor = syncSquareScalar;
+        syncSquare.syncSquarePos = syncSquarePos;
+        syncSquare.syncSquareScalar = syncSquareScalar;
         syncSquare.Reset();
         timeSinceDarkAdaptStart = 0f;
 
@@ -171,6 +174,8 @@ public abstract class GenericStimulusManager : MonoBehaviour
         flickerDuration = GetFloatFromPython("flickerDuration", 0.1f);
         syncSquareColor = GetColorFromPython("syncSquareColour", Color.red);
         syncSquareDisplayNum = GetIntFromPython("syncSquareDisplayNum", 0);
+        secondSyncSquareDisplayNum = GetIntFromPython("secondSyncSquareDisplayNum", 1);
+        displaySecondSyncSquare = GetBoolFromPython("displaySecondSyncSquare", false);
         syncSquarePos = GetVector2FromPython("syncSquarePos", new Vector2(-29.84f, 18.17102f));
         syncSquareScalar = GetFloatFromPython("syncSquareScalar", 1f);
         displayStimulusCode = GetBoolFromPython("displayStimulusCode", true);
@@ -195,6 +200,11 @@ public abstract class GenericStimulusManager : MonoBehaviour
         zMultiplier = GetFloatFromPython("zMultiplier", 1f);
         darkAdaptFirstTrialOnly = GetBoolFromPython("darkAdaptFirstTrialOnly", true);
         darkAdaptNow = GetBoolFromPython("darkAdaptNow", false);
+        /* For sync square grey RGB values
+        //syncSquareGreyValuesRed = GetFloatFromPython("syncSquareGreyColorRed", 1f);
+        //syncSquareGreyValuesGreen = GetFloatFromPython("syncSquareGreyColorGreen", 1f);
+        //syncSquareGreyValuesBlue = GetFloatFromPython("syncSquareGreyColorBlue", 1f);
+        */
     }
 
     public void Update() {

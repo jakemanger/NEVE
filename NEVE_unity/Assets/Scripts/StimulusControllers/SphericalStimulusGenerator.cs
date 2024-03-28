@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+//using Mathf;
 
 public class SphericalStimulusGenerator : GenericStimulusController
 {
@@ -26,6 +27,10 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public float mouseMoveSpeed = 2f;
     public bool directPath = true; // if false, the stimulus will follow the greater circle path according to how elevation and azimuth were changed.
     public bool hideAtEnd = false;
+
+    //for controling the time that the stimuli is frozen at its final size before disapearing from screen.
+    public float timeAfterMovement = 10f;
+    public float timeElapsedAfterMovement = 0f;
 
     public bool ignoreKeyboard = false;
 
@@ -74,6 +79,46 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public float minAngularAngle = -30f;
     public float maxAngularAngle = 30f;
 
+    //for flickeringLoom (made to not interfere with grating flickering)
+    public bool flickeringLoom = false;
+    public bool flickeringParamsCalculated = false;
+    public float flickerFrequency = 4f; //Hz
+    public float flickeringInterval = 0.25f; //seconds
+    public int flickeringIntervalFrames = 16; // number of frames every half period asuming 60Hz screen
+    public float timeSinceLastFlicker = 0;
+    public int framesSinceLastFlicker = 0;
+    public float flickeringOnRed = 0f;
+    public float flickeringOnGreen = 0f;
+    public float flickeringOnBlue = 0f;
+    public float flickeringOffRed = 1f;
+    public float flickeringOffBlue = 1f;
+    public float flickeringOffGreen = 1f;
+    public float alpha = 1f;
+    public float flickeringOnAlpha = 1f;
+    public float flickeringOffAlpha = 0f;
+    public int flickerCount = 0;
+    public float frameDuration = 1f/60;
+    public float delayForStartFlickering = 0.0f;
+
+    // for static flickering
+    public bool staticFlickering = false;
+    public bool staticFlickeringParamsCalculated = false;
+    public float staticFlickeringFrequency = 4f;
+    public float staticFlickeringInterval = 0.25f;
+    public int staticFlickeringIntervalFrames = 16; // number of frames every half period asuming 60Hz screen
+    public float timeSinceLastStaticFlicker = 0;
+    public int framesSinceLastStaticFlicker = 0;
+    public bool frozen = false;
+    public Vector3 currentPosition = Vector3.zero;
+    public float lastFrozenSwich = 0f;
+    public int staticFlickerCount = 0;
+    public float delayForStartStaticFlickering = 0.0f;
+
+    // for saving position and color parameters
+    List<Vector3> positionList = new List<Vector3>();
+    List<Color> colorList = new List<Color>();
+
+
     //AAA: Add new public variables for new input params
 
     public GameObject stimulus;
@@ -109,6 +154,16 @@ public class SphericalStimulusGenerator : GenericStimulusController
         wantToMove = false;
         move = false;
         justFinishedMoving = false;
+        // for flickeringLoom and statick flickering
+        staticFlickerCount = 0;
+        flickerCount = 0;
+        frozen = false;
+        timeSinceLastStaticFlicker = 0f;
+        timeSinceLastFlicker = 0f;
+        framesSinceLastFlicker = 0;
+        framesSinceLastStaticFlicker = 0;
+        flickeringParamsCalculated = false;
+        staticFlickeringParamsCalculated = false;
 
         // disable all stimuli 
         for (int i = 0; i < stimuli.Length; i++)
@@ -174,6 +229,20 @@ public class SphericalStimulusGenerator : GenericStimulusController
             }
         }
 
+        // for flickering loom and static flickering
+        if (flickeringLoom && !flickeringParamsCalculated){
+            flickeringIntervalFrames = (int)(30/flickerFrequency); // frames
+            flickeringInterval = 0.5f/flickerFrequency; //seconds
+            flickeringParamsCalculated = true;
+        }
+
+        if (staticFlickering && !staticFlickeringParamsCalculated){
+            staticFlickeringIntervalFrames = (int)(30/staticFlickeringFrequency); //frames
+            staticFlickeringInterval = 0.5f/staticFlickeringFrequency; //seconds
+            staticFlickeringParamsCalculated = true;
+        }
+
+
         if ((Input.GetKeyDown(KeyCode.Space) && !ignoreKeyboard) || autoStart) {
             PrepareToMove();
 
@@ -199,6 +268,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
         if (wantToMove) {
             WaitToMove();
         }
+
 
         if ((wantToMove || move) && delayToAppear > 0) {
             delayToAppearTimeElapsed += Time.deltaTime;
@@ -245,6 +315,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
                     move = false;
                     wantToMove = false;
                     justFinishedMoving = true;
+                    timeElapsedAfterMovement = 0f;
                     base.stimulusState = StimulusState.Ended;
                     if (hideAtEnd) {
                         stimulusRenderer.enabled = false;
@@ -252,8 +323,57 @@ public class SphericalStimulusGenerator : GenericStimulusController
                 }
             } 
 
+            float prevFrameTime = timeElapsed;
+
             timeElapsed += Time.deltaTime;
-        } 
+            
+            float timeBetweenFrames = timeElapsed-prevFrameTime;
+            //for flickering loom and static flickering
+            timeSinceLastFlicker += timeBetweenFrames;
+            timeSinceLastStaticFlicker += timeBetweenFrames;
+
+            if(timeBetweenFrames > frameDuration*1.2){
+                framesSinceLastFlicker += (int)Mathf.Round(timeBetweenFrames/frameDuration);
+                framesSinceLastStaticFlicker += (int)Mathf.Round(timeBetweenFrames/frameDuration);
+            }else if (timeBetweenFrames < frameDuration*0.8){
+                framesSinceLastFlicker += (int)Mathf.Round(timeBetweenFrames/frameDuration);
+                framesSinceLastStaticFlicker += (int)Mathf.Round(timeBetweenFrames/frameDuration);
+            }else{
+                framesSinceLastFlicker += 1;
+                framesSinceLastStaticFlicker += 1;
+            }
+            if (flickeringLoom && timeElapsed < delayForStartFlickering){
+                framesSinceLastFlicker = 0;
+            }
+            if (staticFlickering && timeElapsed < delayForStartStaticFlickering){
+                framesSinceLastStaticFlicker = 0;
+            }
+        }
+        
+        // handle flickeringLoom
+        if (flickeringLoom && move) {
+            //Calculate if sufficient time has elapsed since last flickering flip
+            //if (timeSinceLastFlicker > flickeringInterval){
+            //if (flickerCount < Mathf.Floor(timeElapsed/flickeringInterval)){
+            if (framesSinceLastFlicker >= flickeringIntervalFrames){
+
+                flickerCount += 1;
+                timeSinceLastFlicker = 0;
+                framesSinceLastFlicker = 0;
+                if (flickeringColorIsOn()){
+                    stimulusColour.r = flickeringOffRed;
+                    stimulusColour.b = flickeringOffBlue;
+                    stimulusColour.g = flickeringOffGreen;
+                    stimulusColour.a = flickeringOffAlpha;
+                }else {
+                    stimulusColour.r = flickeringOnRed;
+                    stimulusColour.b = flickeringOnBlue;
+                    stimulusColour.g = flickeringOnGreen;
+                    stimulusColour.a = flickeringOnAlpha;
+                }
+                stimulusRenderer.material.color = stimulusColour;
+            }
+        }
 
         if (!directPath) {
             Vector3 pos = stimulus.transform.localPosition;
@@ -264,6 +384,30 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
         // always make the object face the origin (the eye)
         stimulus.transform.LookAt(origin);
+
+        //for controling the time that the stimuli is frozen at its final size before disapearing from screen.
+        if (justFinishedMoving){
+            timeElapsedAfterMovement += Time.deltaTime;
+            if (timeElapsedAfterMovement >= timeAfterMovement){
+                stimulusColour.a = 0;
+                base.stimulusState = StimulusState.Waiting;
+                stimulusRenderer.material.color = stimulusColour;
+            }
+        }
+
+        // To save position and color data to a list 
+        positionList.Add(stimulus.transform.localPosition);
+        colorList.Add(stimulusColour);
+        //print(stimulus.transform.localPosition);
+        //print(stimulusColour); 
+    }
+
+    bool flickeringColorIsOn(){
+        if (stimulusColour.r == flickeringOnRed && stimulusColour.b == flickeringOnBlue && stimulusColour.g == flickeringOnGreen && stimulusColour.a == flickeringOnAlpha){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     void ManualControl() {
@@ -291,6 +435,19 @@ public class SphericalStimulusGenerator : GenericStimulusController
 
     void Move(float startDistance, float endDistance, Vector2 startPolarCoordinate, Vector2 endPolarCoordinate) {
         float progress = timeElapsed / duration;
+
+        // for static flickering, calculate if enough time elapsed since last frozen switch
+        if (staticFlickering){
+            //if (timeSinceLastStaticFlicker >= staticFlickeringInterval){
+            //if (staticFlickerCount < Mathf.Floor(timeElapsed/staticFlickeringInterval)){
+            if (framesSinceLastStaticFlicker >= staticFlickeringIntervalFrames){
+                frozen = !frozen;
+                currentPosition = stimulus.transform.localPosition;
+                staticFlickerCount += 1;
+                timeSinceLastStaticFlicker = 0f;
+                framesSinceLastStaticFlicker = 0;
+            }
+        }
 
         if (directPath) {
             // set start and end positions
@@ -341,10 +498,15 @@ public class SphericalStimulusGenerator : GenericStimulusController
                 }
 
             }
-            // assign the new position according to the new expansion speed
-            stimulus.transform.localPosition = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
-            // print("startDistance: " + startDistance + "; endDistance: " + endDistance + "; timeElapsed: " + timeElapsed);
-            // print("Progress: " + progress + "; Distance from unity: " + Vector3.Distance(stimulus.transform.position, endPositionCartesian));
+            
+            if (staticFlickering && frozen){
+                stimulus.transform.localPosition = currentPosition;
+            }else{
+                // assign the new position according to the new expansion speed
+                stimulus.transform.localPosition = Vector3.Lerp(startPositionCartesian, endPositionCartesian, progress);
+                // print("startDistance: " + startDistance + "; endDistance: " + endDistance + "; timeElapsed: " + timeElapsed);
+                //print("Progress: " + progress + "; Distance from unity: " + Vector3.Distance(stimulus.transform.position, endPositionCartesian));
+            }
         } else {
             if (mimicExpansionSpeed) {
                 throw new System.Exception("Mimic expansion speed can only be used when directPath == True");
@@ -442,6 +604,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
             wantToMove = false;
         } else {
             wantToMove = true;
+            base.stimulusState = StimulusState.PreStart;
         }
         offsetFromCenter = startDistance;
         timeElapsed = 0f;

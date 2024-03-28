@@ -15,13 +15,18 @@ public class SyncSquare : MonoBehaviour
     public float stimulusCode = 9999f;
     public float animalCode = 0f;
 
+
     public GameObject additionalInfo;
     public Image flicker;
     public Text experimentId;
     public Text animalId;
+    public Text timeText;
+    public Image stimStateImg;
 
 
     public void Reset() {
+        print(animalId.text);
+        print(experimentId.text);
         if (displayStimulusCode) {
             flicker.enabled = true;
             experimentId.enabled = true;

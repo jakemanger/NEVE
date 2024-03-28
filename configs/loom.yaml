@@ -16,9 +16,10 @@
 
 # general
 buildDir: ./builds/Loom/
-frameDataIdCode: [11, 12, 13]
-animalCode: [1, 2, 3] 
-execution_order: [0, 1, 2]
+#buildDir: None
+frameDataIdCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+animalCode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+execution_order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 experimentDuration: 99999 
 recordFrameData: 1 
 recordEachFrame: 1
@@ -37,8 +38,8 @@ fictracFeedback: 0
 # perspective
 eyeHeight: 2.864 
 distanceToMonitors: 27 
-monitorDimensionsX: 52 
-monitorDimensionsY: 32 
+monitorDimensionsX: 94.5 
+monitorDimensionsY: 53 
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -58,24 +59,24 @@ belowHorizonColourA: 1
 horizonHeight: 0  
 # object
 stimulusType: 0
-startScaleX: 1  
-startScaleY: 1
-startScaleZ: 1
-endScaleX: 1
-endScaleY: 1
-endScaleZ: 1  
+startScaleX: 3  
+startScaleY: 3
+startScaleZ: 3
+endScaleX: 3
+endScaleY: 3
+endScaleZ: 3  
 startElevation: 15 
 startAzimuth: 0  
 endElevation: 15
 endAzimuth: 0 
-startDistance: 100 
-endDistance: 5 
-duration: 8 
+startDistance: 500
+endDistance: 5.5981
+duration: 10.4891
 numReps: 0.5 
 delayToApproach: 5 
-stimulusColourR: [0.3, 0, 0]
-stimulusColourG: [0.3, 1, 0]
-stimulusColourB: [0.3, 0, 1]
+stimulusColourR: 0
+stimulusColourG: 0
+stimulusColourB: 0
 stimulusColourA: 1
 drawOutline: 0
 outlineType: 0
@@ -84,10 +85,23 @@ outlineColourR: 0
 outlineColourG: 0
 outlineColourB: 0
 outlineColourA: 1
-fixedAngularSize: 1
+fixedAngularSize: 0
 fixElevation: 0
 minAngularAngle: -0.5
 maxAngularAngle: 0.5
 originX: 0 
 originY: 0 
 originZ: 0 
+
+flickeringLoom: [0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
+flickeringFrequency: [1.875 , 3.75, 0, 0, 3.75, 1.875 , 3.75, 0, 0, 3.75]
+flickeringOnRed: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+flickeringOnGreen: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+flickeringOnBlue: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+flickeringOnAlpha: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+flickeringOffRed: [0, 0, 0.5, 0.5, 1, 0, 0, 0.5, 0.5, 1]
+flickeringOffGreen: [0, 0, 0.5, 0.5, 1, 0, 0, 0.5, 0.5, 1]
+flickeringOffBlue: [0, 0, 0.5, 0.5, 1, 0, 0, 0.5, 0.5, 1]
+flickeringOffAlpha: [0, 0, 1, 1, 1, 0, 0, 1, 1, 1]
+staticFlickering: [1, 0, 1, 1, 0, 1, 0, 1, 1, 0]
+staticFlickeringFrequency: [0 , 0, 3.75, 1.875, 0, 0 , 0, 3.75, 1.875, 0]

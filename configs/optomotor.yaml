@@ -29,8 +29,8 @@ displayStimulusCode: 0
 # perspective
 eyeHeight: 3.435 
 distanceToMonitors: 7 
-monitorDimensionsX: 12.176
-monitorDimensionsY: 6.87
+monitorDimensionsX: 53
+monitorDimensionsY: 93
 frontDisplayNum: 0 
 rightDisplayNum: 1 
 backDisplayNum: 2
@@ -41,7 +41,7 @@ darkAdaptTime: 0
 density: [400, 20]
 offset: 0 
 angle: 0
-speed: 5 
+speed: 0 
 square: 0
 minimumVal: [0, 0] 
 maximumVal: [0.1, 0.5]

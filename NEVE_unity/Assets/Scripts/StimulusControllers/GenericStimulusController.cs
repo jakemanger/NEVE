@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum StimulusState {Waiting, Started, Ended}
+public enum StimulusState {Waiting, Started, Ended, PreStart}
 
 public abstract class GenericStimulusController : MonoBehaviour
 {

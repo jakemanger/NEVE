@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3D scenes/HyperiidTrackLoom.unity
     guid: 431f28266b4fc404da5ab50a52451b30
+  - enabled: 1
+    path: Assets/Scenes/3D scenes/Loom.unity
+    guid: ae090b3b34ef9485da1de212b71f766e
   m_configObjects: {}

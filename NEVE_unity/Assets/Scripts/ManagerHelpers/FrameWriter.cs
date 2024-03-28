@@ -20,7 +20,7 @@ public class FrameWriter : MonoBehaviour
 
     public Transform stimTrans;
 
-    public Image syncSquareImg;
+    public SyncSquareManager syncSquare;
 
     public string experimentId = "test_";
     public string outputFilePath;
@@ -35,8 +35,9 @@ public class FrameWriter : MonoBehaviour
     // Use SphericalStimulusGenerator or SquareStimulusGenerator
     // in the inspector
     public GenericStimulusController[] stimulusControllers;
-    public Image stimulusStateImage;
-    public Text timeText;
+    
+    // to record color (made by Ale, needs to be corrected to work with multiple stimuli)
+    public Renderer[] stimulusRenderers;
 
     int stimControllerLength;
 
@@ -49,6 +50,7 @@ public class FrameWriter : MonoBehaviour
         // find all stimulus controllers GenericStimulusController
         stimulusControllers = GameObject.FindObjectsOfType<GenericStimulusController>();
         stimControllerLength = stimulusControllers.Length;
+
 
         transformsToRecord = new List<Transform>();
   
@@ -63,6 +65,11 @@ public class FrameWriter : MonoBehaviour
                 }
             }
         }
+
+
+        // to record color
+        stimulusRenderers = GameObject.FindObjectsOfType<Renderer>();
+
 
         // find the SocketMovementController
         SocketMovementController socketMoveController = GameObject.FindObjectOfType<SocketMovementController>();
@@ -99,7 +106,7 @@ public class FrameWriter : MonoBehaviour
                 InvokeRepeating("WriteData", 0, 1/recordingFrequency);
             }
 
-            string headers = "unityTime, datetime, stimulusOn";
+            string headers = "unityTime, datetime";
 
             for (int i = 0; i < transformsToRecord.Count; i++) {
                 string name = transformsToRecord[i].name;
@@ -113,6 +120,10 @@ public class FrameWriter : MonoBehaviour
                 headers += ", " + stimulusControllers[i].name + "_stimulusState";
             }
 
+            for (int i = 0; i < stimulusRenderers.Length; i++) {
+                string headerName = stimulusRenderers[i].name + "stimColor";
+                headers += ", " + headerName + "_R," + headerName + "_G," + headerName + "_B," + headerName + "_A,";
+            }
             _sw.WriteLine(headers);
 
             startNewFile = false;
@@ -122,17 +133,23 @@ public class FrameWriter : MonoBehaviour
 
     public void WriteData()
     {
-        string data = Time.time + ", " + System.DateTime.Now + ", " + syncSquareImg.enabled;
+        string data = Time.time + ", " + System.DateTime.Now;
         for (int i = 0; i < transformsToRecord.Count; i++) {
             Vector3 position = transformsToRecord[i].position;
             Vector3 localScale = transformsToRecord[i].localScale;
+            
+            //modified by Ale to add color and alpha to the file
             data += ", " + position.x + ", " + position.y + ", " + position.z + ", " + localScale.x + ", " + localScale.y + ", " + localScale.z;
         }
 
         for (int i = 0; i < stimulusControllers.Length; i++) {
             data += ", " + stimulusControllers[i].stimulusState;
         }
-
+        
+        for (int i = 0; i < stimulusControllers.Length; i++) {
+            // to record color
+            data += "," + stimulusRenderers[i].material.color.r + "," + stimulusRenderers[i].material.color.b + "," + stimulusRenderers[i].material.color.g + "," + stimulusRenderers[i].material.color.a;
+        }
         _sw.WriteLine(data);
     }
 
@@ -161,12 +178,16 @@ public class FrameWriter : MonoBehaviour
         } else if (stimState == StimulusState.Started) {
             stimStateColor = Color.white;
         } else if (stimState == StimulusState.Ended) {
-            stimStateColor = Color.grey;
+            //stimStateColor = Color.grey;
+            // For a brighter shade of grey (50% luminosity)
+            stimStateColor = new Color(0.75f, 0.75f, 0.75f, 1f);
+        } else if (stimState == StimulusState.PreStart){
+            stimStateColor = new Color(0.75f, 0.75f, 0.75f, 1f);
         }
 
-        stimulusStateImage.color = stimStateColor;
+        syncSquare.stimStateColor = stimStateColor;
 
-        timeText.text = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+        syncSquare.timeText = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
     }
 
     void SaveStimulusManagerValues()
