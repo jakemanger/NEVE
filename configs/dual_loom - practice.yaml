@@ -15,10 +15,10 @@
 # general
 buildDir: ./builds/All
 scene: 1
-frameDataIdCode: [800001, 800002]
-animalCode: [1, 2]
-execution_order: [0, 1]
-experimentDuration: [99999, 99999]
+frameDataIdCode: [1, 2, 3]
+animalCode: [1, 2, 3]
+execution_order: [0, 1, 2]
+experimentDuration: 99999
 recordFrameData: 1
 recordEachFrame: 1
 recordingFrequency: 1
@@ -65,13 +65,13 @@ endScaleY1: 1
 endScaleZ1: 1
 duration1: 5
 startElevation1: 15
-startAzimuth1: -15 
+startAzimuth1: 90 
 endElevation1: 15
-endAzimuth1: -15
+endAzimuth1: 90
 startDistance1: 50 
 endDistance1: 5
-numReps1: [0.5, 1] 
-delayToApproach1: [5, 5] 
+numReps1: [0.5] 
+delayToApproach1: [5] 
 stimulusColourR1: 0.3 
 stimulusColourG1: 0.3
 stimulusColourB1: 0.3
@@ -83,9 +83,9 @@ outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0
 outlineColourA1: 1
-originX1: [0, 0] 
-originY1: [0, 0]
-originZ1: [0, 0]
+originX1: [0] 
+originY1: [0]
+originZ1: [0]
 # object 2
 stimulusType2: 0
 startScaleX2: 1.5
@@ -101,8 +101,8 @@ endElevation2: 15
 endAzimuth2: 0 
 startDistance2: 55 
 endDistance2: 6  
-numReps2: [0.5, 1] 
-delayToApproach2: [5, 5]
+numReps2: [0.5] 
+delayToApproach2: [5]
 stimulusColourR2: 0 
 stimulusColourG2: 0
 stimulusColourB2: 0
@@ -114,6 +114,6 @@ outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
 outlineColourA2: 1
-originX2: [0, 0]  
-originY2: [0, 0] 
-originZ2: [0, 0]
+originX2: [0]  
+originY2: [0] 
+originZ2: [0]
