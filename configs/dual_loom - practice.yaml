@@ -1,0 +1,119 @@
+# Below are the parameters used to alter a unity experiment with the name
+# DualMoving
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset the position of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# general
+buildDir: ./builds/All
+scene: 1
+frameDataIdCode: [800001, 800002]
+animalCode: [1, 2]
+execution_order: [0, 1]
+experimentDuration: [99999, 99999]
+recordFrameData: 1
+recordEachFrame: 1
+recordingFrequency: 1
+manualControl: 0
+mouseMoveSpeed: 2
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 0
+displayStimulusCode: 1
+fictracFeedback: 0
+
+# perspective
+eyeHeight: 2.864
+distanceToMonitors: 27
+monitorDimensionsX: 52
+monitorDimensionsY: 32
+frontDisplayNum: 0
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+
+# stimuli
+# background
+darkAdaptTime: 0
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0 
+# object 1
+stimulusType1: 0
+startScaleX1: 1 
+startScaleY1: 1
+startScaleZ1: 1
+endScaleX1: 1
+endScaleY1: 1
+endScaleZ1: 1
+duration1: 5
+startElevation1: 15
+startAzimuth1: -15 
+endElevation1: 15
+endAzimuth1: -15
+startDistance1: 50 
+endDistance1: 5
+numReps1: [0.5, 1] 
+delayToApproach1: [5, 5] 
+stimulusColourR1: 0.3 
+stimulusColourG1: 0.3
+stimulusColourB1: 0.3
+stimulusColourA1: 1
+drawOutline1: 0
+outlineType1: 0
+outlineWidth1: 1
+outlineColourR1: 0
+outlineColourG1: 0
+outlineColourB1: 0
+outlineColourA1: 1
+originX1: [0, 0] 
+originY1: [0, 0]
+originZ1: [0, 0]
+# object 2
+stimulusType2: 0
+startScaleX2: 1.5
+startScaleY2: 1.5
+startScaleZ2: 1.5
+endScaleX2: 1.5
+endScaleY2: 1.5
+endScaleZ2: 1.5
+duration2: 5
+startElevation2: 15
+startAzimuth2: 0 
+endElevation2: 15
+endAzimuth2: 0 
+startDistance2: 55 
+endDistance2: 6  
+numReps2: [0.5, 1] 
+delayToApproach2: [5, 5]
+stimulusColourR2: 0 
+stimulusColourG2: 0
+stimulusColourB2: 0
+stimulusColourA2: 1
+drawOutline2: 0
+outlineType2: 0
+outlineWidth2: 1
+outlineColourR2: 0
+outlineColourG2: 0
+outlineColourB2: 0
+outlineColourA2: 1
+originX2: [0, 0]  
+originY2: [0, 0] 
+originZ2: [0, 0]
