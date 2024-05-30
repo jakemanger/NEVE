@@ -151,8 +151,8 @@ Same as Loom, but with the following additional parameters:
 | `mimicExpansionSpeedMethod` | The method to use to mimic the expansion speed. | `1` (match expansionSpeed of directly approaching loom to another direct approaching looming stimuli) or `2` (match a near miss stimulus with the expansion speed of a directly looming stimulus or vice versa by adjusting the current stimuli's size over time) | `0` |
 | `referenceInitialDistance` | Initial distance of the reference stimulus | Any number | `1` |
 | `referenceEndDistance` | End distance of the reference stimulus | Any number | `1` |
-| `equalDistance` | ? (Ask Zahra) | Any number | `1` |
-| `moveTime` | ? (Ask Zahra) | Any number | `1` |
+| `equalDistance` | The distance where the reference and mimic stimulus would be at the exact same location | Any number | `1` |
+| `moveTime` | An extra delay to move, which is required in some mimic situations  | Any number | `1` |
 | `referenceStartElevation` | Starting elevation of the reference stimulus loom | Any number | `0` |
 | `referenceEndElevation` | Ending elevation of the reference stimulus loom | Any number | `0` |
 | `referenceStartAzimuth` | Starting Azimuth of the reference stimulus loom | Any number | `0` |
