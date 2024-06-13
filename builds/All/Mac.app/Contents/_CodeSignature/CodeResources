@@ -458,7 +458,7 @@
 		</data>
 		<key>Resources/Data/globalgamemanagers</key>
 		<data>
-		2D3NB9FVIaL/Lf6KoDkwqiuoW6k=
+		vKyOxBk+ZQbv21NrAnstz2mLDXc=
 		</data>
 		<key>Resources/Data/globalgamemanagers.assets</key>
 		<data>
@@ -499,6 +499,14 @@
 		<key>Resources/Data/level6</key>
 		<data>
 		+heetAV5OfXfyT4APGPK4Dyn9Y4=
+		</data>
+		<key>Resources/Data/level7</key>
+		<data>
+		PAW/KGoVNzopQ0uk+qoKtCBx/1c=
+		</data>
+		<key>Resources/Data/level8</key>
+		<data>
+		+FCsjWQIFcVNc2ex0jh3J2F0flc=
 		</data>
 		<key>Resources/Data/resources.assets</key>
 		<data>
@@ -543,6 +551,14 @@
 		<key>Resources/Data/sharedassets6.assets</key>
 		<data>
 		F82AvSkaSr7jUcbU4JezX6eXUx0=
+		</data>
+		<key>Resources/Data/sharedassets7.assets</key>
+		<data>
+		7D4Gw9XEJnE+M02uAF5JGC+C9WI=
+		</data>
+		<key>Resources/Data/sharedassets8.assets</key>
+		<data>
+		zn4lI11yjGD+n0ZnUoQe1vYHIgM=
 		</data>
 		<key>Resources/DefaultPreferences.plist</key>
 		<data>
@@ -720,10 +736,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			zcIJeXLhBg6OcY3HIxT6t9tqQvQ=
+			DowSptn10ynDiqazNhyXuUMgvA8=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"cdc2097972e1060e8e718dc72314fab7db6a42f4" or cdhash H"0e17aae7d394c135e0eac3cde8a6aea3624f9896"</string>
+			<string>cdhash H"0e8c12a6d9f5d329c38aa6b3361c97b94320bc0f" or cdhash H"fff09e9325f8cada422701e92329a881bab4d2ec"</string>
 		</dict>
 		<key>PlugIns/libgrpc_csharp_ext.x64.bundle</key>
 		<dict>
@@ -1529,7 +1545,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7xZNaBMe9dkNn/c8eJGZvKy1sRxeNejigiKt+kUukN4=
+			8AMFL24sXHtdrInDeuTgz4MUScLLZbrA9V5A2E8B+NU=
 			</data>
 		</dict>
 		<key>Resources/Data/globalgamemanagers.assets</key>
@@ -1600,6 +1616,20 @@
 			<key>hash2</key>
 			<data>
 			S2Q1NMNKXFmZHWX3SVlHoXvg0Nvnz+Uj72EjBA5tT+0=
+			</data>
+		</dict>
+		<key>Resources/Data/level7</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QEyRKLw9tfVTnnuusPnGHeDG8nOLpH9r2Cm2mLxxobo=
+			</data>
+		</dict>
+		<key>Resources/Data/level8</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GcKIwOK7mmVC/TxNtHTeFcosAQrD1ObXKZlUR8MCnuw=
 			</data>
 		</dict>
 		<key>Resources/Data/resources.assets</key>
@@ -1677,6 +1707,20 @@
 			<key>hash2</key>
 			<data>
 			UoenMk+c173D/qJtZaL/IV/64ddoHilhLJyjdohRpv0=
+			</data>
+		</dict>
+		<key>Resources/Data/sharedassets7.assets</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			txyAvCX7EnNUYG0WYt9GzqkNWgXyIdJTNlctc8lx4Zo=
+			</data>
+		</dict>
+		<key>Resources/Data/sharedassets8.assets</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4XoM2E+qGQ38u2g9jRLqYTBwEhw4YUqclW2YUZDM1fE=
 			</data>
 		</dict>
 		<key>Resources/DefaultPreferences.plist</key>
