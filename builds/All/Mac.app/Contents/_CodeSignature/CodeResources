@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Data/Managed/Assembly-CSharp.dll</key>
 		<data>
-		zLkR9NEjWM83ihhcubtUJzdaXqU=
+		GVFxEMcNezR7RWyazGNvtwubrz8=
 		</data>
 		<key>Resources/Data/Managed/Google.Protobuf.dll</key>
 		<data>
@@ -458,7 +458,7 @@
 		</data>
 		<key>Resources/Data/globalgamemanagers</key>
 		<data>
-		/AqBmxxjI6b0I7DdJEWzVHpfXwc=
+		3mJoy45Yy2K49Rpxok+ZkPFck4A=
 		</data>
 		<key>Resources/Data/globalgamemanagers.assets</key>
 		<data>
@@ -518,11 +518,11 @@
 		</data>
 		<key>Resources/Data/sharedassets0.assets</key>
 		<data>
-		dNjGMJqNYYGu3RoeHQQLD0IXPsQ=
+		hvjynAVtYVoZvnu2WQoO3/w/giw=
 		</data>
 		<key>Resources/Data/sharedassets0.assets.resS</key>
 		<data>
-		I7HdsUkeIUA9WJAlxWKp+QHqXdQ=
+		MOJrhHKakznRoVdwNadzREyKNcc=
 		</data>
 		<key>Resources/Data/sharedassets1.assets</key>
 		<data>
@@ -736,10 +736,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			erKFt9ardG2jPSbUtNLrla00PCs=
+			AjRocHVtk1Yongbf8gn5l2cX4RM=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"7ab285b7d6ab746da33d26d4b4d2eb95ad343c2b" or cdhash H"66a6faa15e6f0622de3b6e4d6fb8532a8af707de"</string>
+			<string>cdhash H"02346870756d9356289e06dff209f9976717e113" or cdhash H"4b47e96609f42df5c650bd5493f0a62697e36e9a"</string>
 		</dict>
 		<key>PlugIns/libgrpc_csharp_ext.x64.bundle</key>
 		<dict>
@@ -754,7 +754,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LCruvEw38SGfl0/UTMQVgA2iGIAIujvIuJXMzux2w5U=
+			7Pyfg+CY7p9QNNx0XeTm6Qh0WDispbjMiONB0vGh8H8=
 			</data>
 		</dict>
 		<key>Resources/Data/Managed/Google.Protobuf.dll</key>
@@ -1545,7 +1545,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1AIa88a3BLlaQf5TXLv2JvVVzhPpF8wgCqyq5cYp2r4=
+			O05gFyCTzRB0sIvGWtqCCBdLlNBVyDhFIRF/yIPUyt0=
 			</data>
 		</dict>
 		<key>Resources/Data/globalgamemanagers.assets</key>
@@ -1650,14 +1650,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JWz3mnkV9oYKSd6wtWBJjmtoXPbvSH/PvrH9XEXm8RQ=
+			RWFFN76KVsmzqh9qVET3kcZEETRpBIM5nGRefWetRJI=
 			</data>
 		</dict>
 		<key>Resources/Data/sharedassets0.assets.resS</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZCz3SVf578SuH6xzbx6gcBcoGLIg7G/jje/ZJKlQhuA=
+			PfC98s6IwdwFd/JviA+H1CVLSyU5KkWb/1u9QtFzv+E=
 			</data>
 		</dict>
 		<key>Resources/Data/sharedassets1.assets</key>

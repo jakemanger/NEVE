@@ -312,10 +312,10 @@ public class SphericalStimulusGenerator : GenericStimulusController
                     float diameter = stimulus.transform.localScale.x;
                     float tToCollision = referenceInitialDistance / referenceSpeed;
                     float distance = (
-                        diameter / 2 / Mathf.Tan(
-                                Mathf.Atan(referenceDiameter / (2 * referenceSpeed * (tToCollision - timeElapsed)))
-                                + Mathf.Atan(diameter / (2 * equalDistance))
-                                - Mathf.Atan(referenceDiameter / (2 * equalDistance)))
+                        diameter / 2 / Mathf.Sin(
+                                Mathf.Asin(referenceDiameter / (2 * referenceSpeed * (tToCollision - timeElapsed)))
+                                + Mathf.Asin(diameter / (2 * equalDistance))
+                                - Mathf.Asin(referenceDiameter / (2 * equalDistance)))
                     );
                     // moveTime - an extra delay to move, which is required in some mimic situations 
                     if (timeElapsed<moveTime) {
@@ -340,7 +340,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
                     Vector3 vRef = pRef / duration;
                     float refDistance=Mathf.Sqrt(Mathf.Pow((vRef.x*timeElapsed+refStartPositionCartesian.x), 2) + Mathf.Pow((vRef.y*timeElapsed+refStartPositionCartesian.y), 2) + Mathf.Pow((vRef.z*timeElapsed+refStartPositionCartesian.z), 2));
 
-                    float newDiameter = 2 * stimulusDistance* Mathf.Tan(Mathf.Atan(referenceDiameter /(2*refDistance) ) - Mathf.Atan(referenceDiameter / (2*referenceInitialDistance)) + Mathf.Atan(diameter /(2*startDistance)));
+                    float newDiameter = 2 * stimulusDistance* Mathf.Sin(Mathf.Asin(referenceDiameter /(2*refDistance) ) - Mathf.Asin(referenceDiameter / (2*referenceInitialDistance)) + Mathf.Asin(diameter /(2*startDistance)));
                     
                     // assign new size to mimic the reference stimulus's expansion speed
                     stimulus.transform.localScale = new Vector3(newDiameter, newDiameter, newDiameter);
