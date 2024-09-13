@@ -13,7 +13,7 @@
 # 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
 
 # general
-buildDir: ./builds/All
+buildDir: # ./builds/All
 scene: 5
 frameDataIdCode: [900001, 900002]
 animalCode: [1, 2]
@@ -56,7 +56,7 @@ belowHorizonColourB: 0.3
 belowHorizonColourA: 1
 horizonHeight: 0 
 # object 1
-stimulusType1: 1
+stimulusType1: 4
 startScaleX1: 1 
 startScaleY1: 1
 startScaleZ1: 1
@@ -76,9 +76,9 @@ stimulusColourR1: 0.3
 stimulusColourG1: 0.3
 stimulusColourB1: 0.3
 stimulusColourA1: 1
-drawOutline1: 0
-outlineType1: 0
-outlineWidth1: 1
+drawOutline1: 1
+outlineType1: 1
+outlineWidth1: 10
 outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0

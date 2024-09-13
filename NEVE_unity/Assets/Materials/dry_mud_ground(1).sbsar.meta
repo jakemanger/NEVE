@@ -25,7 +25,8 @@ ScriptedImporter:
     shaderName: Universal Render Pipeline/Lit
     materialProperties:
       shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-      shaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
+      shaderKeywords: _GLOSSINESSMAP _HEIGHTMAP _METALLICSPECGLOSSMAP _NA_DIFFUSE
+        _NORMALMAP _OCCLUSIONMAP _ROUGHNESSMAP
       lightmapFlags: 4
       enableInstancingVariants: 0
       doubleSidedGI: 0
@@ -327,8 +328,12 @@ ScriptedImporter:
       bGenerateOnLoad: 1
     material: {fileID: 7748815432070235989, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
     generatedTextures:
+    - {fileID: -8338907734575774433, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
     - {fileID: -8202328686861970659, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
     - {fileID: -2743341640573561378, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
     - {fileID: 3016923979192462938, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
+    - {fileID: 6692342698020578667, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
+    - {fileID: 4685898246184360101, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
     - {fileID: -2780914887033882184, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
+    - {fileID: 4901686673040608613, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}
     - {fileID: -4436348966648946540, guid: 1955639c1b8f8467cb38cae0400c5df5, type: 3}

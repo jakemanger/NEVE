@@ -129,7 +129,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _horizonHeight: 41.5
+    - _horizonHeight: 0
     m_Colors:
     - Color_10a2bf8483b2471d83ed3dba372b61cd: {r: 1, g: 1, b: 1, a: 0}
     - Color_3342a62d66ab43b1a382470c7937a8b8: {r: 0, g: 0, b: 0, a: 0}
@@ -142,8 +142,8 @@ Material:
     - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _aboveHorizonColour: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
-    - _belowHorizonColour: {r: 0, g: 0, b: 0, a: 1}
+    - _aboveHorizonColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _belowHorizonColour: {r: 0.3, g: 0.3, b: 0.3, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7461417313103214796
 MonoBehaviour:
