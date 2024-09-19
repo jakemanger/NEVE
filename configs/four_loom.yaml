@@ -78,12 +78,12 @@ stimulusColourB1: 0.3
 stimulusColourA1: 1
 drawOutline1: 1
 outlineType1: 1
-outlineWidth1: 10
+outlineWidth1: 1000
 outlineColourR1: 0
 outlineColourG1: 0
 outlineColourB1: 0
 outlineColourA1: 1
-fixedAngularSize1: 1
+fixedAngularSize1: 0
 fixElevation1: 0
 minAngularAngle1: -0.5
 maxAngularAngle1: 0.5
