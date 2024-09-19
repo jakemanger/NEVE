@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3D scenes/MimicExpansionSpeedDualLoom.unity
     guid: 6527c6d21e76446eba4bae33e5f53174
+  - enabled: 1
+    path: Assets/Scenes/3D scenes/EightLoom.unity
+    guid: 9c7fb94d724bb47f58c1fde451125047
   m_configObjects: {}

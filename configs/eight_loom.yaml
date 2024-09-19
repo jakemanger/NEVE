@@ -1,0 +1,341 @@
+# Below are the parameters used to alter a unity experiment with the name
+# DualMoving
+
+# Controls for the experiment
+# escape - stall Unity, end the experiment and give control to python.
+# F - flicker the stimulus and the sync square to sync unity with the camera
+# IF displayStimulusCode == True, then F just fades displayStimulusCode from off to on or on to off
+# tab - Unlock/lock the cursor from Unity allowing you to see or not see your mouse 
+# Space - start movement/reset the position of the stimulus
+# IF manualControl==1,
+# Move the mouse - Move the stimulus in polar coordinates around the center of the aquariums
+# Scroll the mouse wheel - Make the stimulus larger or smaller
+# 0 - recenter stimulus to the center of the front screen (polar coordinates: 0, 0).
+
+# general
+buildDir: # ./builds/All
+scene: 9
+frameDataIdCode: [900001, 900002]
+animalCode: [1, 2]
+execution_order: [0, 1]
+experimentDuration: [99999, 99999]
+recordFrameData: 1
+recordEachFrame: 1
+recordingFrequency: 1
+manualControl: 0
+mouseMoveSpeed: 2
+flickerDuration: 0.1
+syncSquareColourR: 1
+syncSquareColourG: 0
+syncSquareColourB: 0
+syncSquareColourA: 1
+syncSquareDisplayNum: 0
+displayStimulusCode: 1
+fictracFeedback: 0
+
+# perspective
+eyeHeight: 2.864
+distanceToMonitors: 27
+monitorDimensionsX: 52
+monitorDimensionsY: 32
+frontDisplayNum: 0
+rightDisplayNum: 1
+backDisplayNum: 2
+leftDisplayNum: 3
+
+# stimuli
+# background
+darkAdaptTime: 0
+aboveHorizonColourR: 0.5
+aboveHorizonColourG: 0.5
+aboveHorizonColourB: 0.5
+aboveHorizonColourA: 1
+belowHorizonColourR: 0.3
+belowHorizonColourG: 0.3
+belowHorizonColourB: 0.3
+belowHorizonColourA: 1
+horizonHeight: 0 
+# object 1
+stimulusType1: 3
+startScaleX1: 1 
+startScaleY1: 1
+startScaleZ1: 1
+endScaleX1: 1
+endScaleY1: 1
+endScaleZ1: 1
+duration1: 5
+startElevation1: 15
+startAzimuth1: 10 
+endElevation1: 15
+endAzimuth1: 10 
+startDistance1: 50 
+endDistance1: 5
+numReps1: [0.5, 1] 
+delayToApproach1: [5, 5] 
+stimulusColourR1: 0.3 
+stimulusColourG1: 0.3
+stimulusColourB1: 0.3
+stimulusColourA1: 1
+drawOutline1: 1
+outlineType1: 1
+outlineWidth1: 1000
+outlineColourR1: 0
+outlineColourG1: 0
+outlineColourB1: 0
+outlineColourA1: 1
+fixedAngularSize1: 0
+fixElevation1: 0
+minAngularAngle1: -0.5
+maxAngularAngle1: 0.5
+originX1: [0, 0] 
+originY1: [0, 0]
+originZ1: [0, 0]
+# object 2
+stimulusType2: 1
+startScaleX2: 1.5
+startScaleY2: 1.5
+startScaleZ2: 1.5
+endScaleX2: 1.5
+endScaleY2: 1.5
+endScaleZ2: 1.5
+duration2: 5
+startElevation2: 15
+startAzimuth2: 0 
+endElevation2: 15
+endAzimuth2: 0 
+startDistance2: 55 
+endDistance2: 6  
+numReps2: [0.5, 1] 
+delayToApproach2: [5, 5]
+stimulusColourR2: 0 
+stimulusColourG2: 0
+stimulusColourB2: 0
+stimulusColourA2: 1
+drawOutline2: 0
+outlineType2: 0
+outlineWidth2: 1
+outlineColourR2: 0
+outlineColourG2: 0
+outlineColourB2: 0
+outlineColourA2: 1
+fixedAngularSize2: 1
+fixElevation2: 0
+minAngularAngle2: -0.5
+maxAngularAngle2: 0.5
+originX2: [0, 0]  
+originY2: [0, 0] 
+originZ2: [0, 0]
+# object 3
+stimulusType3: 1
+startScaleX3: 1.5
+startScaleY3: 1.5
+startScaleZ3: 1.5
+endScaleX3: 1.5
+endScaleY3: 1.5
+endScaleZ3: 1.5
+duration3: 5
+startElevation3: 15
+startAzimuth3: 0 
+endElevation3: 15
+endAzimuth3: 0 
+startDistance3: 55 
+endDistance3: 6  
+numReps3: [0.5, 1] 
+delayToApproach3: [5, 5]
+stimulusColourR3: 0 
+stimulusColourG3: 0
+stimulusColourB3: 0
+stimulusColourA3: 1
+drawOutline3: 0
+outlineType3: 0
+outlineWidth3: 1
+outlineColourR3: 0
+outlineColourG3: 0
+outlineColourB3: 0
+outlineColourA3: 1
+fixedAngularSize3: 1
+fixElevation3: 0
+minAngularAngle3: -0.5
+maxAngularAngle3: 0.5
+originX3: [0, 0]  
+originY3: [0, 0] 
+originZ3: [0, 0]
+# object 4
+stimulusType4: 1
+startScaleX4: 1.5
+startScaleY4: 1.5
+startScaleZ4: 1.5
+endScaleX4: 1.5
+endScaleY4: 1.5
+endScaleZ4: 1.5
+duration4: 5
+startElevation4: 15
+startAzimuth4: 0 
+endElevation4: 15
+endAzimuth4: 0 
+startDistance4: 55 
+endDistance4: 6  
+numReps4: [0.5, 1] 
+delayToApproach4: [5, 5]
+stimulusColourR4: 0 
+stimulusColourG4: 0
+stimulusColourB4: 0
+stimulusColourA4: 1
+drawOutline4: 0
+outlineType4: 0
+outlineWidth4: 1
+outlineColourR4: 0
+outlineColourG4: 0
+outlineColourB4: 0
+outlineColourA4: 1
+fixedAngularSize4: 1
+fixElevation4: 0
+minAngularAngle4: -0.5
+maxAngularAngle4: 0.5
+originX4: [0, 0]  
+originY4: [0, 0] 
+originZ4: [0, 0]
+
+# object 5
+stimulusType5: 1
+startScaleX5: 1.5
+startScaleY5: 1.5
+startScaleZ5: 1.5
+endScaleX5: 1.5
+endScaleY5: 1.5
+endScaleZ5: 1.5
+duration5: 5
+startElevation5: 15
+startAzimuth5: 0 
+endElevation5: 15
+endAzimuth5: 0 
+startDistance5: 55 
+endDistance5: 6  
+numReps5: [0.5, 1] 
+delayToApproach5: [5, 5]
+stimulusColourR5: 0 
+stimulusColourG5: 0
+stimulusColourB5: 0
+stimulusColourA5: 1
+drawOutline5: 0
+outlineType5: 0
+outlineWidth5: 1
+outlineColourR5: 0
+outlineColourG5: 0
+outlineColourB5: 0
+outlineColourA5: 1
+fixedAngularSize5: 1
+fixElevation5: 0
+minAngularAngle5: -0.5
+maxAngularAngle5: 0.5
+originX5: [0, 0]  
+originY5: [0, 0] 
+originZ5: [0, 0]
+
+# object 6
+stimulusType6: 1
+startScaleX6: 1.5
+startScaleY6: 1.5
+startScaleZ6: 1.5
+endScaleX6: 1.5
+endScaleY6: 1.5
+endScaleZ6: 1.5
+duration6: 5
+startElevation6: 15
+startAzimuth6: 0 
+endElevation6: 15
+endAzimuth6: 0 
+startDistance6: 55 
+endDistance6: 6  
+numReps6: [0.5, 1] 
+delayToApproach6: [5, 5]
+stimulusColourR6: 0 
+stimulusColourG6: 0
+stimulusColourB6: 0
+stimulusColourA6: 1
+drawOutline6: 0
+outlineType6: 0
+outlineWidth6: 1
+outlineColourR6: 0
+outlineColourG6: 0
+outlineColourB6: 0
+outlineColourA6: 1
+fixedAngularSize6: 1
+fixElevation6: 0
+minAngularAngle6: -0.5
+maxAngularAngle6: 0.5
+originX6: [0, 0]  
+originY6: [0, 0] 
+originZ6: [0, 0]
+
+# object 7
+stimulusType7: 1
+startScaleX7: 1.5
+startScaleY7: 1.5
+startScaleZ7: 1.5
+endScaleX7: 1.5
+endScaleY7: 1.5
+endScaleZ7: 1.5
+duration7: 5
+startElevation7: 15
+startAzimuth7: 0 
+endElevation7: 15
+endAzimuth7: 0 
+startDistance7: 55 
+endDistance7: 6  
+numReps7: [0.5, 1] 
+delayToApproach7: [5, 5]
+stimulusColourR7: 0 
+stimulusColourG7: 0
+stimulusColourB7: 0
+stimulusColourA7: 1
+drawOutline7: 0
+outlineType7: 0
+outlineWidth7: 1
+outlineColourR7: 0
+outlineColourG7: 0
+outlineColourB7: 0
+outlineColourA7: 1
+fixedAngularSize7: 1
+fixElevation7: 0
+minAngularAngle7: -0.5
+maxAngularAngle7: 0.5
+originX7: [0, 0]  
+originY7: [0, 0] 
+originZ7: [0, 0]
+
+# object 8
+stimulusType8: 1
+startScaleX8: 1.5
+startScaleY8: 1.5
+startScaleZ8: 1.5
+endScaleX8: 1.5
+endScaleY8: 1.5
+endScaleZ8: 1.5
+duration8: 5
+startElevation8: 15
+startAzimuth8: 0 
+endElevation8: 15
+endAzimuth8: 0 
+startDistance8: 55 
+endDistance8: 6  
+numReps8: [0.5, 1] 
+delayToApproach8: [5, 5]
+stimulusColourR8: 0 
+stimulusColourG8: 0
+stimulusColourB8: 0
+stimulusColourA8: 1
+drawOutline8: 0
+outlineType8: 0
+outlineWidth8: 1
+outlineColourR8: 0
+outlineColourG8: 0
+outlineColourB8: 0
+outlineColourA8: 1
+fixedAngularSize8: 1
+fixElevation8: 0
+minAngularAngle8: -0.5
+maxAngularAngle8: 0.5
+originX8: [0, 0]  
+originY8: [0, 0] 
+originZ8: [0, 0]
