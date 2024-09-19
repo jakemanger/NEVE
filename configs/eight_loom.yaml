@@ -118,7 +118,7 @@ outlineColourR2: 0
 outlineColourG2: 0
 outlineColourB2: 0
 outlineColourA2: 1
-fixedAngularSize2: 1
+fixedAngularSize2: 0
 fixElevation2: 0
 minAngularAngle2: -0.5
 maxAngularAngle2: 0.5
@@ -153,7 +153,7 @@ outlineColourR3: 0
 outlineColourG3: 0
 outlineColourB3: 0
 outlineColourA3: 1
-fixedAngularSize3: 1
+fixedAngularSize3: 0
 fixElevation3: 0
 minAngularAngle3: -0.5
 maxAngularAngle3: 0.5
@@ -188,7 +188,7 @@ outlineColourR4: 0
 outlineColourG4: 0
 outlineColourB4: 0
 outlineColourA4: 1
-fixedAngularSize4: 1
+fixedAngularSize4: 0
 fixElevation4: 0
 minAngularAngle4: -0.5
 maxAngularAngle4: 0.5
@@ -332,7 +332,7 @@ outlineColourR8: 0
 outlineColourG8: 0
 outlineColourB8: 0
 outlineColourA8: 1
-fixedAngularSize8: 1
+fixedAngularSize8: 0
 fixElevation8: 0
 minAngularAngle8: -0.5
 maxAngularAngle8: 0.5
