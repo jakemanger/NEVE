@@ -42,6 +42,7 @@ public class LoomManager : GenericStimulusManager
         stimGenerator.opaqueObject = GetBoolFromPython("opaqueObject", false);
         stimGenerator.startScale = GetVector3FromPython("startScale", Vector3.one);
         stimGenerator.endScale = GetVector3FromPython("endScale", Vector3.one);
+        stimGenerator.rotation = GetVector3FromPython("rotation", Vector3.zero);
 
         Vector2 rotationOffset = GetVector2FromPython("rotationOffset", Vector2.zero);
         Vector2 startPolarPosition = Vector2.zero;

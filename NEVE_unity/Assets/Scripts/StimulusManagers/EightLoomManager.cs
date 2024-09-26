@@ -13,6 +13,7 @@ public class EightLoomManager : GenericStimulusManager
     [Header("Specific stimulus parameters")]
     public List<Vector3> startScales = new List<Vector3>();
     public List<Vector3> endScales = new List<Vector3>();
+    public List<Vector3> rotations = new List<Vector3>();
     public List<Vector2> startPolarPositions = new List<Vector2>();
     public List<Vector2> endPolarPositions = new List<Vector2>();
     public List<Vector3> origins = new List<Vector3>();
@@ -60,6 +61,7 @@ public class EightLoomManager : GenericStimulusManager
         {
             startScales.Add(GetVector3FromPython("startScale", Vector3.one, (i + 1).ToString()));
             endScales.Add(GetVector3FromPython("endScale", Vector3.one, (i + 1).ToString()));
+            rotations.Add(GetVector3FromPython("rotation", Vector3.zero, (i + 1).ToString()));
             stimulusDurations.Add(GetFloatFromPython("duration", 5f, (i + 1).ToString()));
             origins.Add(GetVector3FromPython("origin", Vector3.zero, (i + 1).ToString()));
             rotationOffsets.Add(GetVector2FromPython("rotationOffset", Vector2.zero, (i + 1).ToString()));
@@ -117,6 +119,7 @@ public class EightLoomManager : GenericStimulusManager
             stimGenerator.opaqueObject = opaqueObjects[i];
             stimGenerator.startScale = startScales[i];
             stimGenerator.endScale = endScales[i];
+            stimGenerator.rotation = rotations[i];
             stimGenerator.startDistance = startDistances[i];
             stimGenerator.endDistance = endDistances[i];
             stimGenerator.delayToApproach = delayToApproaches[i];

@@ -14,6 +14,7 @@ public class SphericalStimulusGenerator : GenericStimulusController
     public Vector2 endPolarPosition = new Vector2(0f, 0f);
     public Vector3 startScale = new Vector3(1f, 1f, 1f);
     public Vector3 endScale = new Vector3(1f, 1f, 1f);
+    public Vector3 rotation = new Vector3(0f, 0f, 0f);
     public Vector3 origin = Vector3.zero;
     public Vector2 rotationOffset = Vector2.zero;
     public float startDistance = 100f;
@@ -148,6 +149,8 @@ public class SphericalStimulusGenerator : GenericStimulusController
         }
 
         stimulus.transform.localScale = startScale;
+
+        stimulus.transform.eulerAngles = rotation;
 
         if (stimulusType == 2) {
             SetupGratings();

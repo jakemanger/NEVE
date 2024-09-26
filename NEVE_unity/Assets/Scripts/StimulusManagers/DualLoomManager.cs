@@ -13,6 +13,8 @@ public class DualLoomManager : GenericStimulusManager
     public Vector3 endScale1 = Vector3.one;
     public Vector3 startScale2 = Vector3.one;
     public Vector3 endScale2 = Vector3.one;
+    public Vector3 rotation1 = Vector3.zero;
+    public Vector3 rotation2 = Vector3.zero;
     public Vector2 startPolarPosition1 = new Vector2(0f, 0f);
     public Vector2 startPolarPosition2 = new Vector2(0f, 0f);
     public Vector2 endPolarPosition1 = new Vector2(0f, 0f);
@@ -79,6 +81,7 @@ public class DualLoomManager : GenericStimulusManager
 
         startScale1 = GetVector3FromPython("startScale", startScale1, "1");
         endScale1 = GetVector3FromPython("endScale", endScale1, "1");
+        rotation1 = GetVector3FromPython("rotation", Vector3.zero, "1");
         stimulusDuration1 = GetFloatFromPython("duration", stimulusDuration1, "1");
         origin1 = GetVector3FromPython("origin", Vector3.zero, "1");
         rotationOffset1 = GetVector2FromPython("rotationOffset", Vector2.zero, "1");
@@ -112,6 +115,7 @@ public class DualLoomManager : GenericStimulusManager
 
         startScale2 = GetVector3FromPython("startScale", startScale2, "2");
         endScale2 = GetVector3FromPython("endScale", endScale2, "2");
+        rotation2 = GetVector3FromPython("rotation", Vector3.zero, "2");
         stimulusDuration2 = GetFloatFromPython("duration", 5f, "2");
         origin2 = GetVector3FromPython("origin", Vector3.zero, "2");
         rotationOffset2 = GetVector2FromPython("rotationOffset", Vector2.zero, "2");
@@ -180,6 +184,7 @@ public class DualLoomManager : GenericStimulusManager
         stimGenerator1.opaqueObject = opaqueObject1;
         stimGenerator1.startScale = startScale1;
         stimGenerator1.endScale = endScale1;
+        stimGenerator1.rotation = rotation1;
         stimGenerator1.startDistance = startDistance1;
         stimGenerator1.endDistance = endDistance1;
         stimGenerator1.delayToApproach = delayToApproach1;
@@ -218,6 +223,7 @@ public class DualLoomManager : GenericStimulusManager
             stimGenerator2.opaqueObject = opaqueObject2;
             stimGenerator2.startScale = startScale2;
             stimGenerator2.endScale = endScale2;
+            stimGenerator2.rotation = rotation2;
             stimGenerator2.startDistance = startDistance2;
             stimGenerator2.endDistance = endDistance2;
             stimGenerator2.delayToApproach = delayToApproach2;
