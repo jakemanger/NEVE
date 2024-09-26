@@ -14,12 +14,16 @@ public class FourLoomManager : GenericStimulusManager
 
     public Vector3 startScale1 = Vector3.one;
     public Vector3 endScale1 = Vector3.one;
+    public Vector3 rotation1 = Vector3.zero;
     public Vector3 startScale2 = Vector3.one;
     public Vector3 endScale2 = Vector3.one;
+    public Vector3 rotation2 = Vector3.zero;
     public Vector3 startScale3 = Vector3.one;
     public Vector3 endScale3 = Vector3.one;
+    public Vector3 rotation3 = Vector3.zero;
     public Vector3 startScale4 = Vector3.one;
     public Vector3 endScale4 = Vector3.one;
+    public Vector3 rotation4 = Vector3.zero;
     public Vector2 startPolarPosition1 = new Vector2(0f, 0f);
     public Vector2 startPolarPosition2 = new Vector2(0f, 0f);
     public Vector2 startPolarPosition3 = new Vector2(0f, 0f);
@@ -137,6 +141,7 @@ public class FourLoomManager : GenericStimulusManager
 
         startScale1 = GetVector3FromPython("startScale", startScale1, "1");
         endScale1 = GetVector3FromPython("endScale", endScale1, "1");
+        rotation1 = GetVector3FromPython("rotation", rotation1, "1");
         stimulusDuration1 = GetFloatFromPython("duration", stimulusDuration1, "1");
         origin1 = GetVector3FromPython("origin", Vector3.zero, "1");
         rotationOffset1 = GetVector2FromPython("rotationOffset", Vector2.zero, "1");
@@ -170,6 +175,7 @@ public class FourLoomManager : GenericStimulusManager
 
         startScale2 = GetVector3FromPython("startScale", startScale2, "2");
         endScale2 = GetVector3FromPython("endScale", endScale2, "2");
+        rotation2 = GetVector3FromPython("rotation", rotation2, "2");
         stimulusDuration2 = GetFloatFromPython("duration", 5f, "2");
         origin2 = GetVector3FromPython("origin", Vector3.zero, "2");
         rotationOffset2 = GetVector2FromPython("rotationOffset", Vector2.zero, "2");
@@ -203,6 +209,7 @@ public class FourLoomManager : GenericStimulusManager
 
         startScale3 = GetVector3FromPython("startScale", startScale3, "3");
         endScale3 = GetVector3FromPython("endScale", endScale3, "3");
+        rotation3 = GetVector3FromPython("rotation", rotation3, "3");
         stimulusDuration3 = GetFloatFromPython("duration", 5f, "3");
         origin3 = GetVector3FromPython("origin", Vector3.zero, "3");
         rotationOffset3 = GetVector2FromPython("rotationOffset", Vector2.zero, "3");
@@ -236,6 +243,7 @@ public class FourLoomManager : GenericStimulusManager
 
         startScale4 = GetVector3FromPython("startScale", startScale4, "4");
         endScale4 = GetVector3FromPython("endScale", endScale4, "4");
+        rotation4 = GetVector3FromPython("rotation", rotation4, "4");
         stimulusDuration4 = GetFloatFromPython("duration", 5f, "4");
         origin4 = GetVector3FromPython("origin", Vector3.zero, "4");
         rotationOffset4 = GetVector2FromPython("rotationOffset", Vector2.zero, "4");
@@ -285,6 +293,7 @@ public class FourLoomManager : GenericStimulusManager
         stimGenerator1.opaqueObject = opaqueObject1;
         stimGenerator1.startScale = startScale1;
         stimGenerator1.endScale = endScale1;
+        stimGenerator1.rotation = rotation1;
         stimGenerator1.startDistance = startDistance1;
         stimGenerator1.endDistance = endDistance1;
         stimGenerator1.delayToApproach = delayToApproach1;
@@ -323,6 +332,7 @@ public class FourLoomManager : GenericStimulusManager
             stimGenerator2.opaqueObject = opaqueObject2;
             stimGenerator2.startScale = startScale2;
             stimGenerator2.endScale = endScale2;
+            stimGenerator2.rotation = rotation2;
             stimGenerator2.startDistance = startDistance2;
             stimGenerator2.endDistance = endDistance2;
             stimGenerator2.delayToApproach = delayToApproach2;
@@ -359,6 +369,7 @@ public class FourLoomManager : GenericStimulusManager
             stimGenerator3.opaqueObject = opaqueObject3;
             stimGenerator3.startScale = startScale3;
             stimGenerator3.endScale = endScale3;
+            stimGenerator3.rotation = rotation3;
             stimGenerator3.startDistance = startDistance3;
             stimGenerator3.endDistance = endDistance3;
             stimGenerator3.delayToApproach = delayToApproach3;
@@ -395,6 +406,7 @@ public class FourLoomManager : GenericStimulusManager
             stimGenerator4.opaqueObject = opaqueObject4;
             stimGenerator4.startScale = startScale4;
             stimGenerator4.endScale = endScale4;
+            stimGenerator4.rotation = rotation4;
             stimGenerator4.startDistance = startDistance4;
             stimGenerator4.endDistance = endDistance4;
             stimGenerator4.delayToApproach = delayToApproach4;
