@@ -9,7 +9,7 @@ If you currently don't have this Unity version, then install Unity Hub from http
 
 3) In Unity Hub, ensure you have the build support modules installed for all target platforms. Click "Installs", then the gear icon on your Unity installation, select "Add Modules", and enable **Linux Build Support (Mono)**, **Mac Build Support (Mono)**, and **Windows Build Support (Mono)** (Windows is included by default on Windows installs). These are required for the build scripts to compile without errors.
 
-4) From Unity Hub, click "Projects" > "ADD" and select the NEVE_unity_HDR folder in the location of where you cloned this repository.
+4) From Unity Hub, click "Projects" > "ADD" and select the NEVE_unity folder in the location of where you cloned this repository.
 
 5) If you don't know how to use Unity, follow some of its [amazing guides](https://learn.unity.com/) or find some guides elsewhere (e.g. youtube) to get familiar with all the windows, settings and how everything works. You should have a general understanding of how the engine works, how to place game objects in the scene and how to alter components on game objects.
 
